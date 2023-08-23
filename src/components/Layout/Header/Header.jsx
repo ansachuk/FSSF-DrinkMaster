@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
 	return (
-		<header style={{ marginBottom: 40 }}>
-			<p style={{ marginBottom: 40 }}>Header</p>
+		<header>
+			<p>Header</p>
 			<div>
 				Тимчасовий дів - створений для переходу між сторінками
 				<br />
