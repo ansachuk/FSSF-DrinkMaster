@@ -1,25 +1,19 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import css from "./temp-div-styles.module.scss";
 
 export default function Header() {
 	return (
 		<header>
 			<p>Header</p>
-			<div>
-				Тимчасовий дів - створений для переходу між сторінками
-				<br />
-				<Link to="/">Main</Link>
-				<br />
-				<Link to="/welcome">welcome</Link>
-				<br />
-				<Link to="/drinks/1">Category 1</Link>
-				<br />
-				<Link to="/add">Add</Link>
-				<br />
-				<Link to="/favorite">Favorite</Link>
-				<br />
-				<Link to="/recipe/1">Recipe 1</Link>
-				<br />
-				<Link to="/error">Not found</Link>
+			<div className={css.tempNav}>
+				{/* Тимчасовий дів - створений для переходу між сторінками */}
+				<NavLink to="/welcome">welcome</NavLink>
+				<NavLink to="/">Main</NavLink>
+				<NavLink to="/drinks/1">Category 1</NavLink>
+				<NavLink to="/add">Add</NavLink>
+				<NavLink to="/favorite">Favorite</NavLink>
+				<NavLink to="/recipe/1">Recipe 1</NavLink>
+				<NavLink to="/error">Not found</NavLink>
 			</div>
 		</header>
 	);
