@@ -1,0 +1,30 @@
+@import "../../../../scss/";
+
+.user_group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-right: 14px;
+	font-size: 14px;
+
+	@include tablet {
+		gap: 14px;
+		margin-right: 24px;
+		font-size: 16px;
+	}
+
+	@include desktop {
+		margin-right: 0;
+	}
+}
+
+.icon {
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+
+	@include tablet {
+		width: 44px;
+		height: 44px;
+	}
+}
