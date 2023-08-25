@@ -1,0 +1,51 @@
+@import "../../../../scss/";
+
+.nav {
+	position: absolute;
+	top: 77px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: grid;
+
+	@include tablet {
+		top: 84px;
+	}
+
+	@include desktop {
+		position: static;
+		display: block;
+	}
+
+	& [class="active"] {
+		background-color: rgba(243, 243, 243, 0.2);
+	}
+}
+
+.list {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	margin: 20% auto 0 auto;
+
+	@include desktop {
+		display: flex;
+		flex-direction: row;
+		margin: 0;
+	}
+}
+
+.item {
+	padding: 8px 16px;
+	border: 1px solid rgba(243, 243, 243, 0.2);
+	border-radius: 40px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.link {
+	// padding: 8px 16px;
+	// border: 1px solid rgba(243, 243, 243, 0.2);
+	// border-radius: 40px;
+}

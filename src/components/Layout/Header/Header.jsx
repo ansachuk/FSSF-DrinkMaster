@@ -3,13 +3,34 @@ import cssTest from "./temp-div-styles.module.scss";
 import css from "./Header.module.scss";
 import Logo from "./Logo/Logo";
 import UserMenu from "./UserMenu/UserMenu";
+import Navigation from "./Navigation/Navigation";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+	const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1280);
+
+	const updateMedia = () => {
+		setIsDesktop(window.innerWidth >= 1280);
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", updateMedia);
+
+		return () => {
+			window.removeEventListener("resize", updateMedia);
+		};
+	});
+
 	return (
 		<>
 			<header className={css.header}>
-				<Logo />
-				<UserMenu />
+				<div className={css.header_wrapper}>
+					<Logo />
+					{isDesktop && <Navigation />}
+					<UserMenu />
+					<BurgerMenu />
+				</div>
 			</header>
 
 			<p>Header</p>
