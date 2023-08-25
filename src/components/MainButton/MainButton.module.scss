@@ -58,3 +58,12 @@
 // 		color:black;
 // 	}
 // }
+
+.recipePageButton {
+	composes: mainButton;
+	margin-bottom: 80px;
+
+	@include desktop {
+		margin-bottom: 0;
+	}
+}

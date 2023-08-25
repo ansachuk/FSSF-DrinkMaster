@@ -1,0 +1,54 @@
+.glassName {
+    font-size: 12px;
+    opacity: 50%;
+    margin-bottom: 8px;
+    line-height: calc(14/12);
+
+    @include tablet {
+        font-size: $SecondaryFontSize;
+        line-height: calc(20/16);
+    }
+}
+
+.recipePageTitle {
+    margin-bottom: 20px;
+
+    @include tablet {
+        margin-bottom: 28px;
+    }
+}
+
+.aboutDrink {
+    font-size: $mainFontSize;
+    line-height: calc(18/14);
+    margin-bottom: 40px;
+
+    @include tablet {
+        font-size: $SecondaryFontSize;
+        line-height: calc(22/16);
+    }
+}
+
+.recipePageHeroImg {
+    width: 335px;
+
+    @include tablet {
+        width: 704px;
+    }
+
+    @include desktop {
+        width: 400px;
+    }
+}
+
+.recipePageHeroContainer {
+    margin-bottom: 40px;
+
+    @include tablet {
+        margin-bottom: 80px;
+    }
+
+    @include desktop {
+        margin-bottom: 100px;
+    }
+}
