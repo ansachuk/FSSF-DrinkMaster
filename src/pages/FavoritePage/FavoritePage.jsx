@@ -1,12 +1,13 @@
 // import React, { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { selectPage } from "redux/selectors";
-import MainPageTitle from "../../components/MainPageTitle/MainPageTitle";
+import MainTitle from "../../components/MainTitle/MainTitle";
+// import MainPageTitle from "../../components/MainPageTitle/MainPageTitle";
 import RecipesList from "../../components/RecipesList/RecipesList";
 import Paginator from "../../components/Paginator/Paginator";
 // import { getAllFavoriteDrinksThunk } from "redux/Cocktails/cocktailsOperations";
 // import { useMediaRules } from "hooks";
-// import styles from "FavoritePage.module.scss";
+// import css from "./FavoritePage.module.scss";
 
 export default function FavoritePage() {
 	// const dispatch = useDispatch();
@@ -26,9 +27,11 @@ export default function FavoritePage() {
 		// 	<div className={styles.container}>
 		<div>
 			<div>
-				<MainPageTitle title={"Favorites"} />
-				<RecipesList />
-				<Paginator />
+				<MainTitle title="Favorite">
+					{/* <MainPageTitle title={"Favorites"} /> */}
+					<RecipesList />
+					<Paginator />
+				</MainTitle>
 			</div>
 		</div>
 	);

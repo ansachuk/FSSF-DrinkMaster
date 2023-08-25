@@ -1,37 +1,28 @@
+@import "../../scss/";
 .section {
 	width: 100%;
-	// margin-bottom: 40px;
+	margin-top: 40px;
 	overflow: hidden;
-	// ці padding прибрати коли з'явиться контейнер та стилі на контейнер
-	margin: 0 auto;
-	padding-left: 20px;
-	padding-right: 20px;
-	@media (min-width: 768px) {
-		// margin-bottom: 80px;
-		// ці padding прибрати коли з'явиться контейнер та стилі на контейнер
-		padding-left: 32px;
-		padding-right: 32px;
+	padding: 0;
+	@include tablet {
+		margin-top: 60px;
 	}
-	@media (min-width: 1280px) {
-		// ці padding прибрати коли з'явиться контейнер та стилі на контейнер
-		padding-left: 100px;
-		padding-right: 100px;
+	@include desktop {
+		margin-top: 62px;
 	}
 }
-
 .recipesList {
 	display: grid;
 	row-gap: 28px;
 	grid-template-columns: repeat(1, 1fr);
-	margin-top: 40px;
 
-	@media (min-width: 768px) {
+	@include tablet {
 		grid-template-columns: repeat(2, 1fr);
 		column-gap: 20px;
 		row-gap: 40px;
 	}
 
-	@media (min-width: 1280px) {
+	@include desktop {
 		grid-template-columns: repeat(3, 1fr);
 		column-gap: 20px;
 		row-gap: 80px;

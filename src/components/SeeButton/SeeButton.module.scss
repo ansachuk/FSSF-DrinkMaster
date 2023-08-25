@@ -1,0 +1,13 @@
+@import "../../scss";
+@import "../../components/MainButton/MainButton.module.scss";
+
+.seeButton {
+	@extend .mainButton;
+	@include tablet {
+		font-size: 16px;
+		padding: 18px 44px;
+	}
+	@include desktop {
+		font-size: 18px;
+	}
+}

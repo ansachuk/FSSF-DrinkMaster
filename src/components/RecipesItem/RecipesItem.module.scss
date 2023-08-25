@@ -1,12 +1,12 @@
+@import "../../scss/";
 .card {
 	width: 335px;
 
-	@media (min-width: 768px) {
+	@include tablet {
 		width: 342px;
 		min-height: 628px;
 	}
-
-	@media (min-width: 1280px) {
+	@include desktop {
 		width: 400px;
 		min-height: 676px;
 	}
@@ -15,11 +15,12 @@
 .imageBox {
 	border-radius: 15px;
 	transition: scale 400ms ease, box-shadow 400ms ease;
-	@media (min-width: 768px) {
-	}
-
-	@media (min-width: 1280px) {
+	padding-bottom: 18px;
+	@include tablet {
 		padding-bottom: 24px;
+	}
+	@include desktop {
+		width: 400px;
 	}
 }
 
@@ -34,10 +35,10 @@
 	height: 360px;
 	border-radius: 15px;
 	overflow: hidden;
-	@media (min-width: 768px) {
+	@include tablet {
 		width: 342px;
 	}
-	@media (min-width: 1280px) {
+	@include desktop {
 		width: 400px;
 		height: 400px;
 	}
