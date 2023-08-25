@@ -8,30 +8,68 @@
 	@media screen and (min-width: 768px) {
 		font-size: 40px;
 		text-align: left;
-		margin-top: 400px;
-	}
-
-	@media screen and (min-width: 1280px) {
-		margin-top: 273px;
+		margin-top: 204px;
 	}
 }
 
 .form {
+	max-width: 335px;
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
 	margin-top: 28px;
+	text-align: center;
+
+	@media screen and (min-width: 768px) {
+		max-width: 400px;
+	}
 }
 
 .label {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: calc(18 / 14);
-	color: #f3f3f3;
+	color: rgba(243, 243, 243, 0.5);
 
 	padding: 18px 24px;
 
 	border-radius: 200px;
 	border-width: 1px;
+	border-color: rgba(243, 243, 243, 0.2);
 	background-color: transparent;
+
+	@media screen and (min-width: 768px) {
+		font-size: 17px;
+		padding: 14px 24px;
+	}
+
+	&:focus {
+		border-color: rgba(243, 243, 243, 0.5);
+		color: rgba(243, 243, 243, 1);
+	}
+}
+
+.btnSignup {
+	font-size: 16px;
+	line-height: calc(18 / 16);
+	font-weight: 600;
+
+	background: rgba(67, 77, 103, 1);
+	color: #f3f3f3;
+	padding: 18px 150px;
+	margin-top: 26px;
+	border-radius: 42px;
+	cursor: pointer;
+
+	&:hover {
+		background: #f3f3f3;
+		color: #161f37;
+	}
+}
+
+.linkSignUp {
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	font-weight: 600;
+	text-align: center;
 }

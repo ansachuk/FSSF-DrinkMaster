@@ -1,3 +1,14 @@
+.containerWelcome {
+	max-width: 335px;
+
+	@media screen and (min-width: 768px) {
+		max-width: 470px;
+	}
+
+	@media screen and (min-width: 1280px) {
+		max-width: 485px;
+	}
+}
 .titleStart {
 	font-weight: 600;
 	font-size: 28px;
@@ -27,12 +38,12 @@
 
 	@media screen and (min-width: 768px) {
 		font-size: 28px;
+		text-align: left;
 	}
 
 	@media screen and (min-width: 1280px) {
 		font-size: 18px;
 		text-align: left;
-		max-width: 485px;
 	}
 }
 
@@ -62,6 +73,7 @@
 	border-width: 1px;
 	border-radius: 42px;
 	border-color: rgba(243, 243, 243, 0.2);
+	cursor: pointer;
 
 	&:hover {
 		background: #f3f3f3;

@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-import { titleStart, textStart, listStart, btnStart } from "./WelcomePage.module.scss";
+import { titleStart, textStart, listStart, btnStart, containerWelcome } from "./WelcomePage.module.scss";
 
 export default function WelcomePage() {
 	return (
 		<>
-			<div>
+			<div className={containerWelcome}>
 				<h2 className={titleStart}>Welcome to the app!</h2>
 				<p className={textStart}>
 					This app offers more than just a collection of recipes - it is designed to be your very own digital cookbook. You can easily save and
@@ -14,13 +14,13 @@ export default function WelcomePage() {
 				</p>
 				<div className={listStart}>
 					<NavLink
-						to="signup"
+						to="/signup"
 						className={btnStart}
 					>
 						Registration
 					</NavLink>
 					<NavLink
-						to="signin"
+						to="/signin"
 						className={btnStart}
 					>
 						Sign In
