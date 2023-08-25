@@ -3,16 +3,24 @@
 
 	@media (min-width: 768px) {
 		width: 342px;
+		min-height: 628px;
 	}
 
-	@media (min-width: 1440px) {
+	@media (min-width: 1280px) {
 		width: 400px;
+		min-height: 676px;
 	}
 }
 
 .imageBox {
 	border-radius: 15px;
 	transition: scale 400ms ease, box-shadow 400ms ease;
+	@media (min-width: 768px) {
+	}
+
+	@media (min-width: 1280px) {
+		padding-bottom: 24px;
+	}
 }
 
 .imageBox:hover,
@@ -29,7 +37,7 @@
 	@media (min-width: 768px) {
 		width: 342px;
 	}
-	@media (min-width: 1440px) {
+	@media (min-width: 1280px) {
 		width: 400px;
 		height: 400px;
 	}
@@ -55,11 +63,11 @@
 	justify-content: space-between;
 }
 
-.ingredientsWrapper.my,
-.ingredientsWrapper.favorite {
-	flex-direction: column;
-	gap: 4px;
-}
+// .ingredientsWrapper.my,
+// .ingredientsWrapper.favorite {
+// 	flex-direction: column;
+// 	gap: 4px;
+// }
 
 .ingredientsTitle {
 	color: #f3f3f3;
@@ -91,15 +99,16 @@
 	@media (min-width: 768px) {
 		font-size: 16px;
 		font-weight: 400;
+		max-width: 342px;
 		line-height: calc(22 / 16);
 		margin-bottom: 24px;
 		margin-top: 24px;
 		height: 110px;
 		-webkit-line-clamp: 5;
 	}
-
-	@media (min-width: 1440px) {
-		height: 93px;
+	@media (min-width: 1280px) {
+		max-width: 400px;
+		height: 92px;
 		-webkit-line-clamp: 4;
 	}
 }

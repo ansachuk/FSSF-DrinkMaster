@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-import { SeeButton, DeleteButton } from "components";
-import drink from "../../assets/img/DrinkDefault.jpg";
-import "./RecipesItem.module.css";
+// import { Link } from "react-router-dom";
+// import { SeeButton } from "../../components/RecipesItem/DeleteButton/DeleteButton";
+// import { DeleteButton } from "../../components/RecipesItem/SeeButton/SeeButton";
+// import drink from "../../assets/img/DrinkDefault.jpg";
+// import "../../components/RecipesItem/";
 
 // це тимчасовий код поки не буде запросів до бази даних
-import drinkData from "./drinkData.JSON";
+// import drinkData from "./drinkData.JSON";
 
-// export const RecipesItem = ({ cocktail, page }) => {
+// export default function RecipesItem({ cocktail, page }){
 // 	return (
 // 		<div className={styles.card}>
 // 			<Link to={`/main/recipe/${cocktail._id}`}>
@@ -45,44 +46,38 @@ import drinkData from "./drinkData.JSON";
 // 	);
 // };
 
-export const RecipesItem = ({ cocktail, page }) => {
-	const cocktailData = drinkData.find(item => item._id === cocktail._id);
+import React from "react";
+import DeleteButton from "../../components/DeleteButton/DeleteButton";
+import SeeButton from "../../components/SeeButton/SeeButton";
+import drinkImg from "../../images/static/main/main.jpg";
+import css from "./RecipesItem.module.scss";
+
+export default function RecipesItem({ drink, drinkThumb, about }) {
 	return (
-		<div className={styles.card}>
-			<Link to={`/main/recipe/${cocktail._id}`}>
-				<div className={styles.imageBox}>
-					<div className={styles.imageWrapper}>
-						<img
-							className={styles.image}
-							src={cocktailData ? cocktailData.drinkThumb : drink} //  Використовую cocktailData для отримання правильних даних
-							alt={cocktailData ? cocktailData.drink : cocktail.drink} //  Використовую cocktailData для отримання правильних даних
-							onError={e => {
-								e.currentTarget.src = drink;
-							}}
-						/>
-					</div>
-				</div>
-			</Link>
-			<div className={styles.wrapper}>
-				<div className={`${styles.ingredientsWrapper} ${page === "my" || page === "favorite" ? styles.my : ""}`}>
-					<Link to={`/main/recipe/${cocktail._id}`}>
-						<p className={styles.ingredientsTitle}>{cocktailData ? cocktailData.drink : cocktail.drink}</p>{" "}
-						{/* Використовую cocktailData для отримання тимчасових даних */}
-					</Link>
-					<p className={styles.ingredientsText}>Ingredients</p>
+		<div className={css.card}>
+			<div className={css.imageBox}>
+				<div className={css.imageWrapper}>
+					<img
+						className={css.image}
+						src={drinkThumb}
+						alt={drink}
+						onError={e => {
+							e.currentTarget.src = drinkImg;
+						}}
+					/>
 				</div>
 			</div>
-			{(page === "my" || page === "favorite") && <p className={styles.about}>{cocktailData ? cocktailData.about : cocktail.about}</p>}{" "}
-			{/*  Використовую cocktailData для отримання тимчасових даних */}
-			<div className={styles.buttonsWrapper}>
-				{(page === "my" || page === "favorite") && <SeeButton id={cocktail._id} />}
-				{(page === "my" || page === "favorite") && (
-					<DeleteButton
-						id={cocktail._id}
-						page={page}
-					/>
-				)}
+			<div>
+				<div className={css.ingredientsWrappe}>
+					<p className={css.ingredientsTitle}>{drink}</p>
+					<p className={css.ingredientsText}>Ingredients</p>
+				</div>
+			</div>
+			<p className={css.about}>{about}</p>
+			<div className={css.buttonsWrapper}>
+				<SeeButton />
+				<DeleteButton />
 			</div>
 		</div>
 	);
-};
+}
