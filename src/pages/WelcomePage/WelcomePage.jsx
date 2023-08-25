@@ -6,6 +6,13 @@ import { titleStart, textStart, listStart, btnStart, containerWelcome } from "./
 export default function WelcomePage() {
 	return (
 		<>
+			<img
+				src="src/images/static/welcome/welcome.jpg"
+				alt="glass with coctails"
+				width="225"
+				height="225"
+				loading="lazy"
+			/>
 			<div className={containerWelcome}>
 				<h2 className={titleStart}>Welcome to the app!</h2>
 				<p className={textStart}>
