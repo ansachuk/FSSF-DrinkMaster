@@ -1,5 +1,33 @@
 @import "../../../scss";
 
-.mainButton {
-	padding: 14px 40px;
+.imageContainer {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 18px;
+	width: 335px;
+	height: 320px;
+	border-radius: 8px;
+	background: rgba(22, 31, 55, 0.5);
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 6px;
+	background: $mainFontColor;
+}
+
+.btnIcon {
+	stroke: $accentColor;
+}
+
+.btnText {
+	font-size: 16px;
+	font-weight: $fontWeightMedium;
+	line-height: calc(20 / 16);
 }
