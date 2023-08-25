@@ -1,16 +1,11 @@
 @import "../../../../scss/";
 
 .user_group {
-	display: flex;
-	align-items: center;
-	gap: 8px;
+	position: relative;
 	margin-right: 14px;
-	font-size: 14px;
 
 	@include tablet {
-		gap: 14px;
 		margin-right: 24px;
-		font-size: 16px;
 	}
 
 	@include desktop {
@@ -18,7 +13,19 @@
 	}
 }
 
-.icon {
+.button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: none;
+	background-color: transparent;
+
+	@include tablet {
+		gap: 14px;
+	}
+}
+
+.user_icon {
 	border-radius: 50%;
 	width: 32px;
 	height: 32px;
@@ -27,4 +34,97 @@
 		width: 44px;
 		height: 44px;
 	}
+}
+
+.username {
+	font-size: 14px;
+	color: $mainFontColor;
+
+	@include tablet {
+		font-size: 16px;
+	}
+}
+
+.dropdown_container {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	width: 177px;
+	padding: 18px;
+	border-radius: 8px;
+	background-color: $accentColor;
+}
+
+.heading {
+	display: flex;
+	justify-content: space-between;
+	// gap: 56px;
+	margin-bottom: 38px;
+	font-size: 14px;
+}
+
+.pen_icon {
+	width: 14px;
+	height: 14px;
+}
+
+.edit_container {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	width: 335px;
+	padding: 50px 25px;
+	border-radius: 8px;
+	background-color: $accentColor;
+}
+
+.close_button {
+	@extend .button;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+}
+
+.close_icon {
+	width: 24px;
+	height: 24px;
+}
+
+.icon_container {
+	position: relative;
+}
+
+.user_large_icon {
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin: 0 auto 39px auto;
+	border-radius: 50%;
+}
+
+.plus_icon {
+	position: absolute;
+	bottom: -15%;
+	left: 50%;
+	width: 28px;
+	height: 28px;
+	transform: translateX(-50%);
+}
+
+.input {
+	width: 285px;
+	padding: 18px 24px;
+	border-radius: 200px;
+	border: 1px solid rgba(243, 243, 243, 0.5);
+	margin-bottom: 18px;
+	opacity: 0.8;
+	font-size: 14px;
+	color: $mainFontColor;
+	background-color: transparent;
+}
+
+.button_container {
+	display: flex;
+	gap: 8px;
+	margin-top: 25px;
 }
