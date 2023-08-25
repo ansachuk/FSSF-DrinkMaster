@@ -1,0 +1,13 @@
+@import "../../scss/";
+
+.container {
+	padding: 0 20px;
+
+	@include tablet {
+		padding: 0 32px;
+	}
+
+	@include desktop {
+		padding: 0 100px;
+	}
+}
