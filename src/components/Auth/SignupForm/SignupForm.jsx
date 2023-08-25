@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Formik, Field, Form } from "formik";
+import { titleSignup, form, label } from "./SignupForm.module.scss";
 
 export default function SignupForm() {
 	return (
-		<div className="App">
-			<h1>Contact Us</h1>
+		<div>
+			<h2 className={titleSignup}>Registration</h2>
 			<Formik
 			// initialValues={{ name: "", email: "" password:'' }}
 			// onSubmit={async values => {
@@ -13,20 +14,26 @@ export default function SignupForm() {
 			// 	alert(JSON.stringify(values, null, 2));
 			// }}
 			>
-				<Form>
+				<Form className={form}>
 					<Field
+						className={label}
 						name="name"
 						type="text"
+						placeholder="Name"
 					/>
 					<Field
+						className={label}
 						name="email"
 						type="email"
+						placeholder="Email"
 					/>
 					<Field
+						className={label}
 						name="password"
 						type="password"
+						placeholder="Password"
 					/>
-					<button type="submit">Submit</button>
+					<button type="submit">Sign Up</button>
 				</Form>
 			</Formik>
 		</div>

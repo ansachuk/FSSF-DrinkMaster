@@ -26,8 +26,14 @@ export default function App() {
 					</PublicRoute>
 				}
 			>
-				<Route path="signin" element={<SigninForm />} />
-				<Route path="signup" element={<SignupForm />} />
+				<Route
+					path="signin"
+					element={<SigninForm />}
+				/>
+				<Route
+					path="signup"
+					element={<SignupForm />}
+				/>
 			</Route>
 			<Route
 				path="/"
@@ -37,13 +43,34 @@ export default function App() {
 					</PrivatRoute>
 				}
 			>
-				<Route index element={<MainPage />} />
-				<Route path="drinks/:categoryName" element={<DrinksPage />} />
-				<Route path="add" element={<AddRecipePage />} />
-				<Route path="favorite" element={<FavoritePage />} />
-				<Route path="recipe/:recipeId" element={<RecipePage />} />
-				<Route path="my" element={<MyRecipesPage />} />
-				<Route path="*" element={<NotFoundPage />} />
+				<Route
+					index
+					element={<MainPage />}
+				/>
+				<Route
+					path="drinks/:categoryName"
+					element={<DrinksPage />}
+				/>
+				<Route
+					path="add"
+					element={<AddRecipePage />}
+				/>
+				<Route
+					path="favorite"
+					element={<FavoritePage />}
+				/>
+				<Route
+					path="recipe/:recipeId"
+					element={<RecipePage />}
+				/>
+				<Route
+					path="my"
+					element={<MyRecipesPage />}
+				/>
+				<Route
+					path="*"
+					element={<NotFoundPage />}
+				/>
 			</Route>
 		</Routes>
 	);

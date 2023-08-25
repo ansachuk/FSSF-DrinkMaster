@@ -1,0 +1,37 @@
+.titleSignup {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: calc(32 / 28);
+
+	margin-top: 240px;
+
+	@media screen and (min-width: 768px) {
+		font-size: 40px;
+		text-align: left;
+		margin-top: 400px;
+	}
+
+	@media screen and (min-width: 1280px) {
+		margin-top: 273px;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	margin-top: 28px;
+}
+
+.label {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	color: #f3f3f3;
+
+	padding: 18px 24px;
+
+	border-radius: 200px;
+	border-width: 1px;
+	background-color: transparent;
+}
