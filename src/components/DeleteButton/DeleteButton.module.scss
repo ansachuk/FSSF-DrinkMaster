@@ -1,0 +1,27 @@
+@import "../../scss";
+
+.deleteButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #161f37;
+	transition: background-color 0.3s ease;
+
+	@include tablet {
+		width: 44px;
+		height: 44px;
+	}
+
+	&:hover,
+	&:active {
+		background-color: #253e68;
+	}
+}
+
+.iconTrash {
+	fill: transparent;
+	stroke: transparent;
+}
