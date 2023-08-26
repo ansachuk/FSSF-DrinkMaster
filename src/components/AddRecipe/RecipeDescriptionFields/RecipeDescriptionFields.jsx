@@ -9,9 +9,9 @@ const options = [
 	{ value: "strawberry", label: "Strawberry" },
 	{ value: "vanilla", label: "Vanilla" },
 ];
-export default function RecipeDescriptionFields({ $name, name }) {
+export default function RecipeDescriptionFields({ $name, name, handleSelectData }) {
 	return (
-		<>
+		<div className={css.wraper}>
 			<div className={css.imageContainer}>
 				<div>
 					<button
@@ -42,13 +42,21 @@ export default function RecipeDescriptionFields({ $name, name }) {
 					type="text"
 					placeholder="Enter about recipe"
 				/>
-				<Select options={options} />
+				<Select
+					onChange={({ value }) => handleSelectData("category", value)}
+					options={options}
+				/>
+				<Select
+					onChange={({ value }) => handleSelectData("glass", value)}
+					options={options}
+				/>
 			</div>
-		</>
+		</div>
 	);
 }
 
 RecipeDescriptionFields.propTypes = {
 	$name: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
+	handleSelectData: PropTypes.function,
 };

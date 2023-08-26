@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import css from "./RecipePreparationFields.module.scss";
 export default function RecipePreparationFields({ name }) {
 	return (
-		<div>
+		<div className={css.wraper}>
 			<h3 className={css.recipeText}>Recipe Preparation</h3>
 			<Field
 				as="textarea"

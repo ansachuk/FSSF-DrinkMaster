@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Form, Formik } from "formik";
 // import PropTypes from "prop-types";
 // import css from "./AddRecipeForm.module.scss";
@@ -6,19 +7,27 @@ import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredient
 import RecipePreparationFields from "../RecipePreparationFields/RecipePreparationFields";
 import MainButton from "../../MainButton/MainButton";
 
-const initialValues = {
+const formikInitialValues = {
 	titleRecipe: "",
 	aboutRecipe: "",
-	category: "",
-	glass: "",
 	ingredients: "",
 	textareaRecipe: "",
 };
 export default function AddRecipeForm() {
+	const [selectData, setSelectData] = useState({
+		category: "",
+		glass: "",
+	});
+	console.log(selectData);
+
+	const handleSelectData = (type, value) => {
+		setSelectData(prevState => ({ ...prevState, [type]: value }));
+	};
+
 	return (
 		<div>
 			<Formik
-				initialValues={initialValues}
+				initialValues={formikInitialValues}
 				onSubmit={(values, { resetForm }) => {
 					console.log(values);
 					resetForm();
@@ -28,6 +37,7 @@ export default function AddRecipeForm() {
 					<RecipeDescriptionFields
 						$name="titleRecipe"
 						name="aboutRecipe"
+						handleSelectData={handleSelectData}
 					/>
 					<RecipeIngredientsFields />
 					<RecipePreparationFields name="textareaRecipe" />

@@ -1,5 +1,13 @@
 @import "../../../scss";
 
-.mainButton {
-	padding: 14px 40px;
+.wraper {
+	margin-bottom: 80px;
+}
+
+.ingredientsText {
+	margin-bottom: 40px;
+	color: $mainFontColor;
+	font-size: 28px;
+	font-weight: $fontWeightSemiBold;
+	line-height: calc(32 / 28);
 }
