@@ -1,4 +1,4 @@
-const favoriteCocktailData = [
+const favoriteCocktails = [
 	{
 		_id: "1",
 		drinkThumb: "http://res.cloudinary.com/dec1shvoo/image/upload/v1689167160/cocktails-v1/drinks/Pornstar_Martini.jpg",
@@ -127,4 +127,4 @@ const favoriteCocktailData = [
 	},
 ];
 
-export default favoriteCocktailData;
+export default favoriteCocktails;

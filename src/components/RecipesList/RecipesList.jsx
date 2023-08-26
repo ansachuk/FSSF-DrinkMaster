@@ -36,10 +36,11 @@
 import React, { useState } from "react";
 import RecipesItem from "../../components/RecipesItem/RecipesItem";
 import css from "./RecipesList.module.scss";
-import favoriteCocktailData from "../../data/favoriteCocktailData";
+import DrinkDefault from "../../images/static/main/main.jpg";
+import favoriteCocktails from "../../data/favoriteCocktails";
 
 export default function RecipesList() {
-	const [cocktails, setCocktails] = useState(favoriteCocktailData);
+	const [cocktails, setCocktails] = useState(favoriteCocktails);
 
 	const handleDelete = (id, page) => {
 		console.log("handleDelete called with id:", id);
@@ -47,19 +48,31 @@ export default function RecipesList() {
 		console.log("Updated cocktails:", updatedCocktails);
 		setCocktails(updatedCocktails);
 	};
+
 	return (
 		<div className={css.section}>
-			<div className={css.recipesList}>
-				{cocktails.map(favoriteCocktail => (
-					<RecipesItem
-						key={favoriteCocktail._id}
-						drink={favoriteCocktail.drink}
-						drinkThumb={favoriteCocktail.drinkThumb}
-						about={favoriteCocktail.about}
-						onDeleteClick={() => handleDelete(favoriteCocktail._id, "favorite")}
+			{Array.isArray(cocktails) && cocktails.length !== 0 ? (
+				<div className={css.recipesList}>
+					{cocktails.map(favoriteCocktail => (
+						<RecipesItem
+							key={favoriteCocktail._id}
+							drink={favoriteCocktail.drink}
+							drinkThumb={favoriteCocktail.drinkThumb}
+							about={favoriteCocktail.about}
+							onDeleteClick={() => handleDelete(favoriteCocktail._id, "favorite")}
+						/>
+					))}
+				</div>
+			) : (
+				<div className={css.wrapDiv}>
+					<img
+						className={css.notFoundImg}
+						src={DrinkDefault}
+						alt="No added cocktails"
 					/>
-				))}
-			</div>
+					<p className={css.notFavoriteText}>You haven't added any favorite cocktails yet</p>
+				</div>
+			)}
 		</div>
 	);
 }

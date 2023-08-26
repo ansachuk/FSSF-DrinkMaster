@@ -46,7 +46,6 @@
 import React from "react";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import SeeButton from "../../components/SeeButton/SeeButton";
-import drinkImg from "../../images/static/main/main.jpg";
 import css from "./RecipesItem.module.scss";
 
 export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteClick }) {
