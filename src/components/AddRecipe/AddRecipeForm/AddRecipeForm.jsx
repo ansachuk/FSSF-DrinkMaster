@@ -10,17 +10,23 @@ import MainButton from "../../MainButton/MainButton";
 const formikInitialValues = {
 	titleRecipe: "",
 	aboutRecipe: "",
-	ingredients: "",
+	ingredientAmount: "",
 	textareaRecipe: "",
 };
+
 export default function AddRecipeForm() {
 	const [selectData, setSelectData] = useState({
 		category: "",
 		glass: "",
 	});
+	const [ingredientData, setIngredientData] = useState({});
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
+	};
+
+	const handleIngredientData = value => {
+		setIngredientData(prevState => ({ ...prevState, ingredient: value }));
 	};
 
 	return (
@@ -30,6 +36,7 @@ export default function AddRecipeForm() {
 				onSubmit={(values, { resetForm }) => {
 					console.log(values);
 					console.log(selectData);
+					console.log(ingredientData);
 					resetForm();
 				}}
 			>
@@ -39,7 +46,10 @@ export default function AddRecipeForm() {
 						name="aboutRecipe"
 						handleSelectData={handleSelectData}
 					/>
-					<RecipeIngredientsFields />
+					<RecipeIngredientsFields
+						name="ingredientAmount"
+						handleIngredientData={handleIngredientData}
+					/>
 					<RecipePreparationFields name="textareaRecipe" />
 					<MainButton
 						type="submit"

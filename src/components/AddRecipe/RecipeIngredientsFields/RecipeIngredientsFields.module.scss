@@ -4,6 +4,11 @@
 	margin-bottom: 80px;
 }
 
+.selectWraper {
+	display: flex;
+	gap: 8px;
+}
+
 .ingredientsText {
 	margin-bottom: 40px;
 	color: $mainFontColor;
