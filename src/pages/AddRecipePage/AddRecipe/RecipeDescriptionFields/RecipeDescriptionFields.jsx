@@ -3,12 +3,9 @@ import Select from "react-select";
 import PropTypes from "prop-types";
 import css from "./RecipeDescriptionFields.module.scss";
 import icons from "../../../../images/icons.svg";
+import { optionsCategories } from "../../../../data/drinksData";
+import { optionsGlasses } from "../../../../data/drinksData";
 
-const options = [
-	{ value: "chocolate", label: "Chocolate" },
-	{ value: "strawberry", label: "Strawberry" },
-	{ value: "vanilla", label: "Vanilla" },
-];
 export default function RecipeDescriptionFields({ $name, name, handleSelectData }) {
 	return (
 		<div className={css.wraper}>
@@ -44,11 +41,11 @@ export default function RecipeDescriptionFields({ $name, name, handleSelectData 
 				/>
 				<Select
 					onChange={({ value }) => handleSelectData("category", value)}
-					options={options}
+					options={optionsCategories}
 				/>
 				<Select
 					onChange={({ value }) => handleSelectData("glass", value)}
-					options={options}
+					options={optionsGlasses}
 				/>
 			</div>
 		</div>

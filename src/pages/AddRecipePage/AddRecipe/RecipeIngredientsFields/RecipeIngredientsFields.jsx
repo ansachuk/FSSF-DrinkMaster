@@ -25,15 +25,15 @@ export default function RecipeIngredientsFields({ name, handleIngredientData }) 
 					placeholder="amount of ingredient"
 				/>
 				<button
-					// className={css.btnContainer}
+					className={css.deleteBtn}
 					type="button"
 				>
 					<svg
-						// className={css.btnIcon}
-						width="28"
-						height="28"
+						className={css.deleteIcon}
+						width="18"
+						height="18"
 					>
-						<use href={icons + "#plus"}></use>
+						<use href={icons + "#close"}></use>
 					</svg>
 				</button>
 			</div>
