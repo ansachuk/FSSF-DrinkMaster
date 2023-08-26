@@ -14,19 +14,19 @@ import {
 	addToFavoriteThunk,
 	removeFromFavoriteThunk,
 	getPopularThunk,
-} from "./drinksOperations";
+} from "../operations/drinksOperations";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const initialState = {
 	drinks: [],
-    favorites: [],
-    own: [],
-    popular: [],
-    categories: [],
-    ingredients: [],
-    glasses: [],
-    searchResults: [],
-    search: { query: '', chosenCategory: '', chosenIngredient: '' },
+	favorites: [],
+	own: [],
+	popular: [],
+	categories: [],
+	ingredients: [],
+	glasses: [],
+	searchResults: [],
+	search: { query: "", chosenCategory: "", chosenIngredient: "" },
 	totalHits: null,
 	page: 1,
 	loading: false,
@@ -35,81 +35,80 @@ const initialState = {
 const drinksSlice = createSlice({
 	name: "@@drinks",
 	initialState,
-    reducers: {
-        setQuery: (state, { payload }) => {
-            state.search.query = payload;
-        },
-        setChosenCategory: (state, { payload }) => {
-            state.search.chosenCategory = payload;
-        },
-        setChosenIngredient: (state, { payload }) => {
-            state.search.chosenIngredient = payload;
-        },
+	reducers: {
+		setQuery: (state, { payload }) => {
+			state.search.query = payload;
+		},
+		setChosenCategory: (state, { payload }) => {
+			state.search.chosenCategory = payload;
+		},
+		setChosenIngredient: (state, { payload }) => {
+			state.search.chosenIngredient = payload;
+		},
 		setPage: (state, { payload }) => {
 			state.page = payload;
 		},
-    },
-    
-    extraReducers: {
-        
+	},
+
+	extraReducers: {
 		// ----- DRINKS -----
 
-		[getCategoriesListThunk.pending]: (state, { payload }) => {
+		[getCategoriesListThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
-        },
-        
+		},
+
 		[getCategoriesListThunk.fulfilled]: (state, { payload }) => {
 			state.categories = payload;
 			state.loading = false;
 			Loading.remove();
-        },
-        
+		},
+
 		[getCategoriesListThunk.rejected]: (state, { payload }) => {
 			state.error = payload;
 			state.loading = false;
 			Loading.remove();
 		},
 
-		[getDrinksByCategoryThunk.pending]: (state, { payload }) => {
+		[getDrinksByCategoryThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
-        },
-        
+		},
+
 		[getDrinksByCategoryThunk.fulfilled]: (state, { payload }) => {
 			state.searchResults = payload.drinks;
 			state.totalHits = payload.totalHits;
 			state.loading = false;
 			Loading.remove();
-        },
-        
+		},
+
 		[getDrinksByCategoryThunk.rejected]: (state, { payload }) => {
 			state.error = payload;
 			state.loading = false;
 			Loading.remove();
-        },
-        
-		[getDrinksByIdThunk.pending]: (state, { payload }) => {
+		},
+
+		[getDrinksByIdThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
-        },
-        
+		},
+
 		[getDrinksByIdThunk.fulfilled]: (state, { payload }) => {
 			state.favorites = payload;
 			state.backup = payload;
 			state.loading = false;
 			Loading.remove();
-        },
-        
+		},
+
 		[getDrinksByIdThunk.rejected]: (state, { payload }) => {
 			state.error = payload;
 			state.loading = false;
 			Loading.remove();
 		},
-		
+
 		//----SEARCH-----
 
-		[searchAllDrinksThunk.pending]: (state, { payload }) => {
+		[searchAllDrinksThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -129,7 +128,7 @@ const drinksSlice = createSlice({
 
 		//----INGREDIENTS-----
 
-		[getIngredientsListThunk.pending]: (state, { payload }) => {
+		[getIngredientsListThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -148,7 +147,7 @@ const drinksSlice = createSlice({
 
 		//----GLASSES-----
 
-		[getAllGlassesThunk.pending]: (state, { payload }) => {
+		[getAllGlassesThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -167,7 +166,7 @@ const drinksSlice = createSlice({
 
 		//----COKTAILS-----
 
-		[getCoctailsByFourCategoryThunk.pending]: (state, { payload }) => {
+		[getCoctailsByFourCategoryThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -186,7 +185,7 @@ const drinksSlice = createSlice({
 
 		//  ----- OWN DRINKS -------
 
-		[addRecipeThunk.pending]: (state, { payload }) => {
+		[addRecipeThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -203,7 +202,7 @@ const drinksSlice = createSlice({
 			Loading.remove();
 		},
 
-		[getAllOwnDrinksThunk.pending]: (state, { payload }) => {
+		[getAllOwnDrinksThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -221,7 +220,7 @@ const drinksSlice = createSlice({
 			Loading.remove();
 		},
 
-		[removeRecipeThunk.pending]: (state, { payload }) => {
+		[removeRecipeThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -241,7 +240,7 @@ const drinksSlice = createSlice({
 
 		// ------ FAVORITES ------
 
-		[getAllFavoriteDrinksThunk.pending]: (state, { payload }) => {
+		[getAllFavoriteDrinksThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -259,7 +258,7 @@ const drinksSlice = createSlice({
 			Loading.remove();
 		},
 
-		[addToFavoriteThunk.pending]: (state, { payload }) => {
+		[addToFavoriteThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -276,7 +275,7 @@ const drinksSlice = createSlice({
 			Loading.remove();
 		},
 
-		[removeFromFavoriteThunk.pending]: (state, { payload }) => {
+		[removeFromFavoriteThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},
@@ -303,7 +302,7 @@ const drinksSlice = createSlice({
 
 		// ------ POPULAR ------
 
-		[getPopularThunk.pending]: (state, { payload }) => {
+		[getPopularThunk.pending]: state => {
 			state.loading = true;
 			Loading.hourglass("We are verifying your data...");
 		},

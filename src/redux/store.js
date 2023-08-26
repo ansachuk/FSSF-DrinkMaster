@@ -26,37 +26,41 @@
 // // export const persistor = persistStore(store);
 // export default store;
 
-
-
-
 import { configureStore } from "@reduxjs/toolkit";
-import {
-	persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE
-} from 'redux-persist';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { authReducer } from "./slices/authSlice";
+import { drinksReducer } from "./slices/drinksSlice";
+import { userInfoReducer } from "./slices/userInfoSlice";
 
-import storage from 'redux-persist/lib/storage';
-import { drinksReducer } from "./drinks/drinksSlice";
-import { userInfoReducer } from "./userInfo/userInfoSlice";
-
-const persistConfigForUserInfo = {
-	key: 'theme',
+const persistConfig = {
+	key: "data",
 	version: 1,
 	storage,
-	whitelist: ['theme', 'user', 'firstRender'],
+	whitelist: ["accessToken", "userInfo", "user", "online"],
+};
+
+const persistConfigForUserInfo = {
+	key: "theme",
+	version: 2,
+	storage,
+	whitelist: ["theme", "user", "firstRender"],
 };
 
 const persistConfigForDrinks = {
-	key: 'drinks',
-	version: 2,
+	key: "drinks",
+	version: 3,
 	storage,
-	whitelist: ['drinks', 'ingredients', 'categories', 'glasses'],
+	whitelist: ["drinks", "ingredients", "categories", "glasses"],
 };
 
 export const store = configureStore({
 	reduser: {
+		auth: persistReducer(persistConfig, authReducer),
 		drinks: persistReducer(persistConfigForDrinks, drinksReducer),
 		userInfo: persistReducer(persistConfigForUserInfo, userInfoReducer),
 	},
+
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
 			serializableCheck: {
