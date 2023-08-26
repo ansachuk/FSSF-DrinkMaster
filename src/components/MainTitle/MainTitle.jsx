@@ -9,6 +9,9 @@ export default function MainTitle({ title, children }) {
 			<main>
 				<h1 className={css.title}>{title}</h1>
 				{children}
+				<div className=""></div>
+				<div className=""></div>
+				<div className=""></div>
 			</main>
 		</Container>
 	);

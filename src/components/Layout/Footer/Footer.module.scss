@@ -1,0 +1,61 @@
+@import "../../../scss/";
+
+.FooterContent {
+	padding: 40px 20px 18px;
+	border-top: 1px solid #f3f3f333;
+
+	@include tablet {
+		padding: 80px 32px 24px;
+	}
+
+	@include desktop {
+		padding: 80px 100px 24px;
+	}
+}
+
+.FlexContainer {
+	margin-bottom: 80px;
+	@include tablet {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.FooterGroup {
+	display: flex;
+	margin-bottom: 40px;
+	justify-content: space-between;
+
+	@include tablet {
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	@include desktop {
+		gap: 250px;
+	}
+
+	// @media (min-width: 1350px) {
+	// 	gap: 360px;
+	// }
+}
+
+.FooterInfo {
+	@include tablet {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.FooterText {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	color: #f3f3f37e;
+}
+
+.FooterText:not(:last-child) {
+	margin-right: 18px;
+}
