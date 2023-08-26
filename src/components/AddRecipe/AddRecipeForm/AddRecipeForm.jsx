@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
 import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
@@ -7,9 +9,20 @@ import RecipePreparationFields from "../RecipePreparationFields/RecipePreparatio
 export default function AddRecipeForm() {
 	return (
 		<div>
-			<RecipeDescriptionFields />
-			<RecipeIngredientsFields />
-			<RecipePreparationFields />
+			<Formik
+				onSubmit={values => console.log(values)}
+				initialValues={{ firstName: "", lastName: "" }}
+			>
+				<Form>
+					<RecipeDescriptionFields
+						$name="firstName"
+						name="lastName"
+					/>
+					<RecipeIngredientsFields />
+					<RecipePreparationFields />
+					<button type="submit">submit</button>
+				</Form>
+			</Formik>
 		</div>
 	);
 }
