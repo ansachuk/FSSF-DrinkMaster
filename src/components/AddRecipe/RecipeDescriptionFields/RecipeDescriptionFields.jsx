@@ -26,15 +26,22 @@ export default function RecipeDescriptionFields({ $name, name }) {
 				</div>
 			</div>
 			<div>
-				<Field name={$name} />
-				<Field name={name} />
+				<Field
+					name={$name}
+					type="text"
+					placeholder="Enter item title"
+				/>
+				<Field
+					name={name}
+					type="text"
+					placeholder="Enter about recipe"
+				/>
 			</div>
 		</>
 	);
 }
 
 RecipeDescriptionFields.propTypes = {
-	// title: PropTypes.string.isRequired,
-	propClass: PropTypes.string,
-	// disabled: PropTypes.bool,
+	$name: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
 };
