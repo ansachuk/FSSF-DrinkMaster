@@ -30,11 +30,10 @@ export default function AddRecipeForm() {
 						name="aboutRecipe"
 					/>
 					<RecipeIngredientsFields />
-					<RecipePreparationFields />
+					<RecipePreparationFields name="textareaRecipe" />
 					<MainButton
 						type="submit"
 						title={"Add"}
-						// onClick={() => console.log("click Add")}
 					/>
 				</Form>
 			</Formik>

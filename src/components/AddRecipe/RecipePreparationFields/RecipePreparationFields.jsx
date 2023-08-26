@@ -1,11 +1,20 @@
+import { Field } from "formik";
 import PropTypes from "prop-types";
 import css from "./RecipePreparationFields.module.scss";
-export default function RecipePreparationFields() {
-	return <div>RecipePreparationFields</div>;
+export default function RecipePreparationFields({ name }) {
+	return (
+		<div>
+			<h3 className={css.recipeText}>Recipe Preparation</h3>
+			<Field
+				as="textarea"
+				name={name}
+				type="text"
+				placeholder="Enter the recipe"
+			/>
+		</div>
+	);
 }
 
 RecipePreparationFields.propTypes = {
-	// title: PropTypes.string.isRequired,
-	propClass: PropTypes.string,
-	// disabled: PropTypes.bool,
+	name: PropTypes.string.isRequired,
 };

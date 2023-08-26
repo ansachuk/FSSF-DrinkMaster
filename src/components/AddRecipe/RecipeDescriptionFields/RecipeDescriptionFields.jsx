@@ -1,8 +1,14 @@
 import { Field } from "formik";
+import Select from "react-select";
 import PropTypes from "prop-types";
 import css from "./RecipeDescriptionFields.module.scss";
 import icons from "../../../images/icons.svg";
 
+const options = [
+	{ value: "chocolate", label: "Chocolate" },
+	{ value: "strawberry", label: "Strawberry" },
+	{ value: "vanilla", label: "Vanilla" },
+];
 export default function RecipeDescriptionFields({ $name, name }) {
 	return (
 		<>
@@ -36,6 +42,7 @@ export default function RecipeDescriptionFields({ $name, name }) {
 					type="text"
 					placeholder="Enter about recipe"
 				/>
+				<Select options={options} />
 			</div>
 		</>
 	);
