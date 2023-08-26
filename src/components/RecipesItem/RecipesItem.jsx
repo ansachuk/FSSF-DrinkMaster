@@ -2,19 +2,16 @@
 // import { SeeButton } from "../../components/RecipesItem/DeleteButton/DeleteButton";
 // import { DeleteButton } from "../../components/RecipesItem/SeeButton/SeeButton";
 // import drink from "../../assets/img/DrinkDefault.jpg";
-// import "../../components/RecipesItem/";
-
-// це тимчасовий код поки не буде запросів до бази даних
-// import drinkData from "./drinkData.JSON";
+// import css from "./RecipesItem.module.scss";
 
 // export default function RecipesItem({ cocktail, page }){
 // 	return (
-// 		<div className={styles.card}>
+// 		<div className={css.card}>
 // 			<Link to={`/main/recipe/${cocktail._id}`}>
-// 				<div className={styles.imageBox}>
-// 					<div className={styles.imageWrapper}>
+// 				<div className={css.imageBox}>
+// 					<div className={css.imageWrapper}>
 // 						<img
-// 							className={styles.image}
+// 							className={css.image}
 // 							src={cocktail.drinkThumb}
 // 							alt={cocktail.drink}
 // 							onError={e => {
@@ -24,16 +21,16 @@
 // 					</div>
 // 				</div>
 // 			</Link>
-// 			<div className={styles.wrapper}>
-// 				<div className={`${styles.ingredientsWrapper} ${page === "my" || page === "favorite" ? styles.my : ""}`}>
+// 			<div className={css.wrapper}>
+// 				<div className={`${css.ingredientsWrapper} ${page === "my" || page === "favorite" ? css.my : ""}`}>
 // 					<Link to={`/main/recipe/${cocktail._id}`}>
-// 						<p className={styles.ingredientsTitle}>{cocktail.drink}</p>
+// 						<p className={css.ingredientsTitle}>{cocktail.drink}</p>
 // 					</Link>
-// 					<p className={styles.ingredientsText}>Ingredients</p>
+// 					<p className={css.ingredientsText}>Ingredients</p>
 // 				</div>
 // 			</div>
-// 			{(page === "my" || page === "favorite") && <p className={styles.about}>{cocktail.about}</p>}
-// 			<div className={styles.buttonsWrapper}>
+// 			{(page === "my" || page === "favorite") && <p className={css.about}>{cocktail.about}</p>}
+// 			<div className={css.buttonsWrapper}>
 // 				{(page === "my" || page === "favorite") && <SeeButton id={cocktail._id} />}
 // 				{(page === "my" || page === "favorite") && (
 // 					<DeleteButton
@@ -81,7 +78,7 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteCli
 					drink={drink}
 					drinkThumb={drinkThumb}
 					about={about}
-					onDeleteClick={() => handleDelete(_id, "favorite")}
+					onDeleteClick={() => onDeleteClick(_id, "favorite")}
 				/>
 			</div>
 		</div>
