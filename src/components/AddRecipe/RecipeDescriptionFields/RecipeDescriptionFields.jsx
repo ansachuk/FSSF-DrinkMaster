@@ -58,5 +58,5 @@ export default function RecipeDescriptionFields({ $name, name, handleSelectData 
 RecipeDescriptionFields.propTypes = {
 	$name: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
-	handleSelectData: PropTypes.function,
+	handleSelectData: PropTypes.func,
 };

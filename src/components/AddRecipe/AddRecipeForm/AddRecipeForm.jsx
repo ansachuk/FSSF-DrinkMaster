@@ -18,7 +18,6 @@ export default function AddRecipeForm() {
 		category: "",
 		glass: "",
 	});
-	console.log(selectData);
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
@@ -30,6 +29,7 @@ export default function AddRecipeForm() {
 				initialValues={formikInitialValues}
 				onSubmit={(values, { resetForm }) => {
 					console.log(values);
+					console.log(selectData);
 					resetForm();
 				}}
 			>
