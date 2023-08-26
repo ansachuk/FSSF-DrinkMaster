@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { login } from "../operations/authOperations";
+// import { createSlice } from "@reduxjs/toolkit";
+// import { login } from "../operations/authOperations";
 
-const initialState = {};
+// const initialState = {};
 
-const handlePanding = () => {};
+// const handlePanding = () => {};
 
-const authSlice = createSlice({
-	name: "auth",
-	initialState,
-	reducers: {
-		[login.pending]: handlePanding,
-	},
-});
+// const authSlice = createSlice({
+// 	name: "auth",
+// 	initialState,
+// 	reducers: {
+// 		[login.pending]: handlePanding,
+// 	},
+// });
 
-// Генератори екшенів приклад
-// const { addTask, deleteTask, toggleCompleted } = authSlice.actions;
+// // Генератори екшенів приклад
+// // const { addTask, deleteTask, toggleCompleted } = authSlice.actions;
 
-export default authSlice.reducer;
+// export default authSlice.reducer;

@@ -1,27 +1,68 @@
+// import { configureStore } from "@reduxjs/toolkit";
+// import authReducer from "./slices/authSlice";
+
+// // import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+// // import storage from "redux-persist/lib/storage";
+
+// // const persistConfig = {
+// // 	key: "token",
+// // 	storage,
+// // 	whitelist: ["token"],
+// // };
+
+// // const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+
+// const store = configureStore({
+// 	reducer: { auth: authReducer },
+
+// 	// middleware: getDefaultMiddleware =>
+// 	// 	getDefaultMiddleware({
+// 	// 		serializableCheck: {
+// 	// 			ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+// 	// 		},
+// 	// 	}),
+// });
+
+// // export const persistor = persistStore(store);
+// export default store;
+
+
+
+
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./slices/authSlice";
+import {
+	persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE
+} from 'redux-persist';
 
-// import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import storage from 'redux-persist/lib/storage';
+import { drinksReducer } from "./drinks/drinksSlice";
+import { userInfoReducer } from "./userInfo/userInfoSlice";
 
-// const persistConfig = {
-// 	key: "token",
-// 	storage,
-// 	whitelist: ["token"],
-// };
+const persistConfigForUserInfo = {
+	key: 'theme',
+	version: 1,
+	storage,
+	whitelist: ['theme', 'user', 'firstRender'],
+};
 
-// const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistConfigForDrinks = {
+	key: 'drinks',
+	version: 2,
+	storage,
+	whitelist: ['drinks', 'ingredients', 'categories', 'glasses'],
+};
 
-const store = configureStore({
-	reducer: { auth: authReducer },
-
-	// middleware: getDefaultMiddleware =>
-	// 	getDefaultMiddleware({
-	// 		serializableCheck: {
-	// 			ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-	// 		},
-	// 	}),
+export const store = configureStore({
+	reduser: {
+		drinks: persistReducer(persistConfigForDrinks, drinksReducer),
+		userInfo: persistReducer(persistConfigForUserInfo, userInfoReducer),
+	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}),
 });
 
-// export const persistor = persistStore(store);
-export default store;
+export const persistor = persistStore(store);
