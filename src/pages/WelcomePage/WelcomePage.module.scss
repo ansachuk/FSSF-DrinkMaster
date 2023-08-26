@@ -1,5 +1,12 @@
+@import "../../scss";
+
 .containerWelcome {
 	max-width: 335px;
+	position: relative;
+	text-align: center;
+	// top: 50%;
+	// left: 50%;
+	// transform: translate(-50%, -50%);
 
 	@media screen and (min-width: 768px) {
 		max-width: 470px;
@@ -14,8 +21,7 @@
 	font-size: 28px;
 	line-height: calc(32 / 28);
 	text-align: center;
-
-	margin-top: 284px;
+	margin-top: 304px;
 
 	@media screen and (min-width: 768px) {
 		font-size: 40px;
@@ -29,7 +35,6 @@
 }
 
 .textStart {
-	font-weight: 400;
 	font-size: 14px;
 	line-height: calc(18 / 14);
 	text-align: center;
@@ -69,7 +74,6 @@
 
 	background: transparent;
 	color: #f3f3f3;
-	padding: 14px 40px;
 	border-width: 1px;
 	border-radius: 42px;
 	border-color: rgba(243, 243, 243, 0.2);
@@ -79,4 +83,11 @@
 		background: #f3f3f3;
 		color: #161f37;
 	}
+}
+.image {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	overflow: hidden;
+	transform: translateX(40%);
 }
