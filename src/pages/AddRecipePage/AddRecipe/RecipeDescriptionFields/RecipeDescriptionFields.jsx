@@ -29,16 +29,20 @@ export default function RecipeDescriptionFields({ $name, name, handleSelectData 
 				</div>
 			</div>
 			<div>
-				<Field
-					name={$name}
-					type="text"
-					placeholder="Enter item title"
-				/>
-				<Field
-					name={name}
-					type="text"
-					placeholder="Enter about recipe"
-				/>
+				<div className={css.inputWraper}>
+					<Field
+						className={css.fieldStyle}
+						name={$name}
+						type="text"
+						placeholder="Enter item title"
+					/>
+					<Field
+						className={css.fieldStyle}
+						name={name}
+						type="text"
+						placeholder="Enter about recipe"
+					/>
+				</div>
 				<Select
 					onChange={({ value }) => handleSelectData("category", value)}
 					options={optionsCategories}

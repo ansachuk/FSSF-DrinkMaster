@@ -9,6 +9,29 @@
 	gap: 8px;
 }
 
+.fieldStyle {
+	// width: 100%;
+	padding: 16px;
+	color: $mainFontColor;
+	background-color: transparent;
+	outline: none;
+	border: 1px solid rgba(243, 243, 243, 0.5);
+	border-radius: 26px;
+	opacity: 0.8;
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	// text-align: center;
+
+	transition-property: border-color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	:focus {
+		border-color: $mainFontColor;
+	}
+}
+
 .ingredientsText {
 	margin-bottom: 40px;
 	color: $mainFontColor;

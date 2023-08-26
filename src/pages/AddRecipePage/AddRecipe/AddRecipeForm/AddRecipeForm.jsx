@@ -40,7 +40,7 @@ export default function AddRecipeForm() {
 					resetForm();
 				}}
 			>
-				<Form>
+				<Form autoComplete="off">
 					<RecipeDescriptionFields
 						$name="titleRecipe"
 						name="aboutRecipe"

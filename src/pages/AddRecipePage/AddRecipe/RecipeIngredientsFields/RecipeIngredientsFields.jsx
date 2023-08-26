@@ -21,6 +21,7 @@ export default function RecipeIngredientsFields({ name, handleIngredientData }) 
 				/>
 				<Field
 					name={name}
+					className={css.fieldStyle}
 					type="text"
 					placeholder="amount of ingredient"
 				/>
