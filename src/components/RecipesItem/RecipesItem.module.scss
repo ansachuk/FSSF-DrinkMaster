@@ -41,7 +41,7 @@
 .imageBox:hover,
 .imageBox:focus {
 	transform: scale(0.98);
-	box-shadow: 0 0 12px #f3f3f3;
+	box-shadow: 0 0 10px #f3f3f3;
 }
 
 .imageWrapper {
@@ -58,6 +58,7 @@
 	// }
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
+		height: 400px;
 	}
 
 	@media (min-width: 1440px) {
@@ -74,10 +75,12 @@
 	transition: transform 600ms ease;
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
+		height: 360px;
 	}
 
 	@media (min-width: 1440px) {
 		width: 400px;
+		height: 400px;
 	}
 }
 
