@@ -2,6 +2,7 @@ import Select from "react-select";
 import { Field } from "formik";
 import PropTypes from "prop-types";
 import css from "./RecipeIngredientsFields.module.scss";
+import icons from "../../../../images/icons.svg";
 
 const options = [
 	{ value: "chocolate", label: "Chocolate" },
@@ -23,6 +24,18 @@ export default function RecipeIngredientsFields({ name, handleIngredientData }) 
 					type="text"
 					placeholder="amount of ingredient"
 				/>
+				<button
+					// className={css.btnContainer}
+					type="button"
+				>
+					<svg
+						// className={css.btnIcon}
+						width="28"
+						height="28"
+					>
+						<use href={icons + "#plus"}></use>
+					</svg>
+				</button>
 			</div>
 		</div>
 	);
