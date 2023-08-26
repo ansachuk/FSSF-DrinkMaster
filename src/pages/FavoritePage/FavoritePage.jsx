@@ -27,7 +27,7 @@ export default function FavoritePage() {
 		// 	<div className={styles.container}>
 		<div>
 			<div className={css.section}>
-				<MainTitle title="Favorite">
+				<MainTitle title={"Favorites"}>
 					{/* <MainPageTitle title={"Favorites"} /> */}
 					<RecipesList />
 					<Paginator />

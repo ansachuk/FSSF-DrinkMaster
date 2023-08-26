@@ -5,7 +5,7 @@ import css from "./DeleteButton.module.scss";
 
 const trashPath = new URL("../../images/icons.svg", import.meta.url);
 
-export default function DeleteButton({ id, page }) {
+export default function DeleteButton({ id, page, onDeleteClick }) {
 	// const dispatch = useDispatch();
 	// const onDelete = () => {
 	// 	if (page === "favorite") {
@@ -20,7 +20,7 @@ export default function DeleteButton({ id, page }) {
 		<>
 			<button
 				className={css.deleteButton}
-				// onClick={onDelete}
+				onClick={() => onDeleteClick(id, page)}
 				data-page={page}
 				data-id={id}
 			>
@@ -31,8 +31,6 @@ export default function DeleteButton({ id, page }) {
 				>
 					<use href={trashPath + "#remove"}></use>
 				</svg>
-
-				{/* <span className={css.iconTrash}></span> */}
 			</button>
 		</>
 	);

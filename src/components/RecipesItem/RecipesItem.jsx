@@ -52,7 +52,7 @@ import SeeButton from "../../components/SeeButton/SeeButton";
 import drinkImg from "../../images/static/main/main.jpg";
 import css from "./RecipesItem.module.scss";
 
-export default function RecipesItem({ drink, drinkThumb, about }) {
+export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteClick }) {
 	return (
 		<div className={css.card}>
 			<div className={css.imageBox}>
@@ -76,7 +76,13 @@ export default function RecipesItem({ drink, drinkThumb, about }) {
 			<p className={css.about}>{about}</p>
 			<div className={css.buttonsWrapper}>
 				<SeeButton />
-				<DeleteButton />
+				<DeleteButton
+					key={_id}
+					drink={drink}
+					drinkThumb={drinkThumb}
+					about={about}
+					onDeleteClick={() => handleDelete(_id, "favorite")}
+				/>
 			</div>
 		</div>
 	);
