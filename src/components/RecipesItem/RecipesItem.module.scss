@@ -7,8 +7,15 @@
 		min-height: 628px;
 	}
 	@include desktop {
-		width: 400px;
+		// width: 400px;
 		min-height: 676px;
+	}
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+	}
+
+	@media (min-width: 1440px) {
+		width: 400px;
 	}
 }
 
@@ -19,7 +26,14 @@
 	@include tablet {
 		padding-bottom: 24px;
 	}
-	@include desktop {
+	// @include desktop {
+	// 	width: 400px;
+	// }
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+	}
+
+	@media (min-width: 1440px) {
 		width: 400px;
 	}
 }
@@ -27,7 +41,7 @@
 .imageBox:hover,
 .imageBox:focus {
 	transform: scale(0.98);
-	box-shadow: 0 0 12px var(--secondary-text-color);
+	box-shadow: 0 0 12px #f3f3f3;
 }
 
 .imageWrapper {
@@ -38,9 +52,16 @@
 	@include tablet {
 		width: 342px;
 	}
-	@include desktop {
+	// @include desktop {
+	// 	width: 400px;
+	// 	height: 400px;
+	// }
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+	}
+
+	@media (min-width: 1440px) {
 		width: 400px;
-		height: 400px;
 	}
 }
 
@@ -51,6 +72,13 @@
 	height: 100%;
 	object-fit: cover;
 	transition: transform 600ms ease;
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+	}
+
+	@media (min-width: 1440px) {
+		width: 400px;
+	}
 }
 
 .image:hover,

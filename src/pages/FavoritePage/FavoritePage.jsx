@@ -7,7 +7,7 @@ import RecipesList from "../../components/RecipesList/RecipesList";
 import Paginator from "../../components/Paginator/Paginator";
 // import { getAllFavoriteDrinksThunk } from "redux/Cocktails/cocktailsOperations";
 // import { useMediaRules } from "hooks";
-// import css from "./FavoritePage.module.scss";
+import css from "./FavoritePage.module.scss";
 
 export default function FavoritePage() {
 	// const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function FavoritePage() {
 		// <div className={styles.pageWrapFavorite}>
 		// 	<div className={styles.container}>
 		<div>
-			<div>
+			<div className={css.section}>
 				<MainTitle title="Favorite">
 					{/* <MainPageTitle title={"Favorites"} /> */}
 					<RecipesList />
