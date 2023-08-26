@@ -13,5 +13,5 @@ MainButton.propTypes = {
 	title: PropTypes.string.isRequired,
 	propClass: PropTypes.string,
 	disabled: PropTypes.bool,
-	onClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 };
