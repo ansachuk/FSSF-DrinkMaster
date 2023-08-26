@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
 import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredientsFields";
 import RecipePreparationFields from "../RecipePreparationFields/RecipePreparationFields";
-import MainButton from "../../MainButton/MainButton";
+import MainButton from "../../../../components/MainButton/MainButton";
 
 const formikInitialValues = {
 	titleRecipe: "",
@@ -53,7 +53,7 @@ export default function AddRecipeForm() {
 					<RecipePreparationFields name="textareaRecipe" />
 					<MainButton
 						type="submit"
-						title={"Add"}
+						title="Add"
 					/>
 				</Form>
 			</Formik>

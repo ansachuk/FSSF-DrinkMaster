@@ -2,7 +2,7 @@ import { Field } from "formik";
 import Select from "react-select";
 import PropTypes from "prop-types";
 import css from "./RecipeDescriptionFields.module.scss";
-import icons from "../../../images/icons.svg";
+import icons from "../../../../images/icons.svg";
 
 const options = [
 	{ value: "chocolate", label: "Chocolate" },
