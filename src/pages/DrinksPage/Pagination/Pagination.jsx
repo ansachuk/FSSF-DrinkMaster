@@ -1,6 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
+// action//
+export const setCurrentPage = page => ({
+	type: "SET_CURRENT_PAGE",
+	payload: page,
+});
+
+export const setTotalPages = total => ({
+	type: "SET_TOTAL_PAGES",
+	payload: total,
+});
+
 export default function Pagination({ currentPage, totalPages }) {
 	const dispatch = useDispatch();
 
