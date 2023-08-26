@@ -55,7 +55,7 @@ const persistConfigForDrinks = {
 };
 
 export const store = configureStore({
-	reduser: {
+	reducer: {
 		auth: persistReducer(persistConfig, authReducer),
 		drinks: persistReducer(persistConfigForDrinks, drinksReducer),
 		userInfo: persistReducer(persistConfigForUserInfo, userInfoReducer),
@@ -69,4 +69,7 @@ export const store = configureStore({
 		}),
 });
 
+
 export const persistor = persistStore(store);
+
+export default store;
