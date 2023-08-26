@@ -47,6 +47,7 @@ import React from "react";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import SeeButton from "../../components/SeeButton/SeeButton";
 import css from "./RecipesItem.module.scss";
+import imdDefault from "../../images/static/my-recepies/imgdefault.jpg";
 
 export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteClick }) {
 	return (
@@ -58,13 +59,13 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteCli
 						src={drinkThumb}
 						alt={drink}
 						onError={e => {
-							e.currentTarget.src = drinkImg;
+							e.currentTarget.src = imdDefault;
 						}}
 					/>
 				</div>
 			</div>
 			<div>
-				<div className={css.ingredientsWrappe}>
+				<div className={css.ingredientsWrapper}>
 					<p className={css.ingredientsTitle}>{drink}</p>
 					<p className={css.ingredientsText}>Ingredients</p>
 				</div>
