@@ -32,6 +32,22 @@ const initialState = {
 	loading: false,
 };
 
+const startLoading = state => {
+	state.loading = true;
+	Loading.hourglass("We are verifying your data...");
+};
+
+const stopLoading = state => {
+	state.loading = false;
+	Loading.remove();
+};
+
+const handleError = (state, { payload }) => {
+	state.error = payload;
+	state.loading = false;
+	Loading.remove();
+};
+
 const drinksSlice = createSlice({
 	name: "drinks",
 	initialState,
@@ -53,271 +69,155 @@ const drinksSlice = createSlice({
 	extraReducers: {
 		// ----- DRINKS -----
 
-		[getCategoriesListThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getCategoriesListThunk.pending]: startLoading,
 
 		[getCategoriesListThunk.fulfilled]: (state, { payload }) => {
 			state.categories = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getCategoriesListThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getCategoriesListThunk.rejected]: handleError,
 
-		[getDrinksByCategoryThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
-
+		[getDrinksByCategoryThunk.pending]: startLoading,
 		[getDrinksByCategoryThunk.fulfilled]: (state, { payload }) => {
 			state.searchResults = payload.drinks;
 			state.totalHits = payload.totalHits;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getDrinksByCategoryThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getDrinksByCategoryThunk.rejected]: handleError,
 
-		[getDrinksByIdThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getDrinksByIdThunk.pending]: startLoading,
 
 		[getDrinksByIdThunk.fulfilled]: (state, { payload }) => {
 			state.favorites = payload;
 			state.backup = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getDrinksByIdThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getDrinksByIdThunk.rejected]: handleError,
 
 		//----SEARCH-----
 
-		[searchAllDrinksThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[searchAllDrinksThunk.pending]: startLoading,
 
 		[searchAllDrinksThunk.fulfilled]: (state, { payload }) => {
 			state.searchResults = payload.cocktails;
 			state.totalHits = payload.totalHits;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[searchAllDrinksThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[searchAllDrinksThunk.rejected]: handleError,
 
 		//----INGREDIENTS-----
 
-		[getIngredientsListThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getIngredientsListThunk.pending]: startLoading,
 
 		[getIngredientsListThunk.fulfilled]: (state, { payload }) => {
 			state.ingredients = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getIngredientsListThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getIngredientsListThunk.rejected]: handleError,
 
 		//----GLASSES-----
 
-		[getAllGlassesThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getAllGlassesThunk.pending]: startLoading,
 
 		[getAllGlassesThunk.fulfilled]: (state, { payload }) => {
 			state.glasses = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getAllGlassesThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getAllGlassesThunk.rejected]: handleError,
 
 		//----COKTAILS-----
 
-		[getCoctailsByFourCategoryThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getCoctailsByFourCategoryThunk.pending]: startLoading,
 
 		[getCoctailsByFourCategoryThunk.fulfilled]: (state, { payload }) => {
 			state.drinks = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getCoctailsByFourCategoryThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getCoctailsByFourCategoryThunk.rejected]: handleError,
 
 		//  ----- OWN DRINKS -------
 
-		[addRecipeThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[addRecipeThunk.pending]: startLoading,
 
 		[addRecipeThunk.fulfilled]: (state, { payload }) => {
 			state.own = [payload, ...state.own];
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[addRecipeThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[addRecipeThunk.rejected]: handleError,
 
-		[getAllOwnDrinksThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getAllOwnDrinksThunk.pending]: startLoading,
 
 		[getAllOwnDrinksThunk.fulfilled]: (state, { payload }) => {
 			state.own = payload.drinks;
 			state.totalHits = payload.totalHits;
 			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getAllOwnDrinksThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getAllOwnDrinksThunk.rejected]: handleError,
 
-		[removeRecipeThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[removeRecipeThunk.pending]: startLoading,
 
 		[removeRecipeThunk.fulfilled]: (state, { payload }) => {
 			state.own = state.own.filter(el => el._id !== payload._id);
 			state.totalHits = payload.totalHits;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[removeRecipeThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[removeRecipeThunk.rejected]: handleError,
 
 		// ------ FAVORITES ------
 
-		[getAllFavoriteDrinksThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getAllFavoriteDrinksThunk.pending]: startLoading,
 
 		[getAllFavoriteDrinksThunk.fulfilled]: (state, { payload }) => {
 			state.favorites = payload.drinks;
 			state.totalHits = payload.totalHits;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getAllFavoriteDrinksThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getAllFavoriteDrinksThunk.rejected]: handleError,
 
-		[addToFavoriteThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[addToFavoriteThunk.pending]: startLoading,
 
 		[addToFavoriteThunk.fulfilled]: (state, { payload }) => {
 			state.favirites = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[addToFavoriteThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[addToFavoriteThunk.rejected]: handleError,
 
-		[removeFromFavoriteThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[removeFromFavoriteThunk.pending]: startLoading,
 
 		[removeFromFavoriteThunk.fulfilled]: (state, { payload }) => {
-			console.log(Array.isArray(state.favorites));
 			if (Array.isArray(state.favorites)) {
-				console.log(111);
-				state.favorites = state.favorites.filter(el => {
-					return el._id !== payload._id;
-				});
+				state.favorites = state.favorites.filter(el => el._id !== payload._id);
 			} else {
 				state.favorites = payload.drinks;
 			}
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[removeFromFavoriteThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[removeFromFavoriteThunk.rejected]: handleError,
 
 		// ------ POPULAR ------
 
-		[getPopularThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getPopularThunk.pending]: startLoading,
 
 		[getPopularThunk.fulfilled]: (state, { payload }) => {
 			state.popular = payload;
-			state.loading = false;
-			Loading.remove();
+			stopLoading(state);
 		},
 
-		[getPopularThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
-		},
+		[getPopularThunk.rejected]: handleError,
 	},
 });
 
