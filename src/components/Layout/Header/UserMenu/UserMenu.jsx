@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import icons from "../../../../images/icons.svg";
 import css from "./UserMenu.module.scss";
+import buttonCss from "../../../MainButton/MainButton.module.scss";
 import MainButton from "../../../MainButton/MainButton";
 
 export default function UserMenu() {
@@ -59,13 +60,11 @@ export default function UserMenu() {
 							</svg>
 						</button>
 					</div>
-					{/* MainButton({(title, (disabled = false), (propClass = css.mainButton))})
-					<button>Log out</button> */}
-					{/* <MainButton
+					<MainButton
+						propClass={buttonCss.dropdownButton}
 						title="Log out"
 						onClick={handlerLogoutClick}
-					/> */}
-					<button onClick={handlerLogoutClick}>Log out</button>
+					/>
 				</div>
 			)}
 
@@ -87,17 +86,25 @@ export default function UserMenu() {
 							<use href={icons + "#plus"}></use>
 						</svg>
 					</div>
-					<input
-						type="text"
-						placeholder="User name"
-						className={css.input}
+					<div className={css.input_container}>
+						<input
+							type="text"
+							placeholder="User name"
+							className={css.input}
+						/>
+						<svg className={css.input_pen_icon}>
+							<use href={icons + "#pen"}></use>
+						</svg>
+					</div>
+					<MainButton
+						propClass={buttonCss.largeButton}
+						title="Save changes"
 					/>
-					<MainButton title="Save changes" />
 				</div>
 			)}
 
 			{isOpenLogout && (
-				<div className={css.edit_container}>
+				<div className={css.logout_container}>
 					<button
 						onClick={handlerLogoutClick}
 						className={css.close_button}
@@ -108,10 +115,15 @@ export default function UserMenu() {
 					</button>
 					<p>Are you sure you want to log out?</p>
 					<div className={css.button_container}>
-						{/* <MainButton title="Logout" />
-						<MainButton title="Cancel" /> */}
-						<button>Logout</button>
-						<button onClick={handlerLogoutClick}>Cancel</button>
+						<MainButton
+							propClass={buttonCss.biggerButton}
+							title="Logout"
+						/>
+						<MainButton
+							onClick={handlerLogoutClick}
+							propClass={buttonCss.cancelButton}
+							title="Cancel"
+						/>
 					</div>
 				</div>
 			)}
