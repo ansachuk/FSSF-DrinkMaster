@@ -42,6 +42,50 @@
 	}
 }
 
+// User dropdown menu buttons (header)
+.dropdownButton {
+	@extend .mainButton;
+	padding: 12px 40px;
+
+	@include tablet {
+		padding: 12px 40px;
+		font-size: $mainFontSize;
+	}
+
+	@include desktop {
+		padding: 12px 40px;
+		font-size: $mainFontSize;
+	}
+}
+
+.biggerButton {
+	@extend .mainButton;
+	font-size: $SecondaryFontSize;
+	padding: 16px 41px;
+
+	@include tablet {
+		padding: 18px 69px;
+	}
+}
+
+.largeButton {
+	@extend .mainButton;
+	width: 285px;
+	padding: 18px 41px;
+
+	@include tablet {
+		width: 400px;
+	}
+}
+
+.cancelButton {
+	@extend .mainButton;
+	@extend .biggerButton;
+	color: $mainBtnBackgroundColor;
+	background-color: $disabledBtnBackgroundColor;
+}
+// --------------------------------------------- //
+
 // .exampleButton {
 // 	composes: mainButton;
 // 	property: value;
