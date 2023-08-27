@@ -52,3 +52,29 @@
         margin-bottom: 100px;
     }
 }
+
+.defaultImageBg {
+    width: 335px;
+    height: 400px;
+    background-color: $accentColor;
+    opacity: 50%;
+    position: relative;
+
+    @include tablet {
+        width: 704px;
+        height: 400px;
+    }
+    
+    @include desktop {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+.defaultImageIcon {
+    width: 131px;
+    height: 133px;
+    opacity: 10%;
+    position: absolute;
+    padding: auto;
+}

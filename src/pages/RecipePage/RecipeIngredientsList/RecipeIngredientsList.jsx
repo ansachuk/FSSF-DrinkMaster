@@ -1,4 +1,4 @@
-import defaultImage from '../../images/defaultImage.jpg';
+import css from './RecipeIngredientsList.module.scss';
 
 const RecipeIngredientsList = ({ ingredients }) => {
     return (<>
@@ -8,7 +8,7 @@ const RecipeIngredientsList = ({ ingredients }) => {
                 {ingredientThumb ? (
                             <img src={ingredientThumb} alt={title} />
                         ) : (
-                            <img src={defaultImage} alt="Default image" />
+                            <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>
                         )}
                 <div>
                     <p>{title}</p>
