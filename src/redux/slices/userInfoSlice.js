@@ -1,4 +1,3 @@
-// userInfoSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { updateUserThunk, getCurrentUserThunk } from "../operations/userOperations";
@@ -6,7 +5,16 @@ import { updateUserThunk, getCurrentUserThunk } from "../operations/userOperatio
 const initialState = {
 	user: { name: "", email: "", avatarURL: "" },
 	theme: "dark",
-	firstRender: true,
+};
+
+const startLoading = (state) => {
+  state.loading = true;
+  Loading.hourglass("We are verifying your data...");
+};
+
+const finishLoading = (state) => {
+  state.loading = false;
+  Loading.remove();
 };
 
 const userInfoSlice = createSlice({
@@ -16,32 +24,23 @@ const userInfoSlice = createSlice({
 		clearState: state => {
 			state.user = { name: "", email: "", avatarURL: "" };
 			state.theme = "dark";
-			state.firstRender = true;
 		},
 	},
 
 	extraReducers: {
-		[updateUserThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[updateUserThunk.pending]: startLoading,
 
 		[updateUserThunk.fulfilled]: (state, { payload }) => {
 			state.user = payload;
-			state.loading = false;
-			Loading.remove();
+			finishLoading(state);
 		},
 
 		[updateUserThunk.rejected]: (state, { payload }) => {
 			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			finishLoading(state);
 		},
 
-		[getCurrentUserThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
-		},
+		[getCurrentUserThunk.pending]: startLoading,
 
 		[getCurrentUserThunk.fulfilled]: (state, { payload }) => {
 			state.user = {
@@ -50,15 +49,12 @@ const userInfoSlice = createSlice({
 				avatarURL: payload.avatarURL,
 				id: payload._id,
 			};
-			state.firstRender = false;
-			state.loading = false;
-			Loading.remove();
+			finishLoading(state);
 		},
 
 		[getCurrentUserThunk.rejected]: (state, { payload }) => {
 			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			finishLoading(state);
 		},
 	},
 });

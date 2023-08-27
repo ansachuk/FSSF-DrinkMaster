@@ -44,7 +44,7 @@ const persistConfigForUserInfo = {
 	key: "theme",
 	version: 2,
 	storage,
-	whitelist: ["theme", "user", "firstRender"],
+	whitelist: ["theme", "user"],
 };
 
 const persistConfigForDrinks = {
