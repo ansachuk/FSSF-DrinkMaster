@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToFavoriteThunk, removeFromFavoriteThunk } from '../../../redux/operations/drinksOperations.js';
-import { MainButton } from '../../../components/MainButton/MainButton';
-import { MainTitle } from '../../../components/MainTitle/MainTitle';
+import { selectFavoriteDrinks } from '../../../redux/selectors.js';
+import MainButton from '../../../components/MainButton/MainButton';
+import MainTitle from '../../../components/MainTitle/MainTitle';
 import css from './RecipePageHero.module.scss';
 import stylesForButton from '../../../components/MainButton/MainButton.module.scss';
 import icons from '../../../images/icons.svg';
