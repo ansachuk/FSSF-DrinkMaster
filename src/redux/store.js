@@ -32,7 +32,7 @@ import { authReducer } from "./slices/authSlice";
 import { drinksReducer } from "./slices/drinksSlice";
 import { userInfoReducer } from "./slices/userInfoSlice";
 
-const reducer = combineReducers({authReducer, drinksReducer, userInfoReducer});
+const reducer = combineReducers([authReducer, drinksReducer, userInfoReducer ]);
 
 const persistConfig = {
     key: "data",
