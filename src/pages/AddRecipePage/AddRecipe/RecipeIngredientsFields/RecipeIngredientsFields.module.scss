@@ -4,6 +4,13 @@
 	margin-bottom: 80px;
 }
 
+.counter {
+	display: flex;
+	// align-items: center;
+	// justify-content: space-between;
+	margin-bottom: 34px;
+}
+
 .selectWraper {
 	display: flex;
 	gap: 8px;
@@ -33,7 +40,6 @@
 }
 
 .ingredientsText {
-	margin-bottom: 40px;
 	color: $mainFontColor;
 	font-size: 28px;
 	font-weight: $fontWeightSemiBold;
