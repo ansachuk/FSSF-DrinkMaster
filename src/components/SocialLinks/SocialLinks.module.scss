@@ -1,0 +1,32 @@
+@import "../../scss/";
+
+.Container {
+	margin-top: 20px;
+	display: flex;
+	gap: 14px;
+
+	@include tablet {
+		margin-top: 28px;
+		gap: 16px;
+	}
+
+	@include desktop {
+		margin-top: 40px;
+		gap: 16px;
+	}
+}
+
+.SocialLinksIcon {
+	width: 22px;
+	height: 22px;
+	padding: 8px;
+
+	@include tablet {
+		width: 28px;
+		height: 28px;
+		padding: 8px;
+
+		border-radius: 10px;
+		border: 1px solid rgba(243, 243, 243, 0.2);
+	}
+}

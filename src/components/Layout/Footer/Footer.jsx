@@ -1,8 +1,9 @@
 // import { SocialLinks, Logo, Nav, EmailSubscription } from "components";
-import { Logo } from "../../Logo/Logo";
 
 import css from "./Footer.module.scss";
 import { Link } from "react-router-dom";
+import { Logo } from "../../Logo/Logo";
+import { SocialLinks } from "../../SocialLinks/SocialLinks";
 
 export default function Footer() {
 	return (
@@ -11,7 +12,7 @@ export default function Footer() {
 				<div className={css.FooterGroup}>
 					<div>
 						<Logo />
-						{/* <SocialLinks /> */}
+						<SocialLinks />
 					</div>
 					{/* <Nav /> */}
 				</div>

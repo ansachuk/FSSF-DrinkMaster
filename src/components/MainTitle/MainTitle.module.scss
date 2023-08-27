@@ -22,13 +22,97 @@
 	}
 }
 
-.mainTitle {
-	outline: 100px solid tomato;
+.firstBall {
+	position: absolute;
+	top: 20px;
+	left: -399px;
+	width: 520px;
+	height: 550px;
 
-	width: 784px;
-	height: 849px;
-
-	border-radius: 849px;
-	background: rgba(249, 248, 248, 0.5);
+	border-radius: 550px;
+	background: rgba(64, 112, 205, 0.5);
 	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		left: -623px;
+		width: 784px;
+		height: 830px;
+
+		border-radius: 830px;
+	}
+
+	@include desktop {
+		left: -623px;
+		width: 784px;
+		height: 849px;
+
+		border-radius: 849px;
+	}
+}
+
+.secondBall {
+	position: absolute;
+	top: 84px;
+	left: 42px;
+	width: 257px;
+	height: 247px;
+
+	border-radius: 257px;
+	background: rgba(188, 230, 210, 0.4);
+	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		top: 116px;
+		width: 387px;
+		height: 372px;
+
+		border-radius: 387px;
+	}
+
+	@include desktop {
+		top: 119px;
+		left: -25px;
+		width: 387px;
+		height: 381px;
+
+		border-radius: 387px;
+	}
+}
+
+.thirdBall {
+	display: none;
+	position: absolute;
+	top: 498px;
+	right: -432px;
+	width: 549px;
+	height: 543px;
+	border-radius: 549px;
+	background: rgba(64, 112, 205, 0.5);
+	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		display: flex;
+	}
+
+	@include desktop {
+		display: flex;
+		top: 458px;
+		right: -290px;
+	}
+}
+
+.fourthBall {
+	display: none;
+	position: absolute;
+	top: 745px;
+	right: -258px;
+	width: 430px;
+	height: 465px;
+	border-radius: 465px;
+	background: rgba(188, 230, 210, 0.4);
+	filter: blur(104.8543701171875px);
+
+	@include desktop {
+		display: flex;
+	}
 }

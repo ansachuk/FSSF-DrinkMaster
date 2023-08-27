@@ -1,0 +1,29 @@
+@import "../../scss/";
+
+.LogoElement {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.LogoIcon {
+	width: 22px;
+	height: 22px;
+
+	@include tablet {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.LogoTitle {
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 18px;
+	color: #f3f3f3;
+
+	@include tablet {
+		font-size: 18px;
+		line-height: 22px;
+	}
+}
