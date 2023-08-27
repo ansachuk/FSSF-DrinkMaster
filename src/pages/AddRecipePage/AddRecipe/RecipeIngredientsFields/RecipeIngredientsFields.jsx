@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Select from "react-select";
 import { Field } from "formik";
 import PropTypes from "prop-types";
@@ -11,13 +11,17 @@ const options = [
 	{ value: "vanilla", label: "Vanilla" },
 ];
 
-const IngredientItem = () => {
+const IngredientItem = ({ handleData }) => {
 	const [data, setData] = useState({
 		ingredient: "",
 		amountIngredien: "",
-		id: Math.floor(Math.random() * 999 * 999),
+		id: Math.floor(Math.random() * 9 ** 6),
 	});
 	console.log(data);
+
+	useCallback(() => {
+		handleData(data);
+	}, [data, handleData]);
 
 	const handleClick = () => {};
 
@@ -29,7 +33,6 @@ const IngredientItem = () => {
 						setData(prevState => ({
 							...prevState,
 							ingredient: value,
-							//  event.target.value,
 						}))
 					}
 					options={options}
@@ -48,21 +51,6 @@ const IngredientItem = () => {
 					type="text"
 					placeholder="amount of ingredient"
 				/>
-
-				{/* <Field
-					name="middleName"
-					className={css.fieldStyle}
-					// onChange={({ value }) => setSelect(value)}
-					onChange={event =>
-						setData(prevState => ({
-							...prevState,
-							middleName: event.target.value,
-						}))
-					}
-					value={data.middleName}
-					type="text"
-					placeholder="amount of ingredient"
-				/> */}
 
 				<button
 					className={css.deleteBtn}
@@ -83,9 +71,9 @@ const IngredientItem = () => {
 };
 export default function RecipeIngredientsFields({ name, handleIngredientData }) {
 	const [state, setState] = useState([1]);
-	const [select, setSelect] = useState("");
+	const [data, setData] = useState([]);
 	const count = state.length;
-	console.log(select);
+	// console.log(data);
 
 	const handleDecrement = () => {
 		if (state.length > 1) {
@@ -93,50 +81,24 @@ export default function RecipeIngredientsFields({ name, handleIngredientData }) 
 		}
 	};
 
+	const handleData = ingredient => {
+		console.log(ingredient);
+		setData(prevState => [...prevState, ingredient]);
+	};
+
 	return (
 		<div className={css.wraper}>
 			<div className={css.counter}>
 				<h3 className={css.ingredientsText}>Ingredients</h3>
-				{/* <button onClick={() => setState({ ...state, [name]: count - 1 })}>-1</button> */}
 				<button onClick={handleDecrement}>-1</button>
 				{count}
-				{/* <button onClick={() => setState({ ...state, [name]: count + 1 })}>+1</button> */}
 				<button onClick={() => setState([...state, 1])}>+1</button>
 			</div>
 
 			<ul>
 				{state.map(() => (
 					<li key={Math.random()}>
-						<IngredientItem />
-						{/* <div className={css.selectWraper}>
-							<Select
-								// onChange={({ value }) => handleIngredientData(value)}
-								onChange={({ value }) => setSelect(value)}
-								options={options}
-							/>
-
-							<Field
-								name={name}
-								className={css.fieldStyle}
-								// onChange={({ value }) => setSelect(value)}
-								onChange={({ target }) => setSelect(target.value)}
-								value={select}
-								type="text"
-								placeholder="amount of ingredientggg"
-							/>
-							<button
-								className={css.deleteBtn}
-								type="button"
-							>
-								<svg
-									className={css.deleteIcon}
-									width="18"
-									height="18"
-								>
-									<use href={icons + "#close"}></use>
-								</svg>
-							</button>
-						</div> */}
+						<IngredientItem handleData={handleData} />
 					</li>
 				))}
 			</ul>
