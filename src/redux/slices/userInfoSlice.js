@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const userInfoSlice = createSlice({
-	name: "@@userInfo",
+	name: "userInfo",
 	initialState,
 	reducers: {
 		clearState: state => {

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../instance";
 import Notiflix from "notiflix";
 
-export const updateUserThunk = createAsyncThunk("@@userInfo/update", async data => {
+export const updateUserThunk = createAsyncThunk("userInfo/update", async data => {
 	try {
 		let res = null;
 		if (data.get("avatarURL")) {
@@ -20,7 +20,7 @@ export const updateUserThunk = createAsyncThunk("@@userInfo/update", async data 
 	}
 });
 
-export const getCurrentUserThunk = createAsyncThunk("@@userInfo/current", async () => {
+export const getCurrentUserThunk = createAsyncThunk("userInfo/current", async () => {
 	try {
 		const res = await instance.get("users/current");
 		return res.data;

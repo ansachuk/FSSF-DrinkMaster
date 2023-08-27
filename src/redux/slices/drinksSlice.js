@@ -33,7 +33,7 @@ const initialState = {
 };
 
 const drinksSlice = createSlice({
-	name: "@@drinks",
+	name: "drinks",
 	initialState,
 	reducers: {
 		setQuery: (state, { payload }) => {
