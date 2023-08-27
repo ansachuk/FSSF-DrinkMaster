@@ -1,0 +1,23 @@
+@import "../../scss/";
+
+.title {
+	font-size: 32px;
+
+	font-weight: $fontWeightSemiBold;
+	line-height: 118.75%;
+
+	margin-top: 80px;
+
+	@include tablet {
+		font-size: 56px;
+		line-height: 107.143%;
+
+		margin-top: 140px;
+	}
+
+	@include desktop {
+		font-size: 56px;
+
+		margin-top: 160px;
+	}
+}
