@@ -1,0 +1,18 @@
+@import "../../../../scss";
+
+.wraper {
+	margin-bottom: 80px;
+}
+
+.selectWraper {
+	display: flex;
+	gap: 8px;
+}
+
+.ingredientsText {
+	margin-bottom: 40px;
+	color: $mainFontColor;
+	font-size: 28px;
+	font-weight: $fontWeightSemiBold;
+	line-height: calc(32 / 28);
+}

@@ -16,5 +16,5 @@ export default function MainTitle({ title, children }) {
 
 MainTitle.propTypes = {
 	title: PropTypes.string.isRequired,
-	children: PropTypes.object,
+	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
