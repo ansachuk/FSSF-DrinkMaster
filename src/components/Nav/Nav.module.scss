@@ -1,0 +1,24 @@
+@import "../../scss/";
+
+.list_items {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+
+	@include tablet {
+		margin-top: 40px;
+	}
+
+	@include desktop {
+		margin-top: 0;
+		gap: 16px;
+		margin-left: 389px;
+	}
+}
+
+.link_nav {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 22.4px;
+	color: #f3f3f3;
+}

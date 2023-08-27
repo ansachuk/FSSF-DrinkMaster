@@ -1,6 +1,7 @@
 @import "../../../scss/";
 
 .FooterContent {
+	outline: 1px solid tomato;
 	padding: 40px 20px 18px;
 	border-top: 1px solid #f3f3f333;
 
@@ -28,11 +29,10 @@
 
 	@include tablet {
 		flex-direction: column;
-		gap: 40px;
 	}
 
 	@include desktop {
-		gap: 250px;
+		flex-direction: row;
 	}
 }
 

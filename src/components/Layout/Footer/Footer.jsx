@@ -4,6 +4,7 @@ import css from "./Footer.module.scss";
 import { Link } from "react-router-dom";
 import { Logo } from "../../Logo/Logo";
 import { SocialLinks } from "../../SocialLinks/SocialLinks";
+import { Nav } from "../../Nav/Nav";
 
 export default function Footer() {
 	return (
@@ -14,7 +15,7 @@ export default function Footer() {
 						<Logo />
 						<SocialLinks />
 					</div>
-					{/* <Nav /> */}
+					<Nav />
 				</div>
 				{/* <EmailSubscription /> */}
 			</div>
