@@ -50,8 +50,35 @@
 	font-weight: 400;
 	line-height: 18px;
 	color: #f3f3f37e;
+	transition: border 0.3s ease;
+}
+
+.FooterText:hover {
+	color: white;
 }
 
 .FooterText:not(:last-child) {
 	margin-right: 18px;
 }
+
+// .firstSphere {
+// 	position: absolute;
+// 	top: 5130px;
+// 	left: -689;
+// 	width: 784px;
+// 	height: 849px;
+
+// 	border-radius: 849px;
+// 	background: rgba(64, 112, 205, 0.5);
+// 	filter: blur(104.8543701171875px);
+
+// 	@include tablet {
+// 		left: -690px;
+// 	}
+// }
+
+// .seconSphere {
+// }
+
+// .thirdSphere {
+// }

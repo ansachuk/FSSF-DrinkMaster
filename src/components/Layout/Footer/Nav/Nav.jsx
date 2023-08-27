@@ -7,7 +7,7 @@ export const Nav = () => {
 				<li>
 					<a
 						className={css.link_nav}
-						href="/"
+						href="/drinks"
 					>
 						Drinks
 					</a>
@@ -15,7 +15,7 @@ export const Nav = () => {
 				<li>
 					<a
 						className={css.link_nav}
-						href="/"
+						href="/add"
 					>
 						Add recipes
 					</a>
@@ -23,7 +23,7 @@ export const Nav = () => {
 				<li>
 					<a
 						className={css.link_nav}
-						href="/"
+						href="/my"
 					>
 						My recipes
 					</a>
@@ -31,7 +31,7 @@ export const Nav = () => {
 				<li>
 					<a
 						className={css.link_nav}
-						href="/"
+						href="/favorite"
 					>
 						Favorites
 					</a>

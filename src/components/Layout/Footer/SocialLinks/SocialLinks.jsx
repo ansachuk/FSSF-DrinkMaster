@@ -4,14 +4,14 @@ import icons from "../../../../images/icons.svg";
 
 const socialLinks = [
 	{
-		name: "Instagram",
-		url: "https://www.instagram.com/",
-		iconId: "instagram",
-	},
-	{
 		name: "Facebook",
 		url: "https://www.facebook.com/",
 		iconId: "facebook",
+	},
+	{
+		name: "Instagram",
+		url: "https://www.instagram.com/",
+		iconId: "instagram",
 	},
 	{
 		name: "YouTube",
@@ -29,6 +29,7 @@ export const SocialLinks = () => {
 					href={link.url}
 					target="_blank"
 					rel="noopener noreferrer"
+					className={css.IconContainer}
 				>
 					<svg className={css.SocialLinksIcon}>
 						<use href={icons + "#" + link.iconId}></use>

@@ -36,6 +36,9 @@ export default function Footer() {
 					</Link>
 				</div>
 			</div>
+			{/* <div className={css.firstSphere}></div>
+			<div className={css.seconSphere}></div>
+			<div className={css.thirdSphere}></div> */}
 		</div>
 	);
 }

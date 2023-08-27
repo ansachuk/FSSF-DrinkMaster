@@ -19,14 +19,25 @@
 .SocialLinksIcon {
 	width: 22px;
 	height: 22px;
-	padding: 8px;
+	fill: white;
 
 	@include tablet {
 		width: 28px;
 		height: 28px;
-		padding: 8px;
-
-		border-radius: 10px;
-		border: 1px solid rgba(243, 243, 243, 0.2);
 	}
+}
+
+.IconContainer {
+	display: flex;
+	flex-direction: column; /* Добавлено */
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(243, 243, 243, 0.2);
+	border-radius: 10px;
+	padding: 8px;
+	transition: border 0.3s ease;
+}
+
+.IconContainer:hover {
+	border: 1px solid white;
 }
