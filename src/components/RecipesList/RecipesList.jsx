@@ -26,14 +26,14 @@
 // 						src={DrinkDefault}
 // 						alt="No added cocktails"
 // 					/>
-// 					<p className={css.notFavoriteText}>You haven't added any favorite cocktails yet</p>
+// 					<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
 // 				</div>
 // 			)}
 // 		</div>
 // 	);
 // }
 
-import React, { useState } from "react";
+import { useState } from "react";
 import RecipesItem from "../../components/RecipesItem/RecipesItem";
 import css from "./RecipesList.module.scss";
 import DrinkDefault from "../../images/static/main/main.jpg";
@@ -42,7 +42,7 @@ import favoriteCocktails from "../../data/favoriteCocktails";
 export default function RecipesList() {
 	const [cocktails, setCocktails] = useState(favoriteCocktails);
 
-	const handleDelete = (id, page) => {
+	const handleDelete = id => {
 		console.log("handleDelete called with id:", id);
 		const updatedCocktails = cocktails.filter(cocktail => cocktail._id !== id);
 		console.log("Updated cocktails:", updatedCocktails);
@@ -70,7 +70,7 @@ export default function RecipesList() {
 						src={DrinkDefault}
 						alt="No added cocktails"
 					/>
-					<p className={css.notFavoriteText}>You haven't added any favorite cocktails yet</p>
+					<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
 				</div>
 			)}
 		</div>

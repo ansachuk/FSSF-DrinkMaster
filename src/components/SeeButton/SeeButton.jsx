@@ -1,5 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import css from "./SeeButton.module.scss";
 
 export default function SeeButton({ id }) {
@@ -18,3 +18,7 @@ export default function SeeButton({ id }) {
 		</button>
 	);
 }
+
+SeeButton.propTypes = {
+	id: PropTypes.string.isRequired,
+};

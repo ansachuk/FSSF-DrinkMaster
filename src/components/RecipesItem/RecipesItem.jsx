@@ -42,7 +42,7 @@
 // 	);
 // }
 
-import React from "react";
+import PropTypes from "prop-types";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import SeeButton from "../../components/SeeButton/SeeButton";
 import css from "./RecipesItem.module.scss";
@@ -83,3 +83,11 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteCli
 		</div>
 	);
 }
+
+RecipesItem.propTypes = {
+	_id: PropTypes.string.isRequired,
+	drink: PropTypes.string.isRequired,
+	drinkThumb: PropTypes.string.isRequired,
+	about: PropTypes.string.isRequired,
+	onDeleteClick: PropTypes.func.isRequired,
+};

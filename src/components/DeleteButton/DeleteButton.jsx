@@ -33,8 +33,7 @@
 // 		</>
 // 	);
 // }
-
-import React from "react";
+import PropTypes from "prop-types";
 import css from "./DeleteButton.module.scss";
 
 const trashPath = new URL("../../images/icons.svg", import.meta.url);
@@ -59,3 +58,9 @@ export default function DeleteButton({ id, page, onDeleteClick }) {
 		</>
 	);
 }
+
+DeleteButton.propTypes = {
+	id: PropTypes.string.isRequired,
+	page: PropTypes.string.isRequired,
+	onDeleteClick: PropTypes.func.isRequired,
+};
