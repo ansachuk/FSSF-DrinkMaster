@@ -1,9 +1,11 @@
 import { useCallback, useState } from "react";
+// import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { Field } from "formik";
 import PropTypes from "prop-types";
 import css from "./RecipeIngredientsFields.module.scss";
 import icons from "../../../../images/icons.svg";
+// import { getIngredientsListThunk } from "../../../../redux/operations/drinksOperations";
 
 const options = [
 	{ value: "chocolate", label: "Chocolate" },
@@ -12,11 +14,13 @@ const options = [
 ];
 
 const IngredientItem = ({ handleData }) => {
+	// const dispatch = useDispatch();
 	const [data, setData] = useState({
 		ingredient: "",
 		amountIngredien: "",
 		id: Math.floor(Math.random() * 9 ** 6),
 	});
+	// const [ingredientsList, setIngredientsList] = useState(null);
 	console.log(data);
 
 	useCallback(() => {
