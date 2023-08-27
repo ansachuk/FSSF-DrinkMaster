@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./SocialLinks.module.scss";
-import icons from "../../images/icons.svg";
+import icons from "../../../../images/icons.svg";
 
 const socialLinks = [
 	{
