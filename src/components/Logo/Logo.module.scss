@@ -5,6 +5,15 @@
 	gap: 8px;
 	margin-right: auto;
 
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+
 	@include tablet {
 		gap: 14px;
 	}

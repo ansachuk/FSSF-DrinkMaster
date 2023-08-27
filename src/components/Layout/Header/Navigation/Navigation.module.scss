@@ -42,6 +42,15 @@
 	border-radius: 40px;
 	font-size: 14px;
 	font-weight: 500;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
 }
 
 .link {

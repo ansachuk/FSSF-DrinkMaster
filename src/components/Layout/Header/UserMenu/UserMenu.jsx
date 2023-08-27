@@ -82,11 +82,14 @@ export default function UserMenu() {
 						<svg className={css.user_large_icon}>
 							<use href={icons + "#user"}></use>
 						</svg>
-						<svg className={css.plus_icon}>
+						<svg
+							className={css.plus_icon}
+							viewBox="-5 -5 70 100"
+						>
 							<use href={icons + "#plus"}></use>
 						</svg>
 					</div>
-					<div className={css.input_container}>
+					<label className={css.input_container}>
 						<input
 							type="text"
 							placeholder="User name"
@@ -95,7 +98,7 @@ export default function UserMenu() {
 						<svg className={css.input_pen_icon}>
 							<use href={icons + "#pen"}></use>
 						</svg>
-					</div>
+					</label>
 					<MainButton
 						propClass={buttonCss.largeButton}
 						title="Save changes"

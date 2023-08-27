@@ -20,8 +20,17 @@
 	border: none;
 	background-color: transparent;
 
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
 	@include tablet {
 		gap: 14px;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
 	}
 }
 
@@ -136,10 +145,31 @@
 .plus_icon {
 	position: absolute;
 	bottom: -15%;
-	left: 50%;
+	left: 46%;
 	width: 28px;
 	height: 28px;
-	transform: translateX(-50%);
+
+	// display: block;
+	// margin: auto;
+
+	stroke: $mainFontColor;
+	background-color: #546081;
+	border-radius: 50%;
+	// text-align: center;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+
+	@include tablet {
+		width: 32px;
+		height: 32px;
+	}
 }
 
 .input_container {
@@ -175,7 +205,7 @@
 
 .input_pen_icon {
 	position: absolute;
-	top: 20px;
+	top: 5px;
 	right: 24px;
 
 	display: none;
