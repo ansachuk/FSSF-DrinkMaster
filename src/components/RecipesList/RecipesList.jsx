@@ -1,32 +1,32 @@
+// import React from "react";
 // import { useSelector } from "react-redux";
-// import { RecipesItem } from "../RecipesItem/RecipesItem";
-// import { selectFavorite } from "redux/selectors";
-// import styles from "./RecipesList.module.css";
+// import { selectFavorite } from "../../redux/selectors";
+// import RecipesItem from "../../components/RecipesItem/RecipesItem";
+// import css from "./RecipesList.module.scss";
+// import DrinkDefault from "../../images/static/main/main.jpg";
 
 // export default function RecipesList() {
-// 	// const favoriteCocktails = useSelector(selectFavorite);
-// 	// const isTablet = window.innerWidth >= 768;
-// 	// const notFoundImgSrc = isTablet ? "/src/assets/img/NotFound2x.jpg" : "/src/assets/img/NotFound1x.jpg";
-
+// 	const favoriteCocktails = useSelector(selectFavorite);
 // 	return (
-// 		<div className={styles.section}>
+// 		<div className={css.section}>
 // 			{Array.isArray(favoriteCocktails) && favoriteCocktails.length !== 0 ? (
-// 				<div className={styles.recipesList}>
+// 				<div className={css.recipesList}>
 // 					{favoriteCocktails.map(favoriteCocktail => (
 // 						<RecipesItem
 // 							key={favoriteCocktail._id}
 // 							page={"favorite"}
-// 							cocktail={favoriteCocktail}
+// 							drink={favoriteCocktails}
 // 						/>
 // 					))}
 // 				</div>
 // 			) : (
-// 				<div className={styles.wrapDiv}>
+// 				<div className={css.wrapDiv}>
 // 					<img
-// 						src={notFoundImgSrc}
-// 						alt="Not Found"
+// 						className={css.notFoundImg}
+// 						src={DrinkDefault}
+// 						alt="No added cocktails"
 // 					/>
-// 					<p className={styles.notFavoriteText}>You haven't added any favorite cocktails yet</p>
+// 					<p className={css.notFavoriteText}>You haven't added any favorite cocktails yet</p>
 // 				</div>
 // 			)}
 // 		</div>

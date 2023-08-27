@@ -6,7 +6,7 @@ export default function SeeButton({ id }) {
 	const navigate = useNavigate();
 
 	const handleClick = () => {
-		navigate(`/main/recipe/${id}`);
+		navigate(`/recipe/${id}`);
 	};
 
 	return (
