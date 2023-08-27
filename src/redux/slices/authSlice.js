@@ -25,14 +25,24 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 const initialState = {
 	user: { name: "", email: "", id: "", avatarURL: "" },
 	accessToken: null,
-	online: false,
 	loading: false,
 	isCliccked: false,
 	error: null,
 };
 
+const setLoadingAndLoadingMessage = (state, message) => {
+	state.loading = true;
+	Loading.dots(message);
+};
+
+const handleLoadingResult = (state, { payload }) => {
+	state.loading = false;
+	state.error = payload;
+	Loading.remove();
+};
+
 const authSlice = createSlice({
-	name: "@@auth",
+	name: "auth",
 	initialState,
 	reducers: {
 		clearError: state => {
@@ -46,113 +56,82 @@ const authSlice = createSlice({
 	},
 	extraReducers: {
 		[registrationThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("We are verifying your data...");
+			setLoadingAndLoadingMessage(state, "We are verifying your data...");
 		},
 
 		[registrationThunk.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
-			state.loading = false;
-			Loading.remove();
+			setLoadingAndLoadingMessage(state, "");
 		},
 
 		[registrationThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			handleLoadingResult(state, payload);
 		},
 
 		[loginThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("Log In...");
+			setLoadingAndLoadingMessage(state, "Log In...");
 		},
 
 		[loginThunk.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
 			state.accessToken = payload.token;
-			state.online = true;
-			state.loading = false;
-			state.error = null;
-			Loading.remove();
+			setLoadingAndLoadingMessage(state, "");
 		},
 
 		[loginThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			Loading.remove();
+			handleLoadingResult(state, payload);
 		},
 
 		[logoutThunk.pending]: state => {
-			state.loading = true;
-			Loading.hourglass("Log Our...");
+			setLoadingAndLoadingMessage(state, "Log Out...");
 		},
 
 		[logoutThunk.fulfilled]: state => {
 			state.user = { name: "", email: "", id: "", avatarURL: "" };
 			state.accessToken = "";
-			state.online = false;
-			state.loading = false;
-			state.error = null;
-			Loading.remove();
+			setLoadingAndLoadingMessage(state, "");
 		},
 
 		[logoutThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			handleLoadingResult(state, payload);
 		},
 
 		[refreshThunk.pending]: state => {
-			state.loading = true;
-			Loading.dots("User data is updated...");
+			setLoadingAndLoadingMessage(state, "User data is updated...");
 		},
 
 		[refreshThunk.fulfilled]: (state, { payload }) => {
-			state.online = true;
-			if (payload.token === null) state.online = false;
-			state.loading = false;
 			state.accessToken = payload.token;
-			Loading.remove();
+			setLoadingAndLoadingMessage(state, "");
 		},
 
 		[refreshThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			handleLoadingResult(state, payload);
 		},
 
 		[verifyThunk.pending]: state => {
-			state.loading = true;
-			Loading.dots("We are verifying your email address...");
+			setLoadingAndLoadingMessage(state, "We are verifying your email address...");
 		},
 
 		[verifyThunk.fulfilled]: (state, { payload }) => {
-			state.online = true;
-			state.loading = false;
 			state.accessToken = payload.token;
-			Loading.remove();
+			setLoadingAndLoadingMessage(state, "");
 		},
 
 		[verifyThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			handleLoadingResult(state, payload);
 		},
 		[getCurrentUserThunk.pending]: state => {
-			state.loading = true;
-			Loading.dots("We are verifying your email address...");
+			setLoadingAndLoadingMessage(state, "We are verifying your email address...");
 		},
 
 		[getCurrentUserThunk.fulfilled]: (state, { payload }) => {
-			state.online = true;
-			state.loading = false;
 			state.user.id = payload._id;
-			Loading.remove();
+			setLoadingAndLoadingMessage(state, "");
 		},
 
 		[getCurrentUserThunk.rejected]: (state, { payload }) => {
-			state.error = payload;
-			state.loading = false;
-			Loading.remove();
+			handleLoadingResult(state, payload);
 		},
 	},
 });
