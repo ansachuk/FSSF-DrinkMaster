@@ -25,7 +25,6 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 const initialState = {
 	user: { name: "", email: "", id: "", avatarURL: "" },
 	accessToken: null,
-	online: false,
 	loading: false,
 	isCliccked: false,
 	error: null,
@@ -76,7 +75,6 @@ const authSlice = createSlice({
 		[loginThunk.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
 			state.accessToken = payload.token;
-			state.online = true;
 			setLoadingAndLoadingMessage(state, "");
 		},
 
@@ -91,7 +89,6 @@ const authSlice = createSlice({
 		[logoutThunk.fulfilled]: state => {
 			state.user = { name: "", email: "", id: "", avatarURL: "" };
 			state.accessToken = "";
-			state.online = false;
 			setLoadingAndLoadingMessage(state, "");
 		},
 
@@ -104,7 +101,6 @@ const authSlice = createSlice({
 		},
 
 		[refreshThunk.fulfilled]: (state, { payload }) => {
-			state.online = !!payload.token;
 			state.accessToken = payload.token;
 			setLoadingAndLoadingMessage(state, "");
 		},
@@ -118,7 +114,6 @@ const authSlice = createSlice({
 		},
 
 		[verifyThunk.fulfilled]: (state, { payload }) => {
-			state.online = true;
 			state.accessToken = payload.token;
 			setLoadingAndLoadingMessage(state, "");
 		},
@@ -131,7 +126,6 @@ const authSlice = createSlice({
 		},
 
 		[getCurrentUserThunk.fulfilled]: (state, { payload }) => {
-			state.online = true;
 			state.user.id = payload._id;
 			setLoadingAndLoadingMessage(state, "");
 		},
