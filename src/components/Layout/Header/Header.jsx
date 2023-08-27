@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import cssTest from "./temp-div-styles.module.scss";
 import css from "./Header.module.scss";
-import Logo from "./Logo/Logo";
+import Logo from "../../Logo/Logo";
 import UserMenu from "./UserMenu/UserMenu";
 import Navigation from "./Navigation/Navigation";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
