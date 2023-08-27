@@ -1,54 +1,54 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { drinksCategoriesList } from "../../../data/drinksData";
 
 // action//
-export const setSearchText = text => ({
-	type: "SET_SEARCH_TEXT",
-	payload: text,
-});
+// export const setSearchText = text => ({
+// 	type: "SET_SEARCH_TEXT",
+// 	payload: text,
+// });
 
-export const setSelectedCategory = category => ({
-	type: "SET_SELECTED_CATEGORY",
-	payload: category,
-});
+// export const setSelectedCategory = category => ({
+// 	type: "SET_SELECTED_CATEGORY",
+// 	payload: category,
+// });
 
-export const setSelectedIngredient = ingredient => ({
-	type: "SET_SELECTED_INGREDIENT",
-	payload: ingredient,
-});
+// export const setSelectedIngredient = ingredient => ({
+// 	type: "SET_SELECTED_INGREDIENT",
+// 	payload: ingredient,
+// });
 
-export const setIngredientsList = ingredients => ({
-	type: "SET_INGREDIENTS_LIST",
-	payload: ingredients,
-});
+// export const setIngredientsList = ingredients => ({
+// 	type: "SET_INGREDIENTS_LIST",
+// 	payload: ingredients,
+// });
 
 // редюсер//
-const initialState = {
-	searchText: "",
-	selectedCategory: "All Categories",
-	selectedIngredient: "Ingredients",
-	ingredientsList: [],
-};
+// const initialState = {
+// 	searchText: "",
+// 	selectedCategory: "All Categories",
+// 	selectedIngredient: "Ingredients",
+// 	ingredientsList: [],
+// };
 
-const rootReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case "SET_SEARCH_TEXT":
-			return { ...state, searchText: action.payload };
-		case "SET_SELECTED_CATEGORY":
-			return { ...state, selectedCategory: action.payload };
-		case "SET_SELECTED_INGREDIENT":
-			return { ...state, selectedIngredient: action.payload };
-		case "SET_INGREDIENTS_LIST":
-			return { ...state, ingredientsList: action.payload };
-		default:
-			return state;
-	}
-};
+// const rootReducer = (state = initialState, action) => {
+// 	switch (action.type) {
+// 		case "SET_SEARCH_TEXT":
+// 			return { ...state, searchText: action.payload };
+// 		case "SET_SELECTED_CATEGORY":
+// 			return { ...state, selectedCategory: action.payload };
+// 		case "SET_SELECTED_INGREDIENT":
+// 			return { ...state, selectedIngredient: action.payload };
+// 		case "SET_INGREDIENTS_LIST":
+// 			return { ...state, ingredientsList: action.payload };
+// 		default:
+// 			return state;
+// 	}
+// };
 //  схема валидации//
 
 const validationSchema = Yup.object().shape({
@@ -56,21 +56,21 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function DrinksSearch() {
-	const dispatch = useDispatch();
-	const { searchText, selectedCategory, selectedIngredient, ingredientsList } = useSelector(state => state);
+	// const dispatch = useDispatch();
+	// const { searchText, selectedCategory, selectedIngredient, ingredientsList } = useSelector(state => state);
 
-	useEffect(() => {
-		// Запрос к бэкенду для получения списка ингредиентов
-		axios
-			.get("/api/ingredients")
-			.then(response => {
-				const data = response.data;
-				dispatch(setIngredientsList(data));
-			})
-			.catch(error => {
-				console.error("Error fetching ingredients:", error);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	// Запрос к бэкенду для получения списка ингредиентов
+	// 	axios
+	// 		.get("/api/ingredients")
+	// 		.then(response => {
+	// 			const data = response.data;
+	// 			dispatch(setIngredientsList(data));
+	// 		})
+	// 		.catch(error => {
+	// 			console.error("Error fetching ingredients:", error);
+	// 		});
+	// }, []);
 
 	return (
 		<Formik
@@ -133,27 +133,27 @@ export default function DrinksSearch() {
 							<div>
 								<select
 									{...field}
-									onChange={async event => {
-										const selectedId = event.target.value;
-										try {
-											const response = await axios.get(`/api/ingredients/${selectedId}`);
-											const ingredient = response.data;
-											// Обновление состояния с полученным ингредиентом
-											dispatch(setSelectedIngredient(ingredient));
-										} catch (error) {
-											console.error("Error fetching ingredient:", error);
-										}
-									}}
+									// onChange={async event => {
+									// const selectedId = event.target.value;
+									// try {
+									// const response = await axios.get(`/api/ingredients/${selectedId}`);
+									// const ingredient = response.data;
+									// Обновление состояния с полученным ингредиентом
+									// dispatch(setSelectedIngredient(ingredient));
+									// } catch (error) {
+									// 	console.error("Error fetching ingredient:", error);
+									// }
+									// }}
 								>
 									<option value="Ingredients">Ingredients</option>
-									{ingredientsList.map((ingredient, index) => (
+									{/* {ingredientsList.map((ingredient, index) => (
 										<option
 											key={index}
 											value={ingredient.id}
 										>
 											{ingredient.title}
 										</option>
-									))}
+									))} */}
 								</select>
 							</div>
 						)}

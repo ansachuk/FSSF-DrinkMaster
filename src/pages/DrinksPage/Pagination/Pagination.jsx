@@ -1,34 +1,36 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 // action//
-export const setCurrentPage = page => ({
-	type: "SET_CURRENT_PAGE",
-	payload: page,
-});
+// export const setCurrentPage = page => ({
+// 	type: "SET_CURRENT_PAGE",
+// 	payload: page,
+// });
 
-export const setTotalPages = total => ({
-	type: "SET_TOTAL_PAGES",
-	payload: total,
-});
+// export const setTotalPages = total => ({
+// 	type: "SET_TOTAL_PAGES",
+// 	payload: total,
+// });
 
-export default function Pagination({ currentPage, totalPages }) {
-	const dispatch = useDispatch();
+// export default function Pagination({ currentPage, totalPages }) {
+// 	// const dispatch = useDispatch();
 
-	const handlePageChange = newPage => {
-		if (newPage >= 1 && newPage <= totalPages) {
-			dispatch(setCurrentPage(newPage));
-		}
-	};
+// 	const handlePageChange = newPage => {
+// 		if (newPage >= 1 && newPage <= totalPages) {
+// 			// dispatch(setCurrentPage(newPage));
+// 		}
+// 	};
 
-	return (
-		<div>
-			<button
-				onClick={() => handlePageChange(currentPage - 1)}
-				disabled={currentPage === 1}
-			>
-				{/*  SVG-код для иконки "Previous" */}
-			</button>
+// return (
+// 	<div>
+// 		<button
+// 			onClick={() => handlePageChange(currentPage - 1)}
+// 			disabled={currentPage === 1}
+// 		>
+{
+	/*  SVG-код для иконки "Previous" */
+}
+{
+	/* </button>
 			<div>
 				<ul>
 					{Array.from({ length: totalPages }, (_, index) => (
@@ -47,8 +49,9 @@ export default function Pagination({ currentPage, totalPages }) {
 				onClick={() => handlePageChange(currentPage + 1)}
 				disabled={currentPage === totalPages}
 			>
-				{/* SVG-код для иконки "Next" */}
-			</button>
-		</div>
-	);
+				{/* SVG-код для иконки "Next" */
 }
+// 			</button>
+// 		</div>
+// 	);
+// } */}
