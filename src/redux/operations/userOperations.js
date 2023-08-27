@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../instance";
-import Notiflix from "notiflix";
+import { Notify } from "notiflix";
 
 export const updateUserThunk = createAsyncThunk("userInfo/update", async data => {
 	try {
@@ -12,7 +12,7 @@ export const updateUserThunk = createAsyncThunk("userInfo/update", async data =>
 		} else {
 			res = await instance.patch("users/update", data);
 		}
-		Notiflix.Notify.success("User information updated");
+		Notify.success("User information updated");
 		return res.data;
 	} catch (error) {
 		const errorMessage = error.response.data.message;

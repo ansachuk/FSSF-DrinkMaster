@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setToken } from "./authOperations";
 import { instance } from "../instance";
 import { selectAuthAccessToken } from "../selectors";
-import Notiflix from "notiflix";
+import { Notify } from "notiflix";
 
 const makeApiRequest = async (endpoint, params = {}, token) => {
 	if (!token) {
@@ -102,11 +102,11 @@ export const addRecipeThunk = createAsyncThunk("drinks/addRecipe", async (data, 
 		} else {
 			res = await instance.post("own", data);
 		}
-		Notiflix.Notify.success("Recipe added to collection successfully");
+		Notify.success("Recipe added to collection successfully");
 		return res.data;
 	} catch (error) {
 		const errorMessage = error.response.data.message;
-		Notiflix.Notify.failure("Сервер ответил: " + errorMessage);
+		Notify.failure("Сервер ответил: " + errorMessage);
 		return rejectWithValue(error.message);
 	}
 });
