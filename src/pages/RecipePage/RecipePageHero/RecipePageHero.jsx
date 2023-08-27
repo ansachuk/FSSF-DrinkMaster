@@ -16,10 +16,10 @@ const RecipePageHero = ({glass, title, about, image}) => {
 
     return (
         <div className={css.recipePageHeroContainer}>
-            <p className={css.glassName}>{glass}</p>
+            <div><p className={css.glassName}>{glass}</p>
             <MainTitle className={css.recipePageTitle}>{title}</MainTitle>
             {about && <p className={css.aboutDrink}>{about}</p>}
-            {isFavorite ? <MainButton onClick={() => dispatch(removeFromFavoriteThunk(recipeId))} className={stylesForButton.recipePageButton}>Remove from favorite recipes</MainButton> : <MainButton onClick={() => dispatch(addToFavoriteThunk(recipeId))} className={stylesForButton.recipePageButton}>Add to favorite recipes</MainButton>}
+            {isFavorite ? <MainButton onClick={() => dispatch(removeFromFavoriteThunk(recipeId))} className={stylesForButton.recipePageButton}>Remove from favorite recipes</MainButton> : <MainButton onClick={() => dispatch(addToFavoriteThunk(recipeId))} className={stylesForButton.recipePageButton}>Add to favorite recipes</MainButton>}</div>
             {image ? <img src={image} alt={title} className={css.recipePageHeroImg} /> : <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>}
         </div>
     )
