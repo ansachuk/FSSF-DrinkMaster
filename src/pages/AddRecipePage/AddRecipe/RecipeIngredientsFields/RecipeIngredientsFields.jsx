@@ -11,6 +11,76 @@ const options = [
 	{ value: "vanilla", label: "Vanilla" },
 ];
 
+const IngredientItem = () => {
+	const [data, setData] = useState({
+		ingredient: "",
+		amountIngredien: "",
+		id: Math.floor(Math.random() * 999 * 999),
+	});
+	console.log(data);
+
+	const handleClick = () => {};
+
+	return (
+		<>
+			<div className={css.selectWraper}>
+				<Select
+					onChange={({ value }) =>
+						setData(prevState => ({
+							...prevState,
+							ingredient: value,
+							//  event.target.value,
+						}))
+					}
+					options={options}
+				/>
+
+				<Field
+					name="amountIngredien"
+					className={css.fieldStyle}
+					onChange={event =>
+						setData(prevState => ({
+							...prevState,
+							amountIngredien: event.target.value,
+						}))
+					}
+					value={data.amountIngredien}
+					type="text"
+					placeholder="amount of ingredient"
+				/>
+
+				{/* <Field
+					name="middleName"
+					className={css.fieldStyle}
+					// onChange={({ value }) => setSelect(value)}
+					onChange={event =>
+						setData(prevState => ({
+							...prevState,
+							middleName: event.target.value,
+						}))
+					}
+					value={data.middleName}
+					type="text"
+					placeholder="amount of ingredient"
+				/> */}
+
+				<button
+					className={css.deleteBtn}
+					type="button"
+					onClick={handleClick}
+				>
+					<svg
+						className={css.deleteIcon}
+						width="18"
+						height="18"
+					>
+						<use href={icons + "#close"}></use>
+					</svg>
+				</button>
+			</div>
+		</>
+	);
+};
 export default function RecipeIngredientsFields({ name, handleIngredientData }) {
 	const [state, setState] = useState([1]);
 	const [select, setSelect] = useState("");
@@ -37,7 +107,8 @@ export default function RecipeIngredientsFields({ name, handleIngredientData }) 
 			<ul>
 				{state.map(() => (
 					<li key={Math.random()}>
-						<div className={css.selectWraper}>
+						<IngredientItem />
+						{/* <div className={css.selectWraper}>
 							<Select
 								// onChange={({ value }) => handleIngredientData(value)}
 								onChange={({ value }) => setSelect(value)}
@@ -65,7 +136,7 @@ export default function RecipeIngredientsFields({ name, handleIngredientData }) 
 									<use href={icons + "#close"}></use>
 								</svg>
 							</button>
-						</div>
+						</div> */}
 					</li>
 				))}
 			</ul>
