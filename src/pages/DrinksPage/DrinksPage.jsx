@@ -1,6 +1,86 @@
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+
+import { Paginator, DrinksSearch, DrinksList, MainPageTitle, Container } from "components";
+// import {
+//   getCategoriesListThunk, => allCategory
+//   getIngredientsListThunk,  => allIngredients
+//   searchAllDrinksThunk,  => search
+// } from 'redux/Cocktails/cocktailsOperations';
+import { allCategory, allIngredients } from "../../redux/operations/recipiesOperations";
+
+import { setChosenCategory } from "redux/Cocktails/cocktailsSlice";
+
+// import {
+//   selectCategories,    => selectCategories
+//   selectIngredients,   => selectIngredients
+//   selectPage,
+//   selectSearch,  => selectSearchResults
+// } from 'redux/selectors';
+
+import { selectCategories, selectIngredients } from "../../redux/selectors";
+
+import { useMediaRules } from "hooks";
+import styles from "./DrinksPage.module.scss";
+
+const DrinksPage = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const categoryFromLocation = useLocation();
+	const categoryName = categoryFromLocation?.state?.from;
+	categoryName && dispatch(setChosenCategory(categoryName));
+	const { isDesktop } = useMediaRules();
+	const ingredientsList = useSelector(selectIngredients);
+	const categoriesList = useSelector(selectCategories);
+	const page = useSelector(selectPage);
+	const search = useSelector(selectSearchResults);
+	const limit = isDesktop ? 9 : 8;
+
+	useEffect(() => {
+		if (categoriesList.length !== 0) return;
+		dispatch(allCategory());
+	}, [dispatch, categoriesList]);
+
+	useEffect(() => {
+		if (ingredientsList.length !== 0) return;
+		dispatch(allIngredients());
+	}, [dispatch, ingredientsList]);
+
+	useEffect(() => {
+		dispatch(search({ search, page, limit }));
+		navigate(
+			`/recepies/search${encodeURIComponent(search.chosenCategory)}?query=${encodeURIComponent(
+				search.query,
+			)}&ingredient=${search.chosenIngredient}&page=${page}`,
+		);
+	}, [dispatch, search, page, limit]);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	return (
+		<Container>
+			<section className={styles.section}>
+				<MainPageTitle title={"Drinks"} />
+				<DrinksSearch categoryName={categoryName} />
+				<DrinksList />
+				<Paginator />
+			</section>
+		</Container>
+	);
+};
+
+// export default DrinksPage;
+
+// export default DrinksPage;
+
 export default function DrinksPage() {
 	return <div>DrinksPage</div>;
 }
+
+// Исходный
 
 // import axios from "axios";
 // import { useEffect } from "react";
