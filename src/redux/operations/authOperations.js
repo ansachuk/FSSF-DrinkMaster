@@ -15,7 +15,7 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../instance";
-import Notiflix from "notiflix";
+import { Notify, Report } from "notiflix";
 import { selectAuthAccessToken } from "../selectors";
 
 const token = "S3GcuPYg0QYZoEvVVOyvAuHZeIO7M6zb";
@@ -32,11 +32,11 @@ setToken();
 
 const handleError = error => {
 	const errorMessage = error.response ? error.response.data.message : "Something went wrong.";
-	Notiflix.Notify.failure("The server returned an error: " + errorMessage);
+	Notify.failure("The server returned an error: " + errorMessage);
 
 	if (!error.response) {
 		setTimeout(() => {
-			Notiflix.Report.warning(
+			Report.warning(
 				"Loading took more than seconds",
 				'Loading seems stuck, or there was a server error. Please, check your data, and then try to "Log In" again.',
 				"GOT IT",
