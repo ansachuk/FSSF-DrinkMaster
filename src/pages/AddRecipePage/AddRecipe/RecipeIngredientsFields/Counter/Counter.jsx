@@ -1,4 +1,4 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import icons from "../../../../../images/icons.svg";
 import css from "./Counter.module.scss";
 
@@ -8,7 +8,7 @@ export default function Counter({ ingredientList, handleIncIngredients, handleDe
 			<button
 				type="button"
 				onClick={() => handleDecIngredients()}
-				// disabled={fields.length <= 1}
+				// disabled={ingredientList.length <= 1}
 			>
 				<svg
 					className={css.icon}
@@ -35,8 +35,8 @@ export default function Counter({ ingredientList, handleIncIngredients, handleDe
 	);
 }
 
-// AddRecipeForm.propTypes = {
-// title: PropTypes.string.isRequired,
-// propClass: PropTypes.string,
-// disabled: PropTypes.bool,
-// };
+Counter.propTypes = {
+	ingredientList: PropTypes.array,
+	handleIncIngredients: PropTypes.func,
+	handleDecIngredients: PropTypes.func,
+};

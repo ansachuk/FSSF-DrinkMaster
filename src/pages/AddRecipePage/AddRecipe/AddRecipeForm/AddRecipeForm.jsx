@@ -11,7 +11,6 @@ import MainButton from "../../../../components/MainButton/MainButton";
 const formikInitialValues = {
 	titleRecipe: "",
 	aboutRecipe: "",
-	// ingredientAmount: "",
 	textareaRecipe: "",
 };
 
@@ -21,7 +20,6 @@ export default function AddRecipeForm() {
 		glass: "",
 	});
 	const [ingredientList, setIngredientList] = useState([]);
-	console.log(ingredientList);
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
@@ -53,7 +51,6 @@ export default function AddRecipeForm() {
 
 	const handleChangeIngredientName = (e, index) => {
 		const tmpList = [...ingredientList];
-		// console.log(tmpList);
 		tmpList[index] = {
 			...tmpList[index],
 			id: e.value,
@@ -62,9 +59,22 @@ export default function AddRecipeForm() {
 		setIngredientList(tmpList);
 	};
 
-	// const handleIngredientData = value => {
-	// 	setIngredientData(prevState => ({ ...prevState, ingredient: value }));
-	// };
+	const handleChangeUnitQuantity = (e, index) => {
+		let tmpData = e.currentTarget.value;
+		if (tmpData < 0) {
+			tmpData = 0;
+			e.currentTarget.value = 0;
+		}
+		const tmpList = [...ingredientList];
+		tmpList[index].unitQuantity = tmpData;
+		setIngredientList(tmpList);
+	};
+
+	const handleChangeIngredientUnit = (e, index) => {
+		const tmpList = [...ingredientList];
+		tmpList[index].unit = e.value;
+		setIngredientList(tmpList);
+	};
 
 	return (
 		<div>
@@ -73,6 +83,7 @@ export default function AddRecipeForm() {
 				onSubmit={(values, { resetForm }) => {
 					console.log(values);
 					console.log(selectData);
+					console.log(ingredientList);
 					resetForm();
 				}}
 			>
@@ -88,6 +99,8 @@ export default function AddRecipeForm() {
 						handleIncIngredients={handleIncIngredients}
 						handleDecIngredients={handleDecIngredients}
 						handleChangeIngredientName={handleChangeIngredientName}
+						handleChangeUnitQuantity={handleChangeUnitQuantity}
+						handleChangeIngredientUnit={handleChangeIngredientUnit}
 						// handleIngredientData={handleIngredientData}
 					/>
 					<RecipePreparationFields name="textareaRecipe" />
