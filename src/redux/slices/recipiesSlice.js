@@ -16,7 +16,7 @@ import {
 	addToFavorite,
 	removeFromFavorite,
 	popular,
-} from "../operations/recepiesOperations";
+} from "../operations/recipiesOperations";
 
 const initialState = {
 	mainCocktails: [],
