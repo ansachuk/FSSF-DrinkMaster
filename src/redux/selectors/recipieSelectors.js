@@ -1,0 +1,10 @@
+export const selectMainCocktails = ({ recipie }) => recipie.mainCocktails;
+export const selectByCategory = ({ recipie }) => recipie.byCategory;
+export const selectByID = ({ recipie }) => recipie.byID;
+export const selectFavorite = ({ recipie }) => recipie.favorite;
+export const selectPopular = ({ recipie }) => recipie.popular;
+export const selectCategories = ({ recipie }) => recipie.categories;
+export const selectGlasses = ({ recipie }) => recipie.glasses;
+export const selectIngredients = ({ recipie }) => recipie.ingredients;
+export const selectSearchResults = ({ recipie }) => recipie.searchResults;
+export const selectOwn = ({ recipie }) => recipie.own;
