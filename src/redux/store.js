@@ -1,58 +1,61 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import authReducer from "./slices/authSlice";
+// import { combineReducers, configureStore } from "@reduxjs/toolkit";
+// import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+// import { authReducer } from "./slices/authSlice";
+// import { drinksReducer } from "./slices/drinksSlice";
+// import { userInfoReducer } from "./slices/userInfoSlice";
 
-// // import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-// // import storage from "redux-persist/lib/storage";
+// const reducer = combineReducers([authReducer, drinksReducer, userInfoReducer]);
 
-// // const persistConfig = {
-// // 	key: "token",
-// // 	storage,
-// // 	whitelist: ["token"],
-// // };
+// const persistConfig = {
+// 	key: "data",
+// 	storage,
+// 	whitelist: ["accessToken", "theme", "drinks", "ingredients", "categories", "glasses"],
+// };
 
-// // const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+// export const store = configureStore({
+// 	reducer: persistReducer(persistConfig, reducer),
 
-// const store = configureStore({
-// 	reducer: { auth: authReducer },
-
-// 	// middleware: getDefaultMiddleware =>
-// 	// 	getDefaultMiddleware({
-// 	// 		serializableCheck: {
-// 	// 			ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-// 	// 		},
-// 	// 	}),
+// 	middleware: getDefaultMiddleware =>
+// 		getDefaultMiddleware({
+// 			serializableCheck: {
+// 				ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+// 			},
+// 		}),
 // });
+// export const persistor = persistStore(store);
 
-// // export const persistor = persistStore(store);
-// export default store;
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE } from "redux-persist";
+import { configureStore } from "@reduxjs/toolkit";
+
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { authReducer } from "./slices/authSlice";
-import { drinksReducer } from "./slices/drinksSlice";
-import { userInfoReducer } from "./slices/userInfoSlice";
 
-const reducer = combineReducers([authReducer, drinksReducer, userInfoReducer ]);
+// import contactsReducer from "./slices/contactsSlice";
+// import filterReducer from "./slices/filterSlice";
+import authReducer from "./slices/authSlice";
 
 const persistConfig = {
-    key: "data",
-    storage,
-    whitelist: ["accessToken", "theme", "drinks", "ingredients", "categories", "glasses"],
+	key: "token",
+	storage,
+	whitelist: ["token"],
 };
 
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
+const store = configureStore({
+	reducer: {
+		// filter: filterReducer,
+		// contacts: contactsReducer,
+		auth: persistedAuthReducer,
+	},
 
-export const store = configureStore({
-    reducer: persistReducer(persistConfig, reducer),
-
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }),
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}),
 });
 
 export const persistor = persistStore(store);
-
 export default store;
