@@ -2,6 +2,7 @@
 //Видалиться після додавання навігації
 .tempNav {
 	display: flex;
+	flex-direction: column;
 	gap: 12px;
 	color: aqua;
 

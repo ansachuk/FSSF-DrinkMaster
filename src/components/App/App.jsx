@@ -14,20 +14,40 @@ import FavoritePage from "../../pages/FavoritePage/FavoritePage";
 import RecipePage from "../../pages/RecipePage/RecipePage";
 import MyRecipesPage from "../../pages/MyRecipesPage/MyRecipesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import WelcomePageLayout from "../../pages/WelcomePage/Layout/WelcomePageLayout";
 
 export default function App() {
+	// const isAuth = useSelector(selectIsLoggedIn);
+	// const token = useSelector(selectToken);
+	// const dispatch = useDispatch();
+
+	// useEffect(() => {
+	// 	if (token && !isAuth) {
+	// 		dispatch(refresh(token));
+	// 	}
+	// }, [dispatch, isAuth, token]);
 	return (
 		<Routes>
 			<Route
 				path="/welcome"
 				element={
 					<PublicRoute>
-						<WelcomePage />
+						<WelcomePageLayout />
 					</PublicRoute>
 				}
 			>
-				<Route path="signin" element={<SigninForm />} />
-				<Route path="signup" element={<SignupForm />} />
+				<Route
+					index
+					element={<WelcomePage />}
+				/>
+				<Route
+					path="signin"
+					element={<SigninForm />}
+				/>
+				<Route
+					path="signup"
+					element={<SignupForm />}
+				/>
 			</Route>
 			<Route
 				path="/"
@@ -37,13 +57,34 @@ export default function App() {
 					</PrivatRoute>
 				}
 			>
-				<Route index element={<MainPage />} />
-				<Route path="drinks/:categoryName" element={<DrinksPage />} />
-				<Route path="add" element={<AddRecipePage />} />
-				<Route path="favorite" element={<FavoritePage />} />
-				<Route path="recipe/:recipeId" element={<RecipePage />} />
-				<Route path="my" element={<MyRecipesPage />} />
-				<Route path="*" element={<NotFoundPage />} />
+				<Route
+					index
+					element={<MainPage />}
+				/>
+				<Route
+					path="drinks/:categoryName"
+					element={<DrinksPage />}
+				/>
+				<Route
+					path="add"
+					element={<AddRecipePage />}
+				/>
+				<Route
+					path="favorite"
+					element={<FavoritePage />}
+				/>
+				<Route
+					path="recipe/:recipeId"
+					element={<RecipePage />}
+				/>
+				<Route
+					path="my"
+					element={<MyRecipesPage />}
+				/>
+				<Route
+					path="*"
+					element={<NotFoundPage />}
+				/>
 			</Route>
 		</Routes>
 	);

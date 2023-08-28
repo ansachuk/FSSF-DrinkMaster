@@ -1,123 +1,63 @@
-// import { createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios";
-
-// //?Приклад як має виглядати санка
-// const login = createAsyncThunk("auth/login", async (_, { rejectWithValue }) => {
-// 	try {
-// 		const { data } = await axios.post(`/login`);
-// 		return data;
-// 	} catch (e) {
-// 		return rejectWithValue(e.message);
-// 	}
-// });
-
-// export { login };
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../instance";
-import Notiflix from "notiflix";
-import { selectAuthAccessToken } from "../selectors";
+import instance, { setAuthJWTHeader, clearAuthJWTHeader } from "../instance.js";
 
-const token = "S3GcuPYg0QYZoEvVVOyvAuHZeIO7M6zb";
-
-export const setToken = () => {
-	instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-};
-
-export const clearToken = () => {
-	instance.defaults.headers.common["Authorization"] = ``;
-};
-
-setToken();
-
-const handleError = error => {
-	const errorMessage = error.response ? error.response.data.message : "Something went wrong.";
-	Notiflix.Notify.failure("The server returned an error: " + errorMessage);
-
-	if (!error.response) {
-		setTimeout(() => {
-			Notiflix.Report.warning(
-				"Loading took more than seconds",
-				'Loading seems stuck, or there was a server error. Please, check your data, and then try to "Log In" again.',
-				"GOT IT",
-				() => {
-					window.location.reload();
-				},
-			);
-		}, 5000);
-	}
-};
-
-export const registrationThunk = createAsyncThunk("@auth/registration", async credentials => {
+const signup = createAsyncThunk("auth/signup", async (creds, { rejectWithValue }) => {
 	try {
-		const res = await instance.post("user/register", credentials);
+		// setAuthJWTHeader(data.token);
+		const res = await instance.post("users/register", creds);
+		console.log(res);
 		return res.data;
-	} catch (error) {
-		handleError(error);
-		throw error;
+	} catch (e) {
+		return rejectWithValue(e.response.data.message);
 	}
 });
 
-export const loginThunk = createAsyncThunk("@auth/login", async credentials => {
+const login = createAsyncThunk("auth/login", async (creds, { rejectWithValue }) => {
 	try {
-		const res = await instance.post("user/login", credentials);
-		setToken(res.data.token);
-		return res.data;
-	} catch (error) {
-		handleError(error);
-		return error.response ? error.response.data.message : "Что-то пошло не так.";
+		const { data } = await instance.post("users/login", creds);
+		setAuthJWTHeader(data.token);
+		return data;
+	} catch (e) {
+		return rejectWithValue(e.message);
 	}
 });
 
-export const logoutThunk = createAsyncThunk("@auth/logout", async () => {
+const update = createAsyncThunk("auth/update", async (creds, { rejectWithValue }) => {
 	try {
-		const res = await instance.post("user/logout");
-		localStorage.removeItem("user");
-		localStorage.removeItem("accessToken");
-		clearToken();
-		return res;
-	} catch (error) {
-		handleError(error);
+		const { data } = await instance.patch("users/update", creds);
+		return data;
+	} catch (e) {
+		return rejectWithValue(e.message);
 	}
 });
 
-export const refreshThunk = createAsyncThunk("@auth/refresh", async (_, thunkAPI) => {
-	const refreshToken = selectAuthAccessToken(thunkAPI.getState());
-	setToken(refreshToken);
+const logout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) => {
 	try {
-		const res = await instance.post("users/refresh");
-		return res.data;
-	} catch (error) {
-		handleError(error);
+		const { data } = await instance.post("users/logout");
+		clearAuthJWTHeader();
+		return data;
+	} catch (e) {
+		rejectWithValue(e.message);
 	}
 });
 
-export const getCurrentUserThunk = createAsyncThunk("@auth/current", async (_, { rejectWithValue }) => {
+const refresh = createAsyncThunk("auth/refresh", async (token, { rejectWithValue }) => {
 	try {
-		const res = await instance.post("users/current");
-		return res.data;
-	} catch (error) {
-		handleError(error);
-		return rejectWithValue(error.response ? error.response.data.message : "Что-то пошло не так.");
+		setAuthJWTHeader(token);
+		const { data } = await instance.get("users/current");
+		return data;
+	} catch (e) {
+		return rejectWithValue(e.message);
 	}
 });
 
-export const verifyThunk = createAsyncThunk("@auth/verify", async verificationToken => {
+const subscribe = createAsyncThunk("/subscribe", async (creds, { rejectWithValue }) => {
 	try {
-		const res = await instance.get(`/users/verify/${verificationToken}`);
+		const res = await instance.patch("/subscribe", creds);
 		return res.data;
-	} catch (error) {
-		handleError(error);
-		throw error;
+	} catch (e) {
+		return rejectWithValue(e.message);
 	}
 });
 
-export const setSubscription = async credentials => {
-	try {
-		const res = await instance.patch("user/subscribe", credentials);
-		return res.data;
-	} catch (error) {
-		handleError(error);
-		throw error;
-	}
-};
+export { login, signup, logout, refresh, update, subscribe };
