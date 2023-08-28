@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setToken } from "./authOperations";
 import { instance } from "../instance";
 import { selectAuthAccessToken } from "../selectors";
-import Notiflix from "notiflix";
+import { Notify } from "notiflix";
 
 const makeApiRequest = async (endpoint, params = {}, token) => {
 	if (!token) {
@@ -19,7 +19,7 @@ const makeApiRequest = async (endpoint, params = {}, token) => {
 
 // ------- DRINKS -------
 
-export const getCategoriesListThunk = createAsyncThunk("@@drinks/categoriesList", async (_, { rejectWithValue, getState }) => {
+export const getCategoriesListThunk = createAsyncThunk("drinks/categoriesList", async (_, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest("recipes/category-list", {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -27,7 +27,7 @@ export const getCategoriesListThunk = createAsyncThunk("@@drinks/categoriesList"
 	}
 });
 
-export const getDrinksByCategoryThunk = createAsyncThunk("@@drinks/byCategory", async (category, { rejectWithValue, getState }) => {
+export const getDrinksByCategoryThunk = createAsyncThunk("drinks/byCategory", async (category, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest(`recipes/${encodeURIComponent(category)}`, {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -35,7 +35,7 @@ export const getDrinksByCategoryThunk = createAsyncThunk("@@drinks/byCategory", 
 	}
 });
 
-export const getDrinksByIdThunk = createAsyncThunk("@@drinks/byId", async (id, { rejectWithValue, getState }) => {
+export const getDrinksByIdThunk = createAsyncThunk("drinks/byId", async (id, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest(`recipes/id/${id}`, {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -45,7 +45,7 @@ export const getDrinksByIdThunk = createAsyncThunk("@@drinks/byId", async (id, {
 
 // ----- SEARCH -----
 
-export const searchAllDrinksThunk = createAsyncThunk("@@drinks/search", async ({ search, page, limit }, { rejectWithValue, getState }) => {
+export const searchAllDrinksThunk = createAsyncThunk("drinks/search", async ({ search, page, limit }, { rejectWithValue, getState }) => {
 	try {
 		const params = {
 			category: search.chosenCategory,
@@ -62,7 +62,7 @@ export const searchAllDrinksThunk = createAsyncThunk("@@drinks/search", async ({
 
 // ------ INGREDIENTS ------
 
-export const getIngredientsListThunk = createAsyncThunk("@@drinks/ingredientsList", async (_, { rejectWithValue, getState }) => {
+export const getIngredientsListThunk = createAsyncThunk("drinks/ingredientsList", async (_, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest("ingredients/list", {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -72,7 +72,7 @@ export const getIngredientsListThunk = createAsyncThunk("@@drinks/ingredientsLis
 
 // ------ GLASSES -------
 
-export const getAllGlassesThunk = createAsyncThunk("@@drinks/glassesList", async (_, { rejectWithValue, getState }) => {
+export const getAllGlassesThunk = createAsyncThunk("drinks/glassesList", async (_, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest("glass", {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -82,7 +82,7 @@ export const getAllGlassesThunk = createAsyncThunk("@@drinks/glassesList", async
 
 // ----- COCKTAILS ------
 
-export const getCoctailsByFourCategoryThunk = createAsyncThunk("@@drinks/category", async (_, { rejectWithValue, getState }) => {
+export const getCoctailsByFourCategoryThunk = createAsyncThunk("drinks/category", async (_, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest("recipes/main-page", {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -92,7 +92,7 @@ export const getCoctailsByFourCategoryThunk = createAsyncThunk("@@drinks/categor
 
 //  ----- OWN DRINKS -------
 
-export const addRecipeThunk = createAsyncThunk("@@drinks/addRecipe", async (data, { rejectWithValue }) => {
+export const addRecipeThunk = createAsyncThunk("drinks/addRecipe", async (data, { rejectWithValue }) => {
 	try {
 		let res = null;
 		if (data.get("drinkThumb")) {
@@ -102,16 +102,16 @@ export const addRecipeThunk = createAsyncThunk("@@drinks/addRecipe", async (data
 		} else {
 			res = await instance.post("own", data);
 		}
-		Notiflix.Notify.success("Рецепт успешно добавлен в коллекцию");
+		Notify.success("Recipe added to collection successfully");
 		return res.data;
 	} catch (error) {
 		const errorMessage = error.response.data.message;
-		Notiflix.Notify.failure("Сервер ответил: " + errorMessage);
+		Notify.failure("Сервер ответил: " + errorMessage);
 		return rejectWithValue(error.message);
 	}
 });
 
-export const getAllOwnDrinksThunk = createAsyncThunk("@@drinks/ownDrinks", async ({ page, limit }, { rejectWithValue, getState }) => {
+export const getAllOwnDrinksThunk = createAsyncThunk("drinks/ownDrinks", async ({ page, limit }, { rejectWithValue, getState }) => {
 	try {
 		const params = { page, limit };
 		return await makeApiRequest("own", params, selectAuthAccessToken(getState()));
@@ -120,7 +120,7 @@ export const getAllOwnDrinksThunk = createAsyncThunk("@@drinks/ownDrinks", async
 	}
 });
 
-export const removeRecipeThunk = createAsyncThunk("@@drinks/removeRecipe", async (id, { rejectWithValue, getState }) => {
+export const removeRecipeThunk = createAsyncThunk("drinks/removeRecipe", async (id, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest(`own/${id}`, {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -130,7 +130,7 @@ export const removeRecipeThunk = createAsyncThunk("@@drinks/removeRecipe", async
 
 // ------ FAVORITES ------
 
-export const getAllFavoriteDrinksThunk = createAsyncThunk("@@drinks/favorites", async ({ page, limit }, { rejectWithValue, getState }) => {
+export const getAllFavoriteDrinksThunk = createAsyncThunk("drinks/favorites", async ({ page, limit }, { rejectWithValue, getState }) => {
 	try {
 		const params = { page, limit };
 		return await makeApiRequest("favorite", params, selectAuthAccessToken(getState()));
@@ -139,7 +139,7 @@ export const getAllFavoriteDrinksThunk = createAsyncThunk("@@drinks/favorites", 
 	}
 });
 
-export const addToFavoriteThunk = createAsyncThunk("@@drinks/favorite", async (id, { rejectWithValue, getState }) => {
+export const addToFavoriteThunk = createAsyncThunk("drinks/favorite", async (id, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest(`favorite/${id}`, {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -147,7 +147,7 @@ export const addToFavoriteThunk = createAsyncThunk("@@drinks/favorite", async (i
 	}
 });
 
-export const removeFromFavoriteThunk = createAsyncThunk("@@drinks/favorite", async (id, { rejectWithValue, getState }) => {
+export const removeFromFavoriteThunk = createAsyncThunk("drinks/favorite", async (id, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest(`favorite/${id}`, {}, selectAuthAccessToken(getState()));
 	} catch (error) {
@@ -157,7 +157,7 @@ export const removeFromFavoriteThunk = createAsyncThunk("@@drinks/favorite", asy
 
 // ------ POPULAR ------
 
-export const getPopularThunk = createAsyncThunk("@@drinks/popular", async (_, { rejectWithValue, getState }) => {
+export const getPopularThunk = createAsyncThunk("drinks/popular", async (_, { rejectWithValue, getState }) => {
 	try {
 		return await makeApiRequest("/popular-recipe/", {}, selectAuthAccessToken(getState()));
 	} catch (error) {

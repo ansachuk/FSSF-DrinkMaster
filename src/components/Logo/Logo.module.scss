@@ -1,0 +1,42 @@
+@import "../../scss/";
+
+.logo_group {
+	display: flex;
+	gap: 8px;
+	margin-right: auto;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+
+	@include tablet {
+		gap: 14px;
+	}
+
+	@include desktop {
+		margin-right: 0;
+	}
+}
+
+.icon {
+	width: 22px;
+	height: 22px;
+
+	@include tablet {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.name {
+	font-weight: 600;
+
+	@include tablet {
+		font-size: 18px;
+	}
+}

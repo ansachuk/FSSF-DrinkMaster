@@ -1,0 +1,15 @@
+@import "../../../../scss/";
+
+.icon {
+	width: 32px;
+	height: 32px;
+
+	@include tablet {
+		width: 38px;
+		height: 38px;
+	}
+
+	@include desktop {
+		display: none;
+	}
+}
