@@ -1,11 +1,40 @@
 import { NavLink } from "react-router-dom";
-import css from "./temp-div-styles.module.scss";
+import cssTest from "./temp-div-styles.module.scss";
+import css from "./Header.module.scss";
+import Logo from "../../Logo/Logo";
+import UserMenu from "./UserMenu/UserMenu";
+import Navigation from "./Navigation/Navigation";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+	const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1280);
+
+	const updateMedia = () => {
+		setIsDesktop(window.innerWidth >= 1280);
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", updateMedia);
+
+		return () => {
+			window.removeEventListener("resize", updateMedia);
+		};
+	});
+
 	return (
-		<header>
+		<>
+			<header className={css.header}>
+				<div className={css.header_wrapper}>
+					<Logo />
+					{isDesktop && <Navigation />}
+					<UserMenu />
+					<BurgerMenu />
+				</div>
+			</header>
+
 			<p>Header</p>
-			<div className={css.tempNav}>
+			<div className={cssTest.tempNav}>
 				{/* Тимчасовий дів - створений для переходу між сторінками */}
 				<NavLink to="/welcome">welcome</NavLink>
 				<NavLink to="/">Main</NavLink>
@@ -15,6 +44,6 @@ export default function Header() {
 				<NavLink to="/recipe/1">Recipe 1</NavLink>
 				<NavLink to="/error">Not found</NavLink>
 			</div>
-		</header>
+		</>
 	);
 }
