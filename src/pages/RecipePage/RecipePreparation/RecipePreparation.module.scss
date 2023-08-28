@@ -19,6 +19,7 @@
 .preparationImage {
     width: 335px;
     height: 430px;
+    object-fit: cover;
 
     @include tablet {
         width: 704px;

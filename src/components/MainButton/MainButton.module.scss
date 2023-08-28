@@ -104,7 +104,7 @@
 // }
 
 .recipePageButton {
-	composes: mainButton;
+	@extend .mainButton;
 	margin-bottom: 80px;
 
 	@include desktop {

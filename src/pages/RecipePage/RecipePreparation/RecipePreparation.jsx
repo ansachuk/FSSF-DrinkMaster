@@ -1,4 +1,5 @@
 import css from './RecipePreparation.module.scss';
+import image from '/src/images/static/my-recepies/pornstar.jpg';
 
 const RecipePreparation = ({ instructions }) => {
     const steps = instructions.split('.');
@@ -8,7 +9,7 @@ const RecipePreparation = ({ instructions }) => {
         <>
         <h3 className={css.preparationTitle}>Recipe Preparation</h3>
             <div className={css.preparationContent}>
-                <img src="../../../images/static/my-recepies/pornstar.jpg" alt="Drink preparation" className={css.preparationImage} />
+                <img src={image} alt="Drink preparation" className={css.preparationImage} />
                 <ul className={css.preparationList}>
 {nonEmptySteps.map((step) => (
                         <li className={css.preparationListItem}>{step}</li>

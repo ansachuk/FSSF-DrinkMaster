@@ -7,10 +7,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { byID } from '../../redux/operations/recipiesOperations.js';
 import { selectByID } from "../../redux/selectors/recipieSelectors.js";
-import Container from '../../components/Container/Container.jsx';
+import MainTitle from '../../components/MainTitle/MainTitle.jsx';
 import RecipePageHero from "./RecipePageHero/RecipePageHero";
 import RecipeIngredientsList from "./RecipeIngredientsList/RecipeIngredientsList";
 import RecipePreparation from "./RecipePreparation/RecipePreparation";
+import css from './RecipePageHero/RecipePageHero.module.scss';
 
 const RecipePage = () => {
 	const dispatch = useDispatch();
@@ -18,14 +19,17 @@ const RecipePage = () => {
 	const recipe = useSelector(selectByID);
 
   useEffect(() => {
-    dispatch(byID(recipeId));
-  }, [dispatch]);
+ 	dispatch(byID(recipeId));
+  }, []);
     
-	  return (<Container>
-		  <RecipePageHero glass={recipe.glass} title={recipe.drink} about={recipe.hasOwnProperty('about') ? recipe.about : null} image={recipe.hasOwnProperty('drinkThumb') ? recipe.drinkThumb : null}></RecipePageHero>
-		  {/* <RecipeIngredientsList ingredients={recipe.ingredients}></RecipeIngredientsList>
-		  <RecipePreparation instructions={recipe.instructions}></RecipePreparation> */}
-    </Container>)
+	console.log(recipe);
+	
+	  return (recipe.glass && <MainTitle title={recipe.drink} className={css.recipePageTitle}>
+		  <RecipePageHero glass={recipe.glass} about={recipe.hasOwnProperty('about') ? recipe.about : null} image={recipe.hasOwnProperty('drinkThumb') ? recipe.drinkThumb : null}></RecipePageHero>
+		  <RecipeIngredientsList ingredients={recipe.ingredients}></RecipeIngredientsList>
+		  <RecipePreparation instructions={recipe.instructions}></RecipePreparation>
+		  </MainTitle>
+)
 };
 
 export default RecipePage;

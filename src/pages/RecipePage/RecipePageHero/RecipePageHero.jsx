@@ -3,10 +3,9 @@ import { useParams } from 'react-router-dom';
 import { addToFavorite, removeFromFavorite } from '../../../redux/operations/recipiesOperations.js';
 import { selectFavorite } from '../../../redux/selectors/recipieSelectors.js';
 import MainButton from '../../../components/MainButton/MainButton';
-import MainTitle from '../../../components/MainTitle/MainTitle';
 import css from './RecipePageHero.module.scss';
 import stylesForButton from '../../../components/MainButton/MainButton.module.scss';
-import icons from '../../../images/icons.svg';
+import icons from '/src/images/icons.svg';
 
 const RecipePageHero = ({glass, title, about, image}) => {
     const dispatch = useDispatch();
@@ -17,9 +16,8 @@ const RecipePageHero = ({glass, title, about, image}) => {
     return (
         <div className={css.recipePageHeroContainer}>
             <div><p className={css.glassName}>{glass}</p>
-            <MainTitle className={css.recipePageTitle}>{title}</MainTitle>
             {about && <p className={css.aboutDrink}>{about}</p>}
-            {isFavorite ? <MainButton onClick={() => dispatch(removeFromFavorite(recipeId))} className={stylesForButton.recipePageButton}>Remove from favorite recipes</MainButton> : <MainButton onClick={() => dispatch(addToFavorite(recipeId))} className={stylesForButton.recipePageButton}>Add to favorite recipes</MainButton>}</div>
+            {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={() => dispatch(removeFromFavorite(recipeId))} className={stylesForButton.recipePageButton}/> : <MainButton title="Add to favorite recipes" onClick={() => dispatch(addToFavorite(recipeId))} className={stylesForButton.recipePageButton}/>}</div>
             {image ? <img src={image} alt={title} className={css.recipePageHeroImg} /> : <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>}
         </div>
     )

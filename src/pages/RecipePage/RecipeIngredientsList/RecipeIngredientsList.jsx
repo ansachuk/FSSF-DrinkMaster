@@ -1,4 +1,5 @@
 import css from './RecipeIngredientsList.module.scss';
+import icons from '/src/images/icons.svg';
 
 const RecipeIngredientsList = ({ ingredients }) => {
     return (<>
