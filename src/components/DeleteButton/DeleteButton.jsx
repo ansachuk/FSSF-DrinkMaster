@@ -1,6 +1,6 @@
 // import React from "react";
 // import { useDispatch } from "react-redux";
-// import { removeFromFavoriteThunk, removeRecipeThunk } from "../../redux/operations/drinksOperations.js";
+// import { removeFromFavorite, removeRecipe } from "../../redux/operations/recipiesOperations";
 // import css from "./DeleteButton.module.scss";
 
 // const trashPath = new URL("../../images/icons.svg", import.meta.url);
@@ -10,9 +10,9 @@
 
 // 	const handleDelete = () => {
 // 		if (page === "favorite") {
-// 			dispatch(removeFromFavoriteThunk(id));
+// 			dispatch(removeFromFavorite(id));
 // 		} else if (page === "my") {
-// 			dispatch(removeRecipeThunk(id));
+// 			dispatch(removeRecipe(id));
 // 		}
 // 	};
 
@@ -33,6 +33,7 @@
 // 		</>
 // 	);
 // }
+
 import PropTypes from "prop-types";
 import css from "./DeleteButton.module.scss";
 

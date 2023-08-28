@@ -1,38 +1,36 @@
 // import React, { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
-// import { selectPage } from "redux/selectors";
+// import { selectPage } from "../../redux/selectors/recipieSelectors.js";
 import MainTitle from "../../components/MainTitle/MainTitle";
-// import MainPageTitle from "../../components/MainPageTitle/MainPageTitle";
 import RecipesList from "../../components/RecipesList/RecipesList";
-import Paginator from "../../components/Paginator/Paginator";
-// import { getAllFavoriteDrinksThunk } from "redux/Cocktails/cocktailsOperations";
-// import { useMediaRules } from "hooks";
+// import Paginator from "../../components/Paginator/Paginator";
+// import { favorite } from "../../redux/operations/recipiesOperations.js";
 import css from "./FavoritePage.module.scss";
+
+// const desktopLimit = 9;
+// const tabletLimit = 8;
 
 export default function FavoritePage() {
 	// const dispatch = useDispatch();
 	// const page = useSelector(selectPage);
-	// const { isDesktop } = useMediaRules();
-	// const limit = isDesktop ? 9 : 8;
+	// const isDesktop = window.innerWidth >= 1440;
+	// const limit = isDesktop ? desktopLimit : tabletLimit;
 
 	// useEffect(() => {
-	// 	dispatch(getAllFavoriteDrinksThunk({ page, limit }));
+	// 	dispatch(favorite({ page, limit }));
 	// }, [page, limit, dispatch]);
 
 	// useEffect(() => {
 	// 	window.scrollTo(0, 0);
 	// }, []);
 	return (
-		// <div className={styles.pageWrapFavorite}>
-		// 	<div className={styles.container}>
-		<div>
+		<>
 			<div className={css.section}>
-				<MainTitle title={"Favorites"}>
-					{/* <MainPageTitle title={"Favorites"} /> */}
+				<MainTitle title="Favorites">
 					<RecipesList />
-					<Paginator />
+					{/* <Paginator limit={isDesktop ? desktopLimit : tabletLimit} /> */}
 				</MainTitle>
 			</div>
-		</div>
+		</>
 	);
 }

@@ -2,19 +2,19 @@
 // import { Link } from "react-router-dom";
 // import DeleteButton from "../../components/DeleteButton/DeleteButton";
 // import SeeButton from "../../components/SeeButton/SeeButton";
-// import css from "./RecipesItem.module.scss";
 // import imgDefault from "../../images/static/my-recepies/imgdefault.jpg";
+// import css from "./RecipesItem.module.scss";
 
-// export default function RecipesItem({ drink, page }) {
+// export default function RecipesItem({ recipes, page }) {
 // 	return (
 // 		<div className={css.card}>
-// 			<Link to={`/recipe/${drink._id}`}>
+// 			<Link to={`/recipes/${recipes._id}`}>
 // 				<div className={css.imageBox}>
 // 					<div className={css.imageWrapper}>
 // 						<img
 // 							className={css.image}
-// 							src={drink.drinkThumb}
-// 							alt={drink.drink}
+// 							src={recipes.drinkThumb}
+// 							alt={recipes.drink}
 // 							onError={e => {
 // 								e.currentTarget.src = imgDefault;
 // 							}}
@@ -23,17 +23,17 @@
 // 				</div>
 // 			</Link>
 // 			<div position={page}>
-// 				<Link to={`/recipe/${drink._id}`}>
-// 					<p className={css.ingredientsTitle}>{drink.drink}</p>
+// 				<Link to={`/recipe/${recipes._id}`}>
+// 					<p className={css.ingredientsTitle}>{recipes.drink}</p>
 // 				</Link>
 // 				<p className={css.ingredientsText}>Ingredients</p>
 // 			</div>
-// 			{(page === "my" || page === "favorite") && <p className={css.about}>{drink.about}</p>}
+// 			{(page === "my" || page === "favorite") && <p className={css.about}>{recipes.about}</p>}
 // 			<div className={css.buttonsWrapper}>
-// 				{(page === "my" || page === "favorite") && <SeeButton id={drink._id} />}
+// 				{(page === "my" || page === "favorite") && <SeeButton id={recipes._id} />}
 // 				{(page === "my" || page === "favorite") && (
 // 					<DeleteButton
-// 						id={drink._id}
+// 						id={recipes._id}
 // 						page={page}
 // 					/>
 // 				)}

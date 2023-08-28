@@ -1,9 +1,9 @@
 // import React from "react";
 // import { useSelector } from "react-redux";
-// import { selectFavorite } from "../../redux/selectors";
+// import { selectFavorite } from "../../redux/selectors/recipieSelectors";
 // import RecipesItem from "../../components/RecipesItem/RecipesItem";
-// import css from "./RecipesList.module.scss";
 // import DrinkDefault from "../../images/static/main/main.jpg";
+// import css from "./RecipesList.module.scss";
 
 // export default function RecipesList() {
 // 	const favoriteCocktails = useSelector(selectFavorite);
@@ -15,7 +15,7 @@
 // 						<RecipesItem
 // 							key={favoriteCocktail._id}
 // 							page={"favorite"}
-// 							drink={favoriteCocktails}
+// 							recipes={favoriteCocktails}
 // 						/>
 // 					))}
 // 				</div>
@@ -24,7 +24,7 @@
 // 					<img
 // 						className={css.notFoundImg}
 // 						src={DrinkDefault}
-// 						alt="No added cocktails"
+// 						alt="No added recipes"
 // 					/>
 // 					<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
 // 				</div>
