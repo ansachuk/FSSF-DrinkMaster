@@ -32,7 +32,7 @@ const persistedRecepiesReducer = persistReducer(persistRecepiesConfig, recepiesR
 
 const store = configureStore({
 	reducer: {
-		recepies: persistedRecepiesReducer,
+		recipes: persistedRecepiesReducer,
 		auth: persistedAuthReducer,
 	},
 
