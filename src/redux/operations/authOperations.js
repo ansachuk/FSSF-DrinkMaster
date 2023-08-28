@@ -1,13 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import instance, { setAuthJWTHeader, clearAuthJWTHeader } from "../instance.js";
 
-const signup = createAsyncThunk("auth/register", async (creds, { rejectWithValue }) => {
+const signup = createAsyncThunk("auth/signup", async (creds, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post("users/register", creds);
-		setAuthJWTHeader(data.token);
-		return data;
+		// setAuthJWTHeader(data.token);
+		const res = await instance.post("users/register", creds);
+		console.log(res);
+		return res.data;
 	} catch (e) {
-		rejectWithValue(e.message);
+		return rejectWithValue(e.response.data.message);
 	}
 });
 
@@ -49,6 +50,7 @@ const refresh = createAsyncThunk("auth/refresh", async (token, { rejectWithValue
 		return rejectWithValue(e.message);
 	}
 });
+
 const subscribe = createAsyncThunk("/subscribe", async (creds, { rejectWithValue }) => {
 	try {
 		const res = await instance.patch("/subscribe", creds);
