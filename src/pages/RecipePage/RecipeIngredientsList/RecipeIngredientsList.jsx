@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import css from './RecipeIngredientsList.module.scss';
 import icons from '/src/images/icons.svg';
 
@@ -20,3 +21,7 @@ const RecipeIngredientsList = ({ ingredients }) => {
 }
 
 export default RecipeIngredientsList;
+
+RecipeIngredientsList.propTypes = {
+    ingredients: PropTypes.array,
+};

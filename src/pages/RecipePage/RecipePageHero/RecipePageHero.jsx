@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToFavorite, removeFromFavorite } from '../../../redux/operations/recipiesOperations.js';
@@ -24,3 +25,10 @@ const RecipePageHero = ({glass, title, about, image}) => {
 };
 
 export default RecipePageHero;
+
+RecipePageHero.propTypes = {
+    glass: PropTypes.string,
+    title: PropTypes.string,
+    about: PropTypes.string,
+    image: PropTypes.string,
+};

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import css from './RecipePreparation.module.scss';
 import image from '/src/images/static/my-recepies/pornstar.jpg';
 
@@ -11,7 +12,7 @@ const RecipePreparation = ({ instructions }) => {
             <div className={css.preparationContent}>
                 <ul className={css.preparationList}>
 {nonEmptySteps.map((step) => (
-                        <li className={css.preparationListItem}>{step}</li>
+    <li key={step} className={css.preparationListItem}>{step}</li>
                     ))}
                 </ul>
                 <img src={image} alt="Drink preparation" className={css.preparationImage} />
@@ -21,3 +22,7 @@ const RecipePreparation = ({ instructions }) => {
 }
 
 export default RecipePreparation;
+
+RecipePreparation.propTypes = {
+    instructions: PropTypes.string,
+};
