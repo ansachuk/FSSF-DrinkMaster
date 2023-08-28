@@ -9,12 +9,12 @@ const RecipePreparation = ({ instructions }) => {
         <>
         <h3 className={css.preparationTitle}>Recipe Preparation</h3>
             <div className={css.preparationContent}>
-                <img src={image} alt="Drink preparation" className={css.preparationImage} />
                 <ul className={css.preparationList}>
 {nonEmptySteps.map((step) => (
                         <li className={css.preparationListItem}>{step}</li>
                     ))}
                 </ul>
+                <img src={image} alt="Drink preparation" className={css.preparationImage} />
             </div>
         </>
     )

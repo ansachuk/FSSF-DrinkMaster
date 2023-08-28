@@ -46,6 +46,10 @@
     background-color: $accentColor;
     opacity: 50%;
     position: relative;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @include tablet {
         width: 220px;

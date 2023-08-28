@@ -4,7 +4,7 @@ import { addToFavorite, removeFromFavorite } from '../../../redux/operations/rec
 import { selectFavorite } from '../../../redux/selectors/recipieSelectors.js';
 import MainButton from '../../../components/MainButton/MainButton';
 import css from './RecipePageHero.module.scss';
-import stylesForButton from '../../../components/MainButton/MainButton.module.scss';
+import stylesForButton from '/src/components/MainButton/MainButton.module.scss';
 import icons from '/src/images/icons.svg';
 
 const RecipePageHero = ({glass, title, about, image}) => {
@@ -17,7 +17,7 @@ const RecipePageHero = ({glass, title, about, image}) => {
         <div className={css.recipePageHeroContainer}>
             <div><p className={css.glassName}>{glass}</p>
             {about && <p className={css.aboutDrink}>{about}</p>}
-            {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={() => dispatch(removeFromFavorite(recipeId))} className={stylesForButton.recipePageButton}/> : <MainButton title="Add to favorite recipes" onClick={() => dispatch(addToFavorite(recipeId))} className={stylesForButton.recipePageButton}/>}</div>
+            {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={() => dispatch(removeFromFavorite(recipeId))} propClass={stylesForButton.recipePageButton}/> : <MainButton title="Add to favorite recipes" onClick={() => dispatch(addToFavorite(recipeId))} propClass={stylesForButton.recipePageButton}/>}</div>
             {image ? <img src={image} alt={title} className={css.recipePageHeroImg} /> : <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>}
         </div>
     )

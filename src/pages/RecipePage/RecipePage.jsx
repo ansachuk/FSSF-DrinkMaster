@@ -11,7 +11,6 @@ import MainTitle from '../../components/MainTitle/MainTitle.jsx';
 import RecipePageHero from "./RecipePageHero/RecipePageHero";
 import RecipeIngredientsList from "./RecipeIngredientsList/RecipeIngredientsList";
 import RecipePreparation from "./RecipePreparation/RecipePreparation";
-import css from './RecipePageHero/RecipePageHero.module.scss';
 
 const RecipePage = () => {
 	const dispatch = useDispatch();
@@ -21,10 +20,8 @@ const RecipePage = () => {
   useEffect(() => {
  	dispatch(byID(recipeId));
   }, []);
-    
-	console.log(recipe);
 	
-	  return (recipe.glass && <MainTitle title={recipe.drink} className={css.recipePageTitle}>
+	  return (recipe.glass && <MainTitle title={recipe.drink}>
 		  <RecipePageHero glass={recipe.glass} about={recipe.hasOwnProperty('about') ? recipe.about : null} image={recipe.hasOwnProperty('drinkThumb') ? recipe.drinkThumb : null}></RecipePageHero>
 		  <RecipeIngredientsList ingredients={recipe.ingredients}></RecipeIngredientsList>
 		  <RecipePreparation instructions={recipe.instructions}></RecipePreparation>

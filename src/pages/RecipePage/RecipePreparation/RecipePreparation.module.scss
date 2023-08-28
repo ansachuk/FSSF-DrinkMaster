@@ -34,6 +34,8 @@
     @include desktop {
         display: flex;
         justify-content: space-between;
+        flex-direction: row-reverse;
+        gap: 60px;
     }
 }
 
@@ -50,16 +52,8 @@
 .preparationListItem {
     font-size: $mainFontSize;
     line-height: calc(18/14);
-    margin-bottom: 14px;
-    ::after {
-        content: "";
-        display: inline-block;
-        height: 1px;
-        width: 100%;
-        color: $mainFontColor;
-        opacity: 20%;
-        margin-bottom: 14px;
-    }
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(243, 243, 243, 0.20);
 
     @include tablet {
         font-size: $SecondaryFontSize;
