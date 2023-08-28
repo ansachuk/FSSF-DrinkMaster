@@ -1,3 +1,17 @@
+import DrinkDefault from "../../images/static/main/main.jpg";
+import css from "../../pages/NotFoundPage/NotFoundPage.module.scss";
+
 export default function NotFoundPage() {
-	return <div>NotFoundPage 404</div>;
+	return (
+		<div className={css.imgBox}>
+			<img
+				className={css.notFoundImg}
+				src={DrinkDefault}
+				alt="Not Found"
+			/>
+			<p className={css.notFoundText}>
+				<span>4</span> <span>4</span>
+			</p>
+		</div>
+	);
 }
