@@ -35,10 +35,12 @@ export default function UserMenu() {
 	useEffect(() => {
 		if (isOpenDropdown) {
 			window.addEventListener("click", handlerBackdropClicks);
+			window.addEventListener("keydown", handlerEscClick);
 		}
 
 		return () => {
 			window.removeEventListener("click", handlerBackdropClicks);
+			window.removeEventListener("keydown", handlerEscClick);
 		};
 	});
 
