@@ -1,3 +1,4 @@
+import { Notify } from "notiflix";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const handlePending = state => {
@@ -11,6 +12,7 @@ const handleRejected = (state, { payload }) => {
 	state.error = payload;
 
 	Loading.remove();
+	Notify.failure(payload);
 };
 
 const handleFullfilled = state => {
