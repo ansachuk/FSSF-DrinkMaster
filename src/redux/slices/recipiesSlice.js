@@ -74,10 +74,6 @@ const recepiesSlice = createSlice({
 				state.own.push(payload);
 				handleFullfilled(state);
 			})
-			.addCase(add.fulfilled, (state, { payload }) => {
-				state.own.push(payload);
-				handleFullfilled(state);
-			})
 			.addCase(remove.fulfilled, (state, { payload }) => {
 				//!! what in responce?
 				// state.own.push(payload);

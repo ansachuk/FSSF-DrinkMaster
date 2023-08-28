@@ -28,7 +28,9 @@
 
 👩🏾‍🦰base-url/api/glass - Отримання списку тари для сервірування
 
-🇨🇱base-url/api/own - Додавання власних рецептів push and slice ???base-url/api/own/:id - Видалення власного рецепта
+🇨🇱base-url/api/own - Додавання власних рецептів push and slice
+
+???base-url/api/own/:id - Видалення власного рецепта
 
 👿base-url/api/own - Отримання власних рецептів
 
