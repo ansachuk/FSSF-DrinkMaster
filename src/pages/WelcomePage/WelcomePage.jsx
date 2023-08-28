@@ -30,13 +30,13 @@ export default function WelcomePage() {
 					</p>
 					<div className={listStart}>
 						<NavLink
-							to="/signup"
+							to="signup"
 							className={btnStart}
 						>
 							Registration
 						</NavLink>
 						<NavLink
-							to="/signin"
+							to="signin"
 							className={btnStart}
 						>
 							Sign In
