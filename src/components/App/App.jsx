@@ -14,18 +14,32 @@ import FavoritePage from "../../pages/FavoritePage/FavoritePage";
 import RecipePage from "../../pages/RecipePage/RecipePage";
 import MyRecipesPage from "../../pages/MyRecipesPage/MyRecipesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import WelcomePageLayout from "../../pages/WelcomePage/Layout/WelcomePageLayout";
 
 export default function App() {
+	// const isAuth = useSelector(selectIsLoggedIn);
+	// const token = useSelector(selectToken);
+	// const dispatch = useDispatch();
+
+	// useEffect(() => {
+	// 	if (token && !isAuth) {
+	// 		dispatch(refresh(token));
+	// 	}
+	// }, [dispatch, isAuth, token]);
 	return (
 		<Routes>
 			<Route
 				path="/welcome"
 				element={
 					<PublicRoute>
-						<WelcomePage />
+						<WelcomePageLayout />
 					</PublicRoute>
 				}
 			>
+				<Route
+					index
+					element={<WelcomePage />}
+				/>
 				<Route
 					path="signin"
 					element={<SigninForm />}
