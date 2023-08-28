@@ -22,7 +22,7 @@ export default function AddRecipeForm() {
 		category: "cocktail",
 		glass: "highball glass",
 	});
-	const [ingredientList, setIngredientList] = useState([]);
+	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
@@ -90,7 +90,7 @@ export default function AddRecipeForm() {
 		console.log(selectData);
 		console.log(ingredientList);
 		resetForm();
-		setIngredientList([]);
+		setIngredientList([{ _id: nanoid() }]);
 		setSelectData({
 			category: "cocktail",
 			glass: "highball glass",
