@@ -18,9 +18,9 @@
 
 .LogoTitle {
 	font-weight: 600;
-	font-size: 16px;
+	font-size: $SecondaryFontSize;
 	line-height: 18px;
-	color: #f3f3f3;
+	color: $mainBtnBackgroundColor;
 
 	@include tablet {
 		font-size: 18px;

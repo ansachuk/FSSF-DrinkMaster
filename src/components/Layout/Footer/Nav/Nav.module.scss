@@ -3,7 +3,7 @@
 .list_items {
 	display: flex;
 	flex-direction: column;
-	gap: 14px;
+	gap: $mainFontSize;
 
 	@include tablet {
 		margin-top: 40px;
@@ -11,14 +11,42 @@
 
 	@include desktop {
 		margin-top: 0;
-		gap: 16px;
+		gap: $SecondaryFontSize;
 		margin-left: 389px;
 	}
 }
 
 .link_nav {
 	font-weight: 500;
-	font-size: 14px;
+	font-size: $mainFontSize;
 	line-height: 22.4px;
-	color: #f3f3f3;
+	color: $mainFontColor;
+	position: relative;
+	transition: color 0.3s ease-in-out;
+
+	&:hover {
+		color: #dcdcdc;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background-color: $mainFontColor;
+		transition: width 0.3s ease-in-out;
+	}
+
+	&:hover::before {
+		width: 100%;
+	}
+
+	&.active_link {
+		color: #dcdcdc;
+		&::before {
+			width: 100%;
+		}
+	}
 }

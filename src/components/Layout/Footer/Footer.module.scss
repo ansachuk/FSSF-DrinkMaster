@@ -1,9 +1,9 @@
 @import "../../../scss/";
 
-.FooterContent {
+.FooterContainer {
 	outline: 1px solid tomato;
 	padding: 40px 20px 18px;
-	border-top: 1px solid #f3f3f333;
+	border-top: 1px solid $outlinBtnBackgroundColor;
 
 	@include tablet {
 		padding: 80px 32px 24px;
@@ -46,19 +46,26 @@
 }
 
 .FooterText {
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 400;
-	line-height: 18px;
+	line-height: 16px;
+	letter-spacing: -0.24px;
 	color: #f3f3f37e;
 	transition: border 0.3s ease;
-}
 
-.FooterText:hover {
-	color: white;
+	@include tablet {
+		font-size: 14px;
+		line-height: 18px;
+		letter-spacing: -0.28px;
+	}
 }
 
 .FooterText:not(:last-child) {
-	margin-right: 18px;
+	margin-right: 14px;
+
+	@include tablet {
+		margin-right: 18px;
+	}
 }
 
 // .firstSphere {

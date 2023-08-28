@@ -1,40 +1,44 @@
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import css from "./Nav.module.scss";
 
 export const Nav = () => {
+	const location = useLocation();
+
 	return (
 		<nav>
 			<ul className={css.list_items}>
 				<li>
-					<a
-						className={css.link_nav}
-						href="/drinks"
+					<Link
+						className={`${css.link_nav} ${location.pathname === "/drinks/:categoryName" ? css.active_link : ""}`}
+						to="/drinks/:categoryName"
 					>
 						Drinks
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a
-						className={css.link_nav}
-						href="/add"
+					<Link
+						className={`${css.link_nav} ${location.pathname === "/add" ? css.active_link : ""}`}
+						to="/add"
 					>
 						Add recipes
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a
-						className={css.link_nav}
-						href="/my"
+					<Link
+						className={`${css.link_nav} ${location.pathname === "/my" ? css.active_link : ""}`}
+						to="/my"
 					>
 						My recipes
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a
-						className={css.link_nav}
-						href="/favorite"
+					<Link
+						className={`${css.link_nav} ${location.pathname === "/favorite" ? css.active_link : ""}`}
+						to="/favorite"
 					>
 						Favorites
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</nav>

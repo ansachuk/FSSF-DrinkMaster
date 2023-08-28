@@ -8,7 +8,7 @@ import { Nav } from "./Nav/Nav";
 
 export default function Footer() {
 	return (
-		<div className={css.FooterContent}>
+		<div className={css.FooterContainer}>
 			<div className={css.FlexContainer}>
 				<div className={css.FooterGroup}>
 					<div>

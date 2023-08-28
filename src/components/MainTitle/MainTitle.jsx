@@ -6,7 +6,7 @@ import css from "./MainTitle.module.scss";
 export default function MainTitle({ title, children }) {
 	return (
 		<Container>
-			<main>
+			<main className={css.main}>
 				<h1 className={css.title}>{title}</h1>
 				{children}
 				<div className={css.firstBall}></div>
