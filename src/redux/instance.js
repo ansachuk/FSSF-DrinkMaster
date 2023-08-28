@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/";
+const baseUrl = "https://drink-master-fssf-backend.onrender.com/";
 
 const instance = axios.create({
 	baseURL: baseUrl + "api/",

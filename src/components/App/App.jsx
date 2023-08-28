@@ -14,6 +14,7 @@ import FavoritePage from "../../pages/FavoritePage/FavoritePage";
 import RecipePage from "../../pages/RecipePage/RecipePage";
 import MyRecipesPage from "../../pages/MyRecipesPage/MyRecipesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import WelcomePageLayout from "../../pages/WelcomePage/Layout/WelcomePageLayout";
 
 export default function App() {
 	// const isAuth = useSelector(selectIsLoggedIn);
@@ -31,10 +32,14 @@ export default function App() {
 				path="/welcome"
 				element={
 					<PublicRoute>
-						<WelcomePage />
+						<WelcomePageLayout />
 					</PublicRoute>
 				}
 			>
+				<Route
+					index
+					element={<WelcomePage />}
+				/>
 				<Route
 					path="signin"
 					element={<SigninForm />}

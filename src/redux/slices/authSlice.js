@@ -10,6 +10,11 @@ const initialState = {
 	error: null,
 };
 
+const handleSignUp = (state, { payload }) => {
+	console.log("state", state);
+	console.log("payload", payload);
+};
+
 const handleLogin = (state, { payload: { accessToken, user } }) => {
 	state.accessToken = accessToken;
 	state.user = user;
@@ -37,7 +42,7 @@ const authSlice = createSlice({
 	initialState,
 	extraReducers: builder => {
 		builder
-			.addCase(signup.fulfilled, handleLogin)
+			.addCase(signup.fulfilled, handleSignUp)
 			.addCase(login.fulfilled, handleLogin)
 			.addCase(logout.fulfilled, handleLogout)
 			.addCase(refresh.fulfilled, handleRefresh)

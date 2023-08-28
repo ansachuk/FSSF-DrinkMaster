@@ -3,7 +3,7 @@ import instance, { setAuthJWTHeader, clearAuthJWTHeader } from "../instance.js";
 
 const signup = createAsyncThunk("auth/register", async (creds, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post("auth/register", creds);
+		const { data } = await instance.post("users/register", creds);
 		setAuthJWTHeader(data.token);
 		return data;
 	} catch (e) {
@@ -13,7 +13,7 @@ const signup = createAsyncThunk("auth/register", async (creds, { rejectWithValue
 
 const login = createAsyncThunk("auth/login", async (creds, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post("auth/login", creds);
+		const { data } = await instance.post("users/login", creds);
 		setAuthJWTHeader(data.token);
 		return data;
 	} catch (e) {
@@ -23,7 +23,7 @@ const login = createAsyncThunk("auth/login", async (creds, { rejectWithValue }) 
 
 const update = createAsyncThunk("auth/update", async (creds, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.patch("auth/update", creds);
+		const { data } = await instance.patch("users/update", creds);
 		return data;
 	} catch (e) {
 		return rejectWithValue(e.message);
@@ -32,7 +32,7 @@ const update = createAsyncThunk("auth/update", async (creds, { rejectWithValue }
 
 const logout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post("auth/logout");
+		const { data } = await instance.post("users/logout");
 		clearAuthJWTHeader();
 		return data;
 	} catch (e) {
@@ -43,7 +43,7 @@ const logout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) =>
 const refresh = createAsyncThunk("auth/refresh", async (token, { rejectWithValue }) => {
 	try {
 		setAuthJWTHeader(token);
-		const { data } = await instance.get("auth/current");
+		const { data } = await instance.get("users/current");
 		return data;
 	} catch (e) {
 		return rejectWithValue(e.message);
@@ -51,7 +51,7 @@ const refresh = createAsyncThunk("auth/refresh", async (token, { rejectWithValue
 });
 const subscribe = createAsyncThunk("/subscribe", async (creds, { rejectWithValue }) => {
 	try {
-		const res = await instance.patch("user/subscribe", creds);
+		const res = await instance.patch("/subscribe", creds);
 		return res.data;
 	} catch (e) {
 		return rejectWithValue(e.message);
