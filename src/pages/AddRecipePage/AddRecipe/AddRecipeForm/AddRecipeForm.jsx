@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
+import { nanoid } from "@reduxjs/toolkit";
 // import PropTypes from "prop-types";
 // import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
@@ -10,7 +11,7 @@ import MainButton from "../../../../components/MainButton/MainButton";
 const formikInitialValues = {
 	titleRecipe: "",
 	aboutRecipe: "",
-	ingredientAmount: "",
+	// ingredientAmount: "",
 	textareaRecipe: "",
 };
 
@@ -19,15 +20,51 @@ export default function AddRecipeForm() {
 		category: "",
 		glass: "",
 	});
-	const [ingredientData, setIngredientData] = useState({});
+	const [ingredientList, setIngredientList] = useState([]);
+	console.log(ingredientList);
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
 	};
 
-	const handleIngredientData = value => {
-		setIngredientData(prevState => ({ ...prevState, ingredient: value }));
+	const handleIncIngredients = () => {
+		setIngredientList(prevState => {
+			return [
+				...prevState,
+				{
+					_id: nanoid(),
+					id: "",
+					title: "",
+					unitQuantity: "",
+					unit: "",
+				},
+			];
+		});
+		return;
 	};
+
+	const handleDecIngredients = () => {
+		if (ingredientList.length > 1) {
+			const newIngredientsList = [...ingredientList];
+			newIngredientsList.pop();
+			setIngredientList(newIngredientsList);
+		}
+	};
+
+	const handleChangeIngredientName = (e, index) => {
+		const tmpList = [...ingredientList];
+		// console.log(tmpList);
+		tmpList[index] = {
+			...tmpList[index],
+			id: e.value,
+			title: e.label,
+		};
+		setIngredientList(tmpList);
+	};
+
+	// const handleIngredientData = value => {
+	// 	setIngredientData(prevState => ({ ...prevState, ingredient: value }));
+	// };
 
 	return (
 		<div>
@@ -36,7 +73,6 @@ export default function AddRecipeForm() {
 				onSubmit={(values, { resetForm }) => {
 					console.log(values);
 					console.log(selectData);
-					console.log(ingredientData);
 					resetForm();
 				}}
 			>
@@ -47,8 +83,12 @@ export default function AddRecipeForm() {
 						handleSelectData={handleSelectData}
 					/>
 					<RecipeIngredientsFields
-						name="ingredientAmount"
-						handleIngredientData={handleIngredientData}
+						// name="ingredientAmount"
+						ingredientList={ingredientList}
+						handleIncIngredients={handleIncIngredients}
+						handleDecIngredients={handleDecIngredients}
+						handleChangeIngredientName={handleChangeIngredientName}
+						// handleIngredientData={handleIngredientData}
 					/>
 					<RecipePreparationFields name="textareaRecipe" />
 					<MainButton
