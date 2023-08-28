@@ -21,6 +21,7 @@ export default function RecipeIngredientsFields({
 	handleChangeIngredientName,
 	handleChangeUnitQuantity,
 	handleChangeIngredientUnit,
+	handleDeleteIngredient,
 }) {
 	// const [state, setState] = useState([1]);
 
@@ -42,6 +43,7 @@ export default function RecipeIngredientsFields({
 							<Select
 								options={options}
 								onChange={evt => handleChangeIngredientName(evt, index)}
+								placeholder={"Select ingredient"}
 								required
 							/>
 
@@ -62,22 +64,25 @@ export default function RecipeIngredientsFields({
 								onChange={evt => {
 									handleChangeIngredientUnit(evt, index);
 								}}
+								placeholder={"measure"}
 								required
 							/>
 
-							<button
-								className={css.deleteBtn}
-								type="button"
-								// onClick={handleClick}
-							>
-								<svg
-									className={css.deleteIcon}
-									width="18"
-									height="18"
+							{ingredientList.length > 1 && (
+								<button
+									className={css.deleteBtn}
+									type="button"
+									onClick={() => handleDeleteIngredient(index)}
 								>
-									<use href={icons + "#close"}></use>
-								</svg>
-							</button>
+									<svg
+										className={css.deleteIcon}
+										width="18"
+										height="18"
+									>
+										<use href={icons + "#close"}></use>
+									</svg>
+								</button>
+							)}
 						</div>
 					</li>
 				))}
@@ -93,4 +98,5 @@ RecipeIngredientsFields.propTypes = {
 	handleChangeIngredientName: PropTypes.func,
 	handleChangeUnitQuantity: PropTypes.func,
 	handleChangeIngredientUnit: PropTypes.func,
+	handleDeleteIngredient: PropTypes.func,
 };

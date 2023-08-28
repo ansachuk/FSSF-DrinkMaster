@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
 import { nanoid } from "@reduxjs/toolkit";
+// import { useNavigate } from "react-router";
 // import PropTypes from "prop-types";
 // import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
@@ -15,9 +16,11 @@ const formikInitialValues = {
 };
 
 export default function AddRecipeForm() {
+	// const navigate = useNavigate();
+
 	const [selectData, setSelectData] = useState({
-		category: "",
-		glass: "",
+		category: "cocktail",
+		glass: "highball glass",
 	});
 	const [ingredientList, setIngredientList] = useState([]);
 
@@ -76,16 +79,30 @@ export default function AddRecipeForm() {
 		setIngredientList(tmpList);
 	};
 
+	const handleDeleteIngredient = index => {
+		const newIngredientsList = [...ingredientList];
+		newIngredientsList.splice(index, 1);
+		setIngredientList(newIngredientsList);
+	};
+
+	const handleSubmit = (values, { resetForm }) => {
+		console.log(values);
+		console.log(selectData);
+		console.log(ingredientList);
+		resetForm();
+		setIngredientList([]);
+		setSelectData({
+			category: "cocktail",
+			glass: "highball glass",
+		});
+		// navigate("/my");
+	};
+
 	return (
 		<div>
 			<Formik
 				initialValues={formikInitialValues}
-				onSubmit={(values, { resetForm }) => {
-					console.log(values);
-					console.log(selectData);
-					console.log(ingredientList);
-					resetForm();
-				}}
+				onSubmit={handleSubmit}
 			>
 				<Form autoComplete="off">
 					<RecipeDescriptionFields
@@ -94,14 +111,14 @@ export default function AddRecipeForm() {
 						handleSelectData={handleSelectData}
 					/>
 					<RecipeIngredientsFields
-						// name="ingredientAmount"
+						name="amountIngredien"
 						ingredientList={ingredientList}
 						handleIncIngredients={handleIncIngredients}
 						handleDecIngredients={handleDecIngredients}
 						handleChangeIngredientName={handleChangeIngredientName}
 						handleChangeUnitQuantity={handleChangeUnitQuantity}
 						handleChangeIngredientUnit={handleChangeIngredientUnit}
-						// handleIngredientData={handleIngredientData}
+						handleDeleteIngredient={handleDeleteIngredient}
 					/>
 					<RecipePreparationFields name="textareaRecipe" />
 					<MainButton

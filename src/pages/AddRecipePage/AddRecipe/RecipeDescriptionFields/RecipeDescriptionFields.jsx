@@ -46,10 +46,14 @@ export default function RecipeDescriptionFields({ $name, name, handleSelectData 
 				<Select
 					onChange={({ value }) => handleSelectData("category", value)}
 					options={optionsCategories}
+					defaultValue={{ value: "cocktail", label: "Cocktail" }}
+					required
 				/>
 				<Select
 					onChange={({ value }) => handleSelectData("glass", value)}
 					options={optionsGlasses}
+					defaultValue={{ value: "highball glass", label: "Highball glass" }}
+					required
 				/>
 			</div>
 		</div>
