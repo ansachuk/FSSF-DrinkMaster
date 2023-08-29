@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
+import { nanoid } from "@reduxjs/toolkit";
+// import { useNavigate } from "react-router";
 // import PropTypes from "prop-types";
 // import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
@@ -10,45 +12,135 @@ import MainButton from "../../../../components/MainButton/MainButton";
 const formikInitialValues = {
 	titleRecipe: "",
 	aboutRecipe: "",
-	ingredientAmount: "",
 	textareaRecipe: "",
 };
 
 export default function AddRecipeForm() {
+	// const navigate = useNavigate();
+
 	const [selectData, setSelectData] = useState({
-		category: "",
-		glass: "",
+		category: "cocktail",
+		glass: "highball glass",
 	});
-	const [ingredientData, setIngredientData] = useState({});
+	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
+	const [imgURL, setImageURL] = useState(null);
+
+	const handleFileChange = e => {
+		const [_file] = e.target.files;
+		setImageURL(URL.createObjectURL(_file));
+	};
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
 	};
 
-	const handleIngredientData = value => {
-		setIngredientData(prevState => ({ ...prevState, ingredient: value }));
+	const handleIncIngredients = () => {
+		setIngredientList(prevState => {
+			return [
+				...prevState,
+				{
+					_id: nanoid(),
+					id: "",
+					title: "",
+					unitQuantity: "",
+					unit: "",
+				},
+			];
+		});
+		return;
+	};
+
+	const handleDecIngredients = () => {
+		if (ingredientList.length > 1) {
+			const newIngredientsList = [...ingredientList];
+			newIngredientsList.pop();
+			setIngredientList(newIngredientsList);
+		}
+	};
+
+	const handleChangeIngredientName = (e, index) => {
+		const tmpList = [...ingredientList];
+		tmpList[index] = {
+			...tmpList[index],
+			id: e.value,
+			title: e.label,
+		};
+		setIngredientList(tmpList);
+	};
+
+	const handleChangeUnitQuantity = (e, index) => {
+		let tmpData = e.currentTarget.value;
+		if (tmpData < 0) {
+			tmpData = 0;
+			e.currentTarget.value = 0;
+		}
+		const tmpList = [...ingredientList];
+		tmpList[index].unitQuantity = tmpData;
+		setIngredientList(tmpList);
+	};
+
+	const handleChangeIngredientUnit = (e, index) => {
+		const tmpList = [...ingredientList];
+		tmpList[index].unit = e.value;
+		setIngredientList(tmpList);
+	};
+
+	const handleDeleteIngredient = index => {
+		const newIngredientsList = [...ingredientList];
+		newIngredientsList.splice(index, 1);
+		setIngredientList(newIngredientsList);
+	};
+
+	const handleSubmit = (values, { resetForm }) => {
+		console.log(values);
+		console.log(selectData);
+		console.log(ingredientList);
+		// console.log(imgURL);
+
+		const formData = new FormData();
+		formData.append("thumb", imgURL);
+		const formattedRecipe = {
+			...values,
+			...selectData,
+		};
+		formData.append("jsonData", JSON.stringify(formattedRecipe));
+		console.log(formData.get("jsonData"));
+		console.log(formData.get("thumb"));
+
+		resetForm();
+		setIngredientList([{ _id: nanoid() }]);
+		setSelectData({
+			category: "cocktail",
+			glass: "highball glass",
+		});
+		setImageURL(null);
+		// navigate("/my");
 	};
 
 	return (
 		<div>
 			<Formik
 				initialValues={formikInitialValues}
-				onSubmit={(values, { resetForm }) => {
-					console.log(values);
-					console.log(selectData);
-					console.log(ingredientData);
-					resetForm();
-				}}
+				onSubmit={handleSubmit}
 			>
-				<Form>
+				<Form autoComplete="off">
 					<RecipeDescriptionFields
+						imgUrlFormik="imgUrlFormik"
+						imgURL={imgURL}
 						$name="titleRecipe"
 						name="aboutRecipe"
 						handleSelectData={handleSelectData}
+						updateImg={handleFileChange}
 					/>
 					<RecipeIngredientsFields
-						name="ingredientAmount"
-						handleIngredientData={handleIngredientData}
+						name="amountIngredien"
+						ingredientList={ingredientList}
+						handleIncIngredients={handleIncIngredients}
+						handleDecIngredients={handleDecIngredients}
+						handleChangeIngredientName={handleChangeIngredientName}
+						handleChangeUnitQuantity={handleChangeUnitQuantity}
+						handleChangeIngredientUnit={handleChangeIngredientUnit}
+						handleDeleteIngredient={handleDeleteIngredient}
 					/>
 					<RecipePreparationFields name="textareaRecipe" />
 					<MainButton

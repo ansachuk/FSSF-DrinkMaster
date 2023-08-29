@@ -1,0 +1,17 @@
+@import "../../../../../scss";
+
+.icon {
+	stroke: $disabledBtnTextColor;
+	// background: transparent;
+
+	// transition-property: border, stroke, border-radius;
+	// transition-duration: $transitionDuration;
+	// transition-timing-function: $transitionTimingFunction;
+
+	// &:hover,
+	// :focus {
+	// 	stroke: rgba(243, 243, 243, 0.4);
+	// 	border: 1px solid $disabledBtnTextColor;
+	// 	border-radius: 50%;
+	// }
+}
