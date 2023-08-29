@@ -7,33 +7,34 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../../../redux/selectors/authSelectors";
 import { update } from "../../../../../redux/operations/authOperations";
+import { Notify } from "notiflix";
 
 export default function EditProfileModal({ handlerEditProfileClick }) {
 	const dispatch = useDispatch();
 	const { name, avatarURL } = useSelector(selectUser);
 
-	const [image, setImage] = useState({ preview: "", data: "" });
+	const [image, setImage] = useState({ preview: avatarURL, data: null });
+	const [userName, setUserName] = useState(name);
+	const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
 	const userInfoFormSubmit = e => {
 		e.preventDefault();
-		console.dir(e.target);
-		const userName = e.target.elements.user_name.value;
-		console.log(userName);
-		// const userImage = e.target.elements.file_upload.files[0];
-		// console.log(userImage);
+
+		if (userName === name && !image.data) {
+			setIsButtonEnabled(false);
+			Notify.failure("No data changed");
+			return;
+		}
+		const updatedUserName = e.target.elements.user_name.value;
+		setUserName(updatedUserName);
 
 		const formData = new FormData();
 		formData.append("file", image.data);
-		console.log(formData);
-		dispatch(update({ formData, userName }));
-		// update;
-		// 	const response = await fetch('http://localhost:5000/image', {
-		//   method: 'POST',
-		// headers
-		//   body: {formData, userName},
-		// })
+		formData.append("userName", userName);
 
-		e.target.reset();
+		dispatch(update(formData));
+
+		// e.target.reset();
 		handlerEditProfileClick();
 	};
 
@@ -42,15 +43,32 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 			preview: URL.createObjectURL(e.target.files[0]),
 			data: e.target.files[0],
 		};
-		console.log(img);
 		setImage(img);
+		setIsButtonEnabled(true);
 	};
+
+	const onNameChange = e => {
+		if (userName !== e.target.value) {
+			setIsButtonEnabled(true);
+		}
+	};
+
+	useEffect(() => {
+		if (userName !== name) {
+			setIsButtonEnabled(true);
+		}
+	}, [userName, name]);
 
 	useEffect(() => {
 		const userImage = document.getElementById("user_image");
 		if (image.preview) {
 			userImage.src = image.preview;
 		}
+		return () => {
+			if (image.preview) {
+				URL.revokeObjectURL(image.preview);
+			}
+		};
 	}, [image.preview]);
 
 	return (
@@ -71,9 +89,6 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 						id="user_image"
 						className={css.user_large_icon}
 					/>
-					{/* <svg className={css.user_large_icon}>
-						<use href={icons + "#user"}></use>
-					</svg> */}
 					<input
 						id="file_upload"
 						type="file"
@@ -94,12 +109,14 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 						type="text"
 						defaultValue={name}
 						className={css.input}
+						onChange={onNameChange}
 					/>
 					<svg className={css.input_pen_icon}>
 						<use href={icons + "#pen"}></use>
 					</svg>
 				</label>
 				<MainButton
+					disabled={!isButtonEnabled}
 					propClass={buttonCss.largeButton}
 					title="Save changes"
 				/>
