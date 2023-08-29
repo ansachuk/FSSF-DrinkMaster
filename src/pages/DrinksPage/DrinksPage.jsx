@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 
-import { DrinksSearch, DrinksList, MainPageTitle, Container } from "components";
+// import { DrinksSearch, DrinksList, MainPageTitle, Container } from "components";
+
+import { DrinksSearch } from './DrinksSearch/DrinksSearch';
+import { DrinksList } from './DrinksList/DrinksList';
 import { Container } from '../../components/Container/Container';
+
 // import {
 //   getCategoriesListThunk, => allCategory
 //   getIngredientsListThunk,  => allIngredients
@@ -54,7 +58,7 @@ const DrinksPage = () => {
 	useEffect(() => {
 		dispatch(search({ search, page, limit }));
 		navigate(
-			`/recepies/search${encodeURIComponent(search.chosenCategory)}?query=${encodeURIComponent(
+			`/recepies/searchResults${encodeURIComponent(search.chosenCategory)}?query=${encodeURIComponent(
 				search.query,
 			)}&ingredient=${search.chosenIngredient}&page=${page}`,
 		);
@@ -67,7 +71,7 @@ const DrinksPage = () => {
 	return (
 		<Container>
 			<section className={css.section}>
-				<MainPageTitle title={"Drinks"} />
+				
 				<DrinksSearch categoryName={categoryName} />
 				<DrinksList />
 				
@@ -76,13 +80,11 @@ const DrinksPage = () => {
 	);
 };
 
-// export default DrinksPage;
+export default DrinksPage;
 
-// export default DrinksPage;
-
-export default function DrinksPage() {
-	return <div>DrinksPage</div>;
-}
+// export default function DrinksPage() {
+// 	return <div>DrinksPage</div>;
+// }
 
 // Исходный
 

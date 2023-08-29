@@ -1,3 +1,43 @@
+import React from 'react';
+import css from './DrinksSearch.module.scss';
+import { ReactComponent as SearchIcon } from '../../../images/search.svg';
+import Select from 'react-select';
+
+const options = [
+  { value: 'option1', label: 'Option 1' },
+  { value: 'option2', label: 'Option 2' },
+
+];
+
+const DrinksSearch = () => {
+  return (
+    <div className={css.container}>
+      <div className={css.form}>
+        <input
+          type="text"
+          className={css.input}
+          placeholder="Search for drinks..."
+        />
+        <div className={css.button}>
+          <div className={css.hoverWrapper}>
+            <SearchIcon className={css.icon} />
+          </div>
+        </div>
+      </div>
+      <Select
+        className={css.select}
+        options={options}
+        placeholder="Select an option"
+      />
+    </div>
+  );
+};
+
+export default DrinksSearch;
+
+
+// ИСХОДНЫЙ
+
 // import axios from "axios";
 // // import { useEffect } from "react";
 // // import { useDispatch, useSelector } from "react-redux";
