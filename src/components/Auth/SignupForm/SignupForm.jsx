@@ -1,5 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
 import { titleSignup, form, label, btnSignup, linkSignUp } from "./SignupForm.module.scss";
