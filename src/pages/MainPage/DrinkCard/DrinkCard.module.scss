@@ -1,0 +1,32 @@
+.card {
+	max-width: 400px;
+	background: transparent;
+}
+
+.image {
+	border-radius: 15px;
+	display: block;
+	width: 100%;
+}
+
+.ingredientsWrapper {
+	margin-top: 14px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.drinkIngreds {
+	color: #f3f3f3;
+	font-family: Manrope, sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 18px;
+}
+
+.ingredients {
+	color: rgba(243, 243, 243, 0.5);
+	font-family: Manrope, sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 18px;
+}
