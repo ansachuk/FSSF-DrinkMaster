@@ -23,12 +23,13 @@ export default function FavoritePage() {
 	// useEffect(() => {
 	// 	window.scrollTo(0, 0);
 	// }, []);
+
 	return (
 		<>
 			<div className={css.section}>
 				<MainTitle title="Favorites">
 					<RecipesList />
-					{/* <Paginator limit={isDesktop ? desktopLimit : tabletLimit} /> */}
+					{/* <Paginator /> */}
 				</MainTitle>
 			</div>
 		</>
