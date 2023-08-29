@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 
-import { Paginator, DrinksSearch, DrinksList, MainPageTitle, Container } from "components";
+import { DrinksSearch, DrinksList, MainPageTitle, Container } from "components";
+import { Container } from '../../components/Container/Container';
 // import {
 //   getCategoriesListThunk, => allCategory
 //   getIngredientsListThunk,  => allIngredients
@@ -10,7 +11,9 @@ import { Paginator, DrinksSearch, DrinksList, MainPageTitle, Container } from "c
 // } from 'redux/Cocktails/cocktailsOperations';
 import { allCategory, allIngredients } from "../../redux/operations/recipiesOperations";
 
-import { setChosenCategory } from "redux/Cocktails/cocktailsSlice";
+// import { setChosenCategory } from "redux/Cocktails/cocktailsSlice"; => byCategory
+
+
 
 // import {
 //   selectCategories,    => selectCategories
@@ -22,14 +25,15 @@ import { setChosenCategory } from "redux/Cocktails/cocktailsSlice";
 import { selectCategories, selectIngredients } from "../../redux/selectors";
 
 import { useMediaRules } from "hooks";
-import styles from "./DrinksPage.module.scss";
+import css from "./DrinksPage.module.scss";
+
 
 const DrinksPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const categoryFromLocation = useLocation();
 	const categoryName = categoryFromLocation?.state?.from;
-	categoryName && dispatch(setChosenCategory(categoryName));
+	categoryName && dispatch(byCategory(categoryName));
 	const { isDesktop } = useMediaRules();
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
@@ -62,11 +66,11 @@ const DrinksPage = () => {
 
 	return (
 		<Container>
-			<section className={styles.section}>
+			<section className={css.section}>
 				<MainPageTitle title={"Drinks"} />
 				<DrinksSearch categoryName={categoryName} />
 				<DrinksList />
-				<Paginator />
+				
 			</section>
 		</Container>
 	);
