@@ -30,12 +30,19 @@ const initialState = {
 	ingredients: [],
 	searchResults: [],
 	isLoading: false,
+	page: 1,
+	totalHits: 0,
 	error: null,
 };
 
 const recepiesSlice = createSlice({
 	name: "recipes",
 	initialState,
+	reducers: {
+		setPage: (state, { payload }) => {
+			state.page = payload;
+		},
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(allCategory.fulfilled, (state, { payload }) => {
