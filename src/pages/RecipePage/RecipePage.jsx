@@ -17,16 +17,16 @@ const RecipePage = () => {
 	const { recipeId } = useParams();
 	const recipe = useSelector(selectByID);
 
-  useEffect(() => {
- 	dispatch(byID(recipeId));
-  }, []);
+useEffect(() => {
+dispatch(byID(recipeId));
+}, []);
 	
-	  return (recipe.glass && <MainTitle title={recipe.drink}>
-		  <RecipePageHero glass={recipe.glass} about={recipe.hasOwnProperty('about') ? recipe.about : null} image={recipe.hasOwnProperty('drinkThumb') ? recipe.drinkThumb : null}></RecipePageHero>
-		  <RecipeIngredientsList ingredients={recipe.ingredients}></RecipeIngredientsList>
-		  <RecipePreparation instructions={recipe.instructions}></RecipePreparation>
-		  </MainTitle>
-)
-};
+	return (recipe.glass && <MainTitle title={recipe.drink}>
+		<RecipePageHero glass={recipe.glass} about={recipe.about || null} image={recipe.drinkThumb || null}></RecipePageHero>
+		<RecipeIngredientsList ingredients={recipe.ingredients}></RecipeIngredientsList>
+		<RecipePreparation instructions={recipe.instructions}></RecipePreparation>
+		</MainTitle>
+	)
+	};
 
 export default RecipePage;
