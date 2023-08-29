@@ -34,7 +34,7 @@ const initialState = {
 };
 
 const recepiesSlice = createSlice({
-	name: "recepies",
+	name: "recipes",
 	initialState,
 	extraReducers: builder => {
 		builder
@@ -68,10 +68,6 @@ const recepiesSlice = createSlice({
 			})
 			.addCase(own.fulfilled, (state, { payload }) => {
 				state.own = payload;
-				handleFullfilled(state);
-			})
-			.addCase(add.fulfilled, (state, { payload }) => {
-				state.own.push(payload);
 				handleFullfilled(state);
 			})
 			.addCase(add.fulfilled, (state, { payload }) => {
