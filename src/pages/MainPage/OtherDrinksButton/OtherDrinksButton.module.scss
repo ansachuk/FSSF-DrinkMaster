@@ -1,0 +1,61 @@
+// @import "../../scss";
+@import "../../../scss";
+
+.otherButton {
+	padding: 14px 40px;
+
+	border: none;
+	border-radius: 42px;
+	border: 2px solid transparent;
+	background-color: $mainBtnBackgroundColor;
+
+	color: $accentColor;
+	font-size: $mainFontSize;
+	line-height: 18px;
+	font-weight: $fontWeightSemiBold;
+
+	transition-property: border, background-color, color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover {
+		color: $mainBtnBackgroundColor;
+		background-color: $accentColor;
+	}
+
+	&:active {
+		border: 2px solid $outlinBtnBackgroundColor;
+	}
+
+	&:disabled {
+		color: $outlinBtnBackgroundColor;
+		background-color: $disabledBtnBackgroundColor;
+		border: 2px solid $disabledBtnBackgroundColor;
+	}
+
+	@include tablet {
+		padding: 18px 44px;
+		font-size: $SecondaryFontSize;
+	}
+
+	@include desktop {
+		font-size: $SecondaryFontSize;
+	}
+}
+// ===============================================
+// .exampleButton {
+// 	composes: mainButton;
+// 	property: value;
+
+// 	@include mobile {
+// 		color: red;
+// 	}
+
+// 	@include tablet {
+// 		color: teal;
+// 	}
+
+// 	@include desktop {
+// 		color:black;
+// 	}
+// }
