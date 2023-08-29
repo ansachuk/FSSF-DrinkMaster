@@ -23,6 +23,12 @@ export default function AddRecipeForm() {
 		glass: "highball glass",
 	});
 	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
+	const [imgURL, setImageURL] = useState(null);
+
+	const handleFileChange = e => {
+		const [_file] = e.target.files;
+		setImageURL(URL.createObjectURL(_file));
+	};
 
 	const handleSelectData = (type, value) => {
 		setSelectData(prevState => ({ ...prevState, [type]: value }));
@@ -89,12 +95,25 @@ export default function AddRecipeForm() {
 		console.log(values);
 		console.log(selectData);
 		console.log(ingredientList);
+		// console.log(imgURL);
+
+		const formData = new FormData();
+		formData.append("thumb", imgURL);
+		const formattedRecipe = {
+			...values,
+			...selectData,
+		};
+		formData.append("jsonData", JSON.stringify(formattedRecipe));
+		console.log(formData.get("jsonData"));
+		console.log(formData.get("thumb"));
+
 		resetForm();
 		setIngredientList([{ _id: nanoid() }]);
 		setSelectData({
 			category: "cocktail",
 			glass: "highball glass",
 		});
+		setImageURL(null);
 		// navigate("/my");
 	};
 
@@ -106,9 +125,12 @@ export default function AddRecipeForm() {
 			>
 				<Form autoComplete="off">
 					<RecipeDescriptionFields
+						imgUrlFormik="imgUrlFormik"
+						imgURL={imgURL}
 						$name="titleRecipe"
 						name="aboutRecipe"
 						handleSelectData={handleSelectData}
+						updateImg={handleFileChange}
 					/>
 					<RecipeIngredientsFields
 						name="amountIngredien"

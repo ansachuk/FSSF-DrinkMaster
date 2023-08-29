@@ -6,28 +6,48 @@ import icons from "../../../../images/icons.svg";
 import { optionsCategories } from "../../../../data/drinksData";
 import { optionsGlasses } from "../../../../data/drinksData";
 
-export default function RecipeDescriptionFields({ $name, name, handleSelectData }) {
+export default function RecipeDescriptionFields({
+	imgURL,
+	$name,
+	name,
+	updateImg,
+	handleSelectData,
+}) {
 	return (
 		<div className={css.wraper}>
-			<div className={css.imageContainer}>
-				<div>
-					<button
-						className={css.btnContainer}
-						type="button"
-					>
-						<svg
-							className={css.btnIcon}
-							width="28"
-							height="28"
-						>
-							<use href={icons + "#plus"}></use>
-						</svg>
-					</button>
-				</div>
-				<div>
-					<p className={css.btnText}>Add image</p>
-				</div>
-			</div>
+			<label className={css.imageContainer}>
+				{imgURL ? (
+					<img src={imgURL} />
+				) : (
+					<>
+						<div>
+							<div
+								className={css.btnContainer}
+								type="button"
+							>
+								<svg
+									className={css.btnIcon}
+									width="28"
+									height="28"
+								>
+									<use href={icons + "#plus"}></use>
+								</svg>
+							</div>
+						</div>
+						<div>
+							<p className={css.btnText}>Add image</p>
+						</div>
+					</>
+				)}
+				<input
+					id="thumb"
+					// className={css.fieldStyle}
+					onChange={updateImg}
+					accept="image/png, image/jpg, image/jpeg"
+					name="thumb"
+					type="file"
+				/>
+			</label>
 			<div>
 				<div className={css.inputWraper}>
 					<Field
@@ -63,5 +83,7 @@ export default function RecipeDescriptionFields({ $name, name, handleSelectData 
 RecipeDescriptionFields.propTypes = {
 	$name: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
+	imgURL: PropTypes.string,
 	handleSelectData: PropTypes.func,
+	updateImg: PropTypes.func,
 };
