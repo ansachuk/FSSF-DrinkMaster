@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import icons from "../../../../images/icons.svg";
+// import icons from "../../../../images/icons.svg";
 import css from "./UserMenu.module.scss";
 import UserDropdown from "./UserDropdown/UserDropdown";
 import EditUserModal from "./EditProfileModal/EditProfileModal";
 import LogoutOptions from "./LogoutOptions/LogoutOptions";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../../redux/selectors/authSelectors";
 
 export default function UserMenu() {
+	const { name, avatarURL } = useSelector(selectUser);
+
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 	const [isOpenLogout, setIsOpenLogout] = useState(false);
 	const [isOpenEditProfile, setIsOpenEditProfile] = useState(false);
@@ -53,10 +57,12 @@ export default function UserMenu() {
 				onClick={handlerUserDropdownClick}
 				className={css.button}
 			>
-				<svg className={css.user_icon}>
-					<use href={icons + "#user"}></use>
-				</svg>
-				<span className={css.username}>Username</span>
+				<img
+					src={avatarURL}
+					alt="User photo"
+					className={css.user_icon}
+				/>
+				<span className={css.username}>{name}</span>
 			</button>
 
 			{isOpenDropdown && (

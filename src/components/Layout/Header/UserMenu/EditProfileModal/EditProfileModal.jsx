@@ -4,8 +4,14 @@ import css from "./EditProfileModal.module.scss";
 import buttonCss from "../../../../MainButton/MainButton.module.scss";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../../../../redux/selectors/authSelectors";
+import { update } from "../../../../../redux/operations/authOperations";
 
 export default function EditProfileModal({ handlerEditProfileClick }) {
+	const dispatch = useDispatch();
+	const { name, avatarURL } = useSelector(selectUser);
+
 	const [image, setImage] = useState({ preview: "", data: "" });
 
 	const userInfoFormSubmit = e => {
@@ -19,10 +25,16 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 		const formData = new FormData();
 		formData.append("file", image.data);
 		console.log(formData);
+		dispatch(update({ formData, userName }));
+		// update;
 		// 	const response = await fetch('http://localhost:5000/image', {
 		//   method: 'POST',
+		// headers
 		//   body: {formData, userName},
 		// })
+
+		e.target.reset();
+		handlerEditProfileClick();
 	};
 
 	const onImageChange = e => {
@@ -36,7 +48,9 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 
 	useEffect(() => {
 		const userImage = document.getElementById("user_image");
-		userImage.src = image.preview;
+		if (image.preview) {
+			userImage.src = image.preview;
+		}
 	}, [image.preview]);
 
 	return (
@@ -52,7 +66,7 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 			<form onSubmit={userInfoFormSubmit}>
 				<div className={css.icon_container}>
 					<img
-						src={icons + "#user"}
+						src={avatarURL}
 						alt="User photo"
 						id="user_image"
 						className={css.user_large_icon}
@@ -78,7 +92,7 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 					<input
 						id="user_name"
 						type="text"
-						placeholder="User name"
+						defaultValue={name}
 						className={css.input}
 					/>
 					<svg className={css.input_pen_icon}>
