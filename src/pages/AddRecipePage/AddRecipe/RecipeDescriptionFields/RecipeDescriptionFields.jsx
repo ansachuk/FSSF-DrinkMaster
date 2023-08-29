@@ -17,7 +17,10 @@ export default function RecipeDescriptionFields({
 		<div className={css.wraper}>
 			<label className={css.imageContainer}>
 				{imgURL ? (
-					<img src={imgURL} />
+					<img
+						src={imgURL}
+						className={css.image}
+					/>
 				) : (
 					<>
 						<div>
@@ -41,7 +44,7 @@ export default function RecipeDescriptionFields({
 				)}
 				<input
 					id="thumb"
-					// className={css.fieldStyle}
+					className={css.imageInput}
 					onChange={updateImg}
 					accept="image/png, image/jpg, image/jpeg"
 					name="thumb"

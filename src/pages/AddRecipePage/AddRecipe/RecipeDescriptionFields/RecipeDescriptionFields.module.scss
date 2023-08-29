@@ -5,9 +5,9 @@
 }
 
 .imageContainer {
-	width: 100%;
+	// width: 335px;
 	height: 320px;
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -16,7 +16,27 @@
 	margin-bottom: 40px;
 	border-radius: 8px;
 	background: rgba(22, 31, 55, 0.5);
+	border: 1px solid rgba(22, 31, 55, 0.5);
 	cursor: pointer;
+	transition-property: border-color, border;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		border: 1px solid rgba(243, 243, 243);
+	}
+}
+
+.image {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.imageInput {
+	display: none;
 }
 
 .btnContainer {
