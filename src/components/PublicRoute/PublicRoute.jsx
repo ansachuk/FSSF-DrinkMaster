@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 import { selectAuthAccessToken } from "../../redux/selectors/authSelectors";
@@ -8,3 +9,7 @@ export default function PublicRoute({ children }) {
 
 	return isLoggedIn ? <Navigate to="/" /> : children;
 }
+
+PublicRoute.propTypes = {
+	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
