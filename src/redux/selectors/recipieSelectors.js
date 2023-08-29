@@ -8,3 +8,5 @@ export const selectGlasses = ({ recipes }) => recipes.glasses;
 export const selectIngredients = ({ recipes }) => recipes.ingredients;
 export const selectSearchResults = ({ recipes }) => recipes.searchResults;
 export const selectOwn = ({ recipes }) => recipes.own;
+export const selectPage = ({ recipes }) => recipes.page;
+export const selectTotalHits = ({ recipes }) => recipes.totalHits;
