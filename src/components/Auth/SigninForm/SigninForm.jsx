@@ -1,10 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
-import { titleSignup, form, label, btnSignup, linkSignUp } from "../SignupForm/SignupForm.module.scss";
+import {
+	titleSignup,
+	form,
+	label,
+	btnSignup,
+	linkSignUp,
+} from "../SignupForm/SignupForm.module.scss";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import { login } from "../../../redux/operations/authOperations";
 
 const schema = yup.object().shape({
 	email: yup.string().email("Enter a valid email").required("Email is a required field"),
@@ -22,28 +28,17 @@ const schema = yup.object().shape({
 export default function SigninForm() {
 	const dispatch = useDispatch();
 
-	// const handleSubmit = e => {
-	// 	e.preventDefault();
-
-	// 	const form = e.currentTarget;
-	// 	dispatch(
-	// 		logIn({
-	// 			email: form.elements.email.value,
-	// 			password: form.elements.password.value,
-	// 		}),
-	// 	);
-	// 	form.reset();
-	// };
+	const handleSubmit = values => {
+		dispatch(login(values));
+	};
 
 	return (
 		<div>
 			<h2 className={titleSignup}>Sign In</h2>
 			<Formik
-			// initialValues={{ name: "", email: "" password:'' }}
-			// onSubmit={async values => {
-			// 	await new Promise(resolve => setTimeout(resolve, 500));
-			// 	alert(JSON.stringify(values, null, 2));
-			// }}
+				initialValues={{ email: "", password: "" }}
+				onSubmit={handleSubmit}
+				validationSchema={schema}
 			>
 				<Form className={form}>
 					<Field
@@ -51,12 +46,16 @@ export default function SigninForm() {
 						name="email"
 						type="email"
 						placeholder="Email"
+						autoComplete="email"
+						required
 					/>
 					<Field
 						className={label}
 						name="password"
 						type="password"
 						placeholder="Password"
+						autoComplete="current-password"
+						required
 					/>
 					<button
 						className={btnSignup}
@@ -66,7 +65,7 @@ export default function SigninForm() {
 					</button>
 					<NavLink
 						className={linkSignUp}
-						to="signin"
+						to="/welcome/signup"
 					>
 						Registration
 					</NavLink>

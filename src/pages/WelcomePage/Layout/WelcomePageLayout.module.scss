@@ -1,0 +1,25 @@
+@import "../../../scss/";
+
+.containerLayout {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	background-size: contain;
+	justify-content: center;
+	align-items: center;
+	background-image: url("src/images/static/welcome/welcomesm.jpg");
+	background-position: right;
+	background-repeat: no-repeat;
+
+	@include tablet {
+		background-image: url("src/images/static/welcome/welcomemd.jpg");
+		justify-content: left;
+		padding-left: 64px;
+	}
+
+	@include desktop {
+		background-image: url("src/images/static/welcome/welcome.jpg");
+		justify-content: left;
+		padding-left: 100px;
+	}
+}

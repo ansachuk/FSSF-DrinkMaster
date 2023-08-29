@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
 import { titleSignup, form, label, btnSignup, linkSignUp } from "./SignupForm.module.scss";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { registrationThunk } from "../../../redux/operations/authOperations";
+import { signup } from "../../../redux/operations/authOperations";
 
 const schema = yup.object().shape({
 	name: yup.string().required(),
@@ -23,20 +23,11 @@ const schema = yup.object().shape({
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
-	const [searchParams] = useSearchParams();
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		const form = e.currentTarget;
-		dispatch(
-			registrationThunk({
-				name: form.elements.name.value,
-				email: form.elements.email.value,
-				password: form.elements.password.value,
-			}),
-		);
-		form.reset();
+	const handleSubmit = values => {
+		dispatch(signup(values));
 	};
+
 	return (
 		<div>
 			<h2 className={titleSignup}>Registration</h2>
@@ -51,6 +42,7 @@ export default function SignupForm() {
 						name="name"
 						type="text"
 						placeholder="Name"
+						autoComplete="name"
 						required
 					/>
 					<Field
@@ -58,6 +50,7 @@ export default function SignupForm() {
 						name="email"
 						type="email"
 						placeholder="Email"
+						autoComplete="email"
 						required
 					/>
 					<Field
@@ -76,7 +69,7 @@ export default function SignupForm() {
 					</button>
 					<NavLink
 						className={linkSignUp}
-						to="signin"
+						to="/welcome//signin"
 					>
 						Sign In
 					</NavLink>
