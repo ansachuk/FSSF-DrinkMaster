@@ -34,7 +34,7 @@ const initialState = {
 };
 
 const recepiesSlice = createSlice({
-	name: "recepies",
+	name: "recipes",
 	initialState,
 	extraReducers: builder => {
 		builder

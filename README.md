@@ -1,16 +1,16 @@
 # DrinkMaster
 
-🐋base-url/api/auth/register - Реєстрація користувача
+🐋base-url/api/auth/register - Реєстрація користувача {name ,pass ,mail}
 
-📚base-url/api/auth/login - Логін користувача
+📚base-url/api/auth/login - Логін користувача { pass ,mail}
 
 👩🏾‍🦰base-url/api/auth/current - Інформація про користувача
 
-?! base-url/api/auth/update - Оновлення користувача
+?! base-url/api/auth/update - Оновлення користувача {name, avatarURL}
 
-🌟base-url/api/auth/logout - Вихід користувача з системи
+🌟base-url/api/auth/logout - Вихід користувача з системи {token}
 
-? base-url/api/subscribe - Надсилання повідомлення підписникам
+? base-url/api/subscribe - Надсилання повідомлення підписникам {}
 
 🥱base-url/api/recipes/category-list - Отримання списку категорій рецептів
 
