@@ -1,0 +1,149 @@
+@import "../../../../../scss/";
+
+.edit_container {
+	position: absolute;
+	top: 54px;
+	right: -70px;
+	width: 335px;
+	padding: 50px 25px;
+	border-radius: 8px;
+	text-align: center;
+	background-color: $accentColor;
+	font-size: $mainFontSize;
+
+	@include tablet {
+		top: 67px;
+		width: 500px;
+		padding: 50px 50px 75px 50px;
+		font-size: 18px;
+	}
+}
+
+.close_button {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	@include tablet {
+		gap: 14px;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+}
+
+.close_icon {
+	width: 24px;
+	height: 24px;
+}
+
+.icon_container {
+	position: relative;
+	margin-bottom: 39px;
+
+	@include tablet {
+		margin-bottom: 66px;
+	}
+}
+
+.user_large_icon {
+	display: block;
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	margin: 0 auto;
+	border-radius: 50%;
+
+	@include tablet {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+input[type="file"] {
+	display: none;
+}
+
+.plus_icon {
+	position: absolute;
+	bottom: -15%;
+	left: 46%;
+	width: 28px;
+	height: 28px;
+
+	stroke: $mainFontColor;
+	background-color: #546081;
+	border-radius: 50%;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+
+	@include tablet {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+.input_container {
+	position: relative;
+}
+
+.input {
+	width: 285px;
+	margin-bottom: 18px;
+	padding: 18px 24px;
+
+	border: 1px solid rgba(243, 243, 243, 0.2);
+	border-radius: 200px;
+	outline: none;
+	opacity: 0.8;
+
+	font-size: $mainFontSize;
+	color: $mainFontColor;
+	background-color: transparent;
+
+	@include tablet {
+		width: 400px;
+		padding: 18px 68px 18px 24px;
+		margin-bottom: 25px;
+		font-size: 17px;
+	}
+
+	&:hover,
+	&:focus {
+		border: 1px solid rgba(243, 243, 243, 0.5);
+	}
+}
+
+.input_pen_icon {
+	position: absolute;
+	top: 5px;
+	right: 24px;
+
+	display: none;
+
+	width: 20px;
+	height: 20px;
+
+	@include tablet {
+		display: block;
+	}
+}
