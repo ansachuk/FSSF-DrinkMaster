@@ -69,13 +69,13 @@ export default function RecipeDescriptionFields({
 				<Select
 					onChange={({ value }) => handleSelectData("category", value)}
 					options={optionsCategories}
-					defaultValue={{ value: "cocktail", label: "Cocktail" }}
+					defaultValue={{ value: "Cocktail", label: "Cocktail" }}
 					required
 				/>
 				<Select
 					onChange={({ value }) => handleSelectData("glass", value)}
 					options={optionsGlasses}
-					defaultValue={{ value: "highball glass", label: "Highball glass" }}
+					defaultValue={{ value: "Highball glass", label: "Highball glass" }}
 					required
 				/>
 			</div>

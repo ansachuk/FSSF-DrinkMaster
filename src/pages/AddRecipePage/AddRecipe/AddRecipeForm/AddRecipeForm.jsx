@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Formik } from "formik";
 import { nanoid } from "@reduxjs/toolkit";
+import { Notify } from "notiflix";
+import * as yup from "yup";
 // import { useNavigate } from "react-router";
 // import PropTypes from "prop-types";
 // import css from "./AddRecipeForm.module.scss";
@@ -9,6 +11,13 @@ import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptio
 import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredientsFields";
 import RecipePreparationFields from "../RecipePreparationFields/RecipePreparationFields";
 import MainButton from "../../../../components/MainButton/MainButton";
+import { add } from "../../../../redux/operations/recipiesOperations";
+
+const schema = yup.object().shape({
+	titleRecipe: yup.string().min(3, "must be at least 3 characters").required("name is required"),
+	aboutRecipe: yup.string().min(3, "must be at least 3 characters").required("name is required"),
+	textareaRecipe: yup.string().min(3, "must be at least 3 characters").required("name is required"),
+});
 
 const formikInitialValues = {
 	titleRecipe: "",
@@ -21,8 +30,8 @@ export default function AddRecipeForm() {
 	// const navigate = useNavigate();
 
 	const [selectData, setSelectData] = useState({
-		category: "cocktail",
-		glass: "highball glass",
+		category: "Cocktail",
+		glass: "Highball glass",
 	});
 	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
 	const [imgURL, setImageURL] = useState(null);
@@ -42,7 +51,7 @@ export default function AddRecipeForm() {
 				...prevState,
 				{
 					_id: nanoid(),
-					id: "",
+					// id: "",
 					title: "",
 					unitQuantity: "",
 					unit: "",
@@ -64,7 +73,7 @@ export default function AddRecipeForm() {
 		const tmpList = [...ingredientList];
 		tmpList[index] = {
 			...tmpList[index],
-			id: e.value,
+			// id: e.value,
 			title: e.label,
 		};
 		setIngredientList(tmpList);
@@ -94,34 +103,38 @@ export default function AddRecipeForm() {
 	};
 
 	const handleSubmit = (values, { resetForm }) => {
-		// console.log(values);
-		// console.log(selectData);
-		// console.log(ingredientList);
-		// console.log(imgURL);
+		if (imgURL === null) {
+			return Notify.info("add recipe photo", {
+				timeout: 3000,
+			});
+		}
 
 		const formData = new FormData();
-		formData.append("thumb", imgURL);
+		formData.append("drinkThumb", imgURL);
 		const formattedRecipe = {
-			...values,
-			...selectData,
-			ingredients: ingredientList.map(({ _id, title, unitQuantity, unit }) => ({
-				_id,
+			drink: values.titleRecipe,
+			about: values.aboutRecipe,
+			category: selectData.category,
+			glass: selectData.glass,
+			instructions: values.textareaRecipe,
+			ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
 				title,
-				unitQuantity,
-				unit,
+				measure: unitQuantity.concat(` ${unit}`),
+				// measureQuantity: unitQuantity,
 			})),
 		};
 
 		formData.append("jsonData", JSON.stringify(formattedRecipe));
+		dispatch(add(formData));
 		console.log(formattedRecipe);
 		console.log(formData.get("jsonData"));
-		console.log(formData.get("thumb"));
+		console.log(formData.get("drinkThumb"));
 
 		resetForm();
 		setIngredientList([{ _id: nanoid() }]);
 		setSelectData({
-			category: "cocktail",
-			glass: "highball glass",
+			category: "Cocktail",
+			glass: "Highball glass",
 		});
 		setImageURL(null);
 		// navigate("/my");
@@ -132,6 +145,7 @@ export default function AddRecipeForm() {
 			<Formik
 				initialValues={formikInitialValues}
 				onSubmit={handleSubmit}
+				validationSchema={schema}
 			>
 				<Form autoComplete="off">
 					<RecipeDescriptionFields

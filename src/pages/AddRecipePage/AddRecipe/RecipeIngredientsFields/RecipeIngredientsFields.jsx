@@ -60,6 +60,7 @@ export default function RecipeIngredientsFields({
 									handleChangeUnitQuantity(evt, index);
 								}}
 								placeholder="0"
+								required
 							/>
 
 							<Select
