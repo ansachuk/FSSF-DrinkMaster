@@ -14,7 +14,8 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 	const dispatch = useDispatch();
 	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
-	const [image, setImage] = useState({ preview: avatarURL, data: null });
+	const [image, setImage] = useState(null);
+	const [imgURL, setImageURL] = useState(null);
 	const [userName, setUserName] = useState(name);
 	const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
@@ -22,9 +23,8 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 		e.preventDefault();
 
 		const updatedUserName = e.target.elements.user_name.value;
-		const updatedUserImage = e.target.elements.file_upload.files[0];
 
-		if (updatedUserName === name && !image.data) {
+		if (updatedUserName === name && !imgURL) {
 			setIsButtonEnabled(false);
 			Notify.failure("No data changed");
 			return;
@@ -33,29 +33,32 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 		setUserName(updatedUserName);
 
 		const formData = new FormData();
-		formData.append("file", updatedUserImage);
+
 		formData.append("name", updatedUserName);
+		if (imgURL) {
+			formData.append("avataURL", imgURL);
+		}
+		console.log(formData);
+		console.log(imgURL);
+		console.log(image);
 
 		dispatch(update(formData))
 			.unwrap()
 			.then(() => {
+				setImageURL(null);
 				Notify.success(`${updatedUserName} is your new name`);
 			})
 			.catch(() => {
 				Notify.failure("Some error");
 			});
 
-		// e.target.reset();
 		handlerEditProfileClick();
 	};
 
 	const onImageChange = e => {
-		const img = {
-			preview: URL.createObjectURL(e.target.files[0]),
-			data: e.target.files[0],
-		};
-		setImage(img);
-		setIsButtonEnabled(true);
+		const [_file] = e.target.files;
+		setImageURL(URL.createObjectURL(_file));
+		setImage(_file);
 	};
 
 	const onNameChange = e => {
@@ -72,15 +75,15 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 
 	useEffect(() => {
 		const userImage = document.getElementById("user_image");
-		if (image.preview) {
-			userImage.src = image.preview;
+		if (imgURL) {
+			userImage.src = imgURL;
 		}
 		return () => {
-			if (image.preview) {
-				URL.revokeObjectURL(image.preview);
+			if (imgURL) {
+				URL.revokeObjectURL(imgURL);
 			}
 		};
-	}, [image.preview]);
+	}, [imgURL]);
 
 	return (
 		<div className={css.edit_container}>
