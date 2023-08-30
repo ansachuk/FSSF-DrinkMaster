@@ -1,7 +1,6 @@
 @import "../../../scss/";
 
 .FooterContainer {
-	outline: 1px solid tomato;
 	padding: 40px 20px 18px;
 	border-top: 1px solid $outlinBtnBackgroundColor;
 
@@ -67,25 +66,3 @@
 		margin-right: 18px;
 	}
 }
-
-// .firstSphere {
-// 	position: absolute;
-// 	top: 5130px;
-// 	left: -689;
-// 	width: 784px;
-// 	height: 849px;
-
-// 	border-radius: 849px;
-// 	background: rgba(64, 112, 205, 0.5);
-// 	filter: blur(104.8543701171875px);
-
-// 	@include tablet {
-// 		left: -690px;
-// 	}
-// }
-
-// .seconSphere {
-// }
-
-// .thirdSphere {
-// }

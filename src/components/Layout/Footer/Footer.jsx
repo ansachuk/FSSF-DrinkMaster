@@ -1,10 +1,9 @@
-// import { SocialLinks, Logo, Nav, EmailSubscription } from "components";
-
 import css from "./Footer.module.scss";
 import { Link } from "react-router-dom";
 import Logo from "../../Logo/Logo";
 import { SocialLinks } from "./SocialLinks/SocialLinks";
 import { Nav } from "./Nav/Nav";
+import EmailSubscription from "./EmailSubscription/EmailSubscription";
 
 export default function Footer() {
 	return (
@@ -17,7 +16,7 @@ export default function Footer() {
 					</div>
 					<Nav />
 				</div>
-				{/* <EmailSubscription /> */}
+				<EmailSubscription />
 			</div>
 			<div className={css.FooterInfo}>
 				<p className={css.FooterText}>©2023 Drink Master. All rights reserved.</p>
@@ -36,9 +35,6 @@ export default function Footer() {
 					</Link>
 				</div>
 			</div>
-			{/* <div className={css.firstSphere}></div>
-			<div className={css.seconSphere}></div>
-			<div className={css.thirdSphere}></div> */}
 		</div>
 	);
 }
