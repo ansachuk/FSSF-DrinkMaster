@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Form, Formik } from "formik";
 import { nanoid } from "@reduxjs/toolkit";
 // import { useNavigate } from "react-router";
@@ -16,6 +17,7 @@ const formikInitialValues = {
 };
 
 export default function AddRecipeForm() {
+	const dispatch = useDispatch();
 	// const navigate = useNavigate();
 
 	const [selectData, setSelectData] = useState({
@@ -92,9 +94,9 @@ export default function AddRecipeForm() {
 	};
 
 	const handleSubmit = (values, { resetForm }) => {
-		console.log(values);
-		console.log(selectData);
-		console.log(ingredientList);
+		// console.log(values);
+		// console.log(selectData);
+		// console.log(ingredientList);
 		// console.log(imgURL);
 
 		const formData = new FormData();
@@ -102,8 +104,16 @@ export default function AddRecipeForm() {
 		const formattedRecipe = {
 			...values,
 			...selectData,
+			ingredients: ingredientList.map(({ _id, title, unitQuantity, unit }) => ({
+				_id,
+				title,
+				unitQuantity,
+				unit,
+			})),
 		};
+
 		formData.append("jsonData", JSON.stringify(formattedRecipe));
+		console.log(formattedRecipe);
 		console.log(formData.get("jsonData"));
 		console.log(formData.get("thumb"));
 
