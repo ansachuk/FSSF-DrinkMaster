@@ -8,23 +8,7 @@ import { DrinksSearch } from './DrinksSearch/DrinksSearch';
 import { DrinksList } from './DrinksList/DrinksList';
 import { Container } from '../../components/Container/Container';
 
-// import {
-//   getCategoriesListThunk, => allCategory
-//   getIngredientsListThunk,  => allIngredients
-//   searchAllDrinksThunk,  => search
-// } from 'redux/Cocktails/cocktailsOperations';
 import { allCategory, allIngredients } from "../../redux/operations/recipiesOperations";
-
-// import { setChosenCategory } from "redux/Cocktails/cocktailsSlice"; => byCategory
-
-
-
-// import {
-//   selectCategories,    => selectCategories
-//   selectIngredients,   => selectIngredients
-//   selectPage,
-//   selectSearch,  => selectSearchResults
-// } from 'redux/selectors';
 
 import { selectCategories, selectIngredients } from "../../redux/selectors";
 
