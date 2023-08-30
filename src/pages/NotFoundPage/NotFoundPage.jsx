@@ -1,5 +1,5 @@
-import MainTitle from "../../components/MainTitle/MainTitle";
-import NotFound from "../../components/NotFound/NotFound";
+import MainTitle from "../../../src/components/MainTitle/MainTitle";
+import NotFound from "../../pages/NotFoundPage/NotFound/NotFound";
 import css from "../NotFoundPage/NotFoundPage.module.scss";
 
 export default function NotFoundPage() {

@@ -1,4 +1,4 @@
-import DrinkDefault from "../../images/static/main/main.jpg";
+import DrinkDefault from "../../../images/static/main/main.jpg";
 import css from "../NotFound/NotFound.module.scss";
 
 export default function NotFoundPage() {
