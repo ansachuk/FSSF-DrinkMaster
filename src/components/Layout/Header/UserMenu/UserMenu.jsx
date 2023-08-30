@@ -6,9 +6,10 @@ import EditUserModal from "./EditProfileModal/EditProfileModal";
 import LogoutOptions from "./LogoutOptions/LogoutOptions";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../redux/selectors/authSelectors";
+import defaultUserImage from "../../../../images/static/user/user.jpg";
 
 export default function UserMenu() {
-	const { name, avatarURL } = useSelector(selectUser);
+	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 	const [isOpenLogout, setIsOpenLogout] = useState(false);

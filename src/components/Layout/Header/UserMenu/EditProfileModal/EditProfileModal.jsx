@@ -1,5 +1,6 @@
 import MainButton from "../../../../MainButton/MainButton";
 import icons from "../../../../../images/icons.svg";
+import defaultUserImage from "../../../../../images/static/user/user.jpg";
 import css from "./EditProfileModal.module.scss";
 import buttonCss from "../../../../MainButton/MainButton.module.scss";
 import PropTypes from "prop-types";
@@ -11,7 +12,7 @@ import { Notify } from "notiflix";
 
 export default function EditProfileModal({ handlerEditProfileClick }) {
 	const dispatch = useDispatch();
-	const { name, avatarURL } = useSelector(selectUser);
+	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
 	const [image, setImage] = useState({ preview: avatarURL, data: null });
 	const [userName, setUserName] = useState(name);
@@ -20,19 +21,29 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 	const userInfoFormSubmit = e => {
 		e.preventDefault();
 
-		if (userName === name && !image.data) {
+		const updatedUserName = e.target.elements.user_name.value;
+		const updatedUserImage = e.target.elements.file_upload.files[0];
+
+		if (updatedUserName === name && !image.data) {
 			setIsButtonEnabled(false);
 			Notify.failure("No data changed");
 			return;
 		}
-		const updatedUserName = e.target.elements.user_name.value;
+
 		setUserName(updatedUserName);
 
 		const formData = new FormData();
-		formData.append("file", image.data);
-		formData.append("userName", userName);
+		formData.append("file", updatedUserImage);
+		formData.append("name", updatedUserName);
 
-		dispatch(update(formData));
+		dispatch(update(formData))
+			.unwrap()
+			.then(() => {
+				Notify.success(`${updatedUserName} is your new name`);
+			})
+			.catch(() => {
+				Notify.failure("Some error");
+			});
 
 		// e.target.reset();
 		handlerEditProfileClick();
