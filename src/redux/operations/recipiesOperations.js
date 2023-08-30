@@ -120,7 +120,7 @@ const addToFavorite = createAsyncThunk(
 	"recepies/addToFavorite",
 	async (id, { rejectWithValue }) => {
 		try {
-			const { data } = await instance.get(`favorite/add/${id}`);
+			const { data } = await instance.patch(`favorite/add/${id}`);
 			//token
 
 			return data;
@@ -134,7 +134,7 @@ const removeFromFavorite = createAsyncThunk(
 	"recepies/removeFromFavorite",
 	async (id, { rejectWithValue }) => {
 		try {
-			const { data } = await instance.delete(`favorite/remove/${id}`);
+			const { data } = await instance.patch(`favorite/remove/${id}`);
 			//token
 
 			return data;
