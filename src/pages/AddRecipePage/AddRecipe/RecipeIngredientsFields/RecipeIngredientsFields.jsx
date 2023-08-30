@@ -1,5 +1,5 @@
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { Field } from "formik";
 import PropTypes from "prop-types";
@@ -7,12 +7,8 @@ import css from "./RecipeIngredientsFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import Counter from "./Counter/Counter";
 import { optionsIngredientUnit } from "../../../../data/drinksData";
-
-const options = [
-	{ value: "chocolate", label: "Chocolate" },
-	{ value: "strawberry", label: "Strawberry" },
-	{ value: "vanilla", label: "Vanilla" },
-];
+import { allIngredients } from "../../../../redux/operations/recipiesOperations";
+import { selectIngredients } from "../../../../redux/selectors/recipieSelectors";
 
 export default function RecipeIngredientsFields({
 	ingredientList,
@@ -23,7 +19,12 @@ export default function RecipeIngredientsFields({
 	handleChangeIngredientUnit,
 	handleDeleteIngredient,
 }) {
-	// const [state, setState] = useState([1]);
+	const dispatch = useDispatch();
+	const ingredientsListOptions = useSelector(selectIngredients);
+
+	useEffect(() => {
+		dispatch(allIngredients());
+	}, [dispatch]);
 
 	return (
 		<div className={css.wraper}>
@@ -41,7 +42,9 @@ export default function RecipeIngredientsFields({
 					<li key={el._id}>
 						<div className={css.selectWraper}>
 							<Select
-								options={options}
+								options={ingredientsListOptions.map(ing => {
+									return { value: ing.title, label: ing.title, id: ing._id };
+								})}
 								onChange={evt => handleChangeIngredientName(evt, index)}
 								placeholder={"Select ingredient"}
 								required
