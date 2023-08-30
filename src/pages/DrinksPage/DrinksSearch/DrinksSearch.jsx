@@ -1,6 +1,5 @@
-import React from 'react';
 import css from './DrinksSearch.module.scss';
-import { ReactComponent as SearchIcon } from '../../../images/search.svg';
+import icons from '../../../images/search.svg';
 import Select from 'react-select';
 
 const options = [
@@ -20,7 +19,9 @@ const DrinksSearch = () => {
         />
         <div className={css.button}>
           <div className={css.hoverWrapper}>
-            <SearchIcon className={css.icon} />
+            <svg className={css.search_icon}>
+					<use href={icons}></use>
+				</svg>
           </div>
         </div>
       </div>

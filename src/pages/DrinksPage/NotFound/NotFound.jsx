@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import cocktailMob1 from '../../../images/static/drinks/cocktailMob1.png';
 import cocktailMob2 from '../../../images/static/drinks/cocktailMob2.png';
 import cocktailTabDesc1 from '../../../images/static/drinks/cocktailTabDesc1.png';
@@ -29,4 +31,8 @@ export const NotFound = ({ message }) => {
       <p className={css.message}>{message}</p>
     </div>
   );
+};
+
+NotFound.propTypes = {
+  message: PropTypes.string.isRequired,
 };

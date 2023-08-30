@@ -4,15 +4,15 @@ import { useLocation, useNavigate } from "react-router";
 
 // import { MainPageTitle, Container } from "components";
 
-import { DrinksSearch } from './DrinksSearch/DrinksSearch';
-import { DrinksList } from './DrinksList/DrinksList';
-import { Container } from '../../components/Container/Container';
+import DrinksSearch from './DrinksSearch/DrinksSearch';
+import DrinksList from './DrinksList/DrinksList';
+import Container from '../../components/Container/Container';
 
 import { allCategory, allIngredients } from "../../redux/operations/recipiesOperations";
 
-import { selectCategories, selectIngredients } from "../../redux/selectors";
+import { selectCategories, selectIngredients } from "../../redux/selectors/recipieSelectors";
 
-import { useMediaRules } from "hooks";
+// import { useMediaRules } from "hooks";
 import css from "./DrinksPage.module.scss";
 
 
@@ -22,12 +22,12 @@ const DrinksPage = () => {
 	const categoryFromLocation = useLocation();
 	const categoryName = categoryFromLocation?.state?.from;
 	categoryName && dispatch(byCategory(categoryName));
-	const { isDesktop } = useMediaRules();
+	// const { isDesktop } = useMediaRules();
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
 	const page = useSelector(selectPage);
 	const search = useSelector(selectSearchResults);
-	const limit = isDesktop ? 9 : 8;
+	// const limit = isDesktop ? 9 : 8;
 
 	useEffect(() => {
 		if (categoriesList.length !== 0) return;
