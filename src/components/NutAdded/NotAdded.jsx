@@ -1,7 +1,9 @@
+import PropTypes from "prop-types";
+
 import Container from "../Container/Container";
 import css from "./NotAdded.module.scss";
 
-export default function NotAdded() {
+export default function NotAdded({ text }) {
 	return (
 		<Container>
 			<div className={css.wrapDiv}>
@@ -10,8 +12,12 @@ export default function NotAdded() {
 					src={DrinkDefault}
 					alt="No added recipes"
 				/>
-				<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
+				<p className={css.notFavoriteText}>{text}</p>
 			</div>
 		</Container>
 	);
 }
+
+NotAdded.propTypes = {
+	text: PropTypes.string.isRequired,
+};
