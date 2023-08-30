@@ -11,7 +11,6 @@ export default function Header() {
 	const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1280);
 
 	const updateMedia = () => {
-		console.log(isDesktop);
 		setIsDesktop(window.innerWidth >= 1280);
 	};
 
