@@ -12,6 +12,8 @@ export default function RecipeDescriptionFields({
 	name,
 	updateImg,
 	handleSelectData,
+	errors,
+	touched,
 }) {
 	return (
 		<div className={css.wraper}>
@@ -59,23 +61,33 @@ export default function RecipeDescriptionFields({
 						type="text"
 						placeholder="Enter item title"
 					/>
+					{errors.titleRecipe && touched.titleRecipe ? (
+						<div className={css.validate}>{errors.titleRecipe}</div>
+					) : (
+						<div className={css.validate}></div>
+					)}
 					<Field
 						className={css.fieldStyle}
 						name={name}
 						type="text"
 						placeholder="Enter about recipe"
 					/>
+					{errors.aboutRecipe && touched.aboutRecipe ? (
+						<div className={css.validate}>{errors.aboutRecipe}</div>
+					) : (
+						<div className={css.validate}></div>
+					)}
 				</div>
 				<Select
 					onChange={({ value }) => handleSelectData("category", value)}
 					options={optionsCategories}
-					defaultValue={{ value: "cocktail", label: "Cocktail" }}
+					defaultValue={{ value: "Cocktail", label: "Cocktail" }}
 					required
 				/>
 				<Select
 					onChange={({ value }) => handleSelectData("glass", value)}
 					options={optionsGlasses}
-					defaultValue={{ value: "highball glass", label: "Highball glass" }}
+					defaultValue={{ value: "Highball glass", label: "Highball glass" }}
 					required
 				/>
 			</div>
@@ -89,4 +101,6 @@ RecipeDescriptionFields.propTypes = {
 	imgURL: PropTypes.string,
 	handleSelectData: PropTypes.func,
 	updateImg: PropTypes.func,
+	errors: PropTypes.object,
+	touched: PropTypes.object,
 };
