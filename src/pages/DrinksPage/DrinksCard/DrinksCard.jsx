@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import drink from '../../../images/static/drinks/DrinkDefault.jpg';
+// import { SeeButton, DeleteButton } from 'components'; !!!!!!
+import drinkDefault from '../../../images/static/drinks/DrinkDefault.jpg';
 import css from './DrinkCard.module.scss';
 
-export const DrinkCard = ({ cocktail }) => {
-  return (
+export default function DrinkCard({ id, drink, drinkThumb, about, page }) {
+    return (
     <div className={css.card}>
-      <Link to={`/main/recipe/${cocktail._id}`}>
+      <Link to={`/recipes/${id}`}>
         <div className={css.oneMoreWrapper}>
           <div className={css.imageWrapper}>
             <img
-              src={cocktail.drinkThumb}
-              alt={cocktail.drink}
+              src={drinkThumb}
+              alt={drink}
               onError={e => {
-                e.currentTarget.src = drink;
+                e.currentTarget.src = drinkDefault;
               }}
               className={css.image}
             />
@@ -21,14 +22,24 @@ export const DrinkCard = ({ cocktail }) => {
         </div>
       </Link>
       <div className={css.wrapper}>
-        <div className={css.ingredientsWrapper}>
-          <Link to={`/main/recipe/${cocktail._id}`}>
-            <p className={css.drinkingreds}>{cocktail.drink}</p>
+        <div className={`${css.ingredientsWrapper} ${page === 'my' || page === 'favorite' ? css.my : ''}`}>
+          <Link to={`/recipe/${id}`}>
+            <p className={css.drinkingreds}>{drink}</p>
           </Link>
           <span className={css.ingredients}>Ingredients</span>
         </div>
       </div>
-      <p className={css.aboutStyled}>{cocktail.about}</p>
+      {(page === 'my' || page === 'favorite') && (
+        <p className={css.aboutStyled}>{about}</p>
+      )}
+      <div className={css.buttonsWrapper}>
+        {(page === 'my' || page === 'favorite') && (
+          <SeeButton id={id} />
+        )}
+        {(page === 'my' || page === 'favorite') && (
+          <DeleteButton id={id} page={page} />
+        )}
+      </div>
     </div>
   );
 };

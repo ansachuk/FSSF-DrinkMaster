@@ -1,18 +1,18 @@
-@import '../../../scss/';
+@import "../../scss";
 
 .section {
-  padding-top: 80px;
-  padding-bottom: 80px;
+	padding-top: 80px;
+	padding-bottom: 80px;
 
-@include tablet {
-    padding-top: 140px;
-    padding-bottom: 136px;
-  }
+	@include tablet {
+		padding-top: 140px;
+		padding-bottom: 136px;
+	}
 
-  @include desktop {
-    flex-direction: row;
-    gap: 94px;
-    padding-top: 160px;
-    padding-bottom: 140px;
-  }
+	@include desktop {
+		flex-direction: row;
+		gap: 94px;
+		padding-top: 160px;
+		padding-bottom: 140px;
+	}
 }

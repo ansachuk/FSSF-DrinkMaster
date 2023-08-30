@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 
-// import { DrinksSearch, DrinksList, MainPageTitle, Container } from "components";
+// import { MainPageTitle, Container } from "components";
 
 import { DrinksSearch } from './DrinksSearch/DrinksSearch';
 import { DrinksList } from './DrinksList/DrinksList';
@@ -58,7 +58,7 @@ const DrinksPage = () => {
 	useEffect(() => {
 		dispatch(search({ search, page, limit }));
 		navigate(
-			`/recepies/searchResults${encodeURIComponent(search.chosenCategory)}?query=${encodeURIComponent(
+			`/recipes/searchResults${encodeURIComponent(search.chosenCategory)}?query=${encodeURIComponent(
 				search.query,
 			)}&ingredient=${search.chosenIngredient}&page=${page}`,
 		);
