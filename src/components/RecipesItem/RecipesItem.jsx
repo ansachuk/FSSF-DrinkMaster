@@ -5,10 +5,10 @@ import SeeButton from "../../components/SeeButton/SeeButton";
 import imgDefault from "../../images/static/my-recepies/imgdefault.jpg";
 import css from "./RecipesItem.module.scss";
 
-export default function RecipesItem({ id, drink, drinkThumb, about, page }) {
+export default function RecipesItem({ _id, drink, drinkThumb, about, page }) {
 	return (
 		<div className={css.card}>
-			<Link to={`/recipes/${id}`}>
+			<Link to={`/recipe/${_id}`}>
 				<div className={css.imageBox}>
 					<div className={css.imageWrapper}>
 						<img
@@ -33,7 +33,7 @@ export default function RecipesItem({ id, drink, drinkThumb, about, page }) {
 				{(page === "my" || page === "favorite") && <SeeButton id={id} />}
 				{(page === "my" || page === "favorite") && (
 					<DeleteButton
-						id={id}
+						id={_id}
 						page={page}
 					/>
 				)}

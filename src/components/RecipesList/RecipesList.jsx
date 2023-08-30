@@ -13,7 +13,7 @@ export default function RecipesList() {
 				<div className={css.recipesList}>
 					{favoriteCocktails.map(favoriteCocktail => (
 						<RecipesItem
-							key={favoriteCocktail.id}
+							key={favoriteCocktail._id}
 							page={"favorite"}
 							recipes={favoriteCocktails}
 						/>
@@ -49,30 +49,30 @@ export default function RecipesList() {
 // 		setCocktails(updatedCocktails);
 // 	};
 
-// 	return (
-// 		<div className={css.section}>
-// 			{Array.isArray(cocktails) && cocktails.length !== 0 ? (
-// 				<div className={css.recipesList}>
-// 					{cocktails.map(favoriteCocktail => (
-// 						<RecipesItem
-// 							key={favoriteCocktail._id}
-// 							drink={favoriteCocktail.drink}
-// 							drinkThumb={favoriteCocktail.drinkThumb}
-// 							about={favoriteCocktail.about}
-// 							onDeleteClick={() => handleDelete(favoriteCocktail._id, "favorite")}
-// 						/>
-// 					))}
-// 				</div>
-// 			) : (
-// 				<div className={css.wrapDiv}>
-// 					<img
-// 						className={css.notFoundImg}
-// 						src={DrinkDefault}
-// 						alt="No added cocktails"
-// 					/>
-// 					<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
-// 				</div>
-// 			)}
-// 		</div>
-// 	);
-// }
+// // 	return (
+// // 		<div className={css.section}>
+// // 			{Array.isArray(cocktails) && cocktails.length !== 0 ? (
+// // 				<div className={css.recipesList}>
+// // 					{cocktails.map(favoriteCocktail => (
+// // 						<RecipesItem
+// // 							key={favoriteCocktail._id}
+// // 							drink={favoriteCocktail.drink}
+// // 							drinkThumb={favoriteCocktail.drinkThumb}
+// // 							about={favoriteCocktail.about}
+// // 							onDeleteClick={() => handleDelete(favoriteCocktail._id, "favorite")}
+// // 						/>
+// // 					))}
+// // 				</div>
+// // 			) : (
+// // 				<div className={css.wrapDiv}>
+// // 					<img
+// // 						className={css.notFoundImg}
+// // 						src={DrinkDefault}
+// // 						alt="No added cocktails"
+// // 					/>
+// // 					<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
+// // 				</div>
+// // 			)}
+// // 		</div>
+// // 	);
+// // }
