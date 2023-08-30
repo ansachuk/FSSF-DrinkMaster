@@ -14,9 +14,9 @@ import MainButton from "../../../../components/MainButton/MainButton";
 import { add } from "../../../../redux/operations/recipiesOperations";
 
 const schema = yup.object().shape({
-	titleRecipe: yup.string().min(3, "must be at least 3 characters").required("name is required"),
-	aboutRecipe: yup.string().min(3, "must be at least 3 characters").required("name is required"),
-	textareaRecipe: yup.string().min(3, "must be at least 3 characters").required("name is required"),
+	titleRecipe: yup.string().min(2, "Too Short!").max(50, "Too Long!").required("required field"),
+	aboutRecipe: yup.string().min(2, "Too Short!").max(60, "Too Long!").required("required field"),
+	textareaRecipe: yup.string().min(10, "Too Short!").required("required field"),
 });
 
 const formikInitialValues = {
@@ -51,7 +51,6 @@ export default function AddRecipeForm() {
 				...prevState,
 				{
 					_id: nanoid(),
-					// id: "",
 					title: "",
 					unitQuantity: "",
 					unit: "",
@@ -73,7 +72,6 @@ export default function AddRecipeForm() {
 		const tmpList = [...ingredientList];
 		tmpList[index] = {
 			...tmpList[index],
-			// id: e.value,
 			title: e.label,
 		};
 		setIngredientList(tmpList);
@@ -120,7 +118,6 @@ export default function AddRecipeForm() {
 			ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
 				title,
 				measure: unitQuantity.concat(` ${unit}`),
-				// measureQuantity: unitQuantity,
 			})),
 		};
 
@@ -147,31 +144,39 @@ export default function AddRecipeForm() {
 				onSubmit={handleSubmit}
 				validationSchema={schema}
 			>
-				<Form autoComplete="off">
-					<RecipeDescriptionFields
-						imgUrlFormik="imgUrlFormik"
-						imgURL={imgURL}
-						$name="titleRecipe"
-						name="aboutRecipe"
-						handleSelectData={handleSelectData}
-						updateImg={handleFileChange}
-					/>
-					<RecipeIngredientsFields
-						name="amountIngredien"
-						ingredientList={ingredientList}
-						handleIncIngredients={handleIncIngredients}
-						handleDecIngredients={handleDecIngredients}
-						handleChangeIngredientName={handleChangeIngredientName}
-						handleChangeUnitQuantity={handleChangeUnitQuantity}
-						handleChangeIngredientUnit={handleChangeIngredientUnit}
-						handleDeleteIngredient={handleDeleteIngredient}
-					/>
-					<RecipePreparationFields name="textareaRecipe" />
-					<MainButton
-						type="submit"
-						title="Add"
-					/>
-				</Form>
+				{({ errors, touched }) => (
+					<Form autoComplete="off">
+						<RecipeDescriptionFields
+							imgUrlFormik="imgUrlFormik"
+							imgURL={imgURL}
+							$name="titleRecipe"
+							name="aboutRecipe"
+							handleSelectData={handleSelectData}
+							updateImg={handleFileChange}
+							errors={errors}
+							touched={touched}
+						/>
+						<RecipeIngredientsFields
+							name="amountIngredien"
+							ingredientList={ingredientList}
+							handleIncIngredients={handleIncIngredients}
+							handleDecIngredients={handleDecIngredients}
+							handleChangeIngredientName={handleChangeIngredientName}
+							handleChangeUnitQuantity={handleChangeUnitQuantity}
+							handleChangeIngredientUnit={handleChangeIngredientUnit}
+							handleDeleteIngredient={handleDeleteIngredient}
+						/>
+						<RecipePreparationFields
+							name="textareaRecipe"
+							errors={errors}
+							touched={touched}
+						/>
+						<MainButton
+							type="submit"
+							title="Add"
+						/>
+					</Form>
+				)}
 			</Formik>
 		</div>
 	);

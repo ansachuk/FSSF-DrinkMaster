@@ -10,7 +10,6 @@
 
 .textareaStyle {
 	width: 100%;
-	margin-bottom: 16px;
 	padding: 16px;
 	color: $mainFontColor;
 	background-color: transparent;
@@ -30,4 +29,14 @@
 	:focus {
 		border-color: $mainFontColor;
 	}
+}
+
+.validate {
+	margin-top: -36px;
+	margin-bottom: 36px;
+	margin-left: 16px;
+	height: 20px;
+	font-size: 12px;
+	letter-spacing: 0.28px;
+	color: #da1414;
 }
