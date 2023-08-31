@@ -3,6 +3,7 @@
 .icon {
 	width: 32px;
 	height: 32px;
+	stroke: $mainBtnBackgroundColor;
 
 	@include tablet {
 		width: 38px;
