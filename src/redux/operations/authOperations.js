@@ -51,9 +51,9 @@ const refresh = createAsyncThunk("auth/refresh", async (token, { rejectWithValue
 	}
 });
 
-const subscribe = createAsyncThunk("/subscribe", async (creds, { rejectWithValue }) => {
+const subscribe = createAsyncThunk("auth/subscribe", async (creds, { rejectWithValue }) => {
 	try {
-		const res = await instance.patch("/subscribe", creds);
+		const res = await instance.patch("users/subscribe", creds);
 		return res.data;
 	} catch (e) {
 		return rejectWithValue(e.message);
