@@ -1,8 +1,10 @@
 import MainButton from "../../../../MainButton/MainButton";
 import icons from "../../../../../images/icons.svg";
+import defaultUserImage from "../../../../../images/static/user/user.jpg";
 import css from "./EditProfileModal.module.scss";
 import buttonCss from "../../../../MainButton/MainButton.module.scss";
 import PropTypes from "prop-types";
+import { Formik, Field, Form } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../../../redux/selectors/authSelectors";
@@ -11,65 +13,61 @@ import { Notify } from "notiflix";
 
 export default function EditProfileModal({ handlerEditProfileClick }) {
 	const dispatch = useDispatch();
-	const { name, avatarURL } = useSelector(selectUser);
+	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
-	const [image, setImage] = useState({ preview: avatarURL, data: null });
-	const [userName, setUserName] = useState(name);
+	const [image, setImage] = useState(null);
+	const [imgURL, setImageURL] = useState(null);
 	const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
 	const userInfoFormSubmit = e => {
 		e.preventDefault();
 
-		if (userName === name && !image.data) {
+		const updatedUserName = e.target.elements.user_name.value;
+
+		if (!isButtonEnabled) {
 			setIsButtonEnabled(false);
 			Notify.failure("No data changed");
 			return;
 		}
-		const updatedUserName = e.target.elements.user_name.value;
-		setUserName(updatedUserName);
 
 		const formData = new FormData();
-		formData.append("file", image.data);
-		formData.append("userName", userName);
+
+		formData.append("name", updatedUserName);
+		if (image) {
+			formData.append("avatarURL", image);
+		}
 
 		dispatch(update(formData));
 
-		// e.target.reset();
 		handlerEditProfileClick();
 	};
 
 	const onImageChange = e => {
-		const img = {
-			preview: URL.createObjectURL(e.target.files[0]),
-			data: e.target.files[0],
-		};
-		setImage(img);
+		const [_file] = e.target.files;
+		setImageURL(URL.createObjectURL(_file));
+		setImage(_file);
 		setIsButtonEnabled(true);
 	};
 
 	const onNameChange = e => {
-		if (userName !== e.target.value) {
+		if (name !== e.target.value) {
 			setIsButtonEnabled(true);
+		} else if (name === e.target.value && imgURL === null) {
+			setIsButtonEnabled(false);
 		}
 	};
 
 	useEffect(() => {
-		if (userName !== name) {
-			setIsButtonEnabled(true);
-		}
-	}, [userName, name]);
-
-	useEffect(() => {
 		const userImage = document.getElementById("user_image");
-		if (image.preview) {
-			userImage.src = image.preview;
+		if (imgURL) {
+			userImage.src = imgURL;
 		}
 		return () => {
-			if (image.preview) {
-				URL.revokeObjectURL(image.preview);
+			if (imgURL) {
+				URL.revokeObjectURL(imgURL);
 			}
 		};
-	}, [image.preview]);
+	}, [imgURL]);
 
 	return (
 		<div className={css.edit_container}>
@@ -81,46 +79,53 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 					<use href={icons + "#close"}></use>
 				</svg>
 			</button>
-			<form onSubmit={userInfoFormSubmit}>
-				<div className={css.icon_container}>
-					<img
-						src={avatarURL}
-						alt="User photo"
-						id="user_image"
-						className={css.user_large_icon}
-					/>
-					<input
-						id="file_upload"
-						type="file"
-						onChange={onImageChange}
-					/>
-					<label htmlFor="file_upload">
-						<svg
-							className={css.plus_icon}
-							viewBox="-5 -5 70 100"
-						>
-							<use href={icons + "#plus"}></use>
+			<Formik
+				initialValues={{ avatarURL: "", user_name: `${name}` }}
+				onSubmit={userInfoFormSubmit}
+			>
+				<Form>
+					<div className={css.icon_container}>
+						<img
+							src={avatarURL}
+							alt="User photo"
+							id="user_image"
+							className={css.user_large_icon}
+						/>
+						<Field
+							id="file_upload"
+							type="file"
+							name="avatarURL"
+							onChange={onImageChange}
+						/>
+						<label htmlFor="file_upload">
+							<svg
+								className={css.plus_icon}
+								viewBox="-5 -5 70 100"
+							>
+								<use href={icons + "#plus"}></use>
+							</svg>
+						</label>
+					</div>
+					<label className={css.input_container}>
+						<Field
+							id="user_name"
+							name="user_name"
+							type="text"
+							// defaultValue={name}
+							className={css.input}
+							onChange={onNameChange}
+						/>
+						<svg className={css.input_pen_icon}>
+							<use href={icons + "#pen"}></use>
 						</svg>
 					</label>
-				</div>
-				<label className={css.input_container}>
-					<input
-						id="user_name"
-						type="text"
-						defaultValue={name}
-						className={css.input}
-						onChange={onNameChange}
+					<MainButton
+						disabled={!isButtonEnabled}
+						propClass={buttonCss.largeButton}
+						title="Save changes"
 					/>
-					<svg className={css.input_pen_icon}>
-						<use href={icons + "#pen"}></use>
-					</svg>
-				</label>
-				<MainButton
-					disabled={!isButtonEnabled}
-					propClass={buttonCss.largeButton}
-					title="Save changes"
-				/>
-			</form>
+				</Form>
+			</Formik>
 		</div>
 	);
 }
