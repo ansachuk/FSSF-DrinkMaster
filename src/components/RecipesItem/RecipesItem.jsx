@@ -24,7 +24,7 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteCli
 			</Link>
 			<div>
 				<div
-					position={page}
+					style={{ position: page }}
 					className={css.ingredientsWrapper}
 				>
 					<Link to={`/recipe/${_id}`}>
