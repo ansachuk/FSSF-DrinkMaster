@@ -9,10 +9,10 @@ import { selectMainCocktails } from "../../redux/selectors/recipieSelectors";
 import OtherDrinksButton from "./OtherDrinksButton/OtherDrinksButton";
 
 export default function MainPage() {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const category = useSelector(selectMainCocktails);
 
-	// console.log(category);
+	console.log(category);
 
 	const ordinaryDrink = category.filter(item => {
 		return item.category === "Ordinary Drink";
@@ -30,17 +30,17 @@ export default function MainPage() {
 		return item.category === "Other/Unknown";
 	});
 
-	// useEffect(() => {
-	// 	if (category !== undefined && category.length === 0) dispatch(mainPage());
-	// }, []);
+	useEffect(() => {
+		if (category.length === 0) dispatch(mainPage());
+	}, []);
 
 	// useEffect(() => {
 	// 	window.scrollTo(0, 0);
 	// }, []);
 
 	return (
-		// <>
-		// {category !== undefined && (
+		// e<>
+		// 	{catgory !== undefined && (
 		<>
 			<HeroSection />
 			<PreviewDrinks
@@ -61,8 +61,7 @@ export default function MainPage() {
 			/>
 			<OtherDrinksButton />
 		</>
-		// )
-		// }
+		// 	)}
 		// </>
 	);
 }
