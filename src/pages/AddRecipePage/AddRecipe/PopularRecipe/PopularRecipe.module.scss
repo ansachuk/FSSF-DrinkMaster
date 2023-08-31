@@ -1,5 +1,64 @@
 @import "../../../../scss";
 
-.mainButton {
-	padding: 14px 40px;
+.wrapper {
+	display: flex;
+	gap: 28px;
+	flex-direction: column;
+	margin-bottom: 80px;
+}
+
+.title {
+	color: $mainFontColor;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: calc(24 / 18);
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.link {
+	display: flex;
+	gap: 14px;
+	border-right: 1px solid transparent;
+
+	transition-property: border-color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	:focus {
+		border-color: $mainFontColor;
+	}
+}
+
+.image {
+	width: 90px;
+	height: 90px;
+	border-radius: 8px;
+}
+
+.textWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.subtitle {
+	color: $mainFontColor;
+	font-size: 16px;
+	font-weight: $fontWeightMedium;
+	line-height: calc(22 / 16);
+}
+
+.text {
+	color: rgba(243, 243, 243, 0.5);
+	text-overflow: ellipsis;
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	height: 55px;
+	overflow: hidden;
 }
