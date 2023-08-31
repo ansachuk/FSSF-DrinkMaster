@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, signup, logout, refresh } from "../operations/authOperations";
+import { login, signup, logout, refresh, update, subscribe } from "../operations/authOperations";
 import { handlePending, handleRejected, handleFullfilled } from "../utils";
 
 const initialState = {
@@ -29,6 +29,15 @@ const handleLogin = (state, { payload: { token, user } }) => {
 	handleFullfilled(state);
 };
 
+const handleUpdate = (state, { payload }) => {
+	state.user.avatarURL = payload.avatarURL || null;
+	state.user.name = payload.name || null;
+};
+
+const handleSubcribe = (state, { payload }) => {
+	state.user.subscribe = payload;
+};
+
 const handleRefresh = (state, { payload }) => {
 	state.user = payload;
 	state.isLoggedIn = true;
@@ -51,6 +60,8 @@ const authSlice = createSlice({
 		builder
 			.addCase(signup.fulfilled, handleSignUp)
 			.addCase(login.fulfilled, handleLogin)
+			.addCase(update.fulfilled, handleUpdate)
+			.addCase(subscribe.fulfilled, handleSubcribe)
 			.addCase(logout.fulfilled, handleLogout)
 			.addCase(refresh.fulfilled, handleRefresh)
 

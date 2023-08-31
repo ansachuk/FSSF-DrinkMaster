@@ -30,12 +30,19 @@ const initialState = {
 	ingredients: [],
 	searchResults: [],
 	isLoading: false,
+	page: 1,
+	totalHits: 0,
 	error: null,
 };
 
 const recepiesSlice = createSlice({
 	name: "recipes",
 	initialState,
+	reducers: {
+		setPage: (state, { payload }) => {
+			state.page = payload;
+		},
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(allCategory.fulfilled, (state, { payload }) => {
@@ -75,9 +82,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(remove.fulfilled, (state, { payload }) => {
-				//!! what in responce?
-				// state.own.push(payload);
-				console.log(payload);
+				state.own = state.own.filter(({ _id }) => _id !== payload._id);
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {
@@ -89,9 +94,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
-				//!! what in responce?
-				// state.own.push(payload);
-				console.log(payload);
+				state.favorite = state.favorite.filter(({ _id }) => _id !== payload._id);
 				handleFullfilled(state);
 			})
 			.addCase(popular.fulfilled, (state, { payload }) => {

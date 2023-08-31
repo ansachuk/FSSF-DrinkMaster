@@ -5,16 +5,38 @@
 }
 
 .imageContainer {
-	display: inline-flex;
+	// width: 335px;
+	height: 320px;
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 18px;
 	margin-top: 40px;
-	width: 335px;
-	height: 320px;
+	margin-bottom: 40px;
 	border-radius: 8px;
 	background: rgba(22, 31, 55, 0.5);
+	border: 1px solid rgba(22, 31, 55, 0.5);
+	cursor: pointer;
+	transition-property: border-color, border;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		border: 1px solid rgba(243, 243, 243);
+	}
+}
+
+.image {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.imageInput {
+	display: none;
 }
 
 .btnContainer {
@@ -35,4 +57,38 @@
 	font-size: 16px;
 	font-weight: $fontWeightMedium;
 	line-height: calc(20 / 16);
+}
+
+.inputWraper {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	width: 100%;
+}
+
+.fieldStyle {
+	font-size: 14px;
+	letter-spacing: -0.28px;
+	padding-bottom: 14px;
+	color: $mainFontColor;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid rgba(243, 243, 243, 0.5);
+
+	transition-property: border-color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	:focus {
+		border-color: $mainFontColor;
+	}
+}
+
+.validate {
+	height: 30px;
+	font-size: 12px;
+	letter-spacing: 0.28px;
+	color: #da1414;
 }

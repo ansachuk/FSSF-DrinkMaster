@@ -17,7 +17,14 @@
 		display: block;
 	}
 
+	& a {
+		padding: 8px 16px;
+		border: 1px solid rgba(243, 243, 243, 0.2);
+		border-radius: 40px;
+	}
+
 	& [class="active"] {
+		padding: 8px 16px;
 		background-color: rgba(243, 243, 243, 0.2);
 	}
 }
@@ -37,7 +44,7 @@
 }
 
 .item {
-	padding: 8px 16px;
+	display: flex;
 	border: 1px solid rgba(243, 243, 243, 0.2);
 	border-radius: 40px;
 	font-size: 14px;
@@ -51,10 +58,4 @@
 	&:focus {
 		transform: scale(1.1);
 	}
-}
-
-.link {
-	// padding: 8px 16px;
-	// border: 1px solid rgba(243, 243, 243, 0.2);
-	// border-radius: 40px;
 }

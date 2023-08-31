@@ -1,0 +1,98 @@
+@import '../../../scss/';
+
+.ingredientsTitle {
+    opacity: 50%;
+    font-size: $SecondaryFontSize;
+    line-height: calc(20/16);
+    font-weight: $fontWeightMedium;
+    margin-bottom: 20px;
+
+    @include tablet {
+        margin-bottom: 24px;
+    }
+}
+
+.ingredientsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(157px, 1fr));
+    gap: 21px;
+    margin-bottom: 80px;
+
+    @include tablet {
+        gap: 22px;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    @include desktop {
+        gap: 35px;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        margin-bottom: 100px;
+    }
+}
+
+.ingredientImage {
+    width: 157px;
+    margin-bottom: 8px;
+
+    @include tablet {
+        width: 220px;
+        margin-bottom: 14px;
+    }
+}
+
+.defaultImageBg {
+    width: 157px;
+    height: 157px;
+    background-color: $accentColor;
+    opacity: 50%;
+    position: relative;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+.defaultImageIcon {
+    width: 89px;
+    height: 91px;
+    position: absolute;
+    padding: auto;
+}
+
+.ingredientProps {
+    display: flex;
+    justify-content: space-between;
+    width: 157px;
+
+    @include tablet {
+        width: 220px;
+    }
+}
+
+.ingredientTitle {
+    font-size: $mainFontSize;
+    line-height: calc(18/14);
+    font-weight: $fontWeightMedium;
+
+    @include tablet {
+        font-size: 18px;
+        line-height: calc(24/18);
+    }
+}
+
+.ingredientMeasure {
+    opacity: 50%;
+    font-size: $mainFontSize;
+    line-height: calc(18/14);
+    font-weight: $fontWeightMedium;
+
+    @include tablet {
+        font-size: $SecondaryFontSize;
+        line-height: calc(20/16);
+    }
+}
