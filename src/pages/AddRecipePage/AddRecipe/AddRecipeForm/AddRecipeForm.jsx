@@ -5,7 +5,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { Notify } from "notiflix";
 import * as yup from "yup";
 // import { useNavigate } from "react-router";
-// import PropTypes from "prop-types";
+
 // import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
 import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredientsFields";
@@ -35,10 +35,12 @@ export default function AddRecipeForm() {
 	});
 	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
 	const [imgURL, setImageURL] = useState(null);
+	const [image, setImage] = useState(null);
 
 	const handleFileChange = e => {
 		const [_file] = e.target.files;
 		setImageURL(URL.createObjectURL(_file));
+		setImage(_file);
 	};
 
 	const handleSelectData = (type, value) => {
@@ -108,7 +110,7 @@ export default function AddRecipeForm() {
 		}
 
 		const formData = new FormData();
-		formData.append("drinkThumb", imgURL);
+		formData.append("drinkThumb", image);
 		const formattedRecipe = {
 			drink: values.titleRecipe,
 			about: values.aboutRecipe,
@@ -181,9 +183,3 @@ export default function AddRecipeForm() {
 		</div>
 	);
 }
-
-// AddRecipeForm.propTypes = {
-// title: PropTypes.string.isRequired,
-// propClass: PropTypes.string,
-// disabled: PropTypes.bool,
-// };
