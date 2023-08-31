@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-
-// import { MainPageTitle, Container } from "components";
-
+import MainTitle from '../../components/MainTitle/MainTitle';
 import DrinksSearch from './DrinksSearch/DrinksSearch';
 import DrinksList from './DrinksList/DrinksList';
 import Container from '../../components/Container/Container';
@@ -57,7 +55,7 @@ const DrinksPage = () => {
 	return (
 		<Container>
 			<section className={css.section}>
-				
+				<MainTitle title={'Drinks'} />
 				<DrinksSearch categoryName={categoryName} />
 				<DrinksList />
 				
