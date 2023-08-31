@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import { Field } from "formik";
 import Select from "react-select";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import css from "./RecipeDescriptionFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import { optionsCategories } from "../../../../data/drinksData";
 import { optionsGlasses } from "../../../../data/drinksData";
+import { allCategory } from "../../../../redux/operations/recipiesOperations";
+// import { selectCategories } from "../../../../redux/selectors/recipieSelectors";
 
 export default function RecipeDescriptionFields({
 	imgURL,
@@ -15,6 +19,13 @@ export default function RecipeDescriptionFields({
 	errors,
 	touched,
 }) {
+	const dispatch = useDispatch();
+	// const optionsCategories = useSelector(selectCategories);
+
+	useEffect(() => {
+		dispatch(allCategory());
+	}, [dispatch]);
+
 	return (
 		<div className={css.wraper}>
 			<label className={css.imageContainer}>
