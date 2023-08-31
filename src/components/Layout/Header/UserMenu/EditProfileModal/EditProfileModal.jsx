@@ -4,6 +4,7 @@ import defaultUserImage from "../../../../../images/static/user/user.jpg";
 import css from "./EditProfileModal.module.scss";
 import buttonCss from "../../../../MainButton/MainButton.module.scss";
 import PropTypes from "prop-types";
+import { Formik, Field, Form } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../../../redux/selectors/authSelectors";
@@ -78,47 +79,53 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 					<use href={icons + "#close"}></use>
 				</svg>
 			</button>
-			<form onSubmit={userInfoFormSubmit}>
-				<div className={css.icon_container}>
-					<img
-						src={avatarURL}
-						alt="User photo"
-						id="user_image"
-						className={css.user_large_icon}
-					/>
-					<input
-						id="file_upload"
-						type="file"
-						name="avatarURL"
-						onChange={onImageChange}
-					/>
-					<label htmlFor="file_upload">
-						<svg
-							className={css.plus_icon}
-							viewBox="-5 -5 70 100"
-						>
-							<use href={icons + "#plus"}></use>
+			<Formik
+				initialValues={{ avatarURL: "", user_name: `${name}` }}
+				onSubmit={userInfoFormSubmit}
+			>
+				<Form>
+					<div className={css.icon_container}>
+						<img
+							src={avatarURL}
+							alt="User photo"
+							id="user_image"
+							className={css.user_large_icon}
+						/>
+						<Field
+							id="file_upload"
+							type="file"
+							name="avatarURL"
+							onChange={onImageChange}
+						/>
+						<label htmlFor="file_upload">
+							<svg
+								className={css.plus_icon}
+								viewBox="-5 -5 70 100"
+							>
+								<use href={icons + "#plus"}></use>
+							</svg>
+						</label>
+					</div>
+					<label className={css.input_container}>
+						<Field
+							id="user_name"
+							name="user_name"
+							type="text"
+							// defaultValue={name}
+							className={css.input}
+							onChange={onNameChange}
+						/>
+						<svg className={css.input_pen_icon}>
+							<use href={icons + "#pen"}></use>
 						</svg>
 					</label>
-				</div>
-				<label className={css.input_container}>
-					<input
-						id="user_name"
-						type="text"
-						defaultValue={name}
-						className={css.input}
-						onChange={onNameChange}
+					<MainButton
+						disabled={!isButtonEnabled}
+						propClass={buttonCss.largeButton}
+						title="Save changes"
 					/>
-					<svg className={css.input_pen_icon}>
-						<use href={icons + "#pen"}></use>
-					</svg>
-				</label>
-				<MainButton
-					disabled={!isButtonEnabled}
-					propClass={buttonCss.largeButton}
-					title="Save changes"
-				/>
-			</form>
+				</Form>
+			</Formik>
 		</div>
 	);
 }
