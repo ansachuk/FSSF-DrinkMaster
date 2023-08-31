@@ -1,0 +1,38 @@
+@import "../../scss/";
+
+.wrapDiv {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 14px;
+	@include tablet {
+		gap: 18px;
+	}
+}
+
+.notFoundImg {
+	width: 375px;
+	height: 517px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	@include tablet {
+		width: 465px;
+		height: 500px;
+	}
+}
+
+.notFavoriteText {
+	width: 205px;
+	color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: calc(18 / 14);
+	@include tablet {
+		width: 236px;
+		font-size: 16px;
+		line-height: calc(22 / 16);
+	}
+}
