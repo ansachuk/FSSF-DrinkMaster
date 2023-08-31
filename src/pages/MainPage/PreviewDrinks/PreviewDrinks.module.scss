@@ -1,29 +1,56 @@
+@import "../../../scss/";
+
 .section {
-	max-width: 1240px;
-	height: 522px;
-	margin-bottom: 80px;
+	width: 335px;
+	height: 448px;
+	margin: 0 auto 40px auto;
 	overflow: hidden;
+
+	@include tablet {
+		width: 704px;
+		height: 482px;
+		margin: 0 auto 80px auto;
+	}
+
+	@include desktop {
+		width: 1240px;
+		height: 522px;
+		margin: 0 auto 80px auto;
+	}
 }
 
 .sectionTitle {
 	color: #f3f3f3;
 	font-family: Manrope, sans-serif;
-	font-size: 40px;
+	font-size: 28px;
 	font-weight: 600;
-	line-height: 44px;
-	margin-bottom: 40px;
+	line-height: 32px;
+	margin-bottom: 24px;
+
+	@include tablet {
+		wifont-size: 40px;
+		line-height: 44px;
+		margin-bottom: 40px;
+	}
 }
 
-.cardwrapper {
-	position: relative;
-	width: 400px;
-	height: 438px;
-	margin-left: auto;
-	margin-right: auto;
-	// display: flex;
-	// gap: 20px;
-	// justify-content: space-between;
+.sectionList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	gap: 20px;
 }
+
+// .cardwrapper {
+// 	position: relative;
+// 	width: 400px;
+// 	height: 438px;
+// 	margin-left: auto;
+// 	margin-right: auto;
+// display: flex;
+// gap: 20px;
+// justify-content: space-between;
+// }
 
 // export const Drinktitle = styled.p`
 //   margin-bottom: 24px;
@@ -34,13 +61,13 @@
 //   line-height: 32px;
 // `;
 
-.image {
-	position: absolute;
-	border-radius: 15px;
-	display: block;
-	width: 400px;
-	height: 400px;
-}
+// .image {
+// 	position: absolute;
+// 	border-radius: 15px;
+// 	display: block;
+// 	width: 400px;
+// 	height: 400px;
+// }
 
 // export const Ingredientswrapper = styled.div`
 //   margin-top: 14px;

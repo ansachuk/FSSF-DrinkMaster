@@ -5,27 +5,29 @@ import DrinkPlaceholder from "../../../images/static/main/DrinkPlaceholder.jpg";
 import css from "./DrinkCard.module.scss";
 import { Link } from "react-router-dom";
 
-// const DrinkCard = ({ cocktail, src, title }) => {
-// const DrinkCard = ({ card }) => {
-const DrinkCard = ({ drink, drinkThumb }) => {
+const DrinkCard = ({ image, title }) => {
 	return (
-		<li className={css.card}>
-			<img
-				className={css.image}
-				src={drinkThumb}
-				alt={drink}
-				onError={e => {
-					e.currentTarget.src = DrinkPlaceholder;
-				}}
-			/>
-			<div className={css.ingredientsWrapper}>
-				<p className={css.drinkIngreds}>{drink}</p>
+		<div>
+			<li className={css.card}>
+				<div className={css.imgWrap}>
+					<img
+						className={css.image}
+						src={image}
+						alt={title}
+						onError={e => {
+							e.target.src = DrinkPlaceholder;
+						}}
+					/>
+				</div>
+				<div className={css.ingredientsWrapper}>
+					<h3 className={css.drinkName}>{title}</h3>
 
-				<Link to="recipe/:recipeId">
-					<span className={css.ingredients}>Ingredients</span>
-				</Link>
-			</div>
-		</li>
+					<Link to="recipe/:recipeId">
+						<span className={css.ingredients}>Ingredients</span>
+					</Link>
+				</div>
+			</li>
+		</div>
 	);
 };
 

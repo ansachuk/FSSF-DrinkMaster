@@ -1,14 +1,14 @@
 // import PropTypes from "prop-types";
+
 import { NavLink } from "react-router-dom";
 
 import css from "./OtherDrinksButton.module.scss";
 
 export default function OtherDrinksButton() {
 	return (
-		<div className="css.otherButtonWrapper">
+		<div className={css.otherButtonWrapper}>
 			<NavLink
 				className={css.otherButton}
-				// to="drinks/:categoryName"
 				to={"drinks/:categoryName"}
 			>
 				Other drinks
