@@ -1,3 +1,6 @@
+import PropTypes from "prop-types";
+
+import Container from "../Container/Container";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
@@ -26,32 +29,38 @@ export const Paginator = () => {
 	};
 
 	return (
-		<div className={css.paginator}>
-			{pageQuantity > 1 && (
-				<ReactPaginate
-					previousLabel={"<"}
-					nextLabel={">"}
-					breakLabel={"..."}
-					pageCount={pageQuantity}
-					marginPagesDisplayed={1}
-					pageRangeDisplayed={pageRangeDisplayed}
-					forcePage={page - 1}
-					onPageChange={handlePageChange}
-					containerClassName={"pagination"}
-					pageClassName={"page-item"}
-					pageLinkClassName={"page-link"}
-					activeClassName={"active"}
-					breakClassName={"page-item"}
-					breakLinkClassName={"page-link"}
-					previousClassName={"page-item"}
-					previousLinkClassName={"page-link"}
-					nextClassName={"page-item"}
-					nextLinkClassName={"page-link"}
-					disableInitialCallback
-				/>
-			)}
-		</div>
+		<Container>
+			<div className={css.paginator}>
+				{pageQuantity > 1 && (
+					<ReactPaginate
+						previousLabel={"<"}
+						nextLabel={">"}
+						breakLabel={"..."}
+						pageCount={pageQuantity}
+						marginPagesDisplayed={1}
+						pageRangeDisplayed={pageRangeDisplayed}
+						forcePage={page - 1}
+						onPageChange={handlePageChange}
+						containerClassName={"pagination"}
+						pageClassName={"page-item"}
+						pageLinkClassName={"page-link"}
+						activeClassName={"active"}
+						breakClassName={"page-item"}
+						breakLinkClassName={"page-link"}
+						previousClassName={"page-item"}
+						previousLinkClassName={"page-link"}
+						nextClassName={"page-item"}
+						nextLinkClassName={"page-link"}
+						disableInitialCallback
+					/>
+				)}
+			</div>
+		</Container>
 	);
 };
 
 export default Paginator;
+
+Paginator.propTypes = {
+	page: PropTypes.number.isRequired,
+};
