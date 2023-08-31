@@ -12,8 +12,10 @@ import { allCategory, allIngredients } from "../../redux/operations/recipiesOper
 
 import { selectCategories, selectIngredients } from "../../redux/selectors/recipieSelectors";
 
-// import { useMediaRules } from "hooks";
 import css from "./DrinksPage.module.scss";
+
+const desktopLimit = 9;
+const tabletLimit = 8;
 
 
 const DrinksPage = () => {
@@ -22,12 +24,12 @@ const DrinksPage = () => {
 	const categoryFromLocation = useLocation();
 	const categoryName = categoryFromLocation?.state?.from;
 	categoryName && dispatch(byCategory(categoryName));
-	// const { isDesktop } = useMediaRules();
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
 	const page = useSelector(selectPage);
 	const search = useSelector(selectSearchResults);
-	// const limit = isDesktop ? 9 : 8;
+	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
+	const limit = isDesktop ? desktopLimit : tabletLimit;
 
 	useEffect(() => {
 		if (categoriesList.length !== 0) return;
