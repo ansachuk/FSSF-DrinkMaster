@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { selectFavorite } from "../../redux/selectors/recipieSelectors";
 import RecipesItem from "../../components/RecipesItem/RecipesItem";

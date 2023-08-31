@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { removeFromFavorite, remove } from "../../redux/operations/recipiesOperations";
@@ -36,6 +35,6 @@ export default function DeleteButton({ id, page }) {
 }
 
 DeleteButton.propTypes = {
-	_id: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
 	page: PropTypes.oneOf(["favorite", "my"]).isRequired,
 };

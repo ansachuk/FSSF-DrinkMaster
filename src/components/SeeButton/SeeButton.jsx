@@ -20,5 +20,5 @@ export default function SeeButton({ id }) {
 }
 
 SeeButton.propTypes = {
-	_id: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
 };
