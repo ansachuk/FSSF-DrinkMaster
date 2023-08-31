@@ -1,5 +1,15 @@
 @import "../../../scss";
 
+.otherButtonWrapper {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 80px;
+
+	@include tablet {
+		margin-bottom: 140px;
+	}
+}
+
 .otherButton {
 	padding: 14px 40px;
 
