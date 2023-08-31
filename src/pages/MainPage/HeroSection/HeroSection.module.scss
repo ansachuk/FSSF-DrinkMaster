@@ -1,15 +1,155 @@
+@import "../../../scss/";
+
 .heroSection {
-	background-image: url("../../../images/static/main/main.jpg");
-	background-position: top 0px right;
+	position: relative;
+
+	// background-image: radial-gradient(circle, rgba(64, 112, 205, 0.9), rgba(64, 112, 205, 0.9));
+	// filter: blur(80px);
+	// background-repeat: no-repeat;
+
+	// @include tablet {
+	// 	width: 45%;
+	// 	height: 30%;
+	// 	top: 55%;
+	// 	left: 90%;
+	// 	filter: blur(80px);
+	// }
+
+	// @include desktop {
+	// 	width: 25%;
+	// 	height: 65%;
+	// 	top: 70%;
+	// 	left: 90%;
+	// 	filter: blur(190px);
+	// }
+
+	background-image: url("../../../images/static/main/main_mpbile.png");
+	background-position: top 34px right;
 	background-repeat: no-repeat;
-	background-size: auto;
-	margin-bottom: 100px;
+	// background-size: auto;
 	background-size: contain;
+	margin-bottom: 80px;
+
+	overflow: auto;
+
+	@include tablet {
+		margin-bottom: 100px;
+		background-image: url("../../../images/static/main/main_tablet.png");
+		background-position: top -64px right;
+		background-size: contain;
+	}
+
+	@include desktop {
+		background-image: url("../../../images/static/main/main_desktop.png");
+		background-position: top -64px right;
+		background-size: contain;
+	}
 }
 
 .heroContainer {
-	padding: 164px 0px 200px 0px;
-	width: 68%;
-	overflow: hidden;
-	padding: 244px 0px 300px 0px;
+	padding: 128px 78px 318px 20px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	// overflow: hidden;
+
+	@include tablet {
+		padding: 184px 253px 359px 32px;
+	}
+
+	@include desktop {
+		padding: 160px 625px 216px 100px;
+	}
+}
+
+.heroTitle {
+	color: #f3f3f3;
+	font-family: Manrope;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 38px;
+	// white-space: nowrap;
+
+	margin-bottom: 16px;
+
+	@include tablet {
+		font-size: 56px;
+		line-height: 60px;
+
+		margin-bottom: 28px;
+	}
+
+	@include desktop {
+		font-size: 64px;
+		line-height: 68px;
+	}
+}
+
+.heroText {
+	width: 266px;
+	color: #f3f3f3;
+	font-family: Manrope;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+	margin-bottom: 32px;
+
+	@include tablet {
+		width: 449px;
+		font-size: 18px;
+		line-height: 24px;
+		margin-bottom: 40px;
+	}
+
+	@include desktop {
+		width: 500px;
+	}
+}
+
+.addButton {
+	display: flex;
+}
+
+.heroButton {
+	padding: 14px 40px;
+
+	border: none;
+	border-radius: 42px;
+	border: 2px solid transparent;
+	background-color: $mainBtnBackgroundColor;
+
+	color: $accentColor;
+	font-size: $mainFontSize;
+	line-height: 18px;
+	font-weight: $fontWeightSemiBold;
+
+	transition-property: border, background-color, color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover {
+		color: $mainBtnBackgroundColor;
+		background-color: $accentColor;
+	}
+
+	&:active {
+		border: 2px solid $outlinBtnBackgroundColor;
+	}
+
+	&:disabled {
+		color: $outlinBtnBackgroundColor;
+		background-color: $disabledBtnBackgroundColor;
+		border: 2px solid $disabledBtnBackgroundColor;
+	}
+
+	@include tablet {
+		padding: 18px 44px;
+		font-size: $SecondaryFontSize;
+	}
+
+	@include desktop {
+		font-size: $SecondaryFontSize;
+	}
 }

@@ -6,21 +6,23 @@ export default function HeroSection() {
 		<div>
 			<section className={css.heroSection}>
 				<div className={css.heroContainer}>
-					<h1 className={css.heroTitle}>Craft Your Perfect Drink with Drink Master</h1>
+					<h1 className={css.heroTitle}>
+						<nobr>Craft Your Perfect</nobr> <br /> Drink with Drink Master
+					</h1>
 
-					<p className={css.heroText}>
+					<div className={css.heroText}>
 						Unlock your inner mixologist with Drink Master, your one-stop destination for exploring,
 						crafting, and mastering the world's finest beverages.
-					</p>
+					</div>
 
-					<nav>
+					<div className={css.addButton}>
 						<NavLink
 							className={css.heroButton}
 							to="/add"
 						>
 							Add recipe
 						</NavLink>
-					</nav>
+					</div>
 				</div>
 			</section>
 		</div>
