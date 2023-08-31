@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import {
 	container,
 	titleSignup,
@@ -7,6 +7,7 @@ import {
 	label,
 	btnSignup,
 	linkSignUp,
+	error,
 } from "../SignupForm/SignupForm.module.scss";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -50,6 +51,11 @@ export default function SigninForm() {
 						autoComplete="off"
 						required
 					/>
+					<ErrorMessage
+						className={error}
+						name="email"
+						component="div"
+					/>
 					<Field
 						className={label}
 						name="password"
@@ -57,6 +63,11 @@ export default function SigninForm() {
 						placeholder="Password"
 						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						className={error}
+						name="password"
+						component="div"
 					/>
 					<button
 						className={btnSignup}

@@ -7,6 +7,7 @@ import {
 	label,
 	btnSignup,
 	linkSignUp,
+	error,
 } from "./SignupForm.module.scss";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -30,8 +31,12 @@ const schema = yup.object().shape({
 export default function SignupForm() {
 	const dispatch = useDispatch();
 
-	const handleSubmit = values => {
+	const handleSubmit = (values, { setSubmitting }) => {
 		dispatch(signup(values));
+		setTimeout(() => {
+			Notiflix.Notify.success("Registration successful!");
+			setSubmitting(false);
+		}, 1000);
 	};
 
 	return (
@@ -60,6 +65,7 @@ export default function SignupForm() {
 						required
 					/>
 					<ErrorMessage
+						className={error}
 						name="email"
 						component="div"
 					/>
@@ -72,6 +78,7 @@ export default function SignupForm() {
 						required
 					/>
 					<ErrorMessage
+						className={error}
 						name="password"
 						component="div"
 					/>
