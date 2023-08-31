@@ -6,17 +6,23 @@ import EditUserModal from "./EditProfileModal/EditProfileModal";
 import LogoutOptions from "./LogoutOptions/LogoutOptions";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../redux/selectors/authSelectors";
+import defaultUserImage from "../../../../images/static/user/user.jpg";
 
 export default function UserMenu() {
-	const { name, avatarURL } = useSelector(selectUser);
+	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 	const [isOpenLogout, setIsOpenLogout] = useState(false);
 	const [isOpenEditProfile, setIsOpenEditProfile] = useState(false);
 
-	const handlerUserDropdownClick = () => setIsOpenDropdown(!isOpenDropdown);
 	const handlerLogoutDropdownClick = () => setIsOpenLogout(!isOpenLogout);
 	const handlerEditProfileClick = () => setIsOpenEditProfile(!isOpenEditProfile);
+
+	const handlerUserDropdownClick = () => {
+		setIsOpenDropdown(!isOpenDropdown);
+		setIsOpenLogout(false);
+		setIsOpenEditProfile(false);
+	};
 
 	const handlerBackdropClicks = e => {
 		const backdrop = e.target.closest("#user_group") === null;
