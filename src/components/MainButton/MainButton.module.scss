@@ -102,3 +102,12 @@
 // 		color:black;
 // 	}
 // }
+
+.recipePageButton {
+	@extend .mainButton;
+	margin-bottom: 80px;
+
+	@include desktop {
+		margin-bottom: 0;
+	}
+}

@@ -1,0 +1,61 @@
+@import "../../../../../scss/";
+
+.logout_container {
+	position: absolute;
+	top: 54px;
+	right: -70px;
+	width: 335px;
+	padding: 50px 25px;
+	border-radius: 8px;
+	text-align: center;
+	background-color: $accentColor;
+	font-size: $mainFontSize;
+
+	@include tablet {
+		top: 67px;
+		width: 500px;
+		padding: 50px;
+		font-size: 18px;
+	}
+}
+
+.close_button {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	@include tablet {
+		gap: 14px;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+}
+
+.close_icon {
+	width: 24px;
+	height: 24px;
+}
+
+.button_container {
+	display: flex;
+	gap: 8px;
+	margin-top: 25px;
+
+	@include tablet {
+		gap: 12px;
+		margin-top: 37px;
+	}
+}

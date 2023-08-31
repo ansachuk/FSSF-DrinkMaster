@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Layout from "../Layout/Layout";
@@ -16,16 +18,19 @@ import MyRecipesPage from "../../pages/MyRecipesPage/MyRecipesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import WelcomePageLayout from "../../pages/WelcomePage/Layout/WelcomePageLayout";
 
-export default function App() {
-	// const isAuth = useSelector(selectIsLoggedIn);
-	// const token = useSelector(selectToken);
-	// const dispatch = useDispatch();
+import { refresh } from "../../redux/operations/authOperations";
+import { selectAccessToken, selectIsLoggedIn } from "../../redux/selectors/authSelectors";
 
-	// useEffect(() => {
-	// 	if (token && !isAuth) {
-	// 		dispatch(refresh(token));
-	// 	}
-	// }, [dispatch, isAuth, token]);
+export default function App() {
+	const isAuth = useSelector(selectIsLoggedIn);
+	const token = useSelector(selectAccessToken);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (token && !isAuth) {
+			dispatch(refresh(token));
+		}
+	}, [dispatch, isAuth, token]);
 	return (
 		<Routes>
 			<Route

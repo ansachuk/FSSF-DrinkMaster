@@ -1,0 +1,80 @@
+@import "../../scss";
+
+.containerWelcome {
+	max-width: 335px;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	@include tablet {
+		max-width: 470px;
+		padding: 0;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+
+	@include desktop {
+		max-width: 485px;
+	}
+}
+.titleStart {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: calc(32 / 28);
+	text-align: center;
+
+	@include tablet {
+		font-size: 40px;
+		text-align: left;
+	}
+}
+
+.textStart {
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	text-align: center;
+
+	margin-top: 14px;
+
+	@include tablet {
+		font-size: 18px;
+		text-align: left;
+	}
+}
+
+.listStart {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 14px;
+	margin-top: 40px;
+
+	@include desktop {
+		justify-content: flex-start;
+	}
+}
+.btnStart {
+	padding: 14px 40px;
+	font-size: 14px;
+	line-height: calc(18 / 16);
+	font-weight: 600;
+
+	background: transparent;
+	color: #f3f3f3;
+	border-width: 1px;
+	border-radius: 42px;
+	border-color: rgba(243, 243, 243, 0.2);
+	cursor: pointer;
+
+	@include tablet {
+		padding: 18px 44px;
+		font-size: 16px;
+	}
+
+	&:hover {
+		background: #f3f3f3;
+		color: #161f37;
+	}
+}
