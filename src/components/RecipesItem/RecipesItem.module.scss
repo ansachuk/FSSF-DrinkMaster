@@ -7,7 +7,6 @@
 		min-height: 628px;
 	}
 	@include desktop {
-		// width: 400px;
 		min-height: 676px;
 	}
 	@media (min-width: 1280px) and (max-width: 1439px) {
@@ -26,9 +25,6 @@
 	@include tablet {
 		padding-bottom: 24px;
 	}
-	// @include desktop {
-	// 	width: 400px;
-	// }
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 	}
@@ -52,10 +48,6 @@
 	@include tablet {
 		width: 342px;
 	}
-	// @include desktop {
-	// 	width: 400px;
-	// 	height: 400px;
-	// }
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 		height: 400px;

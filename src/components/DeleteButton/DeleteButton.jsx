@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { removeFromFavorite, remove } from "../../redux/operations/recipiesOperations";
 import css from "./DeleteButton.module.scss";
@@ -34,34 +35,7 @@ export default function DeleteButton({ id, page }) {
 	);
 }
 
-// import PropTypes from "prop-types";
-// import css from "./DeleteButton.module.scss";
-
-// const trashPath = new URL("../../images/icons.svg", import.meta.url);
-
-// export default function DeleteButton({ id, page, onDeleteClick }) {
-// 	return (
-// 		<>
-// 			<button
-// 				className={css.deleteButton}
-// 				onClick={() => onDeleteClick(id, page)}
-// 				data-page={page}
-// 				data-id={id}
-// 			>
-// 				<svg
-// 					className={css.iconTrash}
-// 					width="50"
-// 					height="50"
-// 				>
-// 					<use href={trashPath + "#remove"}></use>
-// 				</svg>
-// 			</button>
-// 		</>
-// 	);
-// }
-
-// DeleteButton.propTypes = {
-// 	id: PropTypes.string.isRequired,
-// 	page: PropTypes.string.isRequired,
-// 	onDeleteClick: PropTypes.func.isRequired,
-// };
+DeleteButton.propTypes = {
+	id: PropTypes.string.isRequired,
+	page: PropTypes.oneOf(["favorite", "my"]).isRequired,
+};
