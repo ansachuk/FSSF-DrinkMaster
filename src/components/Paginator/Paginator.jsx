@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 import Container from "../Container/Container";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { setPage } from "../../redux/slices/recipiesSlice";
