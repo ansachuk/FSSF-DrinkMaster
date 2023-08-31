@@ -3,35 +3,22 @@ import React from "react";
 import css from "./PreviewDrinks.module.scss";
 import DrinkCard from "../DrinkCard/DrinkCard";
 
-import { mainPage } from "../../../redux/operations/recipiesOperations";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectMainCocktails } from "../../../redux/selectors/recipieSelectors";
-
-// ==============================gpt================================================
-const PreviewDrinks = () => {
-	const dispatch = useDispatch();
-	const drinks = useSelector(selectMainCocktails); // Renamed from 'category' to 'drinks'
-
-	console.log(drinks);
-
-	useEffect(() => {
-		if (drinks !== undefined && drinks.length === 0) dispatch(mainPage());
-	}, [dispatch, drinks]); // Added 'dispatch' and 'drinks' to the dependency array
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
+const PreviewDrinks = ({ data, title }) => {
+	console.log(data);
 	return (
 		<>
 			<section className={css.section}>
-				<h2 className={css.sectionTitle}>{drinks.category}</h2>{" "}
-				<ul>
-					{drinks.map(({ _id, drinkThumb, drink }) => (
+				<h2
+					className={css.sectionTitle}
+					data={title}
+				>
+					{title}
+				</h2>
+				<ul className={css.sectionList}>
+					{data.map(({ _id, drinkThumb, drink }) => (
 						<DrinkCard
 							key={_id}
-							image={drinkThumb} // Use the correct property name 'drinkThumb'
+							image={drinkThumb}
 							title={drink}
 						/>
 					))}
@@ -42,66 +29,28 @@ const PreviewDrinks = () => {
 };
 
 export default PreviewDrinks;
-// =============================================================================
-// // const PreviewDrinks = ({ recipes, category, data = [] }) => {
-// const PreviewDrinks = () => {
-// 	const dispatch = useDispatch();
-// 	const category = useSelector(selectMainCocktails);
 
+// ============================================================
+// const PreviewDrinks = ({ category }) => {
 // 	console.log(category);
-
-// 	useEffect(() => {
-// 		if (category !== undefined && category.length === 0) dispatch(mainPage());
-// 	}, []);
-
-// 	useEffect(() => {
-// 		window.scrollTo(0, 0);
-// 	}, []);
-
 // 	return (
 // 		<>
 // 			<section className={css.section}>
-// 				<h2 className={css.sectionTitle}>{category}</h2>
-// 				<ul>
-// 					{category.map(({ _id, drink, category, drinkThumb }) => (
-// 						<DrinkCard
-// 							key={_id}
-// 							image={drinkThumb}
-// 							title={drink}
-// 						/>
-// 					))}
-// 				</ul>
+// 				<h2 className={css.sectionTitle}>{data.category}</h2>
+// 				<div>
+// 					<DrinkCard category="Ordinary Drink" />
+// 					<DrinkCard category="Cocktail" />
+// 					<DrinkCard category="Shake" />
+// 					<DrinkCard category="Other/Unknown" />
+// 				</div>
 // 			</section>
 // 		</>
 // 	);
 // };
 
 // export default PreviewDrinks;
-// // export default { PreviewDrinks, ordinaryDrink, cocktail, shake, other };
 
-// =======================================================================
-
-// import React from "react";
-
-// import css from "./PreviewDrinks.module.scss";
-// import DrinkCard from "../DrinkCard/DrinkCard";
-
-// const PreviewDrinks = ({ title, data = [] }) => {
-// 	return (
-// 		<section className="css.section">
-// 			<h2 className="css.sectionTitle">{title}</h2>
-// 			<div className="css.cardwrapper">
-// 				<DrinkCard />
-// 				<DrinkCard />
-// 				<DrinkCard />
-// 			</div>
-// 		</section>
-// 	);
-// };
-
-// export default PreviewDrinks;
-
-// ============================================================
+// ===========================================================
 
 // import React from "react";
 // import ItemList from "../CategoryItem/CategoryItem";
@@ -122,39 +71,6 @@ export default PreviewDrinks;
 // export default Category;
 
 // =========================================================
-
-// import css from "./category.module.scss";
-// import CategoryItem from "../CategoryItem/CategoryItem";
-
-// export default function Category({ categories }) {
-// 	const categories = [
-// 		{ id: 1, name: "Ordinary Drink" },
-// 		{ id: 2, name: "Cocktail" },
-// 		{ id: 3, name: "Shake" },
-// 		{ id: 4, name: "Other/Unknown" },
-// 	];
-
-// 	const categoryName = categories.name;
-
-// 	return (
-// 		<ul className="categories">
-// 			{categories.map(category => (
-// 				<li
-// 					key={category.id}
-// 					className={css.category}
-// 					// id={category.id}
-// 				>
-// 					{categoryName}
-// 					<ul>
-// 						<CategoryItem />
-// 					</ul>
-// 				</li>
-// 			))}
-// 		</ul>
-// 	);
-// }
-
-// ======================================================
 
 // import React, { useState, useEffect } from 'react';
 // import './App.css'; // Include your CSS file with media queries
