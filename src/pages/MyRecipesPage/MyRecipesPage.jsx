@@ -1,28 +1,28 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { selectPage } from "../../redux/selectors/recipieSelectors.js";//
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPage } from "../../redux/selectors/recipieSelectors.js";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import RecipesList from "../../components/RecipesList/RecipesList";
 // import Paginator from "../../components/Paginator/Paginator";
-// import { own } from "../../redux/operations/recipiesOperations.js";
+import { add } from "../../redux/operations/recipiesOperations.js";
 import css from "./MyRecipesPage.module.scss";
 
-// const desktopLimit = 9;
-// const tabletLimit = 8;
+const desktopLimit = 9;
+const tabletLimit = 8;
 
 export default function MyRecipesPage() {
-	// const dispatch = useDispatch();
-	// const page = useSelector(selectPage);
-	// const isDesktop = window.innerWidth >= 1440;
-	// const limit = isDesktop ? desktopLimit : tabletLimit;
+	const dispatch = useDispatch();
+	const page = useSelector(selectPage);
+	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
+	const limit = isDesktop ? desktopLimit : tabletLimit;
 
-	// useEffect(() => {
-	// 	dispatch(add({ page, limit }));
-	// }, [page, limit, dispatch]);
+	useEffect(() => {
+		dispatch(add({ page, limit }));
+	}, [page, limit, dispatch]);
 
-	// useEffect(() => {
-	// 	window.scrollTo(0, 0);
-	// }, []);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>

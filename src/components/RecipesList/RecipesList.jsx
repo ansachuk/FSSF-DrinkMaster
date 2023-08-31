@@ -6,16 +6,16 @@ import DrinkDefault from "../../images/static/main/main.jpg";
 import css from "./RecipesList.module.scss";
 
 export default function RecipesList() {
-	const favoriteCocktails = useSelector(selectFavorite);
+	const favorite = useSelector(selectFavorite);
 	return (
 		<div className={css.section}>
-			{Array.isArray(favoriteCocktails) && favoriteCocktails.length !== 0 ? (
+			{Array.isArray(favorite) && favorite.length !== 0 ? (
 				<div className={css.recipesList}>
-					{favoriteCocktails.map(favoriteCocktail => (
+					{favorite.map(favoriteItem => (
 						<RecipesItem
-							key={favoriteCocktail._id}
+							key={favoriteItem._id}
 							page={"favorite"}
-							recipes={favoriteCocktails}
+							{...favoriteItem}
 						/>
 					))}
 				</div>

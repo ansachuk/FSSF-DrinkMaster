@@ -36,6 +36,6 @@ export default function DeleteButton({ id, page }) {
 }
 
 DeleteButton.propTypes = {
-	id: PropTypes.string.isRequired,
+	_id: PropTypes.string.isRequired,
 	page: PropTypes.oneOf(["favorite", "my"]).isRequired,
 };
