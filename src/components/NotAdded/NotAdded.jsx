@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
 import Container from "../Container/Container";
+import DrinkDefault from "../../images/static/main/main.jpg";
 import css from "./NotAdded.module.scss";
-import DrinkDefault from "../../images/static/my-recepies/imgdefault.jpg";
 
 export default function NotAdded({ text }) {
 	return (
@@ -11,7 +11,7 @@ export default function NotAdded({ text }) {
 				<img
 					className={css.notFoundImg}
 					src={DrinkDefault}
-					alt="No added recipes"
+					alt="No recipe"
 				/>
 				<p className={css.notFavoriteText}>{text}</p>
 			</div>
