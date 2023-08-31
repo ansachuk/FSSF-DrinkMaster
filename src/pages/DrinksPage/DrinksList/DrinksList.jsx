@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectSearchResults } from '../../../redux/selectors/recipieSelectors';
 import NotFoundPage from '../../NotFoundPage/NotFound/NotFound';

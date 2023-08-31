@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 // import Paginator from "../../components/Paginator/Paginator";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import DrinksSearch from "./DrinksSearch/DrinksSearch";
@@ -13,10 +13,8 @@ import {
 	selectCategories,
 	selectIngredients,
 	selectSearchResults,
-	selectPage,
-	selectSearchResults,
+	selectPage
 } from "../../redux/selectors/recipieSelectors";
-import setPage from "../../redux/slices/recipiesSlice";
 
 import css from "./DrinksPage.module.scss";
 
@@ -67,7 +65,6 @@ const DrinksPage = () => {
 			<section className={css.section}>
 				<MainTitle title={"Drinks"} />
 				<DrinksSearch
-					categoryName={categoryName}
 					onSearch={handleSearch}
 					ingredientsList={ingredientsList}
 				/>

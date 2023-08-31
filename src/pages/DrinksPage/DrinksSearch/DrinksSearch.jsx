@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import css from './DrinksSearch.module.scss';
 import icons from '../../../images/search.svg';
 import Select from 'react-select';
@@ -55,6 +56,11 @@ const [chosenCategory, setChosenCategory] = useState(null);
       />
     </div>
   );
+};
+
+DrinksSearch.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  ingredientsList: PropTypes.array.isRequired,
 };
 
 export default DrinksSearch;
