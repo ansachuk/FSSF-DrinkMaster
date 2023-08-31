@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Notify } from "notiflix";
 import instance from "../instance.js";
 
 const allCategory = createAsyncThunk("recepies/allCategory", async (_, { rejectWithValue }) => {
@@ -53,6 +54,33 @@ const search = createAsyncThunk("recepies/search", async (search, { rejectWithVa
 	}
 });
 
+// const search = createAsyncThunk("recepies/search", async (searchOptions, { rejectWithValue }) => {
+// 	try {
+// 		const { chosenCategory, chosenIngredient, query, page, limit } = searchOptions;
+// 		const params = {};
+
+// 		if (chosenCategory) {
+// 			params.category = chosenCategory;
+// 		}
+
+// 		if (chosenIngredient) {
+// 			params.ingredient = chosenIngredient;
+// 		}
+
+// 		if (query) {
+// 			params.query = query;
+// 		}
+
+// 		params.page = page;
+// 		params.limit = limit;
+// 		const { data } = await instance.get("search/", { params });
+
+// 		return data;
+// 	} catch (error) {
+// 		return rejectWithValue(error.message);
+// 	}
+// });
+
 const allIngredients = createAsyncThunk(
 	"recepies/allIngredients",
 	async (_, { rejectWithValue }) => {
@@ -88,7 +116,11 @@ const own = createAsyncThunk("recepies/own", async (_, { rejectWithValue }) => {
 
 const add = createAsyncThunk("recepies/add", async (cred, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post(`own`, cred);
+		const { data } = await instance.post(`own`, cred.get("jsonData"));
+
+		Notify.success("recipe created successfully", {
+			timeout: 3000,
+		});
 
 		return data;
 	} catch (e) {
@@ -109,7 +141,7 @@ const remove = createAsyncThunk("recepies/remove", async (id, { rejectWithValue 
 const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
 	try {
 		const { data } = await instance.get(`favorite`);
-		//token
+
 		return data;
 	} catch (e) {
 		return rejectWithValue(e.response.data.message);
@@ -120,7 +152,7 @@ const addToFavorite = createAsyncThunk(
 	"recepies/addToFavorite",
 	async (id, { rejectWithValue }) => {
 		try {
-			const { data } = await instance.get(`favorite/add/${id}`);
+			const { data } = await instance.patch(`favorite/add/${id}`);
 			//token
 
 			return data;
@@ -134,8 +166,7 @@ const removeFromFavorite = createAsyncThunk(
 	"recepies/removeFromFavorite",
 	async (id, { rejectWithValue }) => {
 		try {
-			const { data } = await instance.delete(`favorite/remove/${id}`);
-			//token
+			const { data } = await instance.patch(`favorite/remove/${id}`);
 
 			return data;
 		} catch (e) {

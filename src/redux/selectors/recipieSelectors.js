@@ -7,4 +7,7 @@ export const selectCategories = ({ recipes }) => recipes.categories;
 export const selectGlasses = ({ recipes }) => recipes.glasses;
 export const selectIngredients = ({ recipes }) => recipes.ingredients;
 export const selectSearchResults = ({ recipes }) => recipes.searchResults;
+export const selectSearch = state => state.recipes.search;
 export const selectOwn = ({ recipes }) => recipes.own;
+export const selectPage = ({ recipes }) => recipes.page;
+export const selectTotalHits = ({ recipes }) => recipes.totalHits;

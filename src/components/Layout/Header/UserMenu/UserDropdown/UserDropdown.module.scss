@@ -1,0 +1,50 @@
+@import "../../../../../scss/";
+
+.dropdown_container {
+	position: absolute;
+	top: 54px;
+	right: 0;
+	width: 177px;
+	padding: 18px;
+	border-radius: 8px;
+	background-color: $accentColor;
+
+	@include tablet {
+		top: 67px;
+	}
+}
+
+.heading {
+	display: flex;
+	justify-content: space-between;
+	// gap: 56px;
+	margin-bottom: 38px;
+	font-size: $mainFontSize;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	@include tablet {
+		gap: 14px;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+}
+
+.pen_icon {
+	width: 14px;
+	height: 14px;
+}

@@ -24,7 +24,11 @@ const login = createAsyncThunk("auth/login", async (creds, { rejectWithValue }) 
 
 const update = createAsyncThunk("auth/update", async (creds, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.patch("users/update", creds);
+		const { data } = await instance.patch("users/update", creds, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 		return data;
 	} catch (e) {
 		return rejectWithValue(e.message);
