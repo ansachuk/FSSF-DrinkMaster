@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import css from './DrinksSearch.module.scss';
 import icons from '../../../images/search.svg';
 import Select from 'react-select';
@@ -8,7 +9,18 @@ const options = [
 
 ];
 
-const DrinksSearch = () => {
+const DrinksSearch = ({ onSearch, ingredientsList }) => {
+
+const [chosenCategory, setChosenCategory] = useState(null);
+  const [chosenIngredient, setChosenIngredient] = useState(null);
+  const [searchText, setSearchText] = useState('');
+
+
+  const handleSearchClick = () => {
+    
+    onSearch(chosenCategory, chosenIngredient);
+  };
+
   return (
     <div className={css.container}>
       <div className={css.form}>
@@ -16,8 +28,10 @@ const DrinksSearch = () => {
           type="text"
           className={css.input}
           placeholder="Search for drinks..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
-        <div className={css.button}>
+        <div className={css.button} onClick={handleSearchClick}>
           <div className={css.hoverWrapper}>
             <svg className={css.search_icon}>
 					<use href={icons}></use>
@@ -29,6 +43,15 @@ const DrinksSearch = () => {
         className={css.select}
         options={options}
         placeholder="Select an option"
+        value={chosenCategory}
+        onChange={(selectedOption) => setChosenCategory(selectedOption)}
+      />
+      <Select
+        className={css.select}
+        options={ingredientsList.map(ingredient => ({ value: ingredient, label: ingredient }))}
+        placeholder="Select an ingredient"
+        value={chosenIngredient}
+        onChange={(selectedOption) => setChosenIngredient(selectedOption)}
       />
     </div>
   );

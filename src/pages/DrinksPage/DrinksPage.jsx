@@ -7,9 +7,16 @@ import DrinksSearch from "./DrinksSearch/DrinksSearch";
 import DrinksList from "./DrinksList/DrinksList";
 import Container from "../../components/Container/Container";
 
-import { allCategory, allIngredients } from "../../redux/operations/recipiesOperations";
+import { allIngredients, allCategory, search } from "../../redux/operations/recipiesOperations";
 
-import { selectCategories, selectIngredients } from "../../redux/selectors/recipieSelectors";
+import {
+	selectCategories,
+	selectIngredients,
+	selectSearchResults,
+	selectPage,
+	selectSearchResults,
+} from "../../redux/selectors/recipieSelectors";
+import setPage from "../../redux/slices/recipiesSlice";
 
 import css from "./DrinksPage.module.scss";
 
@@ -19,36 +26,37 @@ const tabletLimit = 8;
 const DrinksPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const categoryFromLocation = useLocation();
-	const categoryName = categoryFromLocation?.state?.from;
-	categoryName && dispatch(byCategory(categoryName));
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
+	const searchResults = useSelector(selectSearchResults);
 	const page = useSelector(selectPage);
-	const search = useSelector(selectSearchResults);
+
 	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
 	const limit = isDesktop ? desktopLimit : tabletLimit;
 
 	useEffect(() => {
-		if (categoriesList.length !== 0) return;
-		dispatch(allCategory());
-	}, [dispatch, categoriesList]);
+		if (categoriesList.length === 0) {
+			dispatch(allCategory());
+		}
+		if (ingredientsList.length === 0) {
+			dispatch(allIngredients());
+		}
+	}, [dispatch, categoriesList, ingredientsList]);
 
-	useEffect(() => {
-		if (ingredientsList.length !== 0) return;
-		dispatch(allIngredients());
-	}, [dispatch, ingredientsList]);
-
-	useEffect(() => {
-		dispatch(search({ search, page, limit }));
-		navigate(
-			`/recipes/searchResults${encodeURIComponent(
-				search.chosenCategory,
-			)}?query=${encodeURIComponent(search.query)}&ingredient=${
-				search.chosenIngredient
-			}&page=${page}`,
+	const handleSearch = (chosenCategory, chosenIngredient) => {
+		dispatch(
+			search({
+				search: {
+					chosenCategory,
+					chosenIngredient,
+					query: null,
+				},
+				page,
+				limit,
+			}),
 		);
-	}, [dispatch, search, page, limit]);
+		navigate(`/recipes/${encodeURIComponent(chosenCategory)}?page=${page}`);
+	};
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -58,9 +66,12 @@ const DrinksPage = () => {
 		<Container>
 			<section className={css.section}>
 				<MainTitle title={"Drinks"} />
-				<DrinksSearch categoryName={categoryName} />
-				<DrinksList />
-			
+				<DrinksSearch
+					categoryName={categoryName}
+					onSearch={handleSearch}
+					ingredientsList={ingredientsList}
+				/>
+				<DrinksList results={searchResults} />
 			</section>
 		</Container>
 	);
