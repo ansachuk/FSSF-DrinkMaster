@@ -1,43 +1,43 @@
-@import "../../../scss";
+// @import "../../../scss";
 
-.wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-    height: auto;
+// .wrapper {
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 14px;
+//     width: 100%;
+//     height: auto;
 
-    @include tablet {
-        gap: 18px;
-    }
-}
+//     @include tablet {
+//         gap: 18px;
+//     }
+// }
 
-.message {
-    color: $mainFontColor;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: calc(18 / 14);
-    margin-top: 14px;
+// .message {
+//     color: $mainFontColor;
+//     font-size: 14px;
+//     font-weight: 500;
+//     line-height: calc(18 / 14);
+//     margin-top: 14px;
 
-    @include tablet {
-        font-size: 16px;
-        line-height: calc(22 / 16);
-    }
-}
+//     @include tablet {
+//         font-size: 16px;
+//         line-height: calc(22 / 16);
+//     }
+// }
 
-.image {
-    margin-top: 50px;
-    margin-bottom: 154px;
-    display: flex;
-    justify-content: center;
-    width: 517px;
-    height: 375px;
+// .image {
+//     margin-top: 50px;
+//     margin-bottom: 154px;
+//     display: flex;
+//     justify-content: center;
+//     width: 517px;
+//     height: 375px;
 
-    @include desktop {
-        margin: 50px auto 18px;
-        width: 465px;
-        height: 500px;
-    }
-}
+//     @include desktop {
+//         margin: 50px auto 18px;
+//         width: 465px;
+//         height: 500px;
+//     }
+// }

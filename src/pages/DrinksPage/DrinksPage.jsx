@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import MainTitle from '../../components/MainTitle/MainTitle';
-import DrinksSearch from './DrinksSearch/DrinksSearch';
-import DrinksList from './DrinksList/DrinksList';
-import Container from '../../components/Container/Container';
+import Paginator from "../../components/Paginator/Paginator";
+import MainTitle from "../../components/MainTitle/MainTitle";
+import DrinksSearch from "./DrinksSearch/DrinksSearch";
+import DrinksList from "./DrinksList/DrinksList";
+import Container from "../../components/Container/Container";
 
 import { allCategory, allIngredients } from "../../redux/operations/recipiesOperations";
 
@@ -14,7 +15,6 @@ import css from "./DrinksPage.module.scss";
 
 const desktopLimit = 9;
 const tabletLimit = 8;
-
 
 const DrinksPage = () => {
 	const dispatch = useDispatch();
@@ -42,9 +42,11 @@ const DrinksPage = () => {
 	useEffect(() => {
 		dispatch(search({ search, page, limit }));
 		navigate(
-			`/recipes/searchResults${encodeURIComponent(search.chosenCategory)}?query=${encodeURIComponent(
-				search.query,
-			)}&ingredient=${search.chosenIngredient}&page=${page}`,
+			`/recipes/searchResults${encodeURIComponent(
+				search.chosenCategory,
+			)}?query=${encodeURIComponent(search.query)}&ingredient=${
+				search.chosenIngredient
+			}&page=${page}`,
 		);
 	}, [dispatch, search, page, limit]);
 
@@ -55,10 +57,10 @@ const DrinksPage = () => {
 	return (
 		<Container>
 			<section className={css.section}>
-				<MainTitle title={'Drinks'} />
+				<MainTitle title={"Drinks"} />
 				<DrinksSearch categoryName={categoryName} />
 				<DrinksList />
-				
+				<Paginator />
 			</section>
 		</Container>
 	);
