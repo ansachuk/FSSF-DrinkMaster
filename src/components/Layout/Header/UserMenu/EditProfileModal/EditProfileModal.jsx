@@ -16,7 +16,6 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 
 	const [image, setImage] = useState(null);
 	const [imgURL, setImageURL] = useState(null);
-	const [userName, setUserName] = useState(name);
 	const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
 	const userInfoFormSubmit = e => {
@@ -24,33 +23,20 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 
 		const updatedUserName = e.target.elements.user_name.value;
 
-		if (updatedUserName === name && !imgURL) {
+		if (!isButtonEnabled) {
 			setIsButtonEnabled(false);
 			Notify.failure("No data changed");
 			return;
 		}
 
-		setUserName(updatedUserName);
-
 		const formData = new FormData();
 
 		formData.append("name", updatedUserName);
-		if (imgURL) {
-			formData.append("avataURL", imgURL);
+		if (image) {
+			formData.append("avatarURL", image);
 		}
-		console.log(formData);
-		console.log(imgURL);
-		console.log(image);
 
-		dispatch(update(formData))
-			.unwrap()
-			.then(() => {
-				setImageURL(null);
-				Notify.success(`${updatedUserName} is your new name`);
-			})
-			.catch(() => {
-				Notify.failure("Some error");
-			});
+		dispatch(update(formData));
 
 		handlerEditProfileClick();
 	};
@@ -59,19 +45,16 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 		const [_file] = e.target.files;
 		setImageURL(URL.createObjectURL(_file));
 		setImage(_file);
+		setIsButtonEnabled(true);
 	};
 
 	const onNameChange = e => {
-		if (userName !== e.target.value) {
+		if (name !== e.target.value) {
 			setIsButtonEnabled(true);
+		} else if (name === e.target.value && imgURL === null) {
+			setIsButtonEnabled(false);
 		}
 	};
-
-	useEffect(() => {
-		if (userName !== name) {
-			setIsButtonEnabled(true);
-		}
-	}, [userName, name]);
 
 	useEffect(() => {
 		const userImage = document.getElementById("user_image");
@@ -106,6 +89,7 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 					<input
 						id="file_upload"
 						type="file"
+						name="avatarURL"
 						onChange={onImageChange}
 					/>
 					<label htmlFor="file_upload">

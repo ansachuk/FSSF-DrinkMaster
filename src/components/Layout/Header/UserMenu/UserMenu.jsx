@@ -15,9 +15,14 @@ export default function UserMenu() {
 	const [isOpenLogout, setIsOpenLogout] = useState(false);
 	const [isOpenEditProfile, setIsOpenEditProfile] = useState(false);
 
-	const handlerUserDropdownClick = () => setIsOpenDropdown(!isOpenDropdown);
 	const handlerLogoutDropdownClick = () => setIsOpenLogout(!isOpenLogout);
 	const handlerEditProfileClick = () => setIsOpenEditProfile(!isOpenEditProfile);
+
+	const handlerUserDropdownClick = () => {
+		setIsOpenDropdown(!isOpenDropdown);
+		setIsOpenLogout(false);
+		setIsOpenEditProfile(false);
+	};
 
 	const handlerBackdropClicks = e => {
 		const backdrop = e.target.closest("#user_group") === null;
