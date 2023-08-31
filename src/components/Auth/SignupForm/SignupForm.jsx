@@ -1,9 +1,17 @@
 import * as yup from "yup";
-import { Formik, Field, Form } from "formik";
-import { titleSignup, form, label, btnSignup, linkSignUp } from "./SignupForm.module.scss";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import {
+	container,
+	titleSignup,
+	form,
+	label,
+	btnSignup,
+	linkSignUp,
+} from "./SignupForm.module.scss";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../redux/operations/authOperations";
+import Notiflix from "notiflix";
 
 const schema = yup.object().shape({
 	name: yup.string().required(),
@@ -27,7 +35,7 @@ export default function SignupForm() {
 	};
 
 	return (
-		<div>
+		<div className={container}>
 			<h2 className={titleSignup}>Registration</h2>
 			<Formik
 				initialValues={{ name: "", email: "", password: "" }}
@@ -40,7 +48,7 @@ export default function SignupForm() {
 						name="name"
 						type="text"
 						placeholder="Name"
-						autoComplete="name"
+						autoComplete="off"
 						required
 					/>
 					<Field
@@ -48,16 +56,24 @@ export default function SignupForm() {
 						name="email"
 						type="email"
 						placeholder="Email"
-						autoComplete="email"
+						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						name="email"
+						component="div"
 					/>
 					<Field
 						className={label}
 						name="password"
 						type="password"
 						placeholder="Password"
-						autoComplete="current-password"
+						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						name="password"
+						component="div"
 					/>
 					<button
 						className={btnSignup}
@@ -67,7 +83,7 @@ export default function SignupForm() {
 					</button>
 					<NavLink
 						className={linkSignUp}
-						to="/welcome//signin"
+						to="/welcome/signin"
 					>
 						Sign In
 					</NavLink>

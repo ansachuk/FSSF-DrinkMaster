@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { Formik, Field, Form } from "formik";
 import {
+	container,
 	titleSignup,
 	form,
 	label,
@@ -33,7 +34,7 @@ export default function SigninForm() {
 	};
 
 	return (
-		<div>
+		<div className={container}>
 			<h2 className={titleSignup}>Sign In</h2>
 			<Formik
 				initialValues={{ email: "", password: "" }}
@@ -46,7 +47,7 @@ export default function SigninForm() {
 						name="email"
 						type="email"
 						placeholder="Email"
-						autoComplete="email"
+						autoComplete="off"
 						required
 					/>
 					<Field
@@ -54,7 +55,7 @@ export default function SigninForm() {
 						name="password"
 						type="password"
 						placeholder="Password"
-						autoComplete="current-password"
+						autoComplete="off"
 						required
 					/>
 					<button
