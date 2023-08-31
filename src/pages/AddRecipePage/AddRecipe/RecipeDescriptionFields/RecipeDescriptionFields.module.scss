@@ -62,8 +62,7 @@
 .inputWraper {
 	display: flex;
 	flex-direction: column;
-	gap: 34px;
-	margin-bottom: 34px;
+	gap: 4px;
 	width: 100%;
 }
 
@@ -85,4 +84,11 @@
 	:focus {
 		border-color: $mainFontColor;
 	}
+}
+
+.validate {
+	height: 30px;
+	font-size: 12px;
+	letter-spacing: 0.28px;
+	color: #da1414;
 }

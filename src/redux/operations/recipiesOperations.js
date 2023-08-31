@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Notify } from "notiflix";
 import instance from "../instance.js";
 
 const allCategory = createAsyncThunk("recepies/allCategory", async (_, { rejectWithValue }) => {
@@ -88,7 +89,11 @@ const own = createAsyncThunk("recepies/own", async (_, { rejectWithValue }) => {
 
 const add = createAsyncThunk("recepies/add", async (cred, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post(`own`, cred);
+		const { data } = await instance.post(`own`, cred.get("jsonData"));
+
+		Notify.success("recipe created successfully", {
+			timeout: 3000,
+		});
 
 		return data;
 	} catch (e) {
@@ -120,7 +125,7 @@ const addToFavorite = createAsyncThunk(
 	"recepies/addToFavorite",
 	async (id, { rejectWithValue }) => {
 		try {
-			const { data } = await instance.get(`favorite/add/${id}`);
+			const { data } = await instance.patch(`favorite/add/${id}`);
 			//token
 
 			return data;
@@ -134,7 +139,7 @@ const removeFromFavorite = createAsyncThunk(
 	"recepies/removeFromFavorite",
 	async (id, { rejectWithValue }) => {
 		try {
-			const { data } = await instance.delete(`favorite/remove/${id}`);
+			const { data } = await instance.patch(`favorite/remove/${id}`);
 			//token
 
 			return data;
