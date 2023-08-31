@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import Paginator from "../../components/Paginator/Paginator";
+// import Paginator from "../../components/Paginator/Paginator";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import DrinksSearch from "./DrinksSearch/DrinksSearch";
 import DrinksList from "./DrinksList/DrinksList";
@@ -60,7 +60,7 @@ const DrinksPage = () => {
 				<MainTitle title={"Drinks"} />
 				<DrinksSearch categoryName={categoryName} />
 				<DrinksList />
-				<Paginator />
+			
 			</section>
 		</Container>
 	);
