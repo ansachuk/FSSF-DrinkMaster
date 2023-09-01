@@ -14,11 +14,21 @@ const RecipePageHero = ({glass, title, about, image}) => {
     const favoriteRecipes = useSelector(selectFavorite);
     const isFavorite = favoriteRecipes.includes(recipeId);
 
+    console.log(isFavorite);
+
+    const handleAddToFavorite = () => {
+    if (!isFavorite) {
+      dispatch(addToFavorite(recipeId));
+    } else {
+      dispatch(removeFromFavorite(recipeId));
+    }
+  };
+
     return (
         <div className={css.recipePageHeroContainer}>
             <div><p className={css.glassName}>{glass}</p>
             {about && <p className={css.aboutDrink}>{about}</p>}
-            {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={() => dispatch(removeFromFavorite(recipeId))} propClass={stylesForButton.recipePageButton}/> : <MainButton title="Add to favorite recipes" onClick={() => dispatch(addToFavorite(recipeId))} propClass={stylesForButton.recipePageButton}/>}</div>
+            {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={handleAddToFavorite} propClass={stylesForButton.recipePageButton}/> : <MainButton title="Add to favorite recipes" onClick={handleAddToFavorite} propClass={stylesForButton.recipePageButton}/>}</div>
             {image ? <img src={image} alt={title} className={css.recipePageHeroImg} /> : <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>}
         </div>
     )
