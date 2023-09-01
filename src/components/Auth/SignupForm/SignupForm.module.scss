@@ -1,3 +1,6 @@
+.container {
+	z-index: 11;
+}
 .titleSignup {
 	font-weight: 600;
 	font-size: 28px;
@@ -72,4 +75,8 @@
 	line-height: calc(18 / 14);
 	font-weight: 600;
 	text-align: center;
+}
+.error {
+	color: red;
+	font-size: 10px;
 }
