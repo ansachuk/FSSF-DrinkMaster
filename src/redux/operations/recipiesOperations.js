@@ -54,6 +54,33 @@ const search = createAsyncThunk("recepies/search", async (search, { rejectWithVa
 	}
 });
 
+// const search = createAsyncThunk("recepies/search", async (searchOptions, { rejectWithValue }) => {
+// 	try {
+// 		const { chosenCategory, chosenIngredient, query, page, limit } = searchOptions;
+// 		const params = {};
+
+// 		if (chosenCategory) {
+// 			params.category = chosenCategory;
+// 		}
+
+// 		if (chosenIngredient) {
+// 			params.ingredient = chosenIngredient;
+// 		}
+
+// 		if (query) {
+// 			params.query = query;
+// 		}
+
+// 		params.page = page;
+// 		params.limit = limit;
+// 		const { data } = await instance.get("search/", { params });
+
+// 		return data;
+// 	} catch (error) {
+// 		return rejectWithValue(error.message);
+// 	}
+// });
+
 const allIngredients = createAsyncThunk(
 	"recepies/allIngredients",
 	async (_, { rejectWithValue }) => {
@@ -118,7 +145,7 @@ const remove = createAsyncThunk("recepies/remove", async (id, { rejectWithValue 
 const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
 	try {
 		const { data } = await instance.get(`favorite`);
-		//token
+
 		return data;
 	} catch (e) {
 		return rejectWithValue(e.response.data.message);
@@ -144,7 +171,6 @@ const removeFromFavorite = createAsyncThunk(
 	async (id, { rejectWithValue }) => {
 		try {
 			const { data } = await instance.patch(`favorite/remove/${id}`);
-			//token
 
 			return data;
 		} catch (e) {
