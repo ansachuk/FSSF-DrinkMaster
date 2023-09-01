@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { schemaSignup } from "../../../schemas/schemas";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import {
 	container,
@@ -13,20 +13,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../redux/operations/authOperations";
 import Notiflix from "notiflix";
-
-const schema = yup.object().shape({
-	name: yup.string().required(),
-	email: yup.string().email("Enter a valid email").required("Email is a required field"),
-	password: yup
-		.string()
-		.required("Пароль є обовʼязковим полем")
-		.min(6, "Пароль повинен містити щонайменше 6 символів")
-		.max(16, "Пароль не може містити більше 16 символів")
-		.matches(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-			"Пароль повинен містити принаймні одну літеру верхнього регістру, одну літеру нижнього регістру та одну цифру",
-		),
-});
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
@@ -44,7 +30,7 @@ export default function SignupForm() {
 			<h2 className={titleSignup}>Registration</h2>
 			<Formik
 				initialValues={{ name: "", email: "", password: "" }}
-				validationSchema={schema}
+				validationSchema={schemaSignup}
 				onSubmit={handleSubmit}
 			>
 				<Form className={form}>
