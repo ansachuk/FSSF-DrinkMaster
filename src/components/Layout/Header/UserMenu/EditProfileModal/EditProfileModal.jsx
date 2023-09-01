@@ -11,7 +11,7 @@ import { selectUser } from "../../../../../redux/selectors/authSelectors";
 import { update } from "../../../../../redux/operations/authOperations";
 import { Notify } from "notiflix";
 
-export default function EditProfileModal({ handlerEditProfileClick, style }) {
+export default function EditProfileModal({ handlerEditProfileClick }) {
 	const dispatch = useDispatch();
 	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
@@ -68,10 +68,7 @@ export default function EditProfileModal({ handlerEditProfileClick, style }) {
 	}, [imgURL]);
 
 	return (
-		<div
-			className={css.edit_container}
-			style={style}
-		>
+		<div className={css.edit_container}>
 			<button
 				onClick={handlerEditProfileClick}
 				className={css.close_button}
@@ -134,5 +131,4 @@ export default function EditProfileModal({ handlerEditProfileClick, style }) {
 
 EditProfileModal.propTypes = {
 	handlerEditProfileClick: PropTypes.func,
-	style: PropTypes.object,
 };

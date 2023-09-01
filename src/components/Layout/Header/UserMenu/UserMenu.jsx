@@ -53,12 +53,6 @@ export default function UserMenu() {
 		};
 	});
 
-	const mountedStyle = { animation: "inAnimation 250ms ease-in" };
-	const unmountedStyle = {
-		animation: "outAnimation 270ms ease-out",
-		animationFillMode: "forwards",
-	};
-
 	return (
 		<div
 			className={css.user_group}
@@ -80,23 +74,12 @@ export default function UserMenu() {
 				<UserDropdown
 					handlerEditProfileClick={handlerEditProfileClick}
 					handlerLogoutDropdownClick={handlerLogoutDropdownClick}
-					style={isOpenDropdown ? mountedStyle : unmountedStyle}
 				/>
 			)}
 
-			{isOpenEditProfile && (
-				<EditUserModal
-					handlerEditProfileClick={handlerEditProfileClick}
-					style={isOpenEditProfile ? mountedStyle : unmountedStyle}
-				/>
-			)}
+			{isOpenEditProfile && <EditUserModal handlerEditProfileClick={handlerEditProfileClick} />}
 
-			{isOpenLogout && (
-				<LogoutOptions
-					handlerLogoutDropdownClick={handlerLogoutDropdownClick}
-					style={isOpenLogout ? mountedStyle : unmountedStyle}
-				/>
-			)}
+			{isOpenLogout && <LogoutOptions handlerLogoutDropdownClick={handlerLogoutDropdownClick} />}
 		</div>
 	);
 }

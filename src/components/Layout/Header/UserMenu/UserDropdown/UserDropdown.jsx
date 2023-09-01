@@ -4,16 +4,9 @@ import css from "./UserDropdown.module.scss";
 import buttonCss from "../../../../MainButton/MainButton.module.scss";
 import PropTypes from "prop-types";
 
-export default function UserDropdown({
-	handlerEditProfileClick,
-	handlerLogoutDropdownClick,
-	style,
-}) {
+export default function UserDropdown({ handlerEditProfileClick, handlerLogoutDropdownClick }) {
 	return (
-		<div
-			className={css.dropdown_container}
-			style={style}
-		>
+		<div className={css.dropdown_container}>
 			<div className={css.heading}>
 				<p>Edit profile</p>
 				<button
@@ -37,5 +30,4 @@ export default function UserDropdown({
 UserDropdown.propTypes = {
 	handlerEditProfileClick: PropTypes.func,
 	handlerLogoutDropdownClick: PropTypes.func,
-	style: PropTypes.object,
 };
