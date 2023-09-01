@@ -28,7 +28,7 @@ const [chosenCategory, setChosenCategory] = useState(null);
         <input
           type="text"
           className={css.input}
-          placeholder="Search for drinks..."
+          placeholder="Enter the text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
@@ -43,14 +43,14 @@ const [chosenCategory, setChosenCategory] = useState(null);
       <Select
         className={css.select}
         options={options}
-        placeholder="Select an option"
+        placeholder="All categories"
         value={chosenCategory}
         onChange={(selectedOption) => setChosenCategory(selectedOption)}
       />
       <Select
         className={css.select}
         options={ingredientsList.map(ingredient => ({ value: ingredient, label: ingredient }))}
-        placeholder="Select an ingredient"
+        placeholder="Ingredients"
         value={chosenIngredient}
         onChange={(selectedOption) => setChosenIngredient(selectedOption)}
       />
