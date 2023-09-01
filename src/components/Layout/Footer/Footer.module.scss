@@ -1,0 +1,125 @@
+@import "../../../scss/";
+
+.FooterContainer {
+	position: relative;
+	overflow: hidden;
+	padding: 40px 20px 18px;
+	border-top: 1px solid $outlinBtnBackgroundColor;
+
+	@include tablet {
+		padding: 80px 32px 24px;
+	}
+
+	@include desktop {
+		padding: 80px 100px 24px;
+	}
+}
+
+.FlexContainer {
+	margin-bottom: 80px;
+	@include tablet {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.FooterGroup {
+	display: flex;
+	margin-bottom: 40px;
+	justify-content: space-between;
+
+	@include tablet {
+		flex-direction: column;
+	}
+
+	@include desktop {
+		flex-direction: row;
+	}
+}
+
+.FooterInfo {
+	@include tablet {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.FooterText {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	letter-spacing: -0.24px;
+	color: #f3f3f37e;
+	transition: border 0.3s ease;
+
+	@include tablet {
+		font-size: 14px;
+		line-height: 18px;
+		letter-spacing: -0.28px;
+	}
+}
+
+.FooterText:not(:last-child) {
+	margin-right: 14px;
+
+	@include tablet {
+		margin-right: 18px;
+	}
+}
+
+.footer_first_ball {
+	position: absolute;
+	bottom: -104px;
+	left: -689px;
+	width: 784px;
+	height: 849px;
+	border-radius: 849px;
+	background: rgba(64, 112, 205, 0.5);
+	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		left: -690px;
+		bottom: -164px;
+	}
+
+	@include desktop {
+		bottom: -218px;
+	}
+}
+
+.footer_second_ball {
+	position: absolute;
+	bottom: -600px;
+	left: 238px;
+	width: 774px;
+	height: 762px;
+
+	border-radius: 774px;
+	background: rgba(188, 230, 210, 0.4);
+	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		left: 237px;
+		bottom: -660px;
+	}
+
+	@include desktop {
+		bottom: -714px;
+	}
+}
+
+.footer_third_ball {
+	@include desktop {
+		position: absolute;
+		bottom: -768px;
+		left: 827px;
+		width: 784px;
+		height: 849px;
+
+		border-radius: 849px;
+		background: rgba(64, 112, 205, 0.5);
+		filter: blur(104.8543701171875px);
+	}
+}
