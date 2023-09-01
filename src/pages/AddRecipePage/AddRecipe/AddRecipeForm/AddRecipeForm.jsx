@@ -5,7 +5,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { Notify } from "notiflix";
 import * as yup from "yup";
 // import { useNavigate } from "react-router";
-// import css from "./AddRecipeForm.module.scss";
+import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
 import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredientsFields";
 import RecipePreparationFields from "../RecipePreparationFields/RecipePreparationFields";
@@ -154,7 +154,7 @@ export default function AddRecipeForm() {
 	};
 
 	return (
-		<div>
+		<div className={css.wraper}>
 			<Formik
 				initialValues={formikInitialValues}
 				onSubmit={handleSubmit}
