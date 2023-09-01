@@ -1,0 +1,68 @@
+@import "../../../scss/";
+
+.section {
+	width: 100%;
+	margin-top: 40px;
+	overflow: hidden;
+	padding: 0;
+	@include tablet {
+		margin-top: 60px;
+	}
+	@include desktop {
+		margin-top: 62px;
+	}
+}
+.ownList {
+	display: grid;
+	row-gap: 28px;
+	grid-template-columns: repeat(1, 1fr);
+
+	@include tablet {
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 20px;
+		row-gap: 40px;
+	}
+
+	@include desktop {
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 20px;
+		row-gap: 80px;
+	}
+}
+
+.wrapDiv {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 14px;
+	@include tablet {
+		gap: 18px;
+	}
+}
+
+.notFoundImg {
+	width: 375px;
+	height: 517px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	@include tablet {
+		width: 465px;
+		height: 500px;
+	}
+}
+
+.notFavoriteText {
+	width: 205px;
+	color: #f3f3f3;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: calc(18 / 14);
+	@include tablet {
+		width: 236px;
+		font-size: 16px;
+		line-height: calc(22 / 16);
+	}
+}
