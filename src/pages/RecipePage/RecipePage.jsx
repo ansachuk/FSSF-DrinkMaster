@@ -1,11 +1,7 @@
-// export default function RecipePage() {
-// 	return <div>RecipePage</div>;
-// }
-
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { byID } from "../../redux/operations/recipiesOperations.js";
+import { byID, favorite} from "../../redux/operations/recipiesOperations.js";
 import { selectByID } from "../../redux/selectors/recipieSelectors.js";
 import MainTitle from "../../components/MainTitle/MainTitle.jsx";
 import RecipePageHero from "./RecipePageHero/RecipePageHero";
@@ -18,7 +14,16 @@ const RecipePage = () => {
 	const recipe = useSelector(selectByID);
 
 	useEffect(() => {
-		dispatch(byID(recipeId));
+		async function fetchRecipe() {
+			const res = await dispatch(byID(recipeId));
+			return res;
+		}
+		async function fetchFavorite() {
+      const res = await dispatch(favorite());
+      return res;
+    }
+		fetchRecipe();
+		fetchFavorite();
 	}, [dispatch, recipeId]);
 
 	return (
