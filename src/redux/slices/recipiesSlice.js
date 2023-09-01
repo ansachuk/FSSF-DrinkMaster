@@ -83,7 +83,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(remove.fulfilled, (state, { payload }) => {
-				state.own = state.own.filter(({ data }) => data._id !== payload._id);
+				state.own = state.own.filter(({ _id }) => _id !== payload._id);
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {
@@ -95,7 +95,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
-				state.favorite = state.favorite.filter(({ data }) => data._id !== payload._id);
+				state.favorite = state.favorite.filter(({ _id }) => _id !== payload._id);
 				handleFullfilled(state);
 			})
 			.addCase(popular.fulfilled, (state, { payload }) => {

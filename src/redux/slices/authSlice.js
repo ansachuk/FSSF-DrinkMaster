@@ -18,6 +18,7 @@ const initialState = {
 
 const handleSignUp = (state, { payload }) => {
 	state.user = payload;
+
 	handleFullfilled(state);
 };
 
@@ -32,10 +33,14 @@ const handleLogin = (state, { payload: { token, user } }) => {
 const handleUpdate = (state, { payload }) => {
 	state.user.avatarURL = payload.avatarURL || null;
 	state.user.name = payload.name || null;
+
+	handleFullfilled(state);
 };
 
 const handleSubcribe = (state, { payload }) => {
 	state.user.subscribe = payload;
+
+	handleFullfilled(state);
 };
 
 const handleRefresh = (state, { payload }) => {
