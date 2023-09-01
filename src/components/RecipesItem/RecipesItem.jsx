@@ -2,30 +2,38 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import SeeButton from "../../components/SeeButton/SeeButton";
-import imgDefault from "../../images/static/my-recepies/imgdefault.jpg";
+import icons from "/src/images/icons.svg";
 import css from "./RecipesItem.module.scss";
 
-export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteClick, page }) {
+export default function RecipesItem({ _id, drink, drinkThumb, about, instructions, page }) {
+	const ingredientsWrapperClasses = `${css.ingredientsWrapper} ${
+		page === "my" ? "my" : page === "favorite" ? "favorite" : ""
+	}`;
 	return (
 		<div className={css.card}>
 			<Link to={`/recipe/${_id}`}>
 				<div className={css.imageBox}>
 					<div className={css.imageWrapper}>
-						<img
-							className={css.image}
-							src={drinkThumb}
-							alt={drink}
-							onError={e => {
-								e.currentTarget.src = imgDefault;
-							}}
-						/>
+						{drinkThumb ? (
+							<img
+								src={drinkThumb}
+								alt={drink}
+								className={css.image}
+							/>
+						) : (
+							<div className={css.defaultImgBox}>
+								<svg className={css.defaultImage}>
+									<use href={icons + "#cocktail"}></use>
+								</svg>
+							</div>
+						)}
 					</div>
 				</div>
 			</Link>
 			<div>
 				<div
 					style={{ position: page }}
-					className={css.ingredientsWrapper}
+					className={ingredientsWrapperClasses}
 				>
 					<Link to={`/recipe/${_id}`}>
 						<p className={css.ingredientsTitle}>{drink}</p>
@@ -33,17 +41,15 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, onDeleteCli
 					<p className={css.ingredientsText}>Ingredients</p>
 				</div>
 			</div>
-			<p className={css.about}>{about}</p>
+			{page === "favorite" && <p className={css.about}>{instructions}</p>}
+			{page === "my" && <p className={css.about}>{about}</p>}
 			<div className={css.buttonsWrapper}>
-				{(page === "my" || page === "favorite") && <SeeButton />}
+				{(page === "my" || page === "favorite") && <SeeButton id={_id} />}
 				{(page === "my" || page === "favorite") && (
 					<DeleteButton
 						key={_id}
-						drink={drink}
-						drinkThumb={drinkThumb}
-						about={about}
+						id={_id}
 						page={page}
-						onDeleteClick={() => onDeleteClick(_id, "favorite")}
 					/>
 				)}
 			</div>
