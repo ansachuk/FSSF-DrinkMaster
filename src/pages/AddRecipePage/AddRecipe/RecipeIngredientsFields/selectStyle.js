@@ -1,18 +1,19 @@
 export const styles = {
 	control: baseStyles => ({
 		...baseStyles,
+		width: "200px",
+		height: "50px",
 		alignItems: "flex-start",
-		minHeight: "34px",
-		paddingLeft: "100px",
+		padding: "16px",
 		fontSize: "14px",
 		lineHeight: "calc(14 / 14)",
-		// textAlign: "right",
 		backgroundColor: "transparent",
 		border: "1px solid rgba(243, 243, 243, 0.50)",
-		borderRadius: "5px",
-		// borderBottom: "1px solid rgba(243, 243, 243, 0.50)",
-		// outline: 0,
+		borderRadius: "200px",
 		cursor: "text",
+		"&:hover, &:focus": {
+			borderColor: "#f3f3f3",
+		},
 	}),
 
 	menu: baseStyles => ({
@@ -25,7 +26,7 @@ export const styles = {
 		display: "flex",
 		flexDirection: "column",
 		gap: "6px",
-		width: "131px",
+		width: "100%",
 		height: "150px",
 		padding: "10px",
 		marginLeft: "auto",
@@ -62,14 +63,15 @@ export const styles = {
 	valueContainer: baseStyles => ({
 		...baseStyles,
 		display: "flex",
+		justifyContent: "center",
+		alignItems: "flex-start",
 		flexWrap: "nowrap",
 	}),
 
 	singleValue: baseStyles => ({
 		...baseStyles,
 		width: "100%",
-		textAlign: "right",
-		lineHeight: "normal",
+		textAlign: "left",
 	}),
 
 	input: baseStyles => ({

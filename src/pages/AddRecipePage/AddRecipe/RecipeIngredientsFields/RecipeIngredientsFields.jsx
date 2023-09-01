@@ -38,9 +38,12 @@ export default function RecipeIngredientsFields({
 				/>
 			</div>
 
-			<ul>
+			<ul className={css.ingredientsList}>
 				{ingredientList.map((el, index) => (
-					<li key={el._id}>
+					<li
+						className={css.ingredientsItem}
+						key={el._id}
+					>
 						<div className={css.selectWraper}>
 							<Select
 								options={ingredientsListOptions.map(ing => {
