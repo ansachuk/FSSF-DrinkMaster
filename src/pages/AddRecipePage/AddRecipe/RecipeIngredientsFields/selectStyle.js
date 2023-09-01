@@ -3,13 +3,13 @@ export const styles = {
 		...baseStyles,
 		alignItems: "flex-start",
 		minHeight: "34px",
-		paddingLeft: "80px",
+		paddingLeft: "100px",
 		fontSize: "14px",
 		lineHeight: "calc(14 / 14)",
 		// textAlign: "right",
 		backgroundColor: "transparent",
-		// border: 0,
-		// borderRadius: 0,
+		border: "1px solid rgba(243, 243, 243, 0.50)",
+		borderRadius: "5px",
 		// borderBottom: "1px solid rgba(243, 243, 243, 0.50)",
 		// outline: 0,
 		cursor: "text",
@@ -26,7 +26,7 @@ export const styles = {
 		flexDirection: "column",
 		gap: "6px",
 		width: "131px",
-		height: "129px",
+		height: "150px",
 		padding: "10px",
 		marginLeft: "auto",
 		marginTop: "-6px",
@@ -34,6 +34,10 @@ export const styles = {
 		color: "rgba(243, 243, 243, 0.50)",
 		borderRadius: "12px",
 		backgroundColor: "#161F37",
+		"::-webkit-scrollbar": {
+			width: "5px",
+			height: "80px",
+		},
 	}),
 
 	option: (baseStyles, state) => ({
@@ -50,6 +54,9 @@ export const styles = {
 	indicatorsContainer: baseStyles => ({
 		...baseStyles,
 		height: "100%",
+		"&:hover": {
+			color: "#161F37",
+		},
 	}),
 
 	valueContainer: baseStyles => ({
@@ -58,25 +65,15 @@ export const styles = {
 		flexWrap: "nowrap",
 	}),
 
-	placeholder: baseStyles => ({
-		...baseStyles,
-		paddingTop: "2px",
-		lineHeight: "normal",
-		textAlign: "right",
-		width: "100%",
-	}),
-
 	singleValue: baseStyles => ({
 		...baseStyles,
 		width: "100%",
-		paddingTop: "2px",
 		textAlign: "right",
 		lineHeight: "normal",
 	}),
 
 	input: baseStyles => ({
 		...baseStyles,
-		paddingTop: "2px",
 		lineHeight: "normal",
 		justifyContent: "end",
 	}),

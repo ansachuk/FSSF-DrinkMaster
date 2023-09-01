@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 import css from "./RecipeIngredientsFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import Counter from "./Counter/Counter";
-// import { optionsIngredientUnit } from "../../../../data/drinksData";
 import { optionsIngredientUnit } from "./optionsIngredientUnit";
 import { allIngredients } from "../../../../redux/operations/recipiesOperations";
 import { selectIngredients } from "../../../../redux/selectors/recipieSelectors";
+import { styles } from "./selectStyle";
 
 export default function RecipeIngredientsFields({
 	ingredientList,
@@ -48,6 +48,8 @@ export default function RecipeIngredientsFields({
 								})}
 								onChange={evt => handleChangeIngredientName(evt, index)}
 								placeholder={"Select ingredient"}
+								unstyled
+								styles={styles}
 								required
 							/>
 
@@ -70,6 +72,8 @@ export default function RecipeIngredientsFields({
 									handleChangeIngredientUnit(evt, index);
 								}}
 								placeholder={"measure"}
+								unstyled
+								styles={styles}
 								required
 							/>
 

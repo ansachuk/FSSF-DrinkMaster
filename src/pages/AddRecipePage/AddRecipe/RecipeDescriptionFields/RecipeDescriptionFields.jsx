@@ -7,7 +7,7 @@ import css from "./RecipeDescriptionFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import { allCategory, glasses } from "../../../../redux/operations/recipiesOperations";
 import { selectCategories, selectGlasses } from "../../../../redux/selectors/recipieSelectors";
-import { styles } from "../selectStyle";
+import { styles } from "./selectStyle";
 
 export default function RecipeDescriptionFields({
 	imgURL,
