@@ -8,9 +8,9 @@ export default function RecipesList() {
 	const favorite = useSelector(selectFavorite);
 	return (
 		<div className={css.section}>
-			{Array.isArray(favorite) && favorite.length !== 0 ? (
+			{Array.isArray(favorite.data) && favorite.data.length !== 0 ? (
 				<div className={css.recipesList}>
-					{favorite.map(favoriteItem => (
+					{favorite.data.map(favoriteItem => (
 						<RecipesItem
 							key={favoriteItem._id}
 							page={"favorite"}
