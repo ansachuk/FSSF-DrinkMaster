@@ -91,7 +91,7 @@ const [chosenCategory, setChosenCategory] = useState(null);
 
   const handleSearchClick = () => {
     
-    onSearch(chosenCategory, chosenIngredient);
+    onSearch({ category: chosenCategory, ingredient: chosenIngredient, searchWord });
   };
 
   return (

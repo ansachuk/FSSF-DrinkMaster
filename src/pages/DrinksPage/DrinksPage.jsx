@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 // import Paginator from "../../components/Paginator/Paginator";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import DrinksSearch from "./DrinksSearch/DrinksSearch";
@@ -23,11 +23,12 @@ const tabletLimit = 8;
 
 const DrinksPage = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
 	const searchResults = useSelector(selectSearchResults);
-	const page = useSelector(selectPage);
+	// const page = useSelector(selectPage);
+	const page = useState(1);
 
 	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
 	const limit = isDesktop ? desktopLimit : tabletLimit;
@@ -41,19 +42,19 @@ const DrinksPage = () => {
 		}
 	}, [dispatch, categoriesList, ingredientsList]);
 
-	const handleSearch = (chosenCategory, chosenIngredient) => {
+	const handleSearch = (params) => {
 		dispatch(
-			search({
-				search: {
-					chosenCategory,
-					chosenIngredient,
-					query: null,
-				},
-				page,
-				limit,
+			search({...params, page, limit
+				
+					// chosenCategory,
+					// chosenIngredient,
+					// searchWord,
+			
+				// page,
+				// limit,
 			}),
 		);
-		navigate(`/recipes/${encodeURIComponent(chosenCategory)}?page=${page}`);
+		// navigate(`/recipes/${encodeURIComponent(chosenCategory)}?page=${page}`);
 	};
 
 	useEffect(() => {
@@ -76,6 +77,28 @@ const DrinksPage = () => {
 };
 
 export default DrinksPage;
+
+
+// const search = createAsyncThunk("recepies/search", async (searchData, { rejectWithValue }) => {
+//     try {
+//         const { category, ingredient, searchWord, page = 1 } = searchData;
+//         const searchWordStr = searchWord ? `&searchWord=${searchWord}` : "";
+//         const categoryStr = category ? `&category=${category}` : "";
+//         const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
+
+//         const { data } = await instance.get(
+//             `search?page=${page}${searchWordStr}${categoryStr}${ingredientStr}`,
+//         );
+
+//         return data;
+//     } catch (error) {
+//         return rejectWithValue(error.message);
+//     }
+// });
+
+
+
+
 
 // export default function DrinksPage() {
 // 	return <div>DrinksPage</div>;
