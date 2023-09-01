@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import icons from "../../../../images/icons.svg";
 import css from "./UserMenu.module.scss";
 import UserDropdown from "./UserDropdown/UserDropdown";
 import EditUserModal from "./EditProfileModal/EditProfileModal";

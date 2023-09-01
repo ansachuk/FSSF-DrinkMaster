@@ -4,7 +4,10 @@ import css from "./Navigation.module.scss";
 export default function Navigation() {
 	return (
 		<nav className={css.nav}>
-			<ul className={css.list}>
+			<ul
+				className={css.list}
+				id="navigation"
+			>
 				<li className={css.item}>
 					<NavLink
 						to="/"

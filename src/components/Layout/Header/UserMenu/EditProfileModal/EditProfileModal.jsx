@@ -15,15 +15,12 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 	const dispatch = useDispatch();
 	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
 
+	const [userName, setUserName] = useState(name);
 	const [image, setImage] = useState(null);
 	const [imgURL, setImageURL] = useState(null);
 	const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
-	const userInfoFormSubmit = e => {
-		e.preventDefault();
-
-		const updatedUserName = e.target.elements.user_name.value;
-
+	const userInfoFormSubmit = values => {
 		if (!isButtonEnabled) {
 			setIsButtonEnabled(false);
 			Notify.failure("No data changed");
@@ -32,7 +29,7 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 
 		const formData = new FormData();
 
-		formData.append("name", updatedUserName);
+		formData.append("name", values.name);
 		if (image) {
 			formData.append("avatarURL", image);
 		}
@@ -50,6 +47,7 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 	};
 
 	const onNameChange = e => {
+		setUserName(e.target.value);
 		if (name !== e.target.value) {
 			setIsButtonEnabled(true);
 		} else if (name === e.target.value && imgURL === null) {
@@ -80,7 +78,8 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 				</svg>
 			</button>
 			<Formik
-				initialValues={{ avatarURL: "", user_name: `${name}` }}
+				initialValues={{ avatarURL: "", name: `${userName}` }}
+				enableReinitialize={true}
 				onSubmit={userInfoFormSubmit}
 			>
 				<Form>
@@ -108,8 +107,8 @@ export default function EditProfileModal({ handlerEditProfileClick }) {
 					</div>
 					<label className={css.input_container}>
 						<Field
-							id="user_name"
-							name="user_name"
+							id="name"
+							name="name"
 							type="text"
 							// defaultValue={name}
 							className={css.input}
