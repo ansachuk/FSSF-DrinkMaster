@@ -142,3 +142,20 @@
 	gap: 8px;
 	position: relative;
 }
+
+.defaultImage {
+	width: 157px;
+	height: 157px;
+	background-color: $accentColor;
+	opacity: 50%;
+	position: relative;
+	margin-bottom: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include tablet {
+		width: 220px;
+		height: 220px;
+	}
+}
