@@ -28,6 +28,85 @@
 // 	@media (min-width: 1280px) and (max-width: 1439px) {
 // 		width: 345px;
 // 	}
+	@media (min-width: 1440px) {
+		width: 400px;
+	}
+}
+.imageBox {
+	border-radius: 15px;
+	transition: scale 400ms ease, box-shadow 400ms ease;
+	padding-bottom: 18px;
+	@include tablet {
+		padding-bottom: 24px;
+	}
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+	}
+
+	@media (min-width: 1440px) {
+		width: 400px;
+	}
+}
+
+.imageBox:hover,
+.imageBox:focus {
+	transform: scale(0.98);
+	box-shadow: 0 0 10px #f3f3f3;
+}
+
+.imageWrapper {
+	width: 335px;
+	height: 360px;
+	border-radius: 15px;
+	overflow: hidden;
+	@include tablet {
+		width: 342px;
+	}
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+		height: 400px;
+	}
+
+	@media (min-width: 1440px) {
+		width: 400px;
+	}
+}
+
+.image {
+	border-radius: 15px;
+	display: block;
+	max-width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 600ms ease;
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+		height: 360px;
+	}
+
+	@media (min-width: 1440px) {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+.image:hover,
+.image:focus {
+	transform: scale(1.03);
+}
+
+.ingredientsWrapperClasses {
+	margin-top: 14px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.ingredientsTitle {
+	color: #f3f3f3;
+	font-family: Manrope, sans-serif;
+	font-size: 24px;
+	line-height: calc(32 / 24);
+}
 
 // 	@media (min-width: 1440px) {
 // 		width: 400px;
@@ -142,3 +221,42 @@
 // 	gap: 8px;
 // 	position: relative;
 // }
+.buttonsWrapper {
+	display: flex;
+	gap: 8px;
+	position: relative;
+}
+
+.defaultImgBox {
+	width: 335px;
+	height: 360px;
+	background-color: rgba(97, 104, 124, 0.6);
+	opacity: 50%;
+	position: relative;
+	margin-bottom: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include tablet {
+		width: 342px;
+	}
+	@include desktop {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+.defaultImage {
+	width: 90px;
+	height: 90px;
+
+	@include tablet {
+		width: 89px;
+		height: 91px;
+	}
+	@include desktop {
+		width: 131px;
+		height: 133px;
+	}
+}
