@@ -28,10 +28,8 @@ const initialState = {
 	categories: [],
 	glasses: [],
 	ingredients: [],
-	search: { query: "", chosenCategory: "", chosenIngredient: "" },
 	searchResults: [],
 	isLoading: false,
-	page: 1,
 	totalHits: 0,
 	error: null,
 };
