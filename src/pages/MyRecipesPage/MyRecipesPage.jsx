@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPage } from "../../redux/selectors/recipieSelectors.js";
 import MainTitle from "../../components/MainTitle/MainTitle";
