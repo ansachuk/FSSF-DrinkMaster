@@ -7,6 +7,7 @@ import css from "./RecipeDescriptionFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import { allCategory, glasses } from "../../../../redux/operations/recipiesOperations";
 import { selectCategories, selectGlasses } from "../../../../redux/selectors/recipieSelectors";
+import { styles } from "../selectStyle";
 
 export default function RecipeDescriptionFields({
 	imgURL,
@@ -92,22 +93,36 @@ export default function RecipeDescriptionFields({
 						<div className={css.validate}></div>
 					)}
 				</div>
-				<Select
-					onChange={({ value }) => handleSelectData("category", value)}
-					options={optionsCategories.map(item => {
-						return { value: item, label: item };
-					})}
-					defaultValue={{ value: "Cocktail", label: "Cocktail" }}
-					required
-				/>
-				<Select
-					onChange={({ value }) => handleSelectData("glass", value)}
-					options={optionsGlasses.map(item => {
-						return { value: item, label: item };
-					})}
-					defaultValue={{ value: "Highball glass", label: "Highball glass" }}
-					required
-				/>
+
+				<div className={css.margin}>
+					<div className={css.selectWrapper}>
+						<label className={css.labelSelect}>Category</label>
+						<Select
+							onChange={({ value }) => handleSelectData("category", value)}
+							options={optionsCategories.map(item => {
+								return { value: item, label: item };
+							})}
+							defaultValue={{ value: "Cocktail", label: "Cocktail" }}
+							unstyled
+							styles={styles}
+							required
+						/>
+					</div>
+
+					<div className={css.selectWrapper}>
+						<label className={css.labelSelect}>Glass</label>
+						<Select
+							onChange={({ value }) => handleSelectData("glass", value)}
+							options={optionsGlasses.map(item => {
+								return { value: item, label: item };
+							})}
+							defaultValue={{ value: "Highball glass", label: "Highball glass" }}
+							styles={styles}
+							unstyled
+							required
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
