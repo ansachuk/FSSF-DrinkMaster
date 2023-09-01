@@ -64,4 +64,5 @@ RecipesItem.propTypes = {
 	about: PropTypes.string.isRequired,
 	onDeleteClick: PropTypes.func.isRequired,
 	page: PropTypes.string.isRequired,
+	instructions: PropTypes.string,
 };
