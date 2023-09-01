@@ -143,10 +143,10 @@
 	position: relative;
 }
 
-.defaultImage {
-	width: 157px;
-	height: 157px;
-	background-color: $accentColor;
+.defaultImgBox {
+	width: 335px;
+	height: 360px;
+	background-color: rgba(97, 104, 124, 0.6);
 	opacity: 50%;
 	position: relative;
 	margin-bottom: 8px;
@@ -155,7 +155,24 @@
 	align-items: center;
 
 	@include tablet {
-		width: 220px;
-		height: 220px;
+		width: 342px;
+	}
+	@include desktop {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+.defaultImage {
+	width: 90px;
+	height: 90px;
+
+	@include tablet {
+		width: 89px;
+		height: 91px;
+	}
+	@include desktop {
+		width: 131px;
+		height: 133px;
 	}
 }

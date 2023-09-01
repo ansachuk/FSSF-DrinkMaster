@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import SeeButton from "../../components/SeeButton/SeeButton";
-// import imgDefault from "../../images/static/my-recepies/imgdefault.jpg";
 import icons from "/src/images/icons.svg";
 import css from "./RecipesItem.module.scss";
 
@@ -19,7 +18,7 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, instruction
 								className={css.image}
 							/>
 						) : (
-							<div className={css.defaultImage}>
+							<div className={css.defaultImgBox}>
 								<svg className={css.defaultImage}>
 									<use href={icons + "#cocktail"}></use>
 								</svg>
