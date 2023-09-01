@@ -23,3 +23,29 @@
 		padding-left: 100px;
 	}
 }
+
+.gradientContainer {
+	width: 50vw;
+	height: 130vh;
+	background: radial-gradient(ellipse, rgba(64, 112, 205, 0.5), transparent);
+	top: -50%;
+	left: -28%;
+	z-index: 3;
+	border-radius: 50%;
+
+	position: absolute;
+	filter: blur(50px);
+}
+.circleContainer {
+	width: 32vw;
+	height: 75vh;
+	background: radial-gradient(circle, rgba(188, 230, 210, 0.4), transparent);
+
+	filter: blur(40px);
+	top: -35%;
+	left: 10%;
+	z-index: 10;
+	border-radius: 50%;
+
+	position: absolute;
+}
