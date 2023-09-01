@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectFavorite } from "../../redux/selectors/recipieSelectors";
 import RecipesItem from "../../components/RecipesItem/RecipesItem";
-import DrinkDefault from "../../images/static/main/main.jpg";
+import Noadded from "../../components/NotAdded/NotAdded";
 import css from "./RecipesList.module.scss";
 
 export default function RecipesList() {
@@ -19,14 +19,7 @@ export default function RecipesList() {
 					))}
 				</div>
 			) : (
-				<div className={css.wrapDiv}>
-					<img
-						className={css.notFoundImg}
-						src={DrinkDefault}
-						alt="No added recipes"
-					/>
-					<p className={css.notFavoriteText}>You haven&apos;t added any favorite cocktails yet</p>
-				</div>
+				<Noadded text="You haven't added any favorite cocktails yet" />
 			)}
 		</div>
 	);
