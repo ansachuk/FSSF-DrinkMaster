@@ -1,6 +1,8 @@
 @import "../../../scss/";
 
 .FooterContainer {
+	position: relative;
+	overflow: hidden;
 	padding: 40px 20px 18px;
 	border-top: 1px solid $outlinBtnBackgroundColor;
 
@@ -64,5 +66,60 @@
 
 	@include tablet {
 		margin-right: 18px;
+	}
+}
+
+.footer_first_ball {
+	position: absolute;
+	bottom: -104px;
+	left: -689px;
+	width: 784px;
+	height: 849px;
+	border-radius: 849px;
+	background: rgba(64, 112, 205, 0.5);
+	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		left: -690px;
+		bottom: -164px;
+	}
+
+	@include desktop {
+		bottom: -218px;
+	}
+}
+
+.footer_second_ball {
+	position: absolute;
+	bottom: -600px;
+	left: 238px;
+	width: 774px;
+	height: 762px;
+
+	border-radius: 774px;
+	background: rgba(188, 230, 210, 0.4);
+	filter: blur(104.8543701171875px);
+
+	@include tablet {
+		left: 237px;
+		bottom: -660px;
+	}
+
+	@include desktop {
+		bottom: -714px;
+	}
+}
+
+.footer_third_ball {
+	@include desktop {
+		position: absolute;
+		bottom: -768px;
+		left: 827px;
+		width: 784px;
+		height: 849px;
+
+		border-radius: 849px;
+		background: rgba(64, 112, 205, 0.5);
+		filter: blur(104.8543701171875px);
 	}
 }

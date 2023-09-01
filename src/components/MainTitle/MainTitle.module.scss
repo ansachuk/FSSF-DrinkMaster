@@ -1,9 +1,4 @@
 @import "../../scss/";
-
-.main {
-	overflow-x: hidden;
-}
-
 .title {
 	font-size: 32px;
 
@@ -26,7 +21,7 @@
 	}
 }
 
-.firstBall {
+.first_ball {
 	position: absolute;
 	top: 20px;
 	left: -399px;
@@ -54,7 +49,7 @@
 	}
 }
 
-.secondBall {
+.second_ball {
 	position: absolute;
 	top: 84px;
 	left: 42px;
@@ -83,7 +78,7 @@
 	}
 }
 
-.thirdBall {
+.third_ball {
 	display: none;
 	position: absolute;
 	top: 498px;
@@ -105,7 +100,7 @@
 	}
 }
 
-.fourthBall {
+.fourth_ball {
 	display: none;
 	position: absolute;
 	top: 745px;

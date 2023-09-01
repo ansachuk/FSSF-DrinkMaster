@@ -6,13 +6,13 @@ import css from "./MainTitle.module.scss";
 export default function MainTitle({ title, children }) {
 	return (
 		<Container>
-			<main className={css.main}>
+			<main>
 				<h1 className={css.title}>{title}</h1>
 				{children}
-				<div className={css.firstBall}></div>
-				<div className={css.secondBall}></div>
-				<div className={css.thirdBall}></div>
-				<div className={css.fourthBall}></div>
+				<div className={css.first_ball}></div>
+				<div className={css.second_ball}></div>
+				<div className={css.third_ball}></div>
+				<div className={css.fourth_ball}></div>
 			</main>
 		</Container>
 	);

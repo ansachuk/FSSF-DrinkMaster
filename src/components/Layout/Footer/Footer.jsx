@@ -35,6 +35,9 @@ export default function Footer() {
 					</Link>
 				</div>
 			</div>
+			<div className={css.footer_first_ball}></div>
+			<div className={css.footer_second_ball}></div>
+			<div className={css.footer_third_ball}></div>
 		</div>
 	);
 }
