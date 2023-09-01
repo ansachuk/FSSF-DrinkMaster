@@ -72,6 +72,7 @@ export const styles = {
 		...baseStyles,
 		width: "100%",
 		textAlign: "left",
+		overflow: "visible",
 	}),
 
 	input: baseStyles => ({

@@ -51,7 +51,7 @@ export default function RecipeIngredientsFields({
 									return { value: ing.title, label: ing.title, id: ing._id };
 								})}
 								onChange={evt => handleChangeIngredientName(evt, index)}
-								placeholder={"Select ingredient"}
+								placeholder={"Select ingredient..."}
 								unstyled
 								styles={styles}
 								required
@@ -64,6 +64,8 @@ export default function RecipeIngredientsFields({
 									type="number"
 									min="0"
 									max="999"
+									step="0.1"
+									maxlength="2"
 									onChange={evt => {
 										handleChangeUnitQuantity(evt, index);
 									}}
@@ -76,7 +78,7 @@ export default function RecipeIngredientsFields({
 									onChange={evt => {
 										handleChangeIngredientUnit(evt, index);
 									}}
-									placeholder={"me"}
+									placeholder={""}
 									unstyled
 									styles={stylesMeasure}
 									required

@@ -18,7 +18,7 @@ export const stylesMeasure = {
 
 	menu: baseStyles => ({
 		...baseStyles,
-		width: "100%",
+		// width: "100%",
 	}),
 
 	menuList: baseStyles => ({
@@ -26,13 +26,14 @@ export const stylesMeasure = {
 		display: "flex",
 		flexDirection: "column",
 		gap: "6px",
-		width: "70px",
+		width: "55px",
 		height: "150px",
 		padding: "10px",
 		marginLeft: "auto",
 		marginTop: "-6px",
 		overflowX: "hidden",
 		color: "rgba(243, 243, 243, 0.50)",
+		textAlign: "center",
 		borderRadius: "12px",
 		backgroundColor: "#161F37",
 		"::-webkit-scrollbar": {
@@ -71,7 +72,8 @@ export const stylesMeasure = {
 	singleValue: baseStyles => ({
 		...baseStyles,
 		width: "100%",
-		// textAlign: "right",
+		overflow: "visible",
+		// textAlign: "center",
 	}),
 
 	input: baseStyles => ({

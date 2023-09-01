@@ -34,7 +34,7 @@
 	justify-content: center;
 	align-items: center;
 	// color: white;
-	padding: 16px 12px;
+	// padding: 16px 12px;
 	width: 101px;
 	height: 50px;
 	background: transparent;
@@ -54,6 +54,7 @@
 .fieldStyle {
 	width: 27px;
 	height: 27px;
+	margin-right: 5px;
 	font-size: 14px;
 	border: none;
 	text-align: center;
@@ -74,6 +75,12 @@
 	&:hover,
 	:focus {
 		border-color: $mainFontColor;
+	}
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 }
 
