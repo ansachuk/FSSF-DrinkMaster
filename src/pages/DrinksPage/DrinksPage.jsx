@@ -12,8 +12,8 @@ import { allIngredients, allCategory, search } from "../../redux/operations/reci
 import {
 	selectCategories,
 	selectIngredients,
-	selectSearchResults,
-	selectPage
+	selectSearchResults
+	// selectPage
 } from "../../redux/selectors/recipieSelectors";
 
 import css from "./DrinksPage.module.scss";
@@ -77,28 +77,6 @@ const DrinksPage = () => {
 };
 
 export default DrinksPage;
-
-
-// const search = createAsyncThunk("recepies/search", async (searchData, { rejectWithValue }) => {
-//     try {
-//         const { category, ingredient, searchWord, page = 1 } = searchData;
-//         const searchWordStr = searchWord ? `&searchWord=${searchWord}` : "";
-//         const categoryStr = category ? `&category=${category}` : "";
-//         const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
-
-//         const { data } = await instance.get(
-//             `search?page=${page}${searchWordStr}${categoryStr}${ingredientStr}`,
-//         );
-
-//         return data;
-//     } catch (error) {
-//         return rejectWithValue(error.message);
-//     }
-// });
-
-
-
-
 
 // export default function DrinksPage() {
 // 	return <div>DrinksPage</div>;
