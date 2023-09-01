@@ -4,7 +4,6 @@ import css from "./PreviewDrinks.module.scss";
 import DrinkCard from "../DrinkCard/DrinkCard";
 
 const PreviewDrinks = ({ data, title }) => {
-	console.log(data);
 	return (
 		<>
 			<section className={css.section}>
@@ -15,12 +14,23 @@ const PreviewDrinks = ({ data, title }) => {
 					{title}
 				</h2>
 				<ul className={css.sectionList}>
-					{data.map(({ _id, drinkThumb, drink }) => (
+					{data.map(({ _id, recipes }) => (
+						<div key={_id}>
+							{recipes.map(({ _id, drinkThumb, drink }) => (
+								<DrinkCard
+									key={_id}
+									image={drinkThumb}
+									title={drink}
+								/>
+							))}
+							{/* {data.map(({ _id, drinkThumb, drink }) => (
 						<DrinkCard
-							key={_id}
+							key={drink}
 							image={drinkThumb}
 							title={drink}
 						/>
+					))} */}
+						</div>
 					))}
 				</ul>
 			</section>
@@ -31,6 +41,50 @@ const PreviewDrinks = ({ data, title }) => {
 export default PreviewDrinks;
 
 // ============================================================
+// return (
+// 	<>
+// 		<section className={css.section}>
+// 			<h2
+// 				className={css.sectionTitle}
+// 				data={title}
+// 			>
+// 				{title}
+// 			</h2>
+// 			<ul className={css.sectionList}>
+// 				{data.map(({ id, recipes }) => (
+// 					<div key={id}>
+// 						// console.log(recipes)
+// 						{recipes.map(({ recipe }) => (
+// 							<>
+// 								{recipe.map(({ _id, drinkThumb, drink }) => (
+// 									<DrinkCard
+// 										key={_id}
+// 										image={drinkThumb}
+// 										title={drink}
+// 									/>
+// 								))}
+// 								{/* {data.map(({ _id, drinkThumb, drink }) => (
+// 						<DrinkCard
+// 							key={drink}
+// 							image={drinkThumb}
+// 							title={drink}
+// 						/>
+// 					))} */}
+// 							</>
+// 						))}
+// 					</div>
+// 				))}
+// 			</ul>
+// 		</section>
+// 	</>
+// );
+// =====================================================================
+//
+//
+//
+//
+//
+
 // const PreviewDrinks = ({ category }) => {
 // 	console.log(category);
 // 	return (

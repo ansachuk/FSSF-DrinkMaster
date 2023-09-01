@@ -34,13 +34,7 @@ export default function MainPage() {
 		if (category.length === 0) dispatch(mainPage());
 	}, []);
 
-	// useEffect(() => {
-	// 	window.scrollTo(0, 0);
-	// }, []);
-
 	return (
-		// e<>
-		// 	{catgory !== undefined && (
 		<>
 			<HeroSection />
 			<PreviewDrinks
@@ -61,10 +55,13 @@ export default function MainPage() {
 			/>
 			<OtherDrinksButton />
 		</>
-		// 	)}
-		// </>
 	);
 }
+
+//
+//
+//
+//
 
 // ============================================================
 // const dispatch = useDispatch();
