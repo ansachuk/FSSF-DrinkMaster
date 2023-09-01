@@ -1,29 +1,18 @@
-import * as yup from "yup";
-import { Formik, Field, Form } from "formik";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+
 import {
+	container,
 	titleSignup,
 	form,
 	label,
 	btnSignup,
 	linkSignUp,
+	error,
 } from "../SignupForm/SignupForm.module.scss";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { schemaSignin } from "../../../schemas/schemas";
 import { login } from "../../../redux/operations/authOperations";
-
-const schema = yup.object().shape({
-	email: yup.string().email("Enter a valid email").required("Email is a required field"),
-	password: yup
-		.string()
-		.required("Пароль є обовʼязковим полем")
-		.min(6, "Пароль повинен містити щонайменше 6 символів")
-		.max(16, "Пароль не може містити більше 16 символів")
-		.matches(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-			"Пароль повинен містити принаймні одну літеру верхнього регістру, одну літеру нижнього регістру та одну цифру",
-		),
-});
 
 export default function SigninForm() {
 	const dispatch = useDispatch();
@@ -33,12 +22,12 @@ export default function SigninForm() {
 	};
 
 	return (
-		<div>
+		<div className={container}>
 			<h2 className={titleSignup}>Sign In</h2>
 			<Formik
 				initialValues={{ email: "", password: "" }}
 				onSubmit={handleSubmit}
-				validationSchema={schema}
+				validationSchema={schemaSignin}
 			>
 				<Form className={form}>
 					<Field
@@ -46,16 +35,26 @@ export default function SigninForm() {
 						name="email"
 						type="email"
 						placeholder="Email"
-						autoComplete="email"
+						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						className={error}
+						name="email"
+						component="div"
 					/>
 					<Field
 						className={label}
 						name="password"
 						type="password"
 						placeholder="Password"
-						autoComplete="current-password"
+						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						className={error}
+						name="password"
+						component="div"
 					/>
 					<button
 						className={btnSignup}

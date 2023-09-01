@@ -1,0 +1,40 @@
+@import "../../../../scss/";
+
+.Container {
+	margin-top: 20px;
+	display: flex;
+	gap: $mainFontSize;
+
+	@include tablet {
+		margin-top: 28px;
+		gap: $SecondaryFontSize;
+	}
+
+	@include desktop {
+		margin-top: 40px;
+		gap: $SecondaryFontSize;
+	}
+}
+
+.SocialLinksIcon {
+	width: 22px;
+	height: 22px;
+	margin-left: 3px;
+	fill: $mainBtnBackgroundColor;
+
+	@include tablet {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.IconContainer {
+	border: 1px solid rgba(243, 243, 243, 0.2);
+	border-radius: 10px;
+	padding: 8px;
+	transition: border 0.3s ease;
+
+	&:hover {
+		border: 1px solid $mainBtnBackgroundColor;
+	}
+}
