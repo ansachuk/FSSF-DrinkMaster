@@ -111,22 +111,37 @@ export default function AddRecipeForm() {
 
 		const formData = new FormData();
 		formData.append("drinkThumb", image);
-		const formattedRecipe = {
-			drink: values.titleRecipe,
-			about: values.aboutRecipe,
-			category: selectData.category,
-			glass: selectData.glass,
-			instructions: values.textareaRecipe,
-			ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
-				title,
-				measure: unitQuantity.concat(` ${unit}`),
-			})),
-		};
+		formData.append("drink", values.titleRecipe);
+		formData.append("about", values.aboutRecipe);
+		formData.append("category", selectData.category);
+		formData.append("glass", selectData.glass);
+		formData.append("instructions", values.textareaRecipe);
+		// formData.append("ingredients", JSON.stringify(formattedIngredientsList));
+		// console.log(formData.get("ingredients"));
 
-		formData.append("jsonData", JSON.stringify(formattedRecipe));
+		const formattedIngredientsList = ingredientList.map(({ title, unitQuantity, unit }) => {
+			return {
+				title,
+				measure: `${unitQuantity} ${unit}`,
+			};
+		});
+
+		// const formattedRecipe = {
+		// drink: values.titleRecipe,
+		// about: values.aboutRecipe,
+		// category: selectData.category,
+		// glass: selectData.glass,
+		// instructions: values.textareaRecipe,
+		// 	ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
+		// 		title,
+		// 		measure: unitQuantity.concat(` ${unit}`),
+		// 	})),
+		// };
+
+		formData.append("ingredients", JSON.stringify(formattedIngredientsList));
 		dispatch(add(formData));
-		console.log(formattedRecipe);
-		console.log(formData.get("jsonData"));
+		console.log(formattedIngredientsList);
+		console.log(formData.get("ingredients"));
 		console.log(formData.get("drinkThumb"));
 
 		resetForm();
