@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { selectSearchResults } from '../../../redux/selectors/recipieSelectors';
 import NotFoundPage from '../../NotFoundPage/NotFound/NotFound';
 // import RecipesItem from '../../../components/RecipesItem/RecipesItem';
-import DrinkCard from '../DrinksCard/DrinksCard';
+import RecipesItem from '../../../components/RecipesItem/RecipesItem';
+// import DrinkCard from '../DrinksCard/DrinksCard';
 import css from './DrinksList.module.scss';
 
 const DrinksList = () => {
@@ -18,7 +19,7 @@ const DrinksList = () => {
       {searchResults?.length !== 0 ? (
         <ul className={css.drinkList}>
           {searchResults?.map((searchResult) => (
-            <DrinkCard
+            <RecipesItem
               key={searchResult._id}
               cocktail={searchResult}
               page={'drinks'}

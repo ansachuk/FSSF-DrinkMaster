@@ -1,44 +1,35 @@
-// @import "../../scss/";
-// .card {
-// 	width: 335px;
+@import "../../scss/";
 
-// 	@include tablet {
-// 		width: 342px;
-// 		min-height: 628px;
-// 	}
-// 	@include desktop {
-// 		min-height: 676px;
-// 	}
-// 	@media (min-width: 1280px) and (max-width: 1439px) {
-// 		width: 345px;
-// 	}
+.card {
+	width: 335px;
 
-// 	@media (min-width: 1440px) {
-// 		width: 400px;
-// 	}
-// }
+	@include tablet {
+		width: 342px;
+		min-height: 628px;
+	}
 
-// .imageBox {
-// 	border-radius: 15px;
-// 	transition: scale 400ms ease, box-shadow 400ms ease;
-// 	padding-bottom: 18px;
-// 	@include tablet {
-// 		padding-bottom: 24px;
-// 	}
-// 	@media (min-width: 1280px) and (max-width: 1439px) {
-// 		width: 345px;
-// 	}
+	@include desktop {
+		min-height: 676px;
+	}
+
+	@media (min-width: 1280px) and (max-width: 1439px) {
+		width: 345px;
+	}
+
 	@media (min-width: 1440px) {
 		width: 400px;
 	}
 }
+
 .imageBox {
 	border-radius: 15px;
 	transition: scale 400ms ease, box-shadow 400ms ease;
 	padding-bottom: 18px;
+
 	@include tablet {
 		padding-bottom: 24px;
 	}
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 	}
@@ -59,9 +50,11 @@
 	height: 360px;
 	border-radius: 15px;
 	overflow: hidden;
+
 	@include tablet {
 		width: 342px;
 	}
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 		height: 400px;
@@ -79,6 +72,7 @@
 	height: 100%;
 	object-fit: cover;
 	transition: transform 600ms ease;
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 		height: 360px;
@@ -108,119 +102,44 @@
 	line-height: calc(32 / 24);
 }
 
-// 	@media (min-width: 1440px) {
-// 		width: 400px;
-// 	}
-// }
+.ingredientsText {
+	color: rgba(243, 243, 243, 0.5);
+	font-size: 16px;
+	line-height: calc(18 / 16);
+}
 
-// .imageBox:hover,
-// .imageBox:focus {
-// 	transform: scale(0.98);
-// 	box-shadow: 0 0 10px #f3f3f3;
-// }
+.about {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 335px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: calc(18 / 14);
+	margin-bottom: 18px;
+	margin-top: 18px;
+	height: 75px;
 
-// .imageWrapper {
-// 	width: 335px;
-// 	height: 360px;
-// 	border-radius: 15px;
-// 	overflow: hidden;
-// 	@include tablet {
-// 		width: 342px;
-// 	}
-// 	@media (min-width: 1280px) and (max-width: 1439px) {
-// 		width: 345px;
-// 		height: 400px;
-// 	}
+	@media (min-width: 768px) {
+		font-size: 16px;
+		font-weight: 400;
+		max-width: 342px;
+		line-height: calc(22 / 16);
+		margin-bottom: 24px;
+		margin-top: 24px;
+		height: 110px;
+		-webkit-line-clamp: 5;
+	}
 
-// 	@media (min-width: 1440px) {
-// 		width: 400px;
-// 	}
-// }
+	@media (min-width: 1280px) {
+		max-width: 400px;
+		height: 92px;
+		-webkit-line-clamp: 4;
+	}
+}
 
-// .image {
-// 	border-radius: 15px;
-// 	display: block;
-// 	max-width: 100%;
-// 	height: 100%;
-// 	object-fit: cover;
-// 	transition: transform 600ms ease;
-// 	@media (min-width: 1280px) and (max-width: 1439px) {
-// 		width: 345px;
-// 		height: 360px;
-// 	}
-
-// 	@media (min-width: 1440px) {
-// 		width: 400px;
-// 		height: 400px;
-// 	}
-// }
-
-// .image:hover,
-// .image:focus {
-// 	transform: scale(1.03);
-// }
-
-// .ingredientsWrapper {
-// 	margin-top: 14px;
-// 	display: flex;
-// 	justify-content: space-between;
-// }
-
-// // .ingredientsWrapper.my,
-// // .ingredientsWrapper.favorite {
-// // 	flex-direction: column;
-// // 	gap: 4px;
-// // }
-
-// .ingredientsTitle {
-// 	color: #f3f3f3;
-// 	font-family: Manrope, sans-serif;
-// 	font-size: 24px;
-// 	line-height: calc(32 / 24);
-// }
-
-// .ingredientsText {
-// 	color: rgba(243, 243, 243, 0.5);
-// 	font-size: 16px;
-// 	line-height: calc(18 / 16);
-// }
-
-// .about {
-// 	display: -webkit-box;
-// 	-webkit-line-clamp: 4;
-// 	-webkit-box-orient: vertical;
-// 	overflow: hidden;
-// 	text-overflow: ellipsis;
-// 	max-width: 335px;
-// 	font-size: 14px;
-// 	font-weight: 400;
-// 	line-height: calc(18 / 14);
-// 	margin-bottom: 18px;
-// 	margin-top: 18px;
-// 	height: 75px;
-
-// 	@media (min-width: 768px) {
-// 		font-size: 16px;
-// 		font-weight: 400;
-// 		max-width: 342px;
-// 		line-height: calc(22 / 16);
-// 		margin-bottom: 24px;
-// 		margin-top: 24px;
-// 		height: 110px;
-// 		-webkit-line-clamp: 5;
-// 	}
-// 	@media (min-width: 1280px) {
-// 		max-width: 400px;
-// 		height: 92px;
-// 		-webkit-line-clamp: 4;
-// 	}
-// }
-
-// .buttonsWrapper {
-// 	display: flex;
-// 	gap: 8px;
-// 	position: relative;
-// }
 .buttonsWrapper {
 	display: flex;
 	gap: 8px;
@@ -241,6 +160,7 @@
 	@include tablet {
 		width: 342px;
 	}
+
 	@include desktop {
 		width: 400px;
 		height: 400px;
@@ -255,6 +175,7 @@
 		width: 89px;
 		height: 91px;
 	}
+
 	@include desktop {
 		width: 131px;
 		height: 133px;
