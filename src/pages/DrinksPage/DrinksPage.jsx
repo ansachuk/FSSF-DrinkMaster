@@ -66,6 +66,7 @@ const DrinksPage = () => {
 				<MainTitle title={"Drinks"} />
 				<DrinksSearch
 					onSearch={handleSearch}
+					categoriesList={categoriesList}
 					ingredientsList={ingredientsList}
 				/>
 				<DrinksList results={searchResults} />

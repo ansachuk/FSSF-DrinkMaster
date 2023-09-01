@@ -82,7 +82,7 @@ const options = [
 
 // ];
 
-const DrinksSearch = ({ onSearch, ingredientsList }) => {
+const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 
 const [chosenCategory, setChosenCategory] = useState(null);
   const [chosenIngredient, setChosenIngredient] = useState(null);
@@ -113,15 +113,16 @@ const [chosenCategory, setChosenCategory] = useState(null);
         </div>
       </div>
       <Select
+      
         className={css.select}
-        options={options}
+        options={categoriesList.map(category => { console.log(category); return { label: category }})}
         placeholder="All categories"
         value={chosenCategory}
-        onChange={(selectedOption) => setChosenCategory(selectedOption)}
+        onChange={(e) => setChosenCategory(e.target)}
       />
       <Select
         className={css.select}
-        options={ingredientsList.map(ingredient => ({ value: ingredient, label: ingredient }))}
+        options={ingredientsList.map(ingredient => { return { value: ingredient._id, label: ingredient.title }})}
         placeholder="Ingredients"
         value={chosenIngredient}
         onChange={(selectedOption) => setChosenIngredient(selectedOption)}
