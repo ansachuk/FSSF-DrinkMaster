@@ -12,7 +12,7 @@ const RecipePageHero = ({glass, title, about, image}) => {
     const dispatch = useDispatch();
     const { recipeId } = useParams();
     const favoriteRecipes = useSelector(selectFavorite);
-    const isFavorite = favoriteRecipes.data.find((recipe) => recipe._id === recipeId) ? true : false;
+    const isFavorite = favoriteRecipes.find((recipe) => recipe._id === recipeId) ? true : false;
 
     const handleAddToFavorite = () => {
     if (!isFavorite) {

@@ -85,15 +85,15 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {
-				state.favorite = payload;
+				state.favorite = payload.data;
 				handleFullfilled(state);
 			})
 			.addCase(addToFavorite.fulfilled, (state, { payload }) => {
-				state.favorite.push(payload);
+				state.favorite.push(payload.result);
 				handleFullfilled(state);
 			})
 			.addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
-				state.favorite = state.favorite.filter(({ result }) => result._id !== payload._id);
+				state.favorite = state.favorite.filter(({ _id }) => _id !== payload.result._id);
 				handleFullfilled(state);
 			})
 			.addCase(popular.fulfilled, (state, { payload }) => {
