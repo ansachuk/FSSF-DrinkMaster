@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectSearchResults } from '../../../redux/selectors/recipieSelectors';
-import NotFoundPage from '../../NotFoundPage/NotFound/NotFound';
+// import NotFoundPage from '../../NotFoundPage/NotFound/NotFound';
+import { NotFound } from '../NotFound/NotFound';
 // import RecipesItem from '../../../components/RecipesItem/RecipesItem';
 import RecipesItem from '../../../components/RecipesItem/RecipesItem';
 // import DrinkCard from '../DrinksCard/DrinksCard';
@@ -27,7 +28,7 @@ const DrinksList = () => {
           ))}
         </ul>
       ) : (
-        <NotFoundPage message={"We did not find any cocktails for this search"} />
+        <NotFound message={"We did not find any cocktails for this search"} />
       )}
     </section>
   );
