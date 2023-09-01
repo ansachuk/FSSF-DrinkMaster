@@ -10,6 +10,7 @@ import { optionsIngredientUnit } from "./optionsIngredientUnit";
 import { allIngredients } from "../../../../redux/operations/recipiesOperations";
 import { selectIngredients } from "../../../../redux/selectors/recipieSelectors";
 import { styles } from "./selectStyle";
+import { stylesMeasure } from "./selectStyleMeasure";
 
 export default function RecipeIngredientsFields({
 	ingredientList,
@@ -56,29 +57,31 @@ export default function RecipeIngredientsFields({
 								required
 							/>
 
-							<Field
-								name="amountIngredien"
-								className={css.fieldStyle}
-								type="number"
-								min="0"
-								max="999"
-								onChange={evt => {
-									handleChangeUnitQuantity(evt, index);
-								}}
-								placeholder="0"
-								required
-							/>
+							<div className={css.measureWraper}>
+								<Field
+									name="amountIngredien"
+									className={css.fieldStyle}
+									type="number"
+									min="0"
+									max="999"
+									onChange={evt => {
+										handleChangeUnitQuantity(evt, index);
+									}}
+									placeholder="0"
+									required
+								/>
 
-							<Select
-								options={optionsIngredientUnit}
-								onChange={evt => {
-									handleChangeIngredientUnit(evt, index);
-								}}
-								placeholder={"measure"}
-								unstyled
-								styles={styles}
-								required
-							/>
+								<Select
+									options={optionsIngredientUnit}
+									onChange={evt => {
+										handleChangeIngredientUnit(evt, index);
+									}}
+									placeholder={"me"}
+									unstyled
+									styles={stylesMeasure}
+									required
+								/>
+							</div>
 
 							{ingredientList.length > 1 && (
 								<button
