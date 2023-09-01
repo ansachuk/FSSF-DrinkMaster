@@ -6,6 +6,9 @@ import icons from "/src/images/icons.svg";
 import css from "./RecipesItem.module.scss";
 
 export default function RecipesItem({ _id, drink, drinkThumb, about, instructions, page }) {
+	const ingredientsWrapperClasses = `${css.ingredientsWrapper} ${
+		page === "my" ? "my" : page === "favorite" ? "favorite" : ""
+	}`;
 	return (
 		<div className={css.card}>
 			<Link to={`/recipe/${_id}`}>
@@ -30,7 +33,7 @@ export default function RecipesItem({ _id, drink, drinkThumb, about, instruction
 			<div>
 				<div
 					style={{ position: page }}
-					className={css.ingredientsWrapper}
+					className={ingredientsWrapperClasses}
 				>
 					<Link to={`/recipe/${_id}`}>
 						<p className={css.ingredientsTitle}>{drink}</p>
