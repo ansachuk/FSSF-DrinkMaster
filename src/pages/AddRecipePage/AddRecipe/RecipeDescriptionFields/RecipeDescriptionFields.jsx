@@ -1,14 +1,12 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Field } from "formik";
 import Select from "react-select";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import css from "./RecipeDescriptionFields.module.scss";
 import icons from "../../../../images/icons.svg";
-import { optionsCategories } from "../../../../data/drinksData";
-import { optionsGlasses } from "../../../../data/drinksData";
-// import { allCategory } from "../../../../redux/operations/recipiesOperations";
-// import { selectCategories } from "../../../../redux/selectors/recipieSelectors";
+import { allCategory, glasses } from "../../../../redux/operations/recipiesOperations";
+import { selectCategories, selectGlasses } from "../../../../redux/selectors/recipieSelectors";
 
 export default function RecipeDescriptionFields({
 	imgURL,
@@ -19,12 +17,17 @@ export default function RecipeDescriptionFields({
 	errors,
 	touched,
 }) {
-	// const dispatch = useDispatch();
-	// const optionsCategories = useSelector(selectCategories);
+	const dispatch = useDispatch();
+	const optionsCategories = useSelector(selectCategories);
+	const optionsGlasses = useSelector(selectGlasses);
 
-	// useEffect(() => {
-	// 	dispatch(allCategory());
-	// }, [dispatch]);
+	useEffect(() => {
+		dispatch(glasses());
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(allCategory());
+	}, [dispatch]);
 
 	return (
 		<div className={css.wraper}>
@@ -91,13 +94,17 @@ export default function RecipeDescriptionFields({
 				</div>
 				<Select
 					onChange={({ value }) => handleSelectData("category", value)}
-					options={optionsCategories}
+					options={optionsCategories.map(item => {
+						return { value: item, label: item };
+					})}
 					defaultValue={{ value: "Cocktail", label: "Cocktail" }}
 					required
 				/>
 				<Select
 					onChange={({ value }) => handleSelectData("glass", value)}
-					options={optionsGlasses}
+					options={optionsGlasses.map(item => {
+						return { value: item, label: item };
+					})}
 					defaultValue={{ value: "Highball glass", label: "Highball glass" }}
 					required
 				/>

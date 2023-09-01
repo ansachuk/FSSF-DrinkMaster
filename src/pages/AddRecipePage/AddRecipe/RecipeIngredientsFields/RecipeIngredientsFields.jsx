@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 import css from "./RecipeIngredientsFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import Counter from "./Counter/Counter";
-import { optionsIngredientUnit } from "../../../../data/drinksData";
+// import { optionsIngredientUnit } from "../../../../data/drinksData";
+import { optionsIngredientUnit } from "./optionsIngredientUnit";
 import { allIngredients } from "../../../../redux/operations/recipiesOperations";
 import { selectIngredients } from "../../../../redux/selectors/recipieSelectors";
 
