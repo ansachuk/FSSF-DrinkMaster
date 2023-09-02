@@ -32,16 +32,18 @@ const initialState = {
 	isLoading: false,
 	totalHits: 0,
 	error: null,
+	page: 1,
+	limit: 9,
 };
 
 const recepiesSlice = createSlice({
 	name: "recipes",
 	initialState,
-	reducers: {
-		setPage: (state, { payload }) => {
-			state.page = payload;
-		},
-	},
+	// reducers: {
+	// 	setPage: (state, { payload }) => {
+	// 		state.page = payload;
+	// 	},
+	// },
 	extraReducers: builder => {
 		builder
 			.addCase(allCategory.fulfilled, (state, { payload }) => {
@@ -85,7 +87,9 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {
-				state.favorite = payload.result;
+				console.log(payload);
+				state.favorite = payload;
+				console.log(payload.result);
 				handleFullfilled(state);
 			})
 			.addCase(addToFavorite.fulfilled, (state, { payload }) => {

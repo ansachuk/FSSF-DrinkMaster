@@ -1,18 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 // import { setPage, setLimit } from "../../redux/slices/recipiesSlice";
-import { selectPage, selectTotalHits, selectLimit } from "../../redux/selectors/recipieSelectors";
+import { selectTotalHits } from "../../redux/selectors/recipieSelectors";
 import css from "./Paginator.module.scss";
 
 export default function Paginator() {
-	const page = useSelector(selectPage);
+	const [page, setPage] = useState(1);
+	const [limit, setLimit] = useState(9);
 	const dispatch = useDispatch();
 	const isDesktop = window.innerWidth >= 1280;
 	const isTablet = window.innerWidth < 1280 && window.innerWidth >= 768;
 	const totalHits = useSelector(selectTotalHits);
-	const limit = useSelector(selectLimit);
 
 	const handleLimitChange = () => {
 		const screenWidth = window.innerWidth;
