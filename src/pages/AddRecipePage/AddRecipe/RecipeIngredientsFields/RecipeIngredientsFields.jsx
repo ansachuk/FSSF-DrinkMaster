@@ -88,11 +88,7 @@ export default function RecipeIngredientsFields({
 									type="button"
 									onClick={() => handleDeleteIngredient(index)}
 								>
-									<svg
-										className={css.deleteIcon}
-										width="18"
-										height="18"
-									>
+									<svg className={css.deleteIcon}>
 										<use href={icons + "#close"}></use>
 									</svg>
 								</button>

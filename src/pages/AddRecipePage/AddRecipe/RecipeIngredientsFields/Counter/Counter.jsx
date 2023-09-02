@@ -7,6 +7,7 @@ export default function Counter({ ingredientList, handleIncIngredients, handleDe
 		<div className={css.wraper}>
 			<button
 				type="button"
+				className={css.button}
 				onClick={() => handleDecIngredients()}
 			>
 				<svg
@@ -17,16 +18,19 @@ export default function Counter({ ingredientList, handleIncIngredients, handleDe
 					<use href={icons + "#minus"}></use>
 				</svg>
 			</button>
+
 			<p>{ingredientList.length}</p>
+
 			<button
 				type="button"
+				className={css.button}
 				onClick={() => handleIncIngredients()}
 				disabled={ingredientList.length > 19}
 			>
 				<svg
 					className={css.icon}
-					width="25"
-					height="25"
+					width="22"
+					height="22"
 				>
 					<use href={icons + "#plus"}></use>
 				</svg>
