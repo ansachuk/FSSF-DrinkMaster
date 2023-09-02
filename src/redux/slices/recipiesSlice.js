@@ -65,7 +65,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(search.fulfilled, (state, { payload }) => {
-				state.searchResults = payload;
+				state.searchResults = payload.result;
 				handleFullfilled(state);
 			})
 			.addCase(allIngredients.fulfilled, (state, { payload }) => {
@@ -85,7 +85,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {
-				state.favorite = payload;
+				state.favorite = payload.result;
 				handleFullfilled(state);
 			})
 			.addCase(addToFavorite.fulfilled, (state, { payload }) => {
