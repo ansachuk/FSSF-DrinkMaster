@@ -17,14 +17,14 @@ const initialState = {
 };
 
 const handleSignUp = (state, { payload }) => {
-	state.user = payload;
+	state.user = { ...state.user, ...payload };
 
 	handleFullfilled(state);
 };
 
 const handleLogin = (state, { payload: { token, user } }) => {
 	state.accessToken = token;
-	state.user = user;
+	state.user = { ...state.user, ...user };
 	state.isLoggedIn = true;
 
 	handleFullfilled(state);
@@ -44,7 +44,7 @@ const handleSubcribe = (state, { payload }) => {
 };
 
 const handleRefresh = (state, { payload }) => {
-	state.user = payload;
+	state.user = { ...state.user, ...payload };
 	state.isLoggedIn = true;
 
 	handleFullfilled(state);

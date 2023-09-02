@@ -44,42 +44,22 @@ const byID = createAsyncThunk("recepies/byID", async (id, { rejectWithValue }) =
 	}
 });
 
-const search = createAsyncThunk("recepies/search", async (search, { rejectWithValue }) => {
+const search = createAsyncThunk("recepies/search", async (searchData, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.get(`search/`, search);
+		const { category, ingredient, searchWord, page = 1, limit = 9 } = searchData;
+		const searchWordStr = searchWord ? `&searchWord=${searchWord}` : "";
+		const categoryStr = category ? `&category=${category}` : "";
+		const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
+
+		const { data } = await instance.get(
+			`search?page=${page}&${limit}${searchWordStr}${categoryStr}${ingredientStr}`,
+		);
 
 		return data;
-	} catch (e) {
-		return rejectWithValue(e.response.data.message);
+	} catch (error) {
+		return rejectWithValue(error.message);
 	}
 });
-
-// const search = createAsyncThunk("recepies/search", async (searchOptions, { rejectWithValue }) => {
-// 	try {
-// 		const { chosenCategory, chosenIngredient, query, page, limit } = searchOptions;
-// 		const params = {};
-
-// 		if (chosenCategory) {
-// 			params.category = chosenCategory;
-// 		}
-
-// 		if (chosenIngredient) {
-// 			params.ingredient = chosenIngredient;
-// 		}
-
-// 		if (query) {
-// 			params.query = query;
-// 		}
-
-// 		params.page = page;
-// 		params.limit = limit;
-// 		const { data } = await instance.get("search/", { params });
-
-// 		return data;
-// 	} catch (error) {
-// 		return rejectWithValue(error.message);
-// 	}
-// });
 
 const allIngredients = createAsyncThunk(
 	"recepies/allIngredients",
