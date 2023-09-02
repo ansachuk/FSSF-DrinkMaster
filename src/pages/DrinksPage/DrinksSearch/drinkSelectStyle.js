@@ -3,6 +3,7 @@ export const stylesDrink = {
 	control: baseStyles => ({
 		...baseStyles,
 		width: "200px",
+		// width: "319px",
 		// width: "100%",
 		height: "54px",
 		alignItems: "flex-start",
@@ -18,7 +19,7 @@ export const stylesDrink = {
 		},
 		"@include tablet": {
 			padding: "14px 18px 14px 24px",
-			width: "199px",
+			width: "264px",
 			height: "56px",
 		},
 	}),
