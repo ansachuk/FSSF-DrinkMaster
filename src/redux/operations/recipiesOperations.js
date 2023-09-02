@@ -96,7 +96,11 @@ const own = createAsyncThunk("recepies/own", async (_, { rejectWithValue }) => {
 
 const add = createAsyncThunk("recepies/add", async (cred, { rejectWithValue }) => {
 	try {
-		const { data } = await instance.post(`own`, cred.get("jsonData"));
+		const { data } = await instance.post(`own`, cred, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 
 		Notify.success("recipe created successfully", {
 			timeout: 3000,

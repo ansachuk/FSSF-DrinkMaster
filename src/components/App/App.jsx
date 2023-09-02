@@ -67,7 +67,7 @@ export default function App() {
 					element={<MainPage />}
 				/>
 				<Route
-					path="drinks/:categoryName"
+					path="drinks"
 					element={<DrinksPage />}
 				/>
 				<Route

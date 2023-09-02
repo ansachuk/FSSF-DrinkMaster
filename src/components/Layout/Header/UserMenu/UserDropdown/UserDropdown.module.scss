@@ -2,8 +2,10 @@
 
 .dropdown_container {
 	position: absolute;
+	z-index: 10;
 	top: 54px;
 	right: 0;
+
 	width: 177px;
 	padding: 18px;
 	border-radius: 8px;

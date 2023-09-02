@@ -5,8 +5,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { Notify } from "notiflix";
 import * as yup from "yup";
 // import { useNavigate } from "react-router";
-// import PropTypes from "prop-types";
-// import css from "./AddRecipeForm.module.scss";
+import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
 import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredientsFields";
 import RecipePreparationFields from "../RecipePreparationFields/RecipePreparationFields";
@@ -35,10 +34,12 @@ export default function AddRecipeForm() {
 	});
 	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
 	const [imgURL, setImageURL] = useState(null);
+	const [image, setImage] = useState(null);
 
 	const handleFileChange = e => {
 		const [_file] = e.target.files;
 		setImageURL(URL.createObjectURL(_file));
+		setImage(_file);
 	};
 
 	const handleSelectData = (type, value) => {
@@ -108,23 +109,38 @@ export default function AddRecipeForm() {
 		}
 
 		const formData = new FormData();
-		formData.append("drinkThumb", imgURL);
-		const formattedRecipe = {
-			drink: values.titleRecipe,
-			about: values.aboutRecipe,
-			category: selectData.category,
-			glass: selectData.glass,
-			instructions: values.textareaRecipe,
-			ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
-				title,
-				measure: unitQuantity.concat(` ${unit}`),
-			})),
-		};
+		formData.append("drinkThumb", image);
+		formData.append("drink", values.titleRecipe);
+		formData.append("about", values.aboutRecipe);
+		formData.append("category", selectData.category);
+		formData.append("glass", selectData.glass);
+		formData.append("instructions", values.textareaRecipe);
+		// formData.append("ingredients", JSON.stringify(formattedIngredientsList));
+		// console.log(formData.get("ingredients"));
 
-		formData.append("jsonData", JSON.stringify(formattedRecipe));
+		const formattedIngredientsList = ingredientList.map(({ title, unitQuantity, unit }) => {
+			return {
+				title,
+				measure: `${unitQuantity} ${unit}`,
+			};
+		});
+
+		// const formattedRecipe = {
+		// drink: values.titleRecipe,
+		// about: values.aboutRecipe,
+		// category: selectData.category,
+		// glass: selectData.glass,
+		// instructions: values.textareaRecipe,
+		// 	ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
+		// 		title,
+		// 		measure: unitQuantity.concat(` ${unit}`),
+		// 	})),
+		// };
+
+		formData.append("ingredients", JSON.stringify(formattedIngredientsList));
 		dispatch(add(formData));
-		console.log(formattedRecipe);
-		console.log(formData.get("jsonData"));
+		console.log(formattedIngredientsList);
+		console.log(formData.get("ingredients"));
 		console.log(formData.get("drinkThumb"));
 
 		resetForm();
@@ -138,7 +154,7 @@ export default function AddRecipeForm() {
 	};
 
 	return (
-		<div>
+		<div className={css.wraper}>
 			<Formik
 				initialValues={formikInitialValues}
 				onSubmit={handleSubmit}
@@ -181,9 +197,3 @@ export default function AddRecipeForm() {
 		</div>
 	);
 }
-
-// AddRecipeForm.propTypes = {
-// title: PropTypes.string.isRequired,
-// propClass: PropTypes.string,
-// disabled: PropTypes.bool,
-// };

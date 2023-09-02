@@ -2,11 +2,13 @@
 
 .nav {
 	position: absolute;
+	z-index: 10;
 	top: 77px;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	display: grid;
+	background-color: $backgroundColor;
 
 	@include tablet {
 		top: 84px;
