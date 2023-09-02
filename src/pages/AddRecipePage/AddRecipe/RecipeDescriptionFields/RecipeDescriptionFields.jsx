@@ -68,7 +68,7 @@ export default function RecipeDescriptionFields({
 					type="file"
 				/>
 			</label>
-			<div>
+			<div className={css.flexContainer}>
 				<div className={css.inputWraper}>
 					<Field
 						className={css.fieldStyle}
