@@ -1,21 +1,32 @@
-
 import { useState } from "react";
 import PropTypes from "prop-types";
 import css from "./DrinksSearch.module.scss";
 import icons from "../../../images/icons.svg";
 import Select from "react-select";
 import { stylesDrink } from "./drinkSelectStyle";
+import { search } from "../../../redux/operations/recipiesOperations";
+import { useDispatch } from "react-redux";
 
-const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
+const desktopLimit = 9;
+const tabletLimit = 8;
+
+const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
 	const [chosenCategory, setChosenCategory] = useState(null);
 	const [chosenIngredient, setChosenIngredient] = useState(null);
 	// const [searchText, setSearchText] = useState('');
 	const [searchText, searchWord] = useState("");
 
-	const handleSearchClick = () => {
-		onSearch({ category: chosenCategory, ingredient: chosenIngredient, searchWord });
-  };
-  
+	const dispatch = useDispatch();
+
+	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
+	const limit = isDesktop ? desktopLimit : tabletLimit;
+
+	const handleSearchClick = e => {
+		e.preventDefault();
+		const params = { category: chosenCategory, ingredient: chosenIngredient, searchText };
+		console.log(params);
+		dispatch(search({ ...params, page, limit }));
+	};
 
 	return (
 		<div className={css.wrapper}>
@@ -24,7 +35,7 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 				className={css.form}
 			>
 				<input
-          type="text"
+					type="text"
 					className={css.input}
 					placeholder="Enter the text"
 					value={searchText}
@@ -32,43 +43,43 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 				/>
 				<button
 					type="submit"
-					className={css.submit} onClick={handleSearchClick}
+					className={css.submit}
+					onClick={e => {
+						handleSearchClick(e);
+					}}
 				>
-					<div
-						className={css.hoverWrapper}
-						
-					></div>
-						<svg className={css.iconDgink} width="18"
-						height="18">
-							<use href={icons + "#search"}></use>
-						</svg>
-					
+					<div className={css.hoverWrapper}></div>
+					<svg
+						className={css.iconDgink}
+						width="18"
+						height="18"
+					>
+						<use href={icons + "#search"}></use>
+					</svg>
 				</button>
 			</form>
-      <Select
-       
+			<Select
 				options={categoriesList.map(category => {
 					console.log(category);
 					return { label: category };
 				})}
 				placeholder="All categories"
 				value={chosenCategory}
-        onChange={e => setChosenCategory(e.target)}
-        styles={stylesDrink}
-        unstyled
-        required
+				onChange={e => setChosenCategory(e.target)}
+				styles={stylesDrink}
+				unstyled
+				required
 			/>
-      <Select
-        
+			<Select
 				options={ingredientsList.map(ingredient => {
 					return { value: ingredient._id, label: ingredient.title };
 				})}
 				placeholder="Ingredients"
 				value={chosenIngredient}
-        onChange={selectedOption => setChosenIngredient(selectedOption)}
-        styles={stylesDrink}
-        unstyled
-        required
+				onChange={selectedOption => setChosenIngredient(selectedOption)}
+				styles={stylesDrink}
+				unstyled
+				required
 			/>
 		</div>
 	);

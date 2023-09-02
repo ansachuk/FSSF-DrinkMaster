@@ -18,8 +18,6 @@ import {
 
 import css from "./DrinksPage.module.scss";
 
-const desktopLimit = 9;
-const tabletLimit = 8;
 
 const DrinksPage = () => {
 	const dispatch = useDispatch();
@@ -30,8 +28,9 @@ const DrinksPage = () => {
 	// const page = useSelector(selectPage);
 	const page = useState(1);
 
-	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
-	const limit = isDesktop ? desktopLimit : tabletLimit;
+	// const params = { category: '', search: '', ingredient: '' };
+
+	
 
 	useEffect(() => {
 		if (categoriesList.length === 0) {
@@ -42,9 +41,7 @@ const DrinksPage = () => {
 		}
 	}, [dispatch, categoriesList, ingredientsList]);
 
-	const handleSearch = params => {
-		dispatch(search({ ...params, page, limit }));
-	};
+	
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -55,7 +52,7 @@ const DrinksPage = () => {
 			<section className={css.section}>
 				<MainTitle title={"Drinks"} />
 				<DrinksSearch
-					onSearch={handleSearch}
+					page={1}
 					categoriesList={categoriesList}
 					ingredientsList={ingredientsList}
 				/>
