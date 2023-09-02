@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import css from "./DrinksSearch.module.scss";
 import icons from "../../../images/icons.svg";
 import Select from "react-select";
-import { styles } from '../../../pages/AddRecipePage/AddRecipe/RecipeIngredientsFields/selectStyle';
+// import { styles } from '../../../pages/AddRecipePage/AddRecipe/RecipeIngredientsFields/selectStyle';
+import { stylesDrink } from "./drinkSelectStyle";
 
 const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 	const [chosenCategory, setChosenCategory] = useState(null);
@@ -37,12 +38,12 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 					<div
 						className={css.hoverWrapper}
 						
-					>
+					></div>
 						<svg className={css.icon} width="18"
 						height="18">
 							<use href={icons + "#search"}></use>
 						</svg>
-					</div>
+					
 				</button>
 			</form>
       <Select
@@ -54,7 +55,7 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 				placeholder="All categories"
 				value={chosenCategory}
         onChange={e => setChosenCategory(e.target)}
-        styles={styles}
+        styles={stylesDrink}
         unstyled
         required
 			/>
@@ -66,7 +67,7 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 				placeholder="Ingredients"
 				value={chosenIngredient}
         onChange={selectedOption => setChosenIngredient(selectedOption)}
-        styles={styles}
+        styles={stylesDrink}
         unstyled
         required
 			/>
