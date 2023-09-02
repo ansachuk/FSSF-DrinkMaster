@@ -51,3 +51,43 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
+
+.item-enter {
+	opacity: 0;
+	transform: scale(0.7);
+}
+.item-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity $transitionDuration $transitionTimingFunction,
+		transform $transitionDuration $transitionTimingFunction;
+}
+.item-exit {
+	opacity: 1;
+}
+.item-exit-active {
+	opacity: 0;
+	transform: scale(0.7);
+	transition: opacity $transitionDuration $transitionTimingFunction,
+		transform $transitionDuration $transitionTimingFunction;
+}
+
+.burger-enter {
+	opacity: 0;
+	transform: translateX(100%);
+}
+.burger-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity $transitionDuration $transitionTimingFunction,
+		transform $transitionDuration $transitionTimingFunction;
+}
+.burger-exit {
+	opacity: 1;
+}
+.burger-exit-active {
+	opacity: 0;
+	transform: translateX(100%);
+	transition: opacity $transitionDuration $transitionTimingFunction,
+		transform $transitionDuration $transitionTimingFunction;
+}

@@ -6,8 +6,9 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../../../redux/operations/authOperations";
+import { forwardRef } from "react";
 
-export default function LogoutOptions({ handlerLogoutDropdownClick }) {
+const LogoutOptions = forwardRef(({ handlerLogoutDropdownClick }, ref) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -17,7 +18,10 @@ export default function LogoutOptions({ handlerLogoutDropdownClick }) {
 	};
 
 	return (
-		<div className={css.logout_container}>
+		<div
+			className={css.logout_container}
+			ref={ref}
+		>
 			<button
 				onClick={handlerLogoutDropdownClick}
 				className={css.close_button}
@@ -41,7 +45,11 @@ export default function LogoutOptions({ handlerLogoutDropdownClick }) {
 			</div>
 		</div>
 	);
-}
+});
+
+LogoutOptions.displayName = "LogoutOptions";
+
+export default LogoutOptions;
 
 LogoutOptions.propTypes = {
 	handlerLogoutDropdownClick: PropTypes.func,
