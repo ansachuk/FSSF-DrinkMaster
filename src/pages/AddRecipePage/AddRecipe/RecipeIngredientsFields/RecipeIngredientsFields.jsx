@@ -6,9 +6,11 @@ import PropTypes from "prop-types";
 import css from "./RecipeIngredientsFields.module.scss";
 import icons from "../../../../images/icons.svg";
 import Counter from "./Counter/Counter";
-import { optionsIngredientUnit } from "../../../../data/drinksData";
+import { optionsIngredientUnit } from "./optionsIngredientUnit";
 import { allIngredients } from "../../../../redux/operations/recipiesOperations";
 import { selectIngredients } from "../../../../redux/selectors/recipieSelectors";
+import { styles } from "./selectStyle";
+import { stylesMeasure } from "./selectStyleMeasure";
 
 export default function RecipeIngredientsFields({
 	ingredientList,
@@ -37,40 +39,48 @@ export default function RecipeIngredientsFields({
 				/>
 			</div>
 
-			<ul>
+			<ul className={css.ingredientsList}>
 				{ingredientList.map((el, index) => (
-					<li key={el._id}>
+					<li
+						className={css.ingredientsItem}
+						key={el._id}
+					>
 						<div className={css.selectWraper}>
 							<Select
 								options={ingredientsListOptions.map(ing => {
 									return { value: ing.title, label: ing.title, id: ing._id };
 								})}
 								onChange={evt => handleChangeIngredientName(evt, index)}
-								placeholder={"Select ingredient"}
+								placeholder={"Select ingredient..."}
+								unstyled
+								styles={styles}
 								required
 							/>
 
-							<Field
-								name="amountIngredien"
-								className={css.fieldStyle}
-								type="number"
-								min="0"
-								max="999"
-								onChange={evt => {
-									handleChangeUnitQuantity(evt, index);
-								}}
-								placeholder="0"
-								required
-							/>
+							<div className={css.measureWraper}>
+								<Field
+									name="amountIngredien"
+									className={css.fieldStyle}
+									type="number"
+									step="0.1"
+									onChange={evt => {
+										handleChangeUnitQuantity(evt, index);
+									}}
+									placeholder="0"
+									required
+								/>
 
-							<Select
-								options={optionsIngredientUnit}
-								onChange={evt => {
-									handleChangeIngredientUnit(evt, index);
-								}}
-								placeholder={"measure"}
-								required
-							/>
+								<Select
+									options={optionsIngredientUnit}
+									onChange={evt => {
+										handleChangeIngredientUnit(evt, index);
+									}}
+									placeholder={""}
+									unstyled
+									styles={stylesMeasure}
+									required
+								/>
+							</div>
 
 							{ingredientList.length > 1 && (
 								<button
