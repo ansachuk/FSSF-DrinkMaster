@@ -36,6 +36,7 @@ export default function AddRecipeForm() {
 	const [imgURL, setImageURL] = useState(null);
 	const [image, setImage] = useState(null);
 	const [value, setValue] = useState("");
+	console.log(value);
 
 	const handleFileChange = e => {
 		const [_file] = e.target.files;
@@ -80,13 +81,14 @@ export default function AddRecipeForm() {
 	};
 
 	const handleChangeUnitQuantity = (e, index) => {
-		let tmpData = e.currentTarget.value;
-		const inputValue = tmpData.split("").splice(0, 3).join("");
-		setValue(inputValue);
+		let tmpData = e.currentTarget.value.split("").splice(0, 3).join("");
+
 		if (tmpData < 0) {
 			tmpData = 0;
 			e.currentTarget.value = 0;
 		}
+
+		setValue(tmpData);
 		const tmpList = [...ingredientList];
 		tmpList[index].unitQuantity = tmpData;
 		setIngredientList(tmpList);

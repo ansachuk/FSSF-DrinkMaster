@@ -63,8 +63,6 @@ export default function RecipeIngredientsFields({
 									name="amountIngredien"
 									className={css.fieldStyle}
 									type="number"
-									// min="0"
-									// max="999"
 									step="0.1"
 									value={value}
 									onChange={evt => {
