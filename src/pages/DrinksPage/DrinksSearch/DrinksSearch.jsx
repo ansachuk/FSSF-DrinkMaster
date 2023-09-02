@@ -1,9 +1,10 @@
 
 import { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./DrinksSearch.module.scss";
+import css from "./DrinksSearch.module.scss";
 import icons from "../../../images/icons.svg";
 import Select from "react-select";
+import { styles } from '../../../pages/AddRecipePage/AddRecipe/RecipeIngredientsFields/selectStyle';
 
 const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 	const [chosenCategory, setChosenCategory] = useState(null);
@@ -17,27 +18,27 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
   
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={css.wrapper}>
 			<form
 				// onSubmit={}
-				className={styles.form}
+				className={css.form}
 			>
 				<input
           type="text"
-					className={styles.input}
+					className={css.input}
 					placeholder="Enter the text"
 					value={searchText}
 					onChange={e => searchWord(e.target.value)}
 				/>
 				<button
 					type="submit"
-					className={styles.submit} onClick={handleSearchClick}
+					className={css.submit} onClick={handleSearchClick}
 				>
 					<div
-						className={styles.hoverWrapper}
+						className={css.hoverWrapper}
 						
 					>
-						<svg className={styles.icon} width="18"
+						<svg className={css.icon} width="18"
 						height="18">
 							<use href={icons + "#search"}></use>
 						</svg>
@@ -46,7 +47,6 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 			</form>
       <Select
         
-				className={styles.SelectStyled}
 				options={categoriesList.map(category => {
 					console.log(category);
 					return { label: category };
@@ -54,19 +54,19 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 				placeholder="All categories"
 				value={chosenCategory}
         onChange={e => setChosenCategory(e.target)}
-        
+        styles={styles}
         unstyled
         required
 			/>
       <Select
         
-				className={styles.select}
 				options={ingredientsList.map(ingredient => {
 					return { value: ingredient._id, label: ingredient.title };
 				})}
 				placeholder="Ingredients"
 				value={chosenIngredient}
         onChange={selectedOption => setChosenIngredient(selectedOption)}
+        styles={styles}
         unstyled
         required
 			/>
