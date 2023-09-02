@@ -16,20 +16,22 @@ const RecipePage = () => {
 	const isLoggedIn = useSelector(selectIsLoggedIn);
 
 	useEffect(() => {
-		// if (isLoggedIn) {
-			async function fetchRecipe() {
-			const res = await dispatch(byID(recipeId));
-			return res;
+		async function fetchRecipe() {
+		const res = await dispatch(byID(recipeId));
+		return res;
 		}
 		async function fetchFavorite() {
-      const res = await dispatch(favorite());
-      return res;
+		const res = await dispatch(favorite());
+		return res;
+		}
+		function loadPage() {
+    if (isLoggedIn) {
+    fetchRecipe();
+    fetchFavorite();
     }
-		fetchRecipe();
-		fetchFavorite();}
-		
-	// }
-	, [dispatch, recipeId, isLoggedIn]);
+}
+  loadPage();		
+	}, [dispatch, recipeId, isLoggedIn]);
 
 	return (
 		recipe.glass && (
