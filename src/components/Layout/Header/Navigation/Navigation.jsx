@@ -1,10 +1,17 @@
 import { NavLink } from "react-router-dom";
 import css from "./Navigation.module.scss";
+import { forwardRef } from "react";
 
-export default function Navigation() {
+const Navigation = forwardRef((_, ref) => {
 	return (
-		<nav className={css.nav}>
-			<ul className={css.list}>
+		<nav
+			className={css.nav}
+			ref={ref}
+		>
+			<ul
+				className={css.list}
+				id="navigation"
+			>
 				<li className={css.item}>
 					<NavLink
 						to="/"
@@ -15,7 +22,7 @@ export default function Navigation() {
 				</li>
 				<li className={css.item}>
 					<NavLink
-						to="/drinks/1"
+						to="/drinks"
 						className={css.link}
 					>
 						Drinks
@@ -31,7 +38,7 @@ export default function Navigation() {
 				</li>
 				<li className={css.item}>
 					<NavLink
-						to="/recipe/1"
+						to="/my"
 						className={css.link}
 					>
 						My recipes
@@ -48,4 +55,8 @@ export default function Navigation() {
 			</ul>
 		</nav>
 	);
-}
+});
+
+Navigation.displayName = "Navigation";
+
+export default Navigation;

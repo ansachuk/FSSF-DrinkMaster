@@ -9,6 +9,7 @@
 	height: 320px;
 	display: flex;
 	flex-direction: column;
+
 	justify-content: center;
 	align-items: center;
 	gap: 18px;
@@ -91,4 +92,38 @@
 	font-size: 12px;
 	letter-spacing: 0.28px;
 	color: #da1414;
+}
+
+.selectWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	height: 34px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid;
+	border-color: rgba(243, 243, 243, 0.5);
+
+	transition-property: border-color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:focus,
+	&:active,
+	&:hover,
+	&::selection {
+		outline: none;
+		border-color: $mainFontColor;
+	}
+}
+
+.margin {
+	display: flex;
+	flex-direction: column;
+	gap: 34px;
+}
+
+.labelSelect {
+	color: rgba(243, 243, 243, 0.5);
+	font-size: 14px;
+	letter-spacing: -0.28px;
 }

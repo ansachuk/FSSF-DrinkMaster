@@ -1,0 +1,18 @@
+@import "../../scss";
+@import "../../components/MainButton/MainButton.module.scss";
+
+.seeButton {
+	@extend .mainButton;
+	display: flex;
+	align-items: center;
+	font-family: Manrope;
+	max-height: 40px;
+	@include tablet {
+		max-height: 44px;
+		font-size: 16px;
+		padding: 18px 44px;
+	}
+	@include desktop {
+		font-size: 18px;
+	}
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import css from "./SocialLinks.module.scss";
 import icons from "../../../../images/icons.svg";
 

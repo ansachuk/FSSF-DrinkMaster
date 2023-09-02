@@ -1,37 +1,36 @@
-import * as yup from "yup";
-import { Formik, Field, Form } from "formik";
-import { titleSignup, form, label, btnSignup, linkSignUp } from "./SignupForm.module.scss";
+import { schemaSignup } from "../../../schemas/schemas";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import {
+	container,
+	titleSignup,
+	form,
+	label,
+	btnSignup,
+	linkSignUp,
+	error,
+} from "./SignupForm.module.scss";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../redux/operations/authOperations";
-
-const schema = yup.object().shape({
-	name: yup.string().required(),
-	email: yup.string().email("Enter a valid email").required("Email is a required field"),
-	password: yup
-		.string()
-		.required("Пароль є обовʼязковим полем")
-		.min(6, "Пароль повинен містити щонайменше 6 символів")
-		.max(16, "Пароль не може містити більше 16 символів")
-		.matches(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-			"Пароль повинен містити принаймні одну літеру верхнього регістру, одну літеру нижнього регістру та одну цифру",
-		),
-});
+import Notiflix from "notiflix";
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
 
-	const handleSubmit = values => {
+	const handleSubmit = (values, { setSubmitting }) => {
 		dispatch(signup(values));
+		setTimeout(() => {
+			Notiflix.Notify.success("Registration successful!");
+			setSubmitting(false);
+		}, 1000);
 	};
 
 	return (
-		<div>
+		<div className={container}>
 			<h2 className={titleSignup}>Registration</h2>
 			<Formik
 				initialValues={{ name: "", email: "", password: "" }}
-				validationSchema={schema}
+				validationSchema={schemaSignup}
 				onSubmit={handleSubmit}
 			>
 				<Form className={form}>
@@ -40,7 +39,7 @@ export default function SignupForm() {
 						name="name"
 						type="text"
 						placeholder="Name"
-						autoComplete="name"
+						autoComplete="off"
 						required
 					/>
 					<Field
@@ -48,16 +47,26 @@ export default function SignupForm() {
 						name="email"
 						type="email"
 						placeholder="Email"
-						autoComplete="email"
+						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						className={error}
+						name="email"
+						component="div"
 					/>
 					<Field
 						className={label}
 						name="password"
 						type="password"
 						placeholder="Password"
-						autoComplete="current-password"
+						autoComplete="off"
 						required
+					/>
+					<ErrorMessage
+						className={error}
+						name="password"
+						component="div"
 					/>
 					<button
 						className={btnSignup}
@@ -67,7 +76,7 @@ export default function SignupForm() {
 					</button>
 					<NavLink
 						className={linkSignUp}
-						to="/welcome//signin"
+						to="/welcome/signin"
 					>
 						Sign In
 					</NavLink>
