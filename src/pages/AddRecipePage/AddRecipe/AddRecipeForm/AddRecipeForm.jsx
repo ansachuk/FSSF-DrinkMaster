@@ -35,6 +35,7 @@ export default function AddRecipeForm() {
 	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
 	const [imgURL, setImageURL] = useState(null);
 	const [image, setImage] = useState(null);
+	const [value, setValue] = useState("");
 
 	const handleFileChange = e => {
 		const [_file] = e.target.files;
@@ -80,6 +81,8 @@ export default function AddRecipeForm() {
 
 	const handleChangeUnitQuantity = (e, index) => {
 		let tmpData = e.currentTarget.value;
+		const inputValue = tmpData.split("").splice(0, 3).join("");
+		setValue(inputValue);
 		if (tmpData < 0) {
 			tmpData = 0;
 			e.currentTarget.value = 0;
@@ -150,6 +153,7 @@ export default function AddRecipeForm() {
 			glass: "Highball glass",
 		});
 		setImageURL(null);
+		setValue("");
 		// navigate("/my");
 	};
 
@@ -181,6 +185,7 @@ export default function AddRecipeForm() {
 							handleChangeUnitQuantity={handleChangeUnitQuantity}
 							handleChangeIngredientUnit={handleChangeIngredientUnit}
 							handleDeleteIngredient={handleDeleteIngredient}
+							value={value}
 						/>
 						<RecipePreparationFields
 							name="textareaRecipe"

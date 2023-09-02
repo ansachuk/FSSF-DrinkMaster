@@ -20,6 +20,7 @@ export default function RecipeIngredientsFields({
 	handleChangeUnitQuantity,
 	handleChangeIngredientUnit,
 	handleDeleteIngredient,
+	value,
 }) {
 	const dispatch = useDispatch();
 	const ingredientsListOptions = useSelector(selectIngredients);
@@ -62,10 +63,10 @@ export default function RecipeIngredientsFields({
 									name="amountIngredien"
 									className={css.fieldStyle}
 									type="number"
-									min="0"
-									max="999"
+									// min="0"
+									// max="999"
 									step="0.1"
-									maxlength="2"
+									value={value}
 									onChange={evt => {
 										handleChangeUnitQuantity(evt, index);
 									}}
@@ -116,4 +117,5 @@ RecipeIngredientsFields.propTypes = {
 	handleChangeUnitQuantity: PropTypes.func,
 	handleChangeIngredientUnit: PropTypes.func,
 	handleDeleteIngredient: PropTypes.func,
+	value: PropTypes.string,
 };
