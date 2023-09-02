@@ -1,24 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectPage } from "../../redux/selectors/recipieSelectors.js";
+import { useDispatch } from "react-redux";
 import MainTitle from "../../components/MainTitle/MainTitle";
-import RecipesList from "../../components/RecipesList/RecipesList";
-// import Paginator from "../../components/Paginator/Paginator";
+import MyRecipeList from "../../pages/MyRecipesPage/MyRecipeList/MyRecipeList";
 import { own } from "../../redux/operations/recipiesOperations.js";
 import css from "./MyRecipesPage.module.scss";
 
-const desktopLimit = 9;
-const tabletLimit = 8;
-
 export default function MyRecipesPage() {
 	const dispatch = useDispatch();
-	const page = useSelector(selectPage);
-	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
-	const limit = isDesktop ? desktopLimit : tabletLimit;
-
 	useEffect(() => {
-		dispatch(own({ page, limit }));
-	}, [page, limit, dispatch]);
+		dispatch(own());
+	}, [dispatch]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -28,8 +19,7 @@ export default function MyRecipesPage() {
 		<>
 			<div className={css.section}>
 				<MainTitle title="My recipes">
-					<RecipesList />
-					{/* <Paginator /> */}
+					<MyRecipeList />
 				</MainTitle>
 			</div>
 		</>
