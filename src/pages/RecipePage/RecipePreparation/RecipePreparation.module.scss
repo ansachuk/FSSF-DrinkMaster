@@ -20,6 +20,7 @@
     width: 335px;
     height: 430px;
     object-fit: cover;
+    border-radius: 10px;
 
     @include tablet {
         width: 704px;
@@ -42,6 +43,10 @@
 .preparationList {
     list-style-type: circle;
     margin-bottom: 40px;
+
+    @include tablet {
+        width: 549px;
+    }
 
     @include desktop {
         margin-bottom: 0;
