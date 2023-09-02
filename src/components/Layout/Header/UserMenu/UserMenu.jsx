@@ -9,7 +9,7 @@ import defaultUserImage from "../../../../images/static/user/user.jpg";
 import { CSSTransition } from "react-transition-group";
 
 export default function UserMenu() {
-	const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
+	const { name, avatarURL } = useSelector(selectUser);
 
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 	const [isOpenLogout, setIsOpenLogout] = useState(false);
@@ -71,7 +71,7 @@ export default function UserMenu() {
 				className={css.button}
 			>
 				<img
-					src={avatarURL}
+					src={avatarURL || defaultUserImage}
 					alt="User photo"
 					className={css.user_icon}
 				/>

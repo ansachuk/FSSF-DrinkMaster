@@ -14,7 +14,7 @@ import { Notify } from "notiflix";
 const EditProfileModal = forwardRef(
 	({ handlerEditProfileClick, handlerUserDropdownClick }, ref) => {
 		const dispatch = useDispatch();
-		const { name, avatarURL = defaultUserImage } = useSelector(selectUser);
+		const { name, avatarURL } = useSelector(selectUser);
 
 		const [userName, setUserName] = useState(name);
 		const [image, setImage] = useState(null);
@@ -89,7 +89,7 @@ const EditProfileModal = forwardRef(
 					<Form>
 						<div className={css.icon_container}>
 							<img
-								src={avatarURL}
+								src={avatarURL || defaultUserImage}
 								alt="User photo"
 								id="user_image"
 								className={css.user_large_icon}
