@@ -8,6 +8,7 @@ import RecipePageHero from "./RecipePageHero/RecipePageHero";
 import RecipeIngredientsList from "./RecipeIngredientsList/RecipeIngredientsList";
 import RecipePreparation from "./RecipePreparation/RecipePreparation";
 import { selectIsLoggedIn } from "../../redux/selectors/authSelectors.js";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const RecipePage = () => {
 	const dispatch = useDispatch();
@@ -25,17 +26,20 @@ const RecipePage = () => {
 		return res;
 		}
 		function loadPage() {
-    if (isLoggedIn) {
-    fetchRecipe();
-    fetchFavorite();
-    }
-}
-  loadPage();		
-	}, [dispatch, recipeId, isLoggedIn]);
+			if (isLoggedIn) {
+				fetchRecipe();  
+			}
+			if (recipe.glass) {
+				fetchFavorite();
+			}
+		}
+		loadPage();		
+	}, [dispatch, recipeId, isLoggedIn, recipe.glass]);
 
 	return (
 		recipe.glass && (
 			<MainTitle title={recipe.drink}>
+				{Loading.hourglass()}
 				<RecipePageHero
 					glass={recipe.glass}
 					about={recipe.about || null}

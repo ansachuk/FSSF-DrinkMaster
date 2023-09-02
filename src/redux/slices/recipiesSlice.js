@@ -85,7 +85,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {
-				state.favorite = payload.data;
+				state.favorite = payload.result;
 				handleFullfilled(state);
 			})
 			.addCase(addToFavorite.fulfilled, (state, { payload }) => {

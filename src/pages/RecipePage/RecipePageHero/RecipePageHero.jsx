@@ -7,14 +7,16 @@ import MainButton from '../../../components/MainButton/MainButton';
 import css from './RecipePageHero.module.scss';
 import stylesForButton from '/src/components/MainButton/MainButton.module.scss';
 import icons from '/src/images/icons.svg';
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
-const RecipePageHero = ({glass, title, about, image}) => {
-    const dispatch = useDispatch();
-    const { recipeId } = useParams();
-    const favoriteRecipes = useSelector(selectFavorite);
-    const isFavorite = favoriteRecipes.find((recipe) => recipe._id === recipeId) ? true : false;
+const RecipePageHero = ({ glass, title, about, image }) => {
+  const dispatch = useDispatch();
+  const { recipeId } = useParams();
+  const favoriteRecipes = useSelector(selectFavorite);
+  const index = favoriteRecipes.findIndex((recipe) => recipe._id === recipeId);
+  const isFavorite = index === -1 ? false : true;
 
-    const handleAddToFavorite = () => {
+  const handleAddToFavorite = () => {
     if (!isFavorite) {
       dispatch(addToFavorite(recipeId));
     } else {
@@ -22,12 +24,14 @@ const RecipePageHero = ({glass, title, about, image}) => {
     }
   };
 
-    return (
-        <div className={css.recipePageHeroContainer}>
-            <div><p className={css.glassName}>{glass}</p>
-            {about && <p className={css.aboutDrink}>{about}</p>}
-            {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={handleAddToFavorite} propClass={stylesForButton.recipePageButton}/> : <MainButton title="Add to favorite recipes" onClick={handleAddToFavorite} propClass={stylesForButton.recipePageButton}/>}</div>
-            {image ? <img src={image} alt={title} className={css.recipePageHeroImg} /> : <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>}
+  return (
+    <div className={css.recipePageHeroContainer}>
+      <div><p className={css.glassName}>{glass}</p>
+          {about && <p className={css.aboutDrink}>{about}</p>}
+          {isFavorite ? <MainButton title="Remove from favorite recipes" onClick={handleAddToFavorite} propClass={stylesForButton.recipePageButton} /> : <MainButton title="Add to favorite recipes" onClick={handleAddToFavorite} propClass={stylesForButton.recipePageButton} />}
+        </div>
+      {image ? <img src={image} alt={title} className={css.recipePageHeroImg} /> : <div className={css.defaultImageBg}><svg className={css.defaultImageIcon}><use href={icons + "#cocktail"}></use></svg></div>}
+      {Loading.remove()}
         </div>
     )
 };
