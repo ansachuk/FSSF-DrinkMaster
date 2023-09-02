@@ -1,23 +1,41 @@
-import PropTypes from "prop-types";
-
 import Container from "../Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
-import { setPage } from "../../redux/slices/recipiesSlice";
+import { setPage, setLimit } from "../../redux/slices/recipiesSlice";
+import { selectPage, selectTotalHits, selectLimit } from "../../redux/selectors/recipieSelectors";
+import css from "./Paginator.module.scss";
 
-import { selectPage, selectTotalHits } from "../../redux/selectors/recipieSelectors";
-import css from "../../components/Paginator/Paginator.module.scss";
-
-const desktopLimit = 9;
-const tabletLimit = 8;
-
-export const Paginator = () => {
+export default function Paginator() {
 	const page = useSelector(selectPage);
 	const dispatch = useDispatch();
 	const isDesktop = window.innerWidth >= 1440;
 	const isTablet = window.innerWidth < 1440 && window.innerWidth >= 768;
 	const totalHits = useSelector(selectTotalHits);
-	const limit = isDesktop ? desktopLimit : tabletLimit;
+	const limit = useSelector(selectLimit);
+
+	const handleLimitChange = () => {
+		const screenWidth = window.innerWidth;
+		let newLimit;
+
+		if (screenWidth >= 1440) {
+			newLimit = 9;
+		} else {
+			newLimit = 8;
+		}
+
+		dispatch(setLimit(newLimit));
+	};
+
+	useEffect(() => {
+		const handleWindowResize = () => {
+			handleLimitChange();
+		};
+		window.addEventListener("resize", handleWindowResize);
+		return () => {
+			window.removeEventListener("resize", handleWindowResize);
+		};
+	}, []);
+
 	const pageQuantity = Math.ceil(totalHits / limit);
 
 	const pageRangeDisplayed = isDesktop ? 7 : isTablet ? 5 : 3;
@@ -29,7 +47,7 @@ export const Paginator = () => {
 
 	return (
 		<Container>
-			<div className={css.paginator}>
+			<div className={css.section}>
 				{pageQuantity > 1 && (
 					<ReactPaginate
 						previousLabel={"<"}
@@ -56,10 +74,4 @@ export const Paginator = () => {
 			</div>
 		</Container>
 	);
-};
-
-export default Paginator;
-
-Paginator.propTypes = {
-	page: PropTypes.number.isRequired,
-};
+}
