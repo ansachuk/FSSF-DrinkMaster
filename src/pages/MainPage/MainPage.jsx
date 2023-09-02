@@ -12,24 +12,6 @@ export default function MainPage() {
 	const dispatch = useDispatch();
 	const category = useSelector(selectMainCocktails);
 
-	console.log(category);
-
-	const ordinaryDrink = category.filter(item => {
-		return item.category === "Ordinary Drink";
-	});
-
-	const cocktail = category.filter(item => {
-		return item.category === "Cocktail";
-	});
-
-	const shake = category.filter(item => {
-		return item.category === "Shake";
-	});
-
-	const other = category.filter(item => {
-		return item.category === "Other/Unknown";
-	});
-
 	useEffect(() => {
 		if (category.length === 0) dispatch(mainPage());
 	}, []);
@@ -39,88 +21,21 @@ export default function MainPage() {
 			<HeroSection />
 			<PreviewDrinks
 				title="Ordinary Drink"
-				data={ordinaryDrink}
+				data={category.filter(obj => obj._id === "Ordinary Drink")}
 			/>
 			<PreviewDrinks
 				title="Cocktail"
-				data={cocktail}
+				data={category.filter(obj => obj._id === "Cocktail")}
 			/>
 			<PreviewDrinks
 				title="Shake"
-				data={shake}
+				data={category.filter(obj => obj._id === "Shake")}
 			/>
 			<PreviewDrinks
 				title="Other/Unknown"
-				data={other}
+				data={category.filter(obj => obj._id === "Other/Unknown")}
 			/>
 			<OtherDrinksButton />
 		</>
 	);
 }
-
-//
-//
-//
-//
-
-// ============================================================
-// const dispatch = useDispatch();
-// const category = encodeURIComponent("Cocktail");
-// useEffect(() => {
-// 	dispatch(getCoctailsByFourCategoryThunk(category));
-// }, [dispatch, category]);
-// return <div>MainPage</div>;
-
-// 	return (
-// 		<>
-// 			<HeroSection />
-// 			{/* <PreviewDrinks /> */}
-// 			<PreviewDrinks
-// 				title="Ordinary Drink"
-// 				data={ordinaryDrink}
-// 			/>
-// 			<PreviewDrinks
-// 				title="Cocktail"
-// 				data={cocktail}
-// 			/>
-// 			<PreviewDrinks
-// 				title="Shake"
-// 				data={shake}
-// 			/>
-// 			<PreviewDrinks
-// 				title="Other/Unknown"
-// 				data={other}
-// 			/>
-// 			<OtherDrinksButton />
-// 		</>
-// 	);
-// }
-
-// =========================================================
-
-// import React, { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-
-// import DrinksList from '../../components/DrinksList/DrinksList';
-// import DrinksSearch from 'components/DrinksSearch/DrinksSearch';
-// import Paginator from 'components/Paginator/Paginator';
-// import { getCoctailsByFourCategoryThunk } from "../../redux/operations/drinksOperations";
-
-// const DrinksSection = () => {
-//   const dispatch = useDispatch();
-//   const category = encodeURIComponent('Cocktail');
-//   useEffect(() => {
-//     dispatch(getCoctailsByFourCategoryThunk(category));
-//   }, [dispatch, category]);
-
-//   return (
-//     <>
-//       <h1>Drinks</h1>
-//       <DrinksSearch />
-//       <DrinksList />
-//       <Paginator />
-//     </>
-//   );
-// };
-
-// export default DrinksPage;
