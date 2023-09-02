@@ -10,10 +10,8 @@ export const Nav = () => {
 			<ul className={css.list_items}>
 				<li>
 					<Link
-						className={`${css.link_nav} ${
-							location.pathname === "/drinks/1" ? css.active_link : ""
-						}`}
-						to="/drinks/1"
+						className={`${css.link_nav} ${location.pathname === "/drinks" ? css.active_link : ""}`}
+						to="/drinks"
 					>
 						Drinks
 					</Link>

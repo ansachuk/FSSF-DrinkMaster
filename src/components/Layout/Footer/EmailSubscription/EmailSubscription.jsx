@@ -9,6 +9,7 @@ const SubscribeForm = () => {
 
 	const [isConfirmed, setIsConfirmed] = useState(false);
 	const [isFocused, setIsFocused] = useState(false);
+	const [status, setStatus] = useState("");
 
 	const handleFocus = () => {
 		setIsFocused(true);
@@ -18,11 +19,12 @@ const SubscribeForm = () => {
 		setIsFocused(false);
 	};
 
-	const handleSubmit = async (values, { setSubmitting, setStatus }) => {
+	const handleSubmit = async (values, { setSubmitting, resetForm }) => {
 		try {
 			await dispatch(subscribe(values));
 			setIsConfirmed(true);
 			setStatus("success");
+			resetForm();
 		} catch (error) {
 			setStatus("error");
 		} finally {
@@ -34,6 +36,7 @@ const SubscribeForm = () => {
 		if (isConfirmed) {
 			const timer = setTimeout(() => {
 				setIsConfirmed(false);
+				setStatus("");
 			}, 3000);
 
 			return () => {
@@ -60,7 +63,7 @@ const SubscribeForm = () => {
 				return errors;
 			}}
 		>
-			{({ isSubmitting, status, errors, values }) => (
+			{({ isSubmitting, errors, values }) => (
 				<Form className={scss.subscribe_form}>
 					<p className={scss.subscribe_text}>
 						Subscribe to our newsletter and stay in touch with the latest news and special offers.
