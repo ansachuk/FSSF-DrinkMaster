@@ -12,7 +12,7 @@ import { allIngredients, allCategory, search } from "../../redux/operations/reci
 import {
 	selectCategories,
 	selectIngredients,
-	selectSearchResults
+	selectSearchResults,
 	// selectPage
 } from "../../redux/selectors/recipieSelectors";
 
@@ -42,19 +42,8 @@ const DrinksPage = () => {
 		}
 	}, [dispatch, categoriesList, ingredientsList]);
 
-	const handleSearch = (params) => {
-		dispatch(
-			search({...params, page, limit
-				
-					// chosenCategory,
-					// chosenIngredient,
-					// searchWord,
-			
-				// page,
-				// limit,
-			}),
-		);
-		// navigate(`/recipes/${encodeURIComponent(chosenCategory)}?page=${page}`);
+	const handleSearch = params => {
+		dispatch(search({ ...params, page, limit }));
 	};
 
 	useEffect(() => {
@@ -77,6 +66,92 @@ const DrinksPage = () => {
 };
 
 export default DrinksPage;
+
+// з пагінацією
+
+// import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// // import { useNavigate } from "react-router";
+// // import Paginator from "../../components/Paginator/Paginator";
+// import MainTitle from "../../components/MainTitle/MainTitle";
+// import DrinksSearch from "./DrinksSearch/DrinksSearch";
+// import DrinksList from "./DrinksList/DrinksList";
+// import Container from "../../components/Container/Container";
+
+// import { allIngredients, allCategory, search } from "../../redux/operations/recipiesOperations";
+
+// import {
+// 	selectCategories,
+// 	selectIngredients,
+// 	selectSearchResults,
+// 	// selectPage
+// } from "../../redux/selectors/recipieSelectors";
+
+// import css from "./DrinksPage.module.scss";
+
+// const desktopLimit = 9;
+// const tabletLimit = 8;
+
+// const DrinksPage = () => {
+// 	const dispatch = useDispatch();
+// 	// const navigate = useNavigate();
+// 	const ingredientsList = useSelector(selectIngredients);
+// 	const categoriesList = useSelector(selectCategories);
+// 	const searchResults = useSelector(selectSearchResults);
+// 	// const page = useSelector(selectPage);
+// 	const [page, setPage] = useState(1);
+
+// 	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
+// 	const limit = isDesktop ? desktopLimit : tabletLimit;
+
+// 	useEffect(() => {
+// 		if (categoriesList.length === 0) {
+// 			dispatch(allCategory());
+// 		}
+// 		if (ingredientsList.length === 0) {
+// 			dispatch(allIngredients());
+// 		}
+// 	}, [dispatch, categoriesList, ingredientsList]);
+
+// 	const handleSearch = params => {
+// 		dispatch(search({ ...params, page, limit }));
+// 	};
+
+// 	const nextPage = () => {
+// 		setPage(page + 1);
+// 	};
+
+// 	const prevPage = () => {
+// 		if (page > 1) {
+// 			setPage(page - 1);
+// 		}
+// 	};
+
+// 	// useEffect(() => {
+// 	// 	window.scrollTo(0, 0);
+// 	// }, []);
+
+// 	useEffect(() => {
+//     handleSearch(); 
+//     window.scrollTo(0, 0);
+//   }, [page, params]);
+
+// 	return (
+// 		<Container>
+// 			<section className={css.section}>
+// 				<MainTitle title={"Drinks"} />
+// 				<DrinksSearch
+// 					onSearch={handleSearch}
+// 					categoriesList={categoriesList}
+// 					ingredientsList={ingredientsList}
+// 				/>
+// 				<DrinksList results={searchResults} />
+// 			</section>
+// 		</Container>
+// 	);
+// };
+
+// export default DrinksPage;
 
 // export default function DrinksPage() {
 // 	return <div>DrinksPage</div>;

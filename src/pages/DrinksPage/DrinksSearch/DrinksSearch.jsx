@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './DrinksSearch.module.scss';
-// import icons from '../../../images/search.svg';
 import icons from '../../../images/icons.svg';
 import Select from 'react-select';
 
