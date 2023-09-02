@@ -25,16 +25,8 @@ export default function UserMenu() {
 
 	const handlerBackdropClicks = e => {
 		const backdrop = e.target.closest("#user_group") === null;
-		if (backdrop) {
-			setIsOpenDropdown(false);
-			setIsOpenEditProfile(false);
-			setIsOpenLogout(false);
-		}
-	};
-
-	const handlerEscClick = e => {
-		const target = e.key === "Escape";
-		if (target) {
+		const esc = e.key === "Escape";
+		if (backdrop || esc) {
 			setIsOpenDropdown(false);
 			setIsOpenEditProfile(false);
 			setIsOpenLogout(false);
@@ -44,12 +36,12 @@ export default function UserMenu() {
 	useEffect(() => {
 		if (isOpenDropdown) {
 			window.addEventListener("click", handlerBackdropClicks);
-			window.addEventListener("keydown", handlerEscClick);
+			window.addEventListener("keydown", handlerBackdropClicks);
 		}
 
 		return () => {
 			window.removeEventListener("click", handlerBackdropClicks);
-			window.removeEventListener("keydown", handlerEscClick);
+			window.removeEventListener("keydown", handlerBackdropClicks);
 		};
 	});
 

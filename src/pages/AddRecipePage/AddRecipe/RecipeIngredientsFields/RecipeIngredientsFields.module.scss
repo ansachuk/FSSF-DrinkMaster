@@ -6,28 +6,67 @@
 
 .counter {
 	display: flex;
-	// align-items: center;
-	// justify-content: space-between;
+	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 34px;
+}
+
+.ingredientsList {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.ingredientsItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .selectWraper {
 	display: flex;
 	gap: 8px;
+	// margin-right: 8px;
+}
+
+.measureWraper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// color: white;
+	// padding: 16px 12px;
+	width: 101px;
+	height: 50px;
+	background: transparent;
+	border-radius: 200px;
+	border: 1px solid rgba(243, 243, 243, 0.5);
+
+	transition-property: border-color;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		border-color: $mainFontColor;
+	}
 }
 
 .fieldStyle {
+	width: 27px;
+	height: 27px;
+	margin-right: 5px;
+	font-size: 14px;
+	border: none;
+	text-align: center;
+	cursor: pointer;
+
 	// width: 100%;
-	padding: 16px;
+	// padding: 16px;
 	color: $mainFontColor;
 	background-color: transparent;
 	outline: none;
-	border: 1px solid rgba(243, 243, 243, 0.5);
-	border-radius: 26px;
-	opacity: 0.8;
 	font-size: 14px;
 	line-height: calc(18 / 14);
-	// text-align: center;
 
 	transition-property: border-color;
 	transition-duration: $transitionDuration;
@@ -36,6 +75,12 @@
 	&:hover,
 	:focus {
 		border-color: $mainFontColor;
+	}
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 }
 

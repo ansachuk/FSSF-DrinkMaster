@@ -1,5 +1,12 @@
 @import "../../../../scss";
 
-.mainButton {
-	padding: 14px 40px;
+.wraper {
+	margin-bottom: 40px;
+}
+
+.title {
+	color: $mainFontColor;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: calc(24 / 18);
 }
