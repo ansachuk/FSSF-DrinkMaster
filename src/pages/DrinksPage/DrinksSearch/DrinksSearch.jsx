@@ -38,7 +38,7 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 						className={css.hoverWrapper}
 						
 					></div>
-						<svg className={css.icon} width="18"
+						<svg className={css.iconDgink} width="18"
 						height="18">
 							<use href={icons + "#search"}></use>
 						</svg>
