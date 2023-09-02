@@ -80,10 +80,17 @@ export default function AddRecipeForm() {
 
 	const handleChangeUnitQuantity = (e, index) => {
 		let tmpData = e.currentTarget.value;
+
 		if (tmpData < 0) {
 			tmpData = 0;
 			e.currentTarget.value = 0;
 		}
+
+		if (tmpData > 999) {
+			tmpData = e.currentTarget.value.split("").splice(0, 3).join("");
+			e.currentTarget.value = e.currentTarget.value.split("").splice(0, 3).join("");
+		}
+
 		const tmpList = [...ingredientList];
 		tmpList[index].unitQuantity = tmpData;
 		setIngredientList(tmpList);
