@@ -18,7 +18,7 @@ export default function Navigation() {
 				</li>
 				<li className={css.item}>
 					<NavLink
-						to="/drinks/1"
+						to="/drinks"
 						className={css.link}
 					>
 						Drinks
@@ -34,7 +34,7 @@ export default function Navigation() {
 				</li>
 				<li className={css.item}>
 					<NavLink
-						to="/recipe/1"
+						to="/my"
 						className={css.link}
 					>
 						My recipes
