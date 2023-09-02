@@ -4,7 +4,7 @@ import css from "./Counter.module.scss";
 
 export default function Counter({ ingredientList, handleIncIngredients, handleDecIngredients }) {
 	return (
-		<div>
+		<div className={css.wraper}>
 			<button
 				type="button"
 				onClick={() => handleDecIngredients()}
@@ -25,8 +25,8 @@ export default function Counter({ ingredientList, handleIncIngredients, handleDe
 			>
 				<svg
 					className={css.icon}
-					width="18"
-					height="18"
+					width="25"
+					height="25"
 				>
 					<use href={icons + "#plus"}></use>
 				</svg>
