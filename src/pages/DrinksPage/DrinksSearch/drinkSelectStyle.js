@@ -14,11 +14,20 @@ export const stylesDrink = {
 		"&:hover, &:focus": {
 			borderColor: "#f3f3f3",
 		},
+		"@include tablet": {
+			padding: "14px 18px 14px 24px",
+			width: "199px",
+			height: "56px",
+		},
 	}),
 
 	menu: baseStyles => ({
 		...baseStyles,
 		width: "100%",
+		"@include tablet": {
+			paddingLeft: "14px",
+			width: "199px",
+		},
 	}),
 
 	menuList: baseStyles => ({
@@ -39,6 +48,9 @@ export const stylesDrink = {
 			width: "5px",
 			height: "80px",
 		},
+		"@include tablet": {
+			height: "405px",
+		},
 	}),
 
 	option: (baseStyles, state) => ({
@@ -49,6 +61,10 @@ export const stylesDrink = {
 		color: state.isSelected ? "#f3f3f3" : "inherit",
 		"&:hover": {
 			color: "#f3f3f3",
+		},
+		"@include tablet": {
+			fontSize: "17px",
+			lineHeight: "26.52px",
 		},
 	}),
 

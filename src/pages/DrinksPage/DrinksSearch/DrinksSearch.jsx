@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import css from "./DrinksSearch.module.scss";
 import icons from "../../../images/icons.svg";
 import Select from "react-select";
-// import { styles } from '../../../pages/AddRecipePage/AddRecipe/RecipeIngredientsFields/selectStyle';
 import { stylesDrink } from "./drinkSelectStyle";
 
 const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
@@ -47,7 +46,7 @@ const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
 				</button>
 			</form>
       <Select
-        
+       
 				options={categoriesList.map(category => {
 					console.log(category);
 					return { label: category };
