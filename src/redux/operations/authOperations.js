@@ -45,15 +45,26 @@ const logout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) =>
 	}
 });
 
-const refresh = createAsyncThunk("auth/refresh", async (token, { rejectWithValue }) => {
-	try {
-		setAuthJWTHeader(token);
-		const { data } = await instance.get("users/current");
-		return data;
-	} catch (e) {
-		return rejectWithValue(e.message);
-	}
-});
+const refresh = createAsyncThunk(
+	"auth/refresh",
+	async (token, { rejectWithValue }) => {
+		try {
+			setAuthJWTHeader(token);
+			const { data } = await instance.get("users/current");
+			return data;
+		} catch (e) {
+			return rejectWithValue(e.message);
+		}
+	},
+	{
+		condition: (_, { getState }) => {
+			const { auth } = getState();
+			if (!auth.accessToken) {
+				return false;
+			}
+		},
+	},
+);
 
 const subscribe = createAsyncThunk("auth/subscribe", async (creds, { rejectWithValue }) => {
 	try {

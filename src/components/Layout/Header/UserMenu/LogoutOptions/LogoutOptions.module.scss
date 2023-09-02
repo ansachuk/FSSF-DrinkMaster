@@ -2,8 +2,10 @@
 
 .logout_container {
 	position: absolute;
+	z-index: 10;
 	top: 54px;
 	right: -70px;
+
 	width: 335px;
 	padding: 50px 25px;
 	border-radius: 8px;
