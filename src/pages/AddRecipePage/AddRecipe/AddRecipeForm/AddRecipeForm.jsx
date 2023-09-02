@@ -35,8 +35,6 @@ export default function AddRecipeForm() {
 	const [ingredientList, setIngredientList] = useState([{ _id: nanoid() }]);
 	const [imgURL, setImageURL] = useState(null);
 	const [image, setImage] = useState(null);
-	const [value, setValue] = useState("");
-	console.log(value);
 
 	const handleFileChange = e => {
 		const [_file] = e.target.files;
@@ -81,14 +79,18 @@ export default function AddRecipeForm() {
 	};
 
 	const handleChangeUnitQuantity = (e, index) => {
-		let tmpData = e.currentTarget.value.split("").splice(0, 3).join("");
+		let tmpData = e.currentTarget.value;
 
 		if (tmpData < 0) {
 			tmpData = 0;
 			e.currentTarget.value = 0;
 		}
 
-		setValue(tmpData);
+		if (tmpData > 999) {
+			tmpData = e.currentTarget.value.split("").splice(0, 3).join("");
+			e.currentTarget.value = e.currentTarget.value.split("").splice(0, 3).join("");
+		}
+
 		const tmpList = [...ingredientList];
 		tmpList[index].unitQuantity = tmpData;
 		setIngredientList(tmpList);
@@ -155,7 +157,6 @@ export default function AddRecipeForm() {
 			glass: "Highball glass",
 		});
 		setImageURL(null);
-		setValue("");
 		// navigate("/my");
 	};
 
@@ -187,7 +188,6 @@ export default function AddRecipeForm() {
 							handleChangeUnitQuantity={handleChangeUnitQuantity}
 							handleChangeIngredientUnit={handleChangeIngredientUnit}
 							handleDeleteIngredient={handleDeleteIngredient}
-							value={value}
 						/>
 						<RecipePreparationFields
 							name="textareaRecipe"
