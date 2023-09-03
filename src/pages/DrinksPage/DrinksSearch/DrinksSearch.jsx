@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import css from "./DrinksSearch.module.scss";
 import icons from "../../../images/icons.svg";
+// import { LuSearch } from "react-icons/lu";
+
 import Select from "react-select";
 import { stylesDrink } from "./drinkSelectStyle";
 import { search } from "../../../redux/operations/recipiesOperations";
@@ -18,24 +20,23 @@ const DrinksSearch = ({ page = 1 }) => {
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
 
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const limit = isDesktop ? 9 : 8;
 
-	const handleSearchButtonClick = e => {};
 	const onSubmit = e => {
 		const searchParams = {
-			category: selectedCategory.label,
-			ingredient: selectedIngredient.label,
+			category: selectedCategory.label || "",
+			ingredient: selectedIngredient.label || "",
 			searchWord,
 			page,
 			limit,
 		};
 		console.log(searchParams);
+		dispatch(search(searchParams));
 	};
 
 	return (
-		// <div className={css.wrapper}>
 		<form className={css.form}>
 			<div className={css.formContainer}>
 				<input
@@ -58,6 +59,7 @@ const DrinksSearch = ({ page = 1 }) => {
 					>
 						<use href={icons + "#search"}></use>
 					</svg>
+					{/* <LuSearch className={css.iconDgink} /> */}
 				</button>
 			</div>
 
@@ -69,6 +71,7 @@ const DrinksSearch = ({ page = 1 }) => {
 				placeholder="All categories"
 				value={selectedCategory}
 				onChange={selectedOption => {
+					console.log(selectedOption);
 					setSelectedCategory(selectedOption);
 					onSubmit();
 				}}
@@ -91,7 +94,6 @@ const DrinksSearch = ({ page = 1 }) => {
 				required
 			/>
 		</form>
-		// </div>
 	);
 };
 DrinksSearch.propTypes = {

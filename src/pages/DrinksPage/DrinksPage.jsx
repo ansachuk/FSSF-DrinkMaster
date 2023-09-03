@@ -32,7 +32,7 @@ const DrinksPage = () => {
 				<DrinksSearch
 				// page={page}
 				/>
-				{isRender && <DrinksList results={searchResults} />}
+				{isRender && <DrinksList results={searchList} />}
 			</section>
 		</MainTitle>
 	);
