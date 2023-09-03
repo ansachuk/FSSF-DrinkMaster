@@ -51,20 +51,3 @@
 		font-size: $SecondaryFontSize;
 	}
 }
-// ===============================================
-// .exampleButton {
-// 	composes: mainButton;
-// 	property: value;
-
-// 	@include mobile {
-// 		color: red;
-// 	}
-
-// 	@include tablet {
-// 		color: teal;
-// 	}
-
-// 	@include desktop {
-// 		color:black;
-// 	}
-// }

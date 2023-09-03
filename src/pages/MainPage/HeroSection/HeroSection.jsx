@@ -24,36 +24,11 @@ export default function HeroSection() {
 						</NavLink>
 					</div>
 				</div>
+				<div className={css.first_ball}></div>
+				<div className={css.second_ball}></div>
+				<div className={css.third_ball}></div>
+				<div className={css.fourth_ball}></div>
 			</section>
 		</div>
 	);
 }
-//
-//
-//
-//
-
-// ==================================================================
-
-// 	return (
-// 		<Hero currenttheme={currentTheme}>
-// 			<Container>
-// 				<Herowrapper>
-// 					<StyledMainPageTitle>Craft Your Perfect Drink with Drink Master</StyledMainPageTitle>
-// 					<Herodescription>
-// 						Unlock your inner mixologist with Drink Master, your one-stop destination for exploring, crafting, and mastering the world's finest
-// 						beverages.
-// 					</Herodescription>
-// 					<ReusableButton
-// 						text="Add Recipe"
-// 						ariaLabel="Button to open Add Recipe Page"
-// 						onClick={() => {
-// 							navigate("/main/add");
-// 						}}
-// 					/>
-// 				</Herowrapper>
-// 			</Container>
-// 		</Hero>
-// 	);
-// };
-// ================================================================

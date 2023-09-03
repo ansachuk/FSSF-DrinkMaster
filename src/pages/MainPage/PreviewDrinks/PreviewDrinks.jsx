@@ -25,6 +25,7 @@ const PreviewDrinks = ({ data, title, _id }) => {
 						{recipes.map(({ _id, drinkThumb, drink }) => (
 							<li key={_id}>
 								<DrinkCard
+									_id={_id}
 									key={_id}
 									image={drinkThumb}
 									title={drink}

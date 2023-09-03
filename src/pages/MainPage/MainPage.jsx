@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMainCocktails } from "../../redux/selectors/recipieSelectors";
 import OtherDrinksButton from "./OtherDrinksButton/OtherDrinksButton";
+// import MainTitle from "../../components/MainTitle/MainTitle";
 
 export default function MainPage() {
 	const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function MainPage() {
 
 	return (
 		<>
+			{/* // <MainTitle title={"Craft Your Perfect Drink with Drink Master"}> */}
 			<HeroSection />
 			<PreviewDrinks
 				title="Ordinary Drink"
@@ -36,6 +38,7 @@ export default function MainPage() {
 				data={category.filter(obj => obj._id === "Other/Unknown")}
 			/>
 			<OtherDrinksButton />
+			{/* // </MainTitle> */}
 		</>
 	);
 }
