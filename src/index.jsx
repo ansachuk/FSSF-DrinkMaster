@@ -11,11 +11,15 @@ import App from "./components/App/App.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<Provider store={store}>
-			{/* <PersistGate loading={<div>...Loading</div>} persistor={persistor}> */}
+			{/* <PersistGate
+				loading={<div>...Loading</div>}
+				persistor={persistor}
+			> */}
 			<BrowserRouter basename="FSSF-DrinkMaster">
 				<App />
 			</BrowserRouter>
 			{/* </PersistGate> */}
 		</Provider>
+		,
 	</StrictMode>,
 );

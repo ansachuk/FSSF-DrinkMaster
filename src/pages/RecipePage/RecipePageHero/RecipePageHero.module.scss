@@ -30,6 +30,7 @@
 
     @include desktop {
         top: -104px;
+        margin-bottom: 0;
     }
 }
 
@@ -53,6 +54,8 @@
 
     @include desktop {
         width: 400px;
+        position: relative;
+        top: -50px;
     }
 }
 
