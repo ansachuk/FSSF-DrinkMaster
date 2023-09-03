@@ -1,16 +1,22 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import RecipesList from "../../components/RecipesList/RecipesList";
 import Paginator from "../../components/Paginator/Paginator";
 import { favorite } from "../../redux/operations/recipiesOperations.js";
-import { selectIsLoggedIn } from "../../redux/selectors/authSelectors";
+// import { selectIsLoggedIn } from "../../redux/selectors/authSelectors";
 
 import css from "./FavoritePage.module.scss";
 
 export default function FavoritePage() {
 	const dispatch = useDispatch();
-	const isLoggedIn = useSelector(selectIsLoggedIn);
+	const [totalHits, setTotalHits] = useState(30);
+	// const totalHits = favorite.result ? favorite.result.length : 0;
+	// const isLoggedIn = useSelector(selectIsLoggedIn);
+	const [page, setPage] = useState(1);
+	const [limit, setLimit] = useState(9);
+
 	useEffect(() => {
 		dispatch(
 			favorite({
@@ -18,20 +24,20 @@ export default function FavoritePage() {
 				limit: 9,
 			}),
 		);
-	}, [dispatch]);
+	}, [dispatch, page, limit]);
 
-	useEffect(() => {
-		async function fetchFavorite() {
-			const res = await dispatch(favorite());
-			return res;
-		}
-		function loadPage() {
-			if (isLoggedIn) {
-				fetchFavorite();
-			}
-		}
-		loadPage();
-	}, [dispatch, isLoggedIn]);
+	// useEffect(() => {
+	// 	async function fetchFavorite() {
+	// 		const res = await dispatch(favorite());
+	// 		return res;
+	// 	}
+	// 	function loadPage() {
+	// 		if (isLoggedIn) {
+	// 			fetchFavorite();
+	// 		}
+	// 	}
+	// 	loadPage();
+	// }, [dispatch, isLoggedIn]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -41,8 +47,18 @@ export default function FavoritePage() {
 		<>
 			<div className={css.section}>
 				<MainTitle title="Favorites">
-					<RecipesList />
-					<Paginator />
+					<RecipesList
+						page={page}
+						limit={limit}
+					/>
+					<Paginator
+						page={page}
+						setPage={setPage}
+						limit={limit}
+						setLimit={setLimit}
+						totalHits={totalHits}
+						setTotalHits={setTotalHits}
+					/>
 				</MainTitle>
 			</div>
 		</>
