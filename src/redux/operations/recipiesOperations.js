@@ -44,22 +44,24 @@ const byID = createAsyncThunk("recepies/byID", async (id, { rejectWithValue }) =
 	}
 });
 
-const search = createAsyncThunk("recepies/search", async (searchData, { rejectWithValue }) => {
-	try {
-		const { category, ingredient, searchWord, page = 1, limit = 9 } = searchData;
-		const searchWordStr = searchWord ? `&searchWord=${searchWord}` : "";
-		const categoryStr = category ? `&category=${category}` : "";
-		const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
+const search = createAsyncThunk(
+	"recepies/search",
+	async ({ category, ingredient, searchWord, page = 1, limit = 9 }, { rejectWithValue }) => {
+		try {
+			const searchWordStr = searchWord ? `&searchWord=${searchWord}` : "";
+			const categoryStr = category ? `&category=${category}` : "";
+			const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
 
-		const { data } = await instance.get(
-			`search?page=${page}&${limit}${searchWordStr}${categoryStr}${ingredientStr}`,
-		);
+			const { data } = await instance.get(
+				`search?page=${page}&${limit}${searchWordStr}${categoryStr}${ingredientStr}`,
+			);
 
-		return data;
-	} catch (error) {
-		return rejectWithValue(error.message);
-	}
-});
+			return data;
+		} catch (error) {
+			return rejectWithValue(error.message);
+		}
+	},
+);
 
 const allIngredients = createAsyncThunk(
 	"recepies/allIngredients",
@@ -122,15 +124,27 @@ const remove = createAsyncThunk("recepies/remove", async (id, { rejectWithValue 
 	}
 });
 
-const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
-	try {
-		const { data } = await instance.get(`favorite`);
+// const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
+// 	try {
+// 		const { data } = await instance.get(`favorite`);
 
-		return data;
-	} catch (e) {
-		return rejectWithValue(e.response.data.message);
-	}
-});
+// 		return data;
+// 	} catch (e) {
+// 		return rejectWithValue(e.response.data.message);
+// 	}
+// });
+
+const favorite = createAsyncThunk(
+	"recepies/favorite",
+	async ({ page, limit }, { rejectWithValue }) => {
+		try {
+			const { data } = await instance.get(`favorite?page=${page}&limit=${limit}`);
+			return data;
+		} catch (e) {
+			return rejectWithValue(e.response.data.message);
+		}
+	},
+);
 
 const addToFavorite = createAsyncThunk(
 	"recepies/addToFavorite",
