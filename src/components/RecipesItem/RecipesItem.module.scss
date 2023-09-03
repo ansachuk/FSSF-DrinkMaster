@@ -1,4 +1,5 @@
 @import "../../scss/";
+
 .card {
 	width: 335px;
 
@@ -6,9 +7,11 @@
 		width: 342px;
 		min-height: 628px;
 	}
+
 	@include desktop {
 		min-height: 676px;
 	}
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 	}
@@ -22,9 +25,11 @@
 	border-radius: 15px;
 	transition: scale 400ms ease, box-shadow 400ms ease;
 	padding-bottom: 18px;
+
 	@include tablet {
 		padding-bottom: 24px;
 	}
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 	}
@@ -45,9 +50,11 @@
 	height: 360px;
 	border-radius: 15px;
 	overflow: hidden;
+
 	@include tablet {
 		width: 342px;
 	}
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 		height: 400px;
@@ -65,6 +72,7 @@
 	height: 100%;
 	object-fit: cover;
 	transition: transform 600ms ease;
+
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
 		height: 360px;
@@ -124,6 +132,7 @@
 		height: 110px;
 		-webkit-line-clamp: 5;
 	}
+
 	@media (min-width: 1280px) {
 		max-width: 400px;
 		height: 92px;
@@ -151,6 +160,7 @@
 	@include tablet {
 		width: 342px;
 	}
+
 	@include desktop {
 		width: 400px;
 		height: 400px;
@@ -165,6 +175,7 @@
 		width: 89px;
 		height: 91px;
 	}
+
 	@include desktop {
 		width: 131px;
 		height: 133px;

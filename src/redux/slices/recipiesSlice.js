@@ -66,6 +66,7 @@ const recepiesSlice = createSlice({
 			})
 			.addCase(search.fulfilled, (state, { payload }) => {
 				state.searchResults = payload.result;
+				state.totalHits = payload.totalHits;
 				handleFullfilled(state);
 			})
 			.addCase(allIngredients.fulfilled, (state, { payload }) => {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Container from "../Container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
-import { setPage } from "../../redux/slices/recipiesSlice";
+import setPage from "../../redux/slices/recipiesSlice";
 
 import { selectPage, selectTotalHits } from "../../redux/selectors/recipieSelectors";
 import css from "../../components/Paginator/Paginator.module.scss";
