@@ -93,9 +93,9 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
-				state.favorite = state.favorite.filter(({ _id }) => _id !== payload.result._id);
-				handleFullfilled(state);
-			})
+                state.favorite = state.favorite.filter(({ _id }) => _id !== payload.result._id);
+                handleFullfilled(state);
+            })
 			.addCase(popular.fulfilled, (state, { payload }) => {
 				state.popular = payload;
 				handleFullfilled(state);
