@@ -35,63 +35,63 @@ const DrinksSearch = ({ page = 1 }) => {
 	};
 
 	return (
-		<div className={css.wrapper}>
-			<form>
-				<div className={css.form}>
-					<input
-						type="text"
-						className={css.input}
-						placeholder="Enter the text"
-						value={searchWord}
-						onChange={e => setSearchWord(e.target.value)}
-					/>
-					<button
-						type="button"
-						className={css.submit}
-						onClick={onSubmit}
+		// <div className={css.wrapper}>
+		<form className={css.form}>
+			<div className={css.formContainer}>
+				<input
+					type="text"
+					className={css.input}
+					placeholder="Enter the text"
+					value={searchWord}
+					onChange={e => setSearchWord(e.target.value)}
+				/>
+				<button
+					type="button"
+					className={css.submit}
+					onClick={onSubmit}
+				>
+					<div className={css.hoverWrapper}></div>
+					<svg
+						className={css.iconDgink}
+						width="18"
+						height="18"
 					>
-						<div className={css.hoverWrapper}></div>
-						<svg
-							className={css.iconDgink}
-							width="18"
-							height="18"
-						>
-							<use href={icons + "#search"}></use>
-						</svg>
-					</button>
-				</div>
+						<use href={icons + "#search"}></use>
+					</svg>
+				</button>
+			</div>
 
-				<Select
-					options={categoriesList.map(category => {
-						// console.log(category);
-						return { label: category };
-					})}
-					placeholder="All categories"
-					value={selectedCategory}
-					onChange={selectedOption => {
-						setSelectedCategory(selectedOption);
-						onSubmit();
-					}}
-					styles={stylesDrink}
-					unstyled
-					required
-				/>
-				<Select
-					options={ingredientsList.map(ingredient => {
-						return { value: ingredient._id, label: ingredient.title };
-					})}
-					placeholder="Ingredients"
-					value={selectedIngredient}
-					onChange={selectedOption => {
-						setSelectedIngredient(selectedOption);
-						onSubmit();
-					}}
-					styles={stylesDrink}
-					unstyled
-					required
-				/>
-			</form>
-		</div>
+			<Select
+				options={categoriesList.map(category => {
+					// console.log(category);
+					return { label: category };
+				})}
+				placeholder="All categories"
+				value={selectedCategory}
+				onChange={selectedOption => {
+					setSelectedCategory(selectedOption);
+					onSubmit();
+				}}
+				styles={stylesDrink}
+				unstyled
+				required
+			/>
+			<Select
+				options={ingredientsList.map(ingredient => {
+					return { value: ingredient._id, label: ingredient.title };
+				})}
+				placeholder="Ingredients"
+				value={selectedIngredient}
+				onChange={selectedOption => {
+					setSelectedIngredient(selectedOption);
+					onSubmit();
+				}}
+				styles={stylesDrink}
+				unstyled
+				required
+			/>
+		</form>
+		// </div>
 	);
 };
 DrinksSearch.propTypes = {
@@ -101,3 +101,64 @@ DrinksSearch.propTypes = {
 };
 
 export default DrinksSearch;
+
+// return (
+// 	<Form onSubmit={onSubmit}>
+// 		<SearchFieldWrap>
+// 			<Controller
+// 				name="search"
+// 				control={control}
+// 				render={({ field }) => (
+// 					<Input
+// 						{...field}
+// 						placeholder="Enter the text"
+// 					/>
+// 				)}
+// 			/>
+// 			<SearchBtn type="submit">
+// 				<LuSearch style={{ width: 20, height: 20 }} />
+// 			</SearchBtn>
+// 		</SearchFieldWrap>
+// 		<Controller
+// 			name="category"
+// 			control={control}
+// 			render={({ field }) => (
+// 				<Selector
+// 					placeholder="All Categories"
+// 					unstyled
+// 					{...field}
+// 					styles={selectStyles}
+// 					options={categoriesList.map(option => ({
+// 						value: option.title,
+// 						label: option.title,
+// 					}))}
+// 					defaultValue={defCategory}
+// 					onChange={selectedOption => {
+// 						field.onChange(selectedOption);
+// 						onChangeCategory();
+// 					}}
+// 				/>
+// 			)}
+// 		/>
+// 		<Controller
+// 			name="ingredients"
+// 			control={control}
+// 			render={({ field }) => (
+// 				<Selector
+// 					placeholder="Ingredients"
+// 					unstyled
+// 					styles={selectStyles}
+// 					{...field}
+// 					options={ingredientsList.map(option => ({
+// 						value: option.title,
+// 						label: option.title,
+// 					}))}
+// 					onChange={selectedOption => {
+// 						field.onChange(selectedOption);
+// 						onChangeIngredient();
+// 					}}
+// 				/>
+// 			)}
+// 		/>
+// 	</Form>
+// );

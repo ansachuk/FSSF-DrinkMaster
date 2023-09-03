@@ -1,61 +1,59 @@
-//
 export const stylesDrink = {
 	control: baseStyles => ({
 		...baseStyles,
-		width: "200px",
-		// width: "319px",
-		// width: "100%",
-		height: "54px",
-		alignItems: "flex-start",
-		padding: "16px",
+		color: "rgba(243, 243, 243, 0.50)",
+		minWidth: "199px",
+		minHeight: "18px",
+		padding: "18px 24px",
+		marginTop: "14px",
 		fontSize: "14px",
-		lineHeight: "calc(14 / 14)",
-		backgroundColor: "transparent",
-		border: "1px solid rgba(243, 243, 243, 0.50)",
+		lineHeight: "calc(18 / 14)",
 		borderRadius: "200px",
+		borderColor: "transparent",
+		minWidth: "199px",
+		backgroundColor: "#161F37",
+		outline: 0,
 		cursor: "text",
-		"&:hover, &:focus": {
-			borderColor: "#f3f3f3",
-		},
-		"@include tablet": {
-			padding: "14px 18px 14px 24px",
-			width: "264px",
-			height: "56px",
+		"@media (min-width: 768px)": {
+			marginTop: "0px",
+			padding: "14px 24px",
+			fontSize: "17px",
+			lineHeight: "calc(26.52 / 17)",
 		},
 	}),
-
 	menu: baseStyles => ({
 		...baseStyles,
 		width: "100%",
-		"@include tablet": {
-			paddingLeft: "14px",
-			width: "199px",
-		},
+		paddingTop: "4px",
 	}),
-
 	menuList: baseStyles => ({
 		...baseStyles,
 		display: "flex",
 		flexDirection: "column",
-		gap: "6px",
-		width: "100%",
-		height: "150px",
-		padding: "10px",
+		gap: "8px",
+		maxHeight: "200px",
+		padding: "18px 24px",
 		marginLeft: "auto",
-		marginTop: "-6px",
 		overflowX: "hidden",
+		fontSize: "17px",
+		lineHeight: "calc(26/17)",
 		color: "rgba(243, 243, 243, 0.50)",
-		borderRadius: "12px",
+		borderRadius: "20px",
 		backgroundColor: "#161F37",
-		"::-webkit-scrollbar": {
-			width: "5px",
-			height: "80px",
-		},
-		"@include tablet": {
-			height: "405px",
+		"@media (min-width: 768px)": {
+			padding: "14px 23px",
+			"&::-webkit-scrollbar": {
+				width: "8px",
+			},
+			"&::-webkit-scrollbar-track": {
+				margin: "8px 0px",
+			},
+			"&::-webkit-scrollbar-thumb": {
+				backgroundColor: "#434D67",
+				borderRadius: "20px",
+			},
 		},
 	}),
-
 	option: (baseStyles, state) => ({
 		...baseStyles,
 		fontSize: "12px",
@@ -65,41 +63,45 @@ export const stylesDrink = {
 		"&:hover": {
 			color: "#f3f3f3",
 		},
-		"@include tablet": {
+		"@media (min-width: 768px)": {
 			fontSize: "17px",
-			lineHeight: "26.52px",
+		},
+		"@media (min-width: 1200px)": {
+			cursor: "pointer",
 		},
 	}),
-
-	indicatorsContainer: baseStyles => ({
+	placeholder: baseStyles => ({
 		...baseStyles,
-		height: "100%",
-		"&:hover": {
-			color: "#161F37",
+		fontSize: "14px",
+		lineHeight: "normal",
+		width: "100%",
+		color: "#f3f3f3",
+		"@media (min-width: 768px)": {
+			marginTop: "0px",
+			fontSize: "17px",
+			lineHeight: "calc(26.52 / 17)",
 		},
 	}),
-
-	valueContainer: baseStyles => ({
-		...baseStyles,
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "flex-start",
-		flexWrap: "nowrap",
-	}),
-
 	singleValue: baseStyles => ({
 		...baseStyles,
 		width: "100%",
-		textAlign: "left",
-		overflow: "visible",
+		paddingTop: "2px",
+		lineHeight: "normal",
+		color: "#f3f3f3",
 	}),
-
 	input: baseStyles => ({
 		...baseStyles,
+		paddingTop: "2px",
 		lineHeight: "normal",
-		justifyContent: "end",
+		justifyContent: "start",
+		"@media (min-width: 768px)": {
+			lineHeight: "calc(26.52 / 17)",
+		},
 	}),
-
+	indicatorContainer: baseStyles => ({
+		...baseStyles,
+		alignItems: "flex-end",
+	}),
 	indicatorSeparator: () => ({
 		display: "none",
 	}),
