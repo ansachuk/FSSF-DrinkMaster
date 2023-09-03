@@ -1,9 +1,13 @@
 import { NavLink } from "react-router-dom";
 import css from "./Navigation.module.scss";
+import { forwardRef } from "react";
 
-export default function Navigation() {
+const Navigation = forwardRef((_, ref) => {
 	return (
-		<nav className={css.nav}>
+		<nav
+			className={css.nav}
+			ref={ref}
+		>
 			<ul
 				className={css.list}
 				id="navigation"
@@ -51,4 +55,8 @@ export default function Navigation() {
 			</ul>
 		</nav>
 	);
-}
+});
+
+Navigation.displayName = "Navigation";
+
+export default Navigation;

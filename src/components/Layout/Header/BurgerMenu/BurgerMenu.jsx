@@ -2,8 +2,12 @@ import icons from "../../../../images/icons.svg";
 import css from "./BurgerMenu.module.scss";
 import Navigation from "../Navigation/Navigation";
 import PropTypes from "prop-types";
+import { CSSTransition } from "react-transition-group";
+import { createRef } from "react";
 
 export default function BurgerMenu({ toggleMenu, isOpenBurgerMenu, isDesktop }) {
+	const nodeRef = createRef(null);
+
 	return (
 		<>
 			<div
@@ -19,7 +23,17 @@ export default function BurgerMenu({ toggleMenu, isOpenBurgerMenu, isDesktop }) 
 				</svg>
 			</div>
 
-			{isOpenBurgerMenu && !isDesktop && <Navigation />}
+			<CSSTransition
+				in={isOpenBurgerMenu && !isDesktop}
+				nodeRef={nodeRef}
+				timeout={250}
+				classNames="burger"
+				unmountOnExit
+				onEnter={() => toggleMenu}
+				onExited={() => toggleMenu}
+			>
+				<Navigation ref={nodeRef} />
+			</CSSTransition>
 		</>
 	);
 }

@@ -3,10 +3,14 @@ import icons from "../../../../../images/icons.svg";
 import css from "./UserDropdown.module.scss";
 import buttonCss from "../../../../MainButton/MainButton.module.scss";
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 
-export default function UserDropdown({ handlerEditProfileClick, handlerLogoutDropdownClick }) {
+const UserDropdown = forwardRef(({ handlerEditProfileClick, handlerLogoutDropdownClick }, ref) => {
 	return (
-		<div className={css.dropdown_container}>
+		<div
+			className={css.dropdown_container}
+			ref={ref}
+		>
 			<div className={css.heading}>
 				<p>Edit profile</p>
 				<button
@@ -25,7 +29,11 @@ export default function UserDropdown({ handlerEditProfileClick, handlerLogoutDro
 			/>
 		</div>
 	);
-}
+});
+
+UserDropdown.displayName = "UserDropdown";
+
+export default UserDropdown;
 
 UserDropdown.propTypes = {
 	handlerEditProfileClick: PropTypes.func,

@@ -1,5 +1,9 @@
 @import "../../../scss/";
 
+.footer_first_ball_container {
+	position: absolute;
+}
+
 .FooterContainer {
 	position: relative;
 	overflow: hidden;
@@ -71,21 +75,21 @@
 
 .footer_first_ball {
 	position: absolute;
-	bottom: -104px;
+	bottom: 0px;
 	left: -689px;
 	width: 784px;
-	height: 849px;
+	height: 649px;
 	border-radius: 849px;
 	background: rgba(64, 112, 205, 0.5);
 	filter: blur(104.8543701171875px);
 
 	@include tablet {
 		left: -690px;
-		bottom: -164px;
+		bottom: 0px;
 	}
 
 	@include desktop {
-		bottom: -218px;
+		bottom: 0px;
 	}
 }
 
@@ -122,4 +126,10 @@
 		background: rgba(64, 112, 205, 0.5);
 		filter: blur(104.8543701171875px);
 	}
+}
+
+.footer_first_ball,
+.footer_second_ball,
+.footer_third_ball {
+	z-index: -1;
 }
