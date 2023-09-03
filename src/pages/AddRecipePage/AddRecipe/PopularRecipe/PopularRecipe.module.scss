@@ -4,6 +4,10 @@
 	display: flex;
 	gap: 28px;
 	flex-direction: column;
+
+	@include tablet {
+		gap: 40px;
+	}
 }
 
 .title {
@@ -11,12 +15,23 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: calc(24 / 18);
+
+	@include tablet {
+		font-size: 24px;
+		line-height: calc(32 / 24);
+	}
 }
 
 .list {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+
+	@include tablet {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 32px;
+	}
 }
 
 .link {
@@ -60,4 +75,8 @@
 	line-height: calc(18 / 14);
 	height: 55px;
 	overflow: hidden;
+
+	@include tablet {
+		line-height: calc(20 / 14);
+	}
 }
