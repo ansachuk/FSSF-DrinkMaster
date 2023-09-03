@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSearchResults } from "../../../redux/selectors/recipieSelectors";
-// import NotFoundPage from '../../NotFoundPage/NotFound/NotFound';
-import { NotFound } from "../NotFound/NotFound";
-// import RecipesItem from '../../../components/RecipesItem/RecipesItem';
-import RecipesItem from "../../../components/RecipesItem/RecipesItem";
-// import DrinkCard from '../DrinksCard/DrinksCard';
+
 import css from "./DrinksList.module.scss";
+import DrinkCard from "../../MainPage/DrinkCard/DrinkCard";
+// import NotAdded from "../../../components/NotAdded/NotAdded";
+import { NotFound } from "../NotFound/NotFound";
 
 const DrinksList = () => {
 	const searchResults = useSelector(selectSearchResults);
@@ -17,18 +16,21 @@ const DrinksList = () => {
 
 	return (
 		<section className={css.section}>
-			{searchResults?.length !== 0 ? (
+			{Array.isArray(searchResults) && searchResults.length !== 0 && (
 				<ul className={css.drinkList}>
-					{searchResults?.map(searchResult => (
-						<RecipesItem
-							key={searchResult._id}
-							cocktail={searchResult}
-							page={"drinks"}
+					{searchResults?.map(cocktail => (
+						<DrinkCard
+							_id={cocktail._id}
+							key={cocktail._id}
+							image={cocktail.drinkThumb}
+							title={cocktail.drink}
 						/>
 					))}
 				</ul>
-			) : (
-				<NotFound message={"We did not find any cocktails for this search"} />
+			)}
+
+			{searchResults.length === 0 && (
+				<NotFound text="We did not find any cocktails for this search" />
 			)}
 		</section>
 	);

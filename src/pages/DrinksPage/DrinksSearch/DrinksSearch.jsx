@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import css from "./DrinksSearch.module.scss";
 import icons from "../../../images/icons.svg";
-// import { LuSearch } from "react-icons/lu";
-
 import Select from "react-select";
 import { stylesDrink } from "./drinkSelectStyle";
 import { search } from "../../../redux/operations/recipiesOperations";
@@ -24,7 +22,9 @@ const DrinksSearch = ({ page = 1 }) => {
 
 	const limit = isDesktop ? 9 : 8;
 
-	const onSubmit = e => {
+	useEffect(() => {
+		const isShouldRender = searchWord || selectedCategory.label || selectedIngredient.label;
+
 		const searchParams = {
 			category: selectedCategory.label || "",
 			ingredient: selectedIngredient.label || "",
@@ -32,24 +32,31 @@ const DrinksSearch = ({ page = 1 }) => {
 			page,
 			limit,
 		};
-		console.log(searchParams);
-		dispatch(search(searchParams));
-	};
+
+		if (isShouldRender) {
+			dispatch(search(searchParams));
+		}
+	}, [searchWord, selectedCategory.label, selectedIngredient.label]);
 
 	return (
-		<form className={css.form}>
+		<form
+			onSubmit={e => {
+				e.preventDefault();
+				const input = e.currentTarget.abc.value;
+				setSearchWord(input);
+			}}
+			className={css.form}
+		>
 			<div className={css.formContainer}>
 				<input
 					type="text"
+					name="abc"
 					className={css.input}
 					placeholder="Enter the text"
-					value={searchWord}
-					onChange={e => setSearchWord(e.target.value)}
 				/>
 				<button
-					type="button"
+					type="submit"
 					className={css.submit}
-					onClick={onSubmit}
 				>
 					<div className={css.hoverWrapper}></div>
 					<svg
@@ -59,13 +66,11 @@ const DrinksSearch = ({ page = 1 }) => {
 					>
 						<use href={icons + "#search"}></use>
 					</svg>
-					{/* <LuSearch className={css.iconDgink} /> */}
 				</button>
 			</div>
 
 			<Select
 				options={categoriesList.map(category => {
-					// console.log(category);
 					return { label: category };
 				})}
 				placeholder="All categories"
@@ -73,11 +78,9 @@ const DrinksSearch = ({ page = 1 }) => {
 				onChange={selectedOption => {
 					console.log(selectedOption);
 					setSelectedCategory(selectedOption);
-					onSubmit();
 				}}
 				styles={stylesDrink}
 				unstyled
-				required
 			/>
 			<Select
 				options={ingredientsList.map(ingredient => {
@@ -87,80 +90,15 @@ const DrinksSearch = ({ page = 1 }) => {
 				value={selectedIngredient}
 				onChange={selectedOption => {
 					setSelectedIngredient(selectedOption);
-					onSubmit();
 				}}
 				styles={stylesDrink}
 				unstyled
-				required
 			/>
 		</form>
 	);
 };
 DrinksSearch.propTypes = {
-	// page: PropTypes.number.isRequired,
-	categoriesList: PropTypes.array.isRequired,
-	ingredientsList: PropTypes.array.isRequired,
+	page: PropTypes.number.isRequired,
 };
 
 export default DrinksSearch;
-
-// return (
-// 	<Form onSubmit={onSubmit}>
-// 		<SearchFieldWrap>
-// 			<Controller
-// 				name="search"
-// 				control={control}
-// 				render={({ field }) => (
-// 					<Input
-// 						{...field}
-// 						placeholder="Enter the text"
-// 					/>
-// 				)}
-// 			/>
-// 			<SearchBtn type="submit">
-// 				<LuSearch style={{ width: 20, height: 20 }} />
-// 			</SearchBtn>
-// 		</SearchFieldWrap>
-// 		<Controller
-// 			name="category"
-// 			control={control}
-// 			render={({ field }) => (
-// 				<Selector
-// 					placeholder="All Categories"
-// 					unstyled
-// 					{...field}
-// 					styles={selectStyles}
-// 					options={categoriesList.map(option => ({
-// 						value: option.title,
-// 						label: option.title,
-// 					}))}
-// 					defaultValue={defCategory}
-// 					onChange={selectedOption => {
-// 						field.onChange(selectedOption);
-// 						onChangeCategory();
-// 					}}
-// 				/>
-// 			)}
-// 		/>
-// 		<Controller
-// 			name="ingredients"
-// 			control={control}
-// 			render={({ field }) => (
-// 				<Selector
-// 					placeholder="Ingredients"
-// 					unstyled
-// 					styles={selectStyles}
-// 					{...field}
-// 					options={ingredientsList.map(option => ({
-// 						value: option.title,
-// 						label: option.title,
-// 					}))}
-// 					onChange={selectedOption => {
-// 						field.onChange(selectedOption);
-// 						onChangeIngredient();
-// 					}}
-// 				/>
-// 			)}
-// 		/>
-// 	</Form>
-// );

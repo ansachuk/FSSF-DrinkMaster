@@ -10,7 +10,7 @@ import { allIngredients } from "../../redux/operations/recipiesOperations";
 const DrinksPage = () => {
 	const [isRender, setIsRender] = useState(false);
 	const searchList = useSelector(selectSearchResults);
-	// const [page, setPage] = useState(1);
+	const [page, setPage] = useState(1);
 
 	const dispatch = useDispatch();
 
@@ -29,9 +29,7 @@ const DrinksPage = () => {
 	return (
 		<MainTitle title={"Drinks"}>
 			<section className={css.section}>
-				<DrinksSearch
-				// page={page}
-				/>
+				<DrinksSearch page={page} />
 				{isRender && <DrinksList results={searchList} />}
 			</section>
 		</MainTitle>
