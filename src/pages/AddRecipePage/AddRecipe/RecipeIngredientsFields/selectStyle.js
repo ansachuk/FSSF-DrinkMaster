@@ -14,6 +14,13 @@ export const styles = {
 		"&:hover, &:focus": {
 			borderColor: "#f3f3f3",
 		},
+
+		"@media (min-width: 768px)": {
+			width: "332px",
+			height: "56px",
+			fontSize: "17px",
+			lineHeight: "calc(26 / 17)",
+		},
 	}),
 
 	menu: baseStyles => ({
@@ -58,13 +65,19 @@ export const styles = {
 		"&:hover": {
 			color: "#161F37",
 		},
+
+		"@media (min-width: 768px)": {
+			marginTop: "1px",
+		},
 	}),
 
 	valueContainer: baseStyles => ({
 		...baseStyles,
 		display: "flex",
 		justifyContent: "center",
-		alignItems: "flex-start",
+		alignItems: "center",
+		// textAlign: "right",
+		// marginRight: "30px",
 		flexWrap: "nowrap",
 	}),
 

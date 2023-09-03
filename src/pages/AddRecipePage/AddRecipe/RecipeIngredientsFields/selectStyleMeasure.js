@@ -3,7 +3,8 @@ export const stylesMeasure = {
 		...baseStyles,
 		// width: "20px",
 		height: "50px",
-		// alignItems: "flex-start",
+		// justifyContent: "space-between",
+		alignItems: "center",
 		// padding: "16px",
 		fontSize: "14px",
 		lineHeight: "calc(14 / 14)",
@@ -14,6 +15,10 @@ export const stylesMeasure = {
 		// "&:hover, &:focus": {
 		// 	borderColor: "#f3f3f3",
 		// },
+		"@media (min-width: 768px)": {
+			fontSize: "17px",
+			lineHeight: "calc(26 / 17)",
+		},
 	}),
 
 	menu: baseStyles => ({
@@ -56,6 +61,9 @@ export const stylesMeasure = {
 
 	indicatorsContainer: baseStyles => ({
 		...baseStyles,
+		// display: "flex",
+		// justifyContent: "center",
+		// alignItems: "flex-end",
 		height: "100%",
 		"&:hover": {
 			color: "#161F37",
@@ -80,7 +88,7 @@ export const stylesMeasure = {
 	input: baseStyles => ({
 		...baseStyles,
 		lineHeight: "normal",
-		justifyContent: "end",
+		justifyContent: "center",
 	}),
 
 	indicatorSeparator: () => ({

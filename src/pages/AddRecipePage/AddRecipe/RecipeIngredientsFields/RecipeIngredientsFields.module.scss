@@ -70,11 +70,13 @@
 
 .fieldStyle {
 	width: 27px;
-	height: 27px;
+	// height: 27px;
 	margin-right: 5px;
 	font-size: 14px;
 	border: none;
 	text-align: center;
+	// align-items: center;
+	// justify-content: center;
 	cursor: pointer;
 
 	// width: 100%;
@@ -91,8 +93,11 @@
 
 	@include tablet {
 		width: 35px;
-		height: 35px;
+		// height: 35px;
+		margin-right: 15px;
+		margin-top: 3px;
 		font-size: 18px;
+		line-height: calc(26 / 18);
 	}
 
 	&:hover,
