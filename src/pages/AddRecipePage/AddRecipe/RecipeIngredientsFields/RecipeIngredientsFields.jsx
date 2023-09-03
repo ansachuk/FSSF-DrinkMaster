@@ -41,45 +41,44 @@ export default function RecipeIngredientsFields({
 
 			<ul className={css.ingredientsList}>
 				{ingredientList.map((el, index) => (
-					<li
-						className={css.ingredientsItem}
-						key={el._id}
-					>
+					<li key={el._id}>
 						<div className={css.selectWraper}>
-							<Select
-								options={ingredientsListOptions.map(ing => {
-									return { value: ing.title, label: ing.title, id: ing._id };
-								})}
-								onChange={evt => handleChangeIngredientName(evt, index)}
-								placeholder={"Select ingredient..."}
-								unstyled
-								styles={styles}
-								required
-							/>
-
-							<div className={css.measureWraper}>
-								<Field
-									name="amountIngredien"
-									className={css.fieldStyle}
-									type="number"
-									step="0.1"
-									onChange={evt => {
-										handleChangeUnitQuantity(evt, index);
-									}}
-									placeholder="0"
-									required
-								/>
-
+							<div className={css.flexWraper}>
 								<Select
-									options={optionsIngredientUnit}
-									onChange={evt => {
-										handleChangeIngredientUnit(evt, index);
-									}}
-									placeholder={""}
+									options={ingredientsListOptions.map(ing => {
+										return { value: ing.title, label: ing.title, id: ing._id };
+									})}
+									onChange={evt => handleChangeIngredientName(evt, index)}
+									placeholder={"Select ingredient..."}
 									unstyled
-									styles={stylesMeasure}
+									styles={styles}
 									required
 								/>
+
+								<div className={css.measureWraper}>
+									<Field
+										name="amountIngredien"
+										className={css.fieldStyle}
+										type="number"
+										step="0.1"
+										onChange={evt => {
+											handleChangeUnitQuantity(evt, index);
+										}}
+										placeholder="0"
+										required
+									/>
+
+									<Select
+										options={optionsIngredientUnit}
+										onChange={evt => {
+											handleChangeIngredientUnit(evt, index);
+										}}
+										placeholder={""}
+										unstyled
+										styles={stylesMeasure}
+										required
+									/>
+								</div>
 							</div>
 
 							{ingredientList.length > 1 && (
