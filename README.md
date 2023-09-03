@@ -1,4 +1,4 @@
 # DrinkMaster
 
-        run: yarn
       - name: Lint ✅
+        run: yarn lint
