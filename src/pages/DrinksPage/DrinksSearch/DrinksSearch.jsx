@@ -5,387 +5,99 @@ import icons from "../../../images/icons.svg";
 import Select from "react-select";
 import { stylesDrink } from "./drinkSelectStyle";
 import { search } from "../../../redux/operations/recipiesOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategories, selectIngredients } from "../../../redux/selectors/recipieSelectors";
 
-const desktopLimit = 9;
-const tabletLimit = 8;
+const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1280;
 
-const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
-	const [chosenCategory, setChosenCategory] = useState(null);
-	const [chosenIngredient, setChosenIngredient] = useState(null);
-	// const [searchWord, setsearchWord] = useState('');
+const DrinksSearch = ({ page = 1 }) => {
 	const [searchWord, setSearchWord] = useState("");
-	const options = chosenCategory !== "" && chosenIngredient !== "" && searchWord !== "";
-	const [hasStateChanged, setHasStateChanged] = useState(options);
-	const dispatch = useDispatch();
+	const [selectedCategory, setSelectedCategory] = useState("");
+	const [selectedIngredient, setSelectedIngredient] = useState("");
 
-	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
-	const limit = isDesktop ? desktopLimit : tabletLimit;
+	const ingredientsList = useSelector(selectIngredients);
+	const categoriesList = useSelector(selectCategories);
 
-	const handleSearchClick = e => {
-		e.preventDefault();
-		const params = { category: chosenCategory, ingredient: chosenIngredient, searchWord };
-		console.log(params);
+	// const dispatch = useDispatch();
+
+	const limit = isDesktop ? 9 : 8;
+
+	const handleSearchButtonClick = e => {};
+	const onSubmit = e => {
+		const searchParams = {
+			category: selectedCategory.label,
+			ingredient: selectedIngredient.label,
+			searchWord,
+			page,
+			limit,
+		};
+		console.log(searchParams);
 	};
-
-	useEffect(() => {
-		const params = { category: chosenCategory, ingredient: chosenIngredient, searchWord };
-		console.log(hasStateChanged);
-		if (hasStateChanged) {
-			dispatch(search({ ...params, page, limit }));
-		}
-	}, [chosenCategory, chosenIngredient, searchWord, hasStateChanged, dispatch]);
 
 	return (
 		<div className={css.wrapper}>
-			<form
-				// onSubmit={}
-				className={css.form}
-			>
-				<input
-					type="text"
-					className={css.input}
-					placeholder="Enter the text"
-					// value={searchWord}
-					// onChange={e => setSearchWord(e.target.value)}
-				/>
-				<button
-					type="button"
-					className={css.submit}
-					onClick={e => setSearchWord(e.target.value)}
-				>
-					<div className={css.hoverWrapper}></div>
-					<svg
-						className={css.iconDgink}
-						width="18"
-						height="18"
+			<form>
+				<div className={css.form}>
+					<input
+						type="text"
+						className={css.input}
+						placeholder="Enter the text"
+						value={searchWord}
+						onChange={e => setSearchWord(e.target.value)}
+					/>
+					<button
+						type="button"
+						className={css.submit}
+						onClick={onSubmit}
 					>
-						<use href={icons + "#search"}></use>
-					</svg>
-				</button>
+						<div className={css.hoverWrapper}></div>
+						<svg
+							className={css.iconDgink}
+							width="18"
+							height="18"
+						>
+							<use href={icons + "#search"}></use>
+						</svg>
+					</button>
+				</div>
+
+				<Select
+					options={categoriesList.map(category => {
+						// console.log(category);
+						return { label: category };
+					})}
+					placeholder="All categories"
+					value={selectedCategory}
+					onChange={selectedOption => {
+						setSelectedCategory(selectedOption);
+						onSubmit();
+					}}
+					styles={stylesDrink}
+					unstyled
+					required
+				/>
+				<Select
+					options={ingredientsList.map(ingredient => {
+						return { value: ingredient._id, label: ingredient.title };
+					})}
+					placeholder="Ingredients"
+					value={selectedIngredient}
+					onChange={selectedOption => {
+						setSelectedIngredient(selectedOption);
+						onSubmit();
+					}}
+					styles={stylesDrink}
+					unstyled
+					required
+				/>
 			</form>
-			<Select
-				options={categoriesList.map(category => {
-					// console.log(category);
-					return { label: category };
-				})}
-				placeholder="All categories"
-				value={chosenCategory}
-				onChange={e => {
-					setChosenCategory(e.target);
-					handleSearchClick(e);
-				}}
-				styles={stylesDrink}
-				unstyled
-				required
-			/>
-			<Select
-				options={ingredientsList.map(ingredient => {
-					return { value: ingredient._id, label: ingredient.title };
-				})}
-				placeholder="Ingredients"
-				value={chosenIngredient}
-				onChange={selectedOption => setChosenIngredient(selectedOption)}
-				styles={stylesDrink}
-				unstyled
-				required
-			/>
 		</div>
 	);
 };
 DrinksSearch.propTypes = {
+	// page: PropTypes.number.isRequired,
 	categoriesList: PropTypes.array.isRequired,
 	ingredientsList: PropTypes.array.isRequired,
 };
 
 export default DrinksSearch;
-
-// // DrinkSearch.jsx
-// import { useState } from "react";
-// import PropTypes from "prop-types";
-// import css from "./DrinksSearch.module.scss";
-// import icons from "../../../images/icons.svg";
-// import Select from "react-select";
-// import { stylesDrink } from "./drinkSelectStyle";
-// import { search } from "../../../redux/operations/recipiesOperations";
-// import { useDispatch } from "react-redux";
-
-// const desktopLimit = 9;
-// const tabletLimit = 8;
-
-// // const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
-// // 	const [chosenCategory, setChosenCategory] = useState(null);
-// // 	const [chosenIngredient, setChosenIngredient] = useState(null);
-
-// // 	const [searchWord, searchWord] = useState("");
-
-// // 	const dispatch = useDispatch();
-
-// const DrinksSearch = ({
-//     categoriesList,
-//     ingredientsList,
-//     selectedCategory,
-//     setSelectedCategory,
-//     selectedIngredient,
-//     setSelectedIngredient,
-//     searchWord,
-//     setsearchWord,
-//     onSearch,
-// }) => {
-//     const dispatch = useDispatch();
-
-//  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
-//     const limit = isDesktop ? desktopLimit : tabletLimit;
-
-//     const handleSearchClick = (e) => {
-//         e.preventDefault();
-//         onSearch();
-//     };
-
-// 	return (
-// 		<div className={css.wrapper}>
-// 			<form
-// 				onSubmit={handleSearchClick}
-// 				className={css.form}
-// 			>
-// 				<input
-// 					type="text"
-// 					className={css.input}
-// 					placeholder="Enter the text"
-// 					value={searchWord}
-// 					onChange={e => searchWord(e.target.value)}
-// 				/>
-// 				<button
-// 					type="submit"
-// 					className={css.submit}
-// 					// onClick={e => {
-// 					// 	handleSearchClick(e);
-// 					// }}
-// 				>
-// 					<div className={css.hoverWrapper}></div>
-// 					<svg
-// 						className={css.iconDgink}
-// 						width="18"
-// 						height="18"
-// 					>
-// 						<use href={icons + "#search"}></use>
-// 					</svg>
-// 				</button>
-// 			</form>
-// 			<Select
-// 				options={categoriesList.map(category => {
-// 					console.log(category);
-// 					return { label: category };
-// 				})}
-// 				placeholder="All categories"
-// 				value={chosenCategory}
-// 				// onChange={e => setChosenCategory(e.target)}
-// 				onChange={(selectedOption) => setSelectedCategory(selectedOption)}
-// 				styles={stylesDrink}
-// 				unstyled
-// 				required
-// 			/>
-// 			<Select
-// 				options={ingredientsList.map(ingredient => {
-// 					return { value: ingredient._id, label: ingredient.title };
-// 				})}
-// 				placeholder="Ingredients"
-// 				value={chosenIngredient}
-// 				// onChange={selectedOption => setChosenIngredient(selectedOption)}
-// 				onChange={(selectedOption) => setSelectedIngredient(selectedOption)}
-// 				styles={stylesDrink}
-// 				unstyled
-// 				required
-// 			/>
-// 		</div>
-// 	);
-// };
-
-// // DrinksSearch.propTypes = {
-// // 	onSearch: PropTypes.func.isRequired,
-// // 	categoriesList: PropTypes.array.isRequired,
-// // 	ingredientsList: PropTypes.array.isRequired,
-// // 	// page: PropTypes.number.isRequired,
-// // };
-
-// DrinksSearch.propTypes = {
-//     onSearch: PropTypes.func.isRequired,
-//     categoriesList: PropTypes.array.isRequired,
-//     ingredientsList: PropTypes.array.isRequired,
-//     selectedCategory: PropTypes.object,
-//     setSelectedCategory: PropTypes.func,
-//     selectedIngredient: PropTypes.object,
-//     setSelectedIngredient: PropTypes.func,
-//     searchWord: PropTypes.string,
-//     setsearchWord: PropTypes.func,
-// };
-
-// export default DrinksSearch;
-
-// ИСХОДНЫЙ
-
-// import axios from "axios";
-// // import { useEffect } from "react";
-// // import { useDispatch, useSelector } from "react-redux";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
-
-// import { drinksCategoriesList } from "../../../data/drinksData";
-
-// // action//
-// // export const setsearchWord = text => ({
-// // 	type: "SET_SEARCH_TEXT",
-// // 	payload: text,
-// // });
-
-// // export const setSelectedCategory = category => ({
-// // 	type: "SET_SELECTED_CATEGORY",
-// // 	payload: category,
-// // });
-
-// // export const setSelectedIngredient = ingredient => ({
-// // 	type: "SET_SELECTED_INGREDIENT",
-// // 	payload: ingredient,
-// // });
-
-// // export const setIngredientsList = ingredients => ({
-// // 	type: "SET_INGREDIENTS_LIST",
-// // 	payload: ingredients,
-// // });
-
-// // редюсер//
-// // const initialState = {
-// // 	searchWord: "",
-// // 	selectedCategory: "All Categories",
-// // 	selectedIngredient: "Ingredients",
-// // 	ingredientsList: [],
-// // };
-
-// // const rootReducer = (state = initialState, action) => {
-// // 	switch (action.type) {
-// // 		case "SET_SEARCH_TEXT":
-// // 			return { ...state, searchWord: action.payload };
-// // 		case "SET_SELECTED_CATEGORY":
-// // 			return { ...state, selectedCategory: action.payload };
-// // 		case "SET_SELECTED_INGREDIENT":
-// // 			return { ...state, selectedIngredient: action.payload };
-// // 		case "SET_INGREDIENTS_LIST":
-// // 			return { ...state, ingredientsList: action.payload };
-// // 		default:
-// // 			return state;
-// // 	}
-// // };
-// //  схема валидации//
-
-// const validationSchema = Yup.object().shape({
-// 	searchWord: Yup.string().required("Search text is required"),
-// });
-
-// export default function DrinksSearch() {
-// 	// const dispatch = useDispatch();
-// 	// const { searchWord, selectedCategory, selectedIngredient, ingredientsList } = useSelector(state => state);
-
-// 	// useEffect(() => {
-// 	// 	// Запрос к бэкенду для получения списка ингредиентов
-// 	// 	axios
-// 	// 		.get("/api/ingredients")
-// 	// 		.then(response => {
-// 	// 			const data = response.data;
-// 	// 			dispatch(setIngredientsList(data));
-// 	// 		})
-// 	// 		.catch(error => {
-// 	// 			console.error("Error fetching ingredients:", error);
-// 	// 		});
-// 	// }, []);
-
-// 	return (
-// 		<Formik
-// 			initialValues={{
-// 				searchWord: "",
-// 				selectedCategory: "All Categories",
-// 				selectedIngredient: "Ingredients",
-// 			}}
-// 			validationSchema={validationSchema}
-// 			onSubmit={async values => {
-// 				try {
-// 					// Отправка данных на бекенд для примера
-// 					const response = await axios.post("/api/submit", values);
-
-// 					if (response.status === 200) {
-// 						// Обработка успешного ответа от сервера
-// 						console.log("Data successfully submitted");
-// 					} else {
-// 						// Обработка ошибки
-// 						console.error("Error submitting data");
-// 					}
-// 				} catch (error) {
-// 					console.error("Error submitting data:", error);
-// 				}
-// 			}}
-// 		>
-// 			<Form>
-// 				<div>
-// 					<Field
-// 						type="text"
-// 						placeholder="Enter the text"
-// 						name="searchWord"
-// 					/>
-// 					<button type="submit">Х</button>
-// 					<ErrorMessage
-// 						name="searchWord"
-// 						component="div"
-// 					/>
-// 				</div>
-// 				<div>
-// 					<Field
-// 						as="select"
-// 						name="selectedCategory"
-// 					>
-// 						<option value="All Categories">All Categories</option>
-// 						{drinksCategoriesList.map((category, index) => (
-// 							<option
-// 								key={index}
-// 								value={category}
-// 							>
-// 								{category}
-// 							</option>
-// 						))}
-// 					</Field>
-// 				</div>
-// 				<div>
-// 					<Field
-// 						name="selectedIngredient"
-// 						render={({ field }) => (
-// 							<div>
-// 								<select
-// 									{...field}
-// 									// onChange={async event => {
-// 									// const selectedId = event.target.value;
-// 									// try {
-// 									// const response = await axios.get(`/api/ingredients/${selectedId}`);
-// 									// const ingredient = response.data;
-// 									// Обновление состояния с полученным ингредиентом
-// 									// dispatch(setSelectedIngredient(ingredient));
-// 									// } catch (error) {
-// 									// 	console.error("Error fetching ingredient:", error);
-// 									// }
-// 									// }}
-// 								>
-// 									<option value="Ingredients">Ingredients</option>
-// 									{/* {ingredientsList.map((ingredient, index) => (
-// 										<option
-// 											key={index}
-// 											value={ingredient.id}
-// 										>
-// 											{ingredient.title}
-// 										</option>
-// 									))} */}
-// 								</select>
-// 							</div>
-// 						)}
-// 					/>
-// 				</div>
-// 			</Form>
-// 		</Formik>
-// 	);
-// }

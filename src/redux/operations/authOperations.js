@@ -5,7 +5,7 @@ const signup = createAsyncThunk("auth/signup", async (creds, { rejectWithValue }
 	try {
 		// setAuthJWTHeader(data.token);
 		const res = await instance.post("users/register", creds);
-		console.log(res);
+		// console.log(res);
 		return res.data;
 	} catch (e) {
 		return rejectWithValue(e.response.data.message);
