@@ -1,21 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import css from "./PreviewDrinks.module.scss";
 import DrinkCard from "../DrinkCard/DrinkCard";
 
-const PreviewDrinks = ({ data, title, _id }) => {
+const PreviewDrinks = ({ data, title, _id, category }) => {
 	return (
 		<>
 			<section
 				key={_id}
 				className={css.section}
 			>
-				<h2
-					className={css.sectionTitle}
-					data={title}
-				>
-					{title}
-				</h2>
+				<Link to={`drinks/${category}`}>
+					<h2
+						className={css.sectionTitle}
+						data={title}
+					>
+						{title}
+					</h2>
+				</Link>
 
 				{data.map(({ _id, recipes }) => (
 					<ul
