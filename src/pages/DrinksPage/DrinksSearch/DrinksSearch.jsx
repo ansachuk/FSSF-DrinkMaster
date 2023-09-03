@@ -1,3 +1,4 @@
+// DrinkSearch.jsx
 import { useState } from "react";
 import PropTypes from "prop-types";
 import css from "./DrinksSearch.module.scss";
@@ -10,28 +11,41 @@ import { useDispatch } from "react-redux";
 const desktopLimit = 9;
 const tabletLimit = 8;
 
-const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
-	const [chosenCategory, setChosenCategory] = useState(null);
-	const [chosenIngredient, setChosenIngredient] = useState(null);
-	// const [searchText, setSearchText] = useState('');
-	const [searchText, searchWord] = useState("");
+// const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
+// 	const [chosenCategory, setChosenCategory] = useState(null);
+// 	const [chosenIngredient, setChosenIngredient] = useState(null);
 
-	const dispatch = useDispatch();
+// 	const [searchText, searchWord] = useState("");
 
-	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
-	const limit = isDesktop ? desktopLimit : tabletLimit;
+// 	const dispatch = useDispatch();
 
-	const handleSearchClick = e => {
-		e.preventDefault();
-		const params = { category: chosenCategory, ingredient: chosenIngredient, searchText };
-		console.log(params);
-		dispatch(search({ ...params, page, limit }));
-	};
+const DrinksSearch = ({
+    categoriesList,
+    ingredientsList,
+    selectedCategory,
+    setSelectedCategory,
+    selectedIngredient,
+    setSelectedIngredient,
+    searchText,
+    setSearchText,
+    onSearch,
+}) => {
+    const dispatch = useDispatch();
+
+	
+ const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
+    const limit = isDesktop ? desktopLimit : tabletLimit;
+
+    const handleSearchClick = (e) => {
+        e.preventDefault();
+        onSearch();
+    };
+ 
 
 	return (
 		<div className={css.wrapper}>
 			<form
-				// onSubmit={}
+				onSubmit={handleSearchClick}
 				className={css.form}
 			>
 				<input
@@ -44,9 +58,9 @@ const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
 				<button
 					type="submit"
 					className={css.submit}
-					onClick={e => {
-						handleSearchClick(e);
-					}}
+					// onClick={e => {
+					// 	handleSearchClick(e);
+					// }}
 				>
 					<div className={css.hoverWrapper}></div>
 					<svg
@@ -65,7 +79,8 @@ const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
 				})}
 				placeholder="All categories"
 				value={chosenCategory}
-				onChange={e => setChosenCategory(e.target)}
+				// onChange={e => setChosenCategory(e.target)}
+				onChange={(selectedOption) => setSelectedCategory(selectedOption)}
 				styles={stylesDrink}
 				unstyled
 				required
@@ -76,7 +91,8 @@ const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
 				})}
 				placeholder="Ingredients"
 				value={chosenIngredient}
-				onChange={selectedOption => setChosenIngredient(selectedOption)}
+				// onChange={selectedOption => setChosenIngredient(selectedOption)}
+				onChange={(selectedOption) => setSelectedIngredient(selectedOption)}
 				styles={stylesDrink}
 				unstyled
 				required
@@ -85,88 +101,27 @@ const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
 	);
 };
 
-DrinksSearch.propTypes = {
-	onSearch: PropTypes.func.isRequired,
-	categoriesList: PropTypes.array.isRequired,
-	ingredientsList: PropTypes.array.isRequired,
-};
-
-export default DrinksSearch;
-
-// import { useState } from "react";
-// import PropTypes from "prop-types";
-// import styles from "./DrinksSearch.module.scss";
-// import icons from "../../../images/icons.svg";
-// import Select from "react-select";
-
-// const DrinksSearch = ({ onSearch, categoriesList, ingredientsList }) => {
-// 	const [chosenCategory, setChosenCategory] = useState(null);
-// 	const [chosenIngredient, setChosenIngredient] = useState(null);
-// 	// const [searchText, setSearchText] = useState('');
-// 	const [searchText, searchWord] = useState("");
-
-// 	const handleSearchClick = () => {
-// 		onSearch({ category: chosenCategory, ingredient: chosenIngredient, searchWord });
-// 	};
-
-// 	return (
-// 		<div className={styles.SearchFormStyled}>
-// 			<form
-// 				// onSubmit={}
-// 				className={styles.QueryFormStyled}
-// 			>
-// 				<input
-// 					type="text"
-// 					className={styles.InputStyled}
-// 					placeholder="Enter the text"
-// 					value={searchText}
-// 					onChange={e => searchWord(e.target.value)}
-// 				/>
-// 				<button
-// 					type="submit"
-// 					className={styles.StyledSearchButton} onClick={handleSearchClick}
-// 				>
-// 					<div
-// 						className={styles.hoverWrapper}
-// 						width="18"
-// 						height="18"
-// 					>
-// 						<svg className={styles.StyledSearchIcon}>
-// 							<use href={icons + "#search"}></use>
-// 						</svg>
-// 					</div>
-// 				</button>
-// 			</form>
-// 			<Select
-// 				className={styles.SelectStyled}
-// 				options={categoriesList.map(category => {
-// 					console.log(category);
-// 					return { label: category };
-// 				})}
-// 				placeholder="All categories"
-// 				value={chosenCategory}
-// 				onChange={e => setChosenCategory(e.target)}
-// 			/>
-// 			<Select
-// 				className={styles.select}
-// 				options={ingredientsList.map(ingredient => {
-// 					return { value: ingredient._id, label: ingredient.title };
-// 				})}
-// 				placeholder="Ingredients"
-// 				value={chosenIngredient}
-// 				onChange={selectedOption => setChosenIngredient(selectedOption)}
-// 			/>
-// 		</div>
-// 	);
-// };
-
 // DrinksSearch.propTypes = {
 // 	onSearch: PropTypes.func.isRequired,
 // 	categoriesList: PropTypes.array.isRequired,
 // 	ingredientsList: PropTypes.array.isRequired,
+// 	// page: PropTypes.number.isRequired,
 // };
 
-// export default DrinksSearch;
+DrinksSearch.propTypes = {
+    onSearch: PropTypes.func.isRequired,
+    categoriesList: PropTypes.array.isRequired,
+    ingredientsList: PropTypes.array.isRequired,
+    selectedCategory: PropTypes.object,
+    setSelectedCategory: PropTypes.func,
+    selectedIngredient: PropTypes.object,
+    setSelectedIngredient: PropTypes.func,
+    searchText: PropTypes.string,
+    setSearchText: PropTypes.func,
+};
+
+export default DrinksSearch;
+
 
 // ИСХОДНЫЙ
 
