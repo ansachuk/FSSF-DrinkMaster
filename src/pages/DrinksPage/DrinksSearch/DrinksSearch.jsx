@@ -1,5 +1,104 @@
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import css from "./DrinksSearch.module.scss";
+import icons from "../../../images/icons.svg";
+import Select from "react-select";
+import { stylesDrink } from "./drinkSelectStyle";
+import { search } from "../../../redux/operations/recipiesOperations";
+import { useDispatch } from "react-redux";
 
+const desktopLimit = 9;
+const tabletLimit = 8;
 
+const DrinksSearch = ({ categoriesList, ingredientsList, page }) => {
+	const [chosenCategory, setChosenCategory] = useState(null);
+	const [chosenIngredient, setChosenIngredient] = useState(null);
+	// const [searchWord, setsearchWord] = useState('');
+	const [searchWord, setSearchWord] = useState("");
+	const options = chosenCategory !== "" && chosenIngredient !== "" && searchWord !== "";
+	const [hasStateChanged, setHasStateChanged] = useState(options);
+	const dispatch = useDispatch();
+
+	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
+	const limit = isDesktop ? desktopLimit : tabletLimit;
+
+	const handleSearchClick = e => {
+		e.preventDefault();
+		const params = { category: chosenCategory, ingredient: chosenIngredient, searchWord };
+		console.log(params);
+	};
+
+	useEffect(() => {
+		const params = { category: chosenCategory, ingredient: chosenIngredient, searchWord };
+		console.log(hasStateChanged);
+		if (hasStateChanged) {
+			dispatch(search({ ...params, page, limit }));
+		}
+	}, [chosenCategory, chosenIngredient, searchWord, hasStateChanged, dispatch]);
+
+	return (
+		<div className={css.wrapper}>
+			<form
+				// onSubmit={}
+				className={css.form}
+			>
+				<input
+					type="text"
+					className={css.input}
+					placeholder="Enter the text"
+					// value={searchWord}
+					// onChange={e => setSearchWord(e.target.value)}
+				/>
+				<button
+					type="button"
+					className={css.submit}
+					onClick={e => setSearchWord(e.target.value)}
+				>
+					<div className={css.hoverWrapper}></div>
+					<svg
+						className={css.iconDgink}
+						width="18"
+						height="18"
+					>
+						<use href={icons + "#search"}></use>
+					</svg>
+				</button>
+			</form>
+			<Select
+				options={categoriesList.map(category => {
+					// console.log(category);
+					return { label: category };
+				})}
+				placeholder="All categories"
+				value={chosenCategory}
+				onChange={e => {
+					setChosenCategory(e.target);
+					handleSearchClick(e);
+				}}
+				styles={stylesDrink}
+				unstyled
+				required
+			/>
+			<Select
+				options={ingredientsList.map(ingredient => {
+					return { value: ingredient._id, label: ingredient.title };
+				})}
+				placeholder="Ingredients"
+				value={chosenIngredient}
+				onChange={selectedOption => setChosenIngredient(selectedOption)}
+				styles={stylesDrink}
+				unstyled
+				required
+			/>
+		</div>
+	);
+};
+DrinksSearch.propTypes = {
+	categoriesList: PropTypes.array.isRequired,
+	ingredientsList: PropTypes.array.isRequired,
+};
+
+export default DrinksSearch;
 
 // // DrinkSearch.jsx
 // import { useState } from "react";
@@ -18,7 +117,7 @@
 // // 	const [chosenCategory, setChosenCategory] = useState(null);
 // // 	const [chosenIngredient, setChosenIngredient] = useState(null);
 
-// // 	const [searchText, searchWord] = useState("");
+// // 	const [searchWord, searchWord] = useState("");
 
 // // 	const dispatch = useDispatch();
 
@@ -29,13 +128,12 @@
 //     setSelectedCategory,
 //     selectedIngredient,
 //     setSelectedIngredient,
-//     searchText,
-//     setSearchText,
+//     searchWord,
+//     setsearchWord,
 //     onSearch,
 // }) => {
 //     const dispatch = useDispatch();
 
-	
 //  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
 //     const limit = isDesktop ? desktopLimit : tabletLimit;
 
@@ -43,7 +141,6 @@
 //         e.preventDefault();
 //         onSearch();
 //     };
- 
 
 // 	return (
 // 		<div className={css.wrapper}>
@@ -55,7 +152,7 @@
 // 					type="text"
 // 					className={css.input}
 // 					placeholder="Enter the text"
-// 					value={searchText}
+// 					value={searchWord}
 // 					onChange={e => searchWord(e.target.value)}
 // 				/>
 // 				<button
@@ -119,12 +216,11 @@
 //     setSelectedCategory: PropTypes.func,
 //     selectedIngredient: PropTypes.object,
 //     setSelectedIngredient: PropTypes.func,
-//     searchText: PropTypes.string,
-//     setSearchText: PropTypes.func,
+//     searchWord: PropTypes.string,
+//     setsearchWord: PropTypes.func,
 // };
 
 // export default DrinksSearch;
-
 
 // ИСХОДНЫЙ
 
@@ -137,7 +233,7 @@
 // import { drinksCategoriesList } from "../../../data/drinksData";
 
 // // action//
-// // export const setSearchText = text => ({
+// // export const setsearchWord = text => ({
 // // 	type: "SET_SEARCH_TEXT",
 // // 	payload: text,
 // // });
@@ -159,7 +255,7 @@
 
 // // редюсер//
 // // const initialState = {
-// // 	searchText: "",
+// // 	searchWord: "",
 // // 	selectedCategory: "All Categories",
 // // 	selectedIngredient: "Ingredients",
 // // 	ingredientsList: [],
@@ -168,7 +264,7 @@
 // // const rootReducer = (state = initialState, action) => {
 // // 	switch (action.type) {
 // // 		case "SET_SEARCH_TEXT":
-// // 			return { ...state, searchText: action.payload };
+// // 			return { ...state, searchWord: action.payload };
 // // 		case "SET_SELECTED_CATEGORY":
 // // 			return { ...state, selectedCategory: action.payload };
 // // 		case "SET_SELECTED_INGREDIENT":
@@ -182,12 +278,12 @@
 // //  схема валидации//
 
 // const validationSchema = Yup.object().shape({
-// 	searchText: Yup.string().required("Search text is required"),
+// 	searchWord: Yup.string().required("Search text is required"),
 // });
 
 // export default function DrinksSearch() {
 // 	// const dispatch = useDispatch();
-// 	// const { searchText, selectedCategory, selectedIngredient, ingredientsList } = useSelector(state => state);
+// 	// const { searchWord, selectedCategory, selectedIngredient, ingredientsList } = useSelector(state => state);
 
 // 	// useEffect(() => {
 // 	// 	// Запрос к бэкенду для получения списка ингредиентов
@@ -205,7 +301,7 @@
 // 	return (
 // 		<Formik
 // 			initialValues={{
-// 				searchText: "",
+// 				searchWord: "",
 // 				selectedCategory: "All Categories",
 // 				selectedIngredient: "Ingredients",
 // 			}}
@@ -232,11 +328,11 @@
 // 					<Field
 // 						type="text"
 // 						placeholder="Enter the text"
-// 						name="searchText"
+// 						name="searchWord"
 // 					/>
 // 					<button type="submit">Х</button>
 // 					<ErrorMessage
-// 						name="searchText"
+// 						name="searchWord"
 // 						component="div"
 // 					/>
 // 				</div>

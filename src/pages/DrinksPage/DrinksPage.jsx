@@ -1,12 +1,9 @@
-// DrinkPage.jsx
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from "react-router";
 // import Paginator from "../../components/Paginator/Paginator";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import DrinksSearch from "./DrinksSearch/DrinksSearch";
 import DrinksList from "./DrinksList/DrinksList";
-import Container from "../../components/Container/Container";
 
 import { allIngredients, allCategory, search } from "../../redux/operations/recipiesOperations";
 
@@ -14,6 +11,7 @@ import {
 	selectCategories,
 	selectIngredients,
 	selectSearchResults,
+	// selectPage
 } from "../../redux/selectors/recipieSelectors";
 
 import css from "./DrinksPage.module.scss";
@@ -23,15 +21,8 @@ const DrinksPage = () => {
 	const ingredientsList = useSelector(selectIngredients);
 	const categoriesList = useSelector(selectCategories);
 	const searchResults = useSelector(selectSearchResults);
+	const [page, setPage] = useState(1);
 
-	const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedIngredient, setSelectedIngredient] = useState(null);
-    const [searchText, setSearchText] = useState('');
-
-	// рабочий предыдущий
-	// const page = useState(1);
-	 const [page, setPage] = useState(1);
-	
 	// const params = { category: '', search: '', ingredient: '' };
 
 	useEffect(() => {
@@ -43,49 +34,109 @@ const DrinksPage = () => {
 		}
 	}, [dispatch, categoriesList, ingredientsList]);
 
-	
-
-	    const handleSearch = () => {
-        const params = {
-            category: selectedCategory?.value,
-            ingredient: selectedIngredient?.value,
-            searchText,
-            page,
-        };
-        dispatch(search(params));
-    };
-	
 	useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
-		<Container>
+		<MainTitle title={"Drinks"}>
 			<section className={css.section}>
-				<MainTitle title={"Drinks"} />
 				<DrinksSearch
-					// page={1}
-					// categoriesList={categoriesList}
-					// ingredientsList={ingredientsList}
-					// onSearch={handleSearch}
+					page={page}
 					categoriesList={categoriesList}
-                    ingredientsList={ingredientsList}
-                    selectedCategory={selectedCategory}
-                    setSelectedCategory={setSelectedCategory}
-                    selectedIngredient={selectedIngredient}
-                    setSelectedIngredient={setSelectedIngredient}
-                    searchText={searchText}
-                    setSearchText={setSearchText}
-                    onSearch={handleSearch}
+					ingredientsList={ingredientsList}
 				/>
 				<DrinksList results={searchResults} />
 			</section>
-		</Container>
+		</MainTitle>
 	);
 };
 
 export default DrinksPage;
+
+// // DrinkPage.jsx
+// import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// // import { useNavigate } from "react-router";
+// // import Paginator from "../../components/Paginator/Paginator";
+// import MainTitle from "../../components/MainTitle/MainTitle";
+// import DrinksSearch from "./DrinksSearch/DrinksSearch";
+// import DrinksList from "./DrinksList/DrinksList";
+// import Container from "../../components/Container/Container";
+
+// import { allIngredients, allCategory, search } from "../../redux/operations/recipiesOperations";
+
+// import {
+// 	selectCategories,
+// 	selectIngredients,
+// 	selectSearchResults,
+// } from "../../redux/selectors/recipieSelectors";
+
+// import css from "./DrinksPage.module.scss";
+
+// const DrinksPage = () => {
+// 	const dispatch = useDispatch();
+// 	const ingredientsList = useSelector(selectIngredients);
+// 	const categoriesList = useSelector(selectCategories);
+// 	const searchResults = useSelector(selectSearchResults);
+
+// 	const [selectedCategory, setSelectedCategory] = useState(null);
+//     const [selectedIngredient, setSelectedIngredient] = useState(null);
+//     const [searchText, setSearchText] = useState('');
+
+// 	 const [page, setPage] = useState(1);
+
+// 	// const params = { category: '', search: '', ingredient: '' };
+
+// 	useEffect(() => {
+// 		if (categoriesList.length === 0) {
+// 			dispatch(allCategory());
+// 		}
+// 		if (ingredientsList.length === 0) {
+// 			dispatch(allIngredients());
+// 		}
+// 	}, [dispatch, categoriesList, ingredientsList]);
+
+// 	    const handleSearch = () => {
+//         const params = {
+//             category: selectedCategory?.value,
+//             ingredient: selectedIngredient?.value,
+//             searchText,
+//             page,
+//         };
+//         dispatch(search(params));
+//     };
+
+// 	useEffect(() => {
+//         window.scrollTo(0, 0);
+//     }, []);
+
+// 	return (
+// 		<Container>
+// 			<section className={css.section}>
+// 				<MainTitle title={"Drinks"} />
+// 				<DrinksSearch
+// 					// page={1}
+// 					// categoriesList={categoriesList}
+// 					// ingredientsList={ingredientsList}
+// 					// onSearch={handleSearch}
+// 					categoriesList={categoriesList}
+//                     ingredientsList={ingredientsList}
+//                     selectedCategory={selectedCategory}
+//                     setSelectedCategory={setSelectedCategory}
+//                     selectedIngredient={selectedIngredient}
+//                     setSelectedIngredient={setSelectedIngredient}
+//                     searchText={searchText}
+//                     setSearchText={setSearchText}
+//                     onSearch={handleSearch}
+// 				/>
+// 				<DrinksList results={searchResults} />
+// 			</section>
+// 		</Container>
+// 	);
+// };
+
+// export default DrinksPage;
 
 // з пагінацією
 

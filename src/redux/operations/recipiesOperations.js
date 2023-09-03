@@ -46,16 +46,15 @@ const byID = createAsyncThunk("recepies/byID", async (id, { rejectWithValue }) =
 
 const search = createAsyncThunk(
 	"recepies/search",
-	async ({ category, ingredient, searchText: searchWord, page = 1, limit = 9 }, { rejectWithValue }) => {
+	async ({ category, ingredient, searchWord, page = 1, limit = 9 }, { rejectWithValue }) => {
 		try {
 			const searchWordStr = searchWord ? `&searchWord=${searchWord}` : "";
 			const categoryStr = category ? `&category=${category}` : "";
 			const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
-			console.log(`search?page=${page}&${limit}${searchWordStr}${categoryStr}${ingredientStr}`);
-			const { data } = await instance.get(
-				
-				`search?page=${page}&limit=${limit}${searchWordStr}${categoryStr}${ingredientStr}`,
-			);
+
+			const URL = `search?page=${page}&limit=${limit}${searchWordStr}${categoryStr}${ingredientStr}`;
+			// console.log(URL);
+			const { data } = await instance.get(URL);
 
 			return data;
 		} catch (error) {
