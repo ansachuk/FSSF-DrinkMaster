@@ -31,11 +31,13 @@
 
 	@include tablet {
 		min-width: 320px;
+		max-width: 320px;
 		margin: 0;
 	}
 
 	@include desktop {
 		min-width: 400px;
+		max-width: 400px;
 		height: 400px;
 	}
 
