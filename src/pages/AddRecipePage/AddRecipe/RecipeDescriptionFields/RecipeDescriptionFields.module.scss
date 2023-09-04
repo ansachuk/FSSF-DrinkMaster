@@ -78,7 +78,7 @@
 
 .flexContainer {
 	@include tablet {
-		width: 100%;
+		min-width: 400px;
 	}
 }
 

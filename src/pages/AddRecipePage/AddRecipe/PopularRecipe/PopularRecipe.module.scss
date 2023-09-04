@@ -49,6 +49,10 @@
 	transition-duration: $transitionDuration;
 	transition-timing-function: $transitionTimingFunction;
 
+	@include desktop {
+		width: 100%;
+	}
+
 	&:hover,
 	:focus {
 		border-color: $mainFontColor;

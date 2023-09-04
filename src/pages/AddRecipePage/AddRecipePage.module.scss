@@ -4,13 +4,13 @@
 	@include desktop {
 		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		gap: 94px;
 		flex-direction: row;
 	}
 }
 
-.wraper {
-	@include desktop {
-		width: 313px;
-	}
-}
+// .wraper {
+// 	@include desktop {
+// 		// width: 313px;
+// 	}
+// }

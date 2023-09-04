@@ -23,7 +23,7 @@ export default function AddRecipePage() {
 			<MainTitle title={"Add recipe"}>
 				<div className={css.allPageWraper}>
 					<AddRecipeForm />
-					<div className={css.wraper}>
+					<div>
 						<FollowUs />
 						<PopularRecipe />
 					</div>
