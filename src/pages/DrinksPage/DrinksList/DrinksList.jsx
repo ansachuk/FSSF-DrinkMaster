@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSearchResults } from "../../../redux/selectors/recipieSelectors";
-// import { selectSearch } from "../../../redux/selectors/recipieSelectors";
+
 import css from "./DrinksList.module.scss";
 import DrinkCard from "../../MainPage/DrinkCard/DrinkCard";
 // import NotAdded from "../../../components/NotAdded/NotAdded";

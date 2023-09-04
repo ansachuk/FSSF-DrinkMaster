@@ -1,12 +1,47 @@
 @import "../../../scss";
 
+// .section {
+// 	width: 100%;
+// 	margin-bottom: 40px;
+// 	overflow: hidden;
+
+// 	@include tablet {
+// 		margin-bottom: 80px;
+// 	}
+// }
+
+// .drinkList {
+// 	display: grid;
+// 	row-gap: 28px;
+// 	grid-template-columns: repeat(1, 1fr);
+// 	margin-top: 40px;
+
+// 	@include tablet {
+// 		grid-template-columns: repeat(2, 1fr);
+// 		column-gap: 20px;
+// 		row-gap: 40px;
+// 	}
+
+// 	@include desktop {
+// 		grid-template-columns: repeat(3, 1fr);
+// 		column-gap: 20px;
+// 		row-gap: 80px;
+// 	}
+// }
+
 .section {
-	width: 100%;
+	// width: 1280px;
+	// width: 100%;
+	width: 375px;
 	margin-bottom: 40px;
 	overflow: hidden;
 
 	@include tablet {
+		width: 768px;
 		margin-bottom: 80px;
+	}
+	@include desktop {
+		width: 1280px;
 	}
 }
 
@@ -28,6 +63,35 @@
 		row-gap: 80px;
 	}
 }
+
+// .section {
+// 	width: 100%;
+// 	margin-bottom: 40px;
+// 	overflow: hidden;
+
+// 	@include tablet {
+// 		margin-bottom: 80px;
+// 	}
+// }
+
+// .drinkList {
+// 	display: grid;
+// 	row-gap: 28px;
+// 	grid-template-columns: repeat(1, 1fr);
+// 	margin-top: 40px;
+
+// 	@include tablet {
+// 		grid-template-columns: repeat(2, 1fr);
+// 		column-gap: 20px;
+// 		row-gap: 40px;
+// 	}
+
+// 	@include desktop {
+// 		grid-template-columns: repeat(3, 1fr);
+// 		column-gap: 20px;
+// 		row-gap: 80px;
+// 	}
+// }
 
 // .drinkList {
 // 	margin-bottom: 40px;
