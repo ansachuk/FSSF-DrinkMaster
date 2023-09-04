@@ -2,6 +2,10 @@
 
 .wraper {
 	margin-bottom: 80px;
+
+	@include desktop {
+		width: 540px;
+	}
 }
 
 .counter {
@@ -15,18 +19,30 @@
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
-}
 
-.ingredientsItem {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	@include tablet {
+		gap: 24px;
+	}
 }
 
 .selectWraper {
 	display: flex;
 	gap: 8px;
-	// margin-right: 8px;
+
+	@include tablet {
+		justify-content: space-between;
+		// gap: 14px;
+	}
+}
+
+.flexWraper {
+	display: flex;
+	gap: 8px;
+	// justify-content: space-between;
+
+	@include tablet {
+		gap: 14px;
+	}
 }
 
 .measureWraper {
@@ -45,6 +61,11 @@
 	transition-duration: $transitionDuration;
 	transition-timing-function: $transitionTimingFunction;
 
+	@include tablet {
+		width: 150px;
+		height: 56px;
+	}
+
 	&:hover,
 	&:focus {
 		border-color: $mainFontColor;
@@ -53,11 +74,13 @@
 
 .fieldStyle {
 	width: 27px;
-	height: 27px;
+	// height: 27px;
 	margin-right: 5px;
 	font-size: 14px;
 	border: none;
 	text-align: center;
+	// align-items: center;
+	// justify-content: center;
 	cursor: pointer;
 
 	// width: 100%;
@@ -71,6 +94,15 @@
 	transition-property: border-color;
 	transition-duration: $transitionDuration;
 	transition-timing-function: $transitionTimingFunction;
+
+	@include tablet {
+		width: 35px;
+		// height: 35px;
+		margin-right: 15px;
+		margin-top: 3px;
+		font-size: 18px;
+		line-height: calc(26 / 18);
+	}
 
 	&:hover,
 	:focus {
@@ -89,6 +121,11 @@
 	font-size: 28px;
 	font-weight: $fontWeightSemiBold;
 	line-height: calc(32 / 28);
+
+	@include tablet {
+		font-size: 40px;
+		line-height: calc(44 / 40);
+	}
 }
 
 .deleteBtn {
@@ -97,10 +134,16 @@
 
 .deleteIcon {
 	stroke: $mainBtnBackgroundColor;
-
+	width: 18px;
+	height: 18px;
 	transition-property: border, stroke, border-radius;
 	transition-duration: $transitionDuration;
 	transition-timing-function: $transitionTimingFunction;
+
+	@include tablet {
+		width: 20px;
+		height: 20px;
+	}
 
 	&:hover,
 	:focus {
