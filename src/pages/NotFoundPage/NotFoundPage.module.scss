@@ -10,3 +10,24 @@
 	left: 0;
 	width: 100%;
 }
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100svh;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.notfound {
+	flex: 1;
+}
+footer {
+	margin-top: auto;
+}

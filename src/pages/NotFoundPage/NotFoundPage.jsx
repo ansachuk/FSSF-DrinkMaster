@@ -4,10 +4,12 @@ import css from "../NotFoundPage/NotFoundPage.module.scss";
 
 export default function NotFoundPage() {
 	return (
-		<div className={css.container}>
-			<MainTitle>
-				<NotFound />
-			</MainTitle>
+		<div className={css.wrapper}>
+			<div className={css.container}>
+				<MainTitle>
+					<NotFound className={css.notfound} />
+				</MainTitle>
+			</div>
 		</div>
 	);
 }
