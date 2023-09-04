@@ -1,37 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPage } from "../../redux/selectors/recipieSelectors.js";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import RecipesList from "../../components/RecipesList/RecipesList";
-// import Paginator from "../../components/Paginator/Paginator";
+import Paginator from "../../components/Paginator/Paginator";
 import { favorite } from "../../redux/operations/recipiesOperations.js";
+import { selectIsLoggedIn } from "../../redux/selectors/authSelectors";
+
 import css from "./FavoritePage.module.scss";
 
-const desktopLimit = 9;
-const tabletLimit = 8;
-
 export default function FavoritePage() {
-	const dispatch = useDispatch();
-	const page = useSelector(selectPage);
-	const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1440;
-	const limit = isDesktop ? desktopLimit : tabletLimit;
+    const dispatch = useDispatch();
+    const [totalHits, setTotalHits] = useState(30);
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(9);
 
-	useEffect(() => {
-		dispatch(favorite({ page, limit }));
-	}, [page, limit, dispatch]);
+    useEffect(() => {
+        if (isLoggedIn) {
+            dispatch(
+                favorite({
+                    page: 1,
+                    limit: 9,
+                }),
+            );
+        }
+    }, [dispatch, isLoggedIn]);
 
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-	return (
-		<>
-			<div className={css.section}>
-				<MainTitle title="Favorites">
-					<RecipesList />
-					{/* <Paginator /> */}
-				</MainTitle>
-			</div>
-		</>
-	);
+    return (
+        <>
+            <div className={css.section}>
+                <MainTitle title="Favorites">
+                    <RecipesList
+                        page={page}
+                        limit={limit}
+                    />
+                    <Paginator
+                        page={page}
+                        setPage={setPage}
+                        limit={limit}
+                        setLimit={setLimit}
+                        totalHits={totalHits}
+                        setTotalHits={setTotalHits}
+                    />
+                </MainTitle>
+            </div>
+        </>
+    );
 }
