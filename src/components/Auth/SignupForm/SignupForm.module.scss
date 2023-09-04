@@ -57,11 +57,12 @@
 	line-height: calc(18 / 16);
 	font-weight: 600;
 
-	background: rgba(67, 77, 103, 1);
+	background: transparent;
 	color: #f3f3f3;
 	padding: 18px 150px;
 	margin-top: 26px;
 	border-radius: 42px;
+	border: 1px solid rgba(243, 243, 243, 0.2);
 	cursor: pointer;
 
 	&:hover {
@@ -75,6 +76,9 @@
 	line-height: calc(18 / 14);
 	font-weight: 600;
 	text-align: center;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 .error {
 	color: red;
