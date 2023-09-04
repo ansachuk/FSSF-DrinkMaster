@@ -40,20 +40,20 @@ export default function RecipeDescriptionFields({
 					/>
 				) : (
 					<>
-						<div>
-							<div
-								className={css.btnContainer}
-								type="button"
+						<div
+							className={css.btnContainer}
+							type="button"
+						>
+							<svg
+								className={css.btnIcon}
+								width="28"
+								height="28"
+								viewBox="-5 -5 90 90"
 							>
-								<svg
-									className={css.btnIcon}
-									width="28"
-									height="28"
-								>
-									<use href={icons + "#plus"}></use>
-								</svg>
-							</div>
+								<use href={icons + "#plus"}></use>
+							</svg>
 						</div>
+
 						<div>
 							<p className={css.btnText}>Add image</p>
 						</div>
@@ -68,7 +68,7 @@ export default function RecipeDescriptionFields({
 					type="file"
 				/>
 			</label>
-			<div>
+			<div className={css.flexContainer}>
 				<div className={css.inputWraper}>
 					<Field
 						className={css.fieldStyle}

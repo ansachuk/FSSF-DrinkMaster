@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { SocialLinks } from "../../../../components/Layout/Footer/SocialLinks/SocialLinks";
 import css from "./FollowUs.module.scss";
 
@@ -10,9 +9,3 @@ export default function FollowUs() {
 		</div>
 	);
 }
-
-// FollowUs.propTypes = {
-// title: PropTypes.string.isRequired,
-// propClass: PropTypes.string,
-// disabled: PropTypes.bool,
-// };

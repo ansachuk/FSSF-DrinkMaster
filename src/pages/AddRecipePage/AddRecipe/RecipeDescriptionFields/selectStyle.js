@@ -14,6 +14,9 @@ export const styles = {
 	menu: baseStyles => ({
 		...baseStyles,
 		width: "100%",
+		"@media (min-width: 1280px)": {
+			marginLeft: "10px",
+		},
 	}),
 
 	menuList: baseStyles => ({

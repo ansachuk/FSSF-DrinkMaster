@@ -1,0 +1,83 @@
+@import "../../../scss/";
+
+.card {
+	width: 335px;
+	height: 392px;
+	border-radius: 8px;
+
+	display: flex;
+	flex-direction: column;
+
+	@include tablet {
+		width: 342px;
+		height: 398px;
+	}
+
+	@include desktop {
+		width: 400px;
+		height: 438px;
+	}
+}
+
+.imgWrap {
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+.image {
+	width: 335px;
+	height: 368px;
+	display: block;
+
+	transition-property: scale;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		scale: 1.06;
+	}
+
+	@include tablet {
+		width: 342px;
+		height: 368px;
+	}
+
+	@include desktop {
+		width: 400px;
+		height: 400px;
+	}
+}
+
+.ingredientsWrapper {
+	margin-top: 14px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.drinkName {
+	color: #f3f3f3;
+	font-family: Manrope, sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 18px;
+
+	@include tablet {
+		font-size: 18px;
+		line-height: 24px;
+	}
+}
+
+.ingredients {
+	color: #f3f3f380;
+	font-family: Manrope, sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 18px;
+
+	@include tablet {
+		font-size: 16px;
+		line-height: 18px;
+	}
+}

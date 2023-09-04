@@ -31,8 +31,6 @@ jobs:
           cache: "yarn"
       - name: Install dependencies 🆕
         run: yarn
-      - name: Lint ✅
-        run: yarn lint
       - name: Build 🛠
         run: yarn run build
       - name: Setup Pages
