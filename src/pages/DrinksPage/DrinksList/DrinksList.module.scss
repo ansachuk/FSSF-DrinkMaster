@@ -32,16 +32,16 @@
 .section {
 	// width: 1280px;
 	// width: 100%;
-	width: 375px;
+	width: 365px;
 	margin-bottom: 40px;
 	overflow: hidden;
 
 	@include tablet {
-		width: 768px;
+		width: 738px;
 		margin-bottom: 80px;
 	}
 	@include desktop {
-		width: 1280px;
+		width: 1250px;
 	}
 }
 
