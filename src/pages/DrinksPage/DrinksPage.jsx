@@ -24,7 +24,7 @@ const DrinksPage = () => {
 
 	useEffect(() => {
 		dispatch(allIngredients());
-	});
+	}, []);
 
 	return (
 		<MainTitle title={"Drinks"}>
