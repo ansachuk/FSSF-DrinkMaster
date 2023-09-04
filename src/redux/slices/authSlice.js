@@ -18,7 +18,7 @@ const initialState = {
 
 const handleSignUp = (state, { payload }) => {
 	state.user = { ...state.user, ...payload };
-
+	state.accessToken = payload.token;
 	handleFullfilled(state);
 };
 

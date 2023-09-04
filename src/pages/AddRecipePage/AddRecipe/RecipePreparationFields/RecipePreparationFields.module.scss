@@ -6,6 +6,11 @@
 	font-size: 28px;
 	font-weight: $fontWeightSemiBold;
 	line-height: calc(32 / 28);
+
+	@include tablet {
+		font-size: 40px;
+		line-height: calc(44 / 40);
+	}
 }
 
 .textareaStyle {
@@ -25,6 +30,14 @@
 	transition-duration: $transitionDuration;
 	transition-timing-function: $transitionTimingFunction;
 
+	@include tablet {
+		width: 480px;
+		padding: 14px 24px;
+		font-size: 17px;
+		line-height: calc(26 / 17);
+		border-radius: 20px;
+	}
+
 	&:hover,
 	:focus {
 		border-color: $mainFontColor;
@@ -39,4 +52,10 @@
 	font-size: 12px;
 	letter-spacing: 0.28px;
 	color: #da1414;
+
+	@include tablet {
+		margin-top: -36px;
+			margin-left: 24px;
+		font-size: 14px;
+	}
 }

@@ -1,96 +1,111 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-
-import Layout from "../Layout/Layout";
-import PublicRoute from "../PublicRoute/PublicRoute";
-import PrivatRoute from "../PrivatRoute/PrivatRoute";
-import SigninForm from "../Auth/SigninForm/SigninForm";
-import SignupForm from "../Auth/SignupForm/SignupForm";
-
-import WelcomePage from "../../pages/WelcomePage/WelcomePage";
-import MainPage from "../../pages/MainPage/MainPage";
-import DrinksPage from "../../pages/DrinksPage/DrinksPage";
-import AddRecipePage from "../../pages/AddRecipePage/AddRecipePage";
-import FavoritePage from "../../pages/FavoritePage/FavoritePage";
-import RecipePage from "../../pages/RecipePage/RecipePage";
-import MyRecipesPage from "../../pages/MyRecipesPage/MyRecipesPage";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-import WelcomePageLayout from "../../pages/WelcomePage/Layout/WelcomePageLayout";
+import { useDispatch, useSelector } from "react-redux";
 
 import { refresh } from "../../redux/operations/authOperations";
-import { selectAccessToken, selectIsLoggedIn } from "../../redux/selectors/authSelectors";
+import {
+	selectAccessToken,
+	selectAuthIsLoading,
+	selectIsLoggedIn,
+} from "../../redux/selectors/authSelectors";
+import { selectRecipeIsLoading } from "../../redux/selectors/recipieSelectors";
+
+import Layout from "../Layout/Layout";
+import Loader from "../Loader/Loader";
+
+import PublicRoute from "../PublicRoute/PublicRoute";
+import PrivatRoute from "../PrivatRoute/PrivatRoute";
+
+const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
+const SigninForm = lazy(() => import("../Auth/SigninForm/SigninForm"));
+const SignupForm = lazy(() => import("../Auth/SignupForm/SignupForm"));
+const MainPage = lazy(() => import("../../pages/MainPage/MainPage"));
+const DrinksPage = lazy(() => import("../../pages/DrinksPage/DrinksPage"));
+const AddRecipePage = lazy(() => import("../../pages/AddRecipePage/AddRecipePage"));
+const FavoritePage = lazy(() => import("../../pages/FavoritePage/FavoritePage"));
+const RecipePage = lazy(() => import("../../pages/RecipePage/RecipePage"));
+const MyRecipesPage = lazy(() => import("../../pages/MyRecipesPage/MyRecipesPage"));
+const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage"));
+const WelcomePageLayout = lazy(() => import("../../pages/WelcomePage/Layout/WelcomePageLayout"));
 
 export default function App() {
 	const isAuth = useSelector(selectIsLoggedIn);
 	const token = useSelector(selectAccessToken);
+	const isAuthLoad = useSelector(selectAuthIsLoading);
+	const isRecipeLoad = useSelector(selectRecipeIsLoading);
 	const dispatch = useDispatch();
+
+	const isLoaderShown = isAuthLoad && isRecipeLoad;
 
 	useEffect(() => {
 		if (token && !isAuth) {
 			dispatch(refresh(token));
 		}
 	}, [dispatch, isAuth, token]);
+
 	return (
-		<Routes>
-			<Route
-				path="/welcome"
-				element={
-					<PublicRoute>
-						<WelcomePageLayout />
-					</PublicRoute>
-				}
-			>
+		<Suspense fallback={<Loader />}>
+			{isLoaderShown && <Loader />}
+			<Routes>
 				<Route
-					index
-					element={<WelcomePage />}
-				/>
+					path="/welcome"
+					element={
+						<PublicRoute>
+							<WelcomePageLayout />
+						</PublicRoute>
+					}
+				>
+					<Route
+						index
+						element={<WelcomePage />}
+					/>
+					<Route
+						path="signin"
+						element={<SigninForm />}
+					/>
+					<Route
+						path="signup"
+						element={<SignupForm />}
+					/>
+				</Route>
 				<Route
-					path="signin"
-					element={<SigninForm />}
-				/>
-				<Route
-					path="signup"
-					element={<SignupForm />}
-				/>
-			</Route>
-			<Route
-				path="/"
-				element={
-					<PrivatRoute>
-						<Layout />
-					</PrivatRoute>
-				}
-			>
-				<Route
-					index
-					element={<MainPage />}
-				/>
-				<Route
-					path="drinks"
-					element={<DrinksPage />}
-				/>
-				<Route
-					path="add"
-					element={<AddRecipePage />}
-				/>
-				<Route
-					path="favorite"
-					element={<FavoritePage />}
-				/>
-				<Route
-					path="recipe/:recipeId"
-					element={<RecipePage />}
-				/>
-				<Route
-					path="my"
-					element={<MyRecipesPage />}
-				/>
-				<Route
-					path="*"
-					element={<NotFoundPage />}
-				/>
-			</Route>
-		</Routes>
+					path="/"
+					element={
+						<PrivatRoute>
+							<Layout />
+						</PrivatRoute>
+					}
+				>
+					<Route
+						index
+						element={<MainPage />}
+					/>
+					<Route
+						path="drinks"
+						element={<DrinksPage />}
+					/>
+					<Route
+						path="add"
+						element={<AddRecipePage />}
+					/>
+					<Route
+						path="favorite"
+						element={<FavoritePage />}
+					/>
+					<Route
+						path="recipe/:recipeId"
+						element={<RecipePage />}
+					/>
+					<Route
+						path="my"
+						element={<MyRecipesPage />}
+					/>
+					<Route
+						path="*"
+						element={<NotFoundPage />}
+					/>
+				</Route>
+			</Routes>
+		</Suspense>
 	);
 }
