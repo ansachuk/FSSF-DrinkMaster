@@ -1,3 +1,5 @@
+@import "../../../scss";
+
 .container {
 	z-index: 11;
 }
@@ -64,6 +66,7 @@
 	border-radius: 42px;
 	border: 1px solid rgba(243, 243, 243, 0.2);
 	cursor: pointer;
+	transition: background $transitionDuration $transitionTimingFunction;
 
 	&:hover {
 		background: #f3f3f3;
