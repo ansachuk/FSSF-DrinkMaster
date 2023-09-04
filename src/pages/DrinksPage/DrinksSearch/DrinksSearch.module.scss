@@ -32,20 +32,23 @@
 	@include tablet {
 		min-width: 264px;
 		padding: 14px 50px 14px 24px;
-		// font-size: ;
+
 		line-height: calc(26.52 / 17);
 	}
 }
 
-// .iconDgink {
-// 	// width: 100%;
-// 	// height: 100%;
-// 	// fill: black;
-// 	// fill: currentColor;
-// 	// fill-opacity: 0;
-// 	// stroke-width: 0;
-// 	// stroke: #fff;
-// }
+.iconDrink {
+	width: 100%;
+	height: 100%;
+	// fill: black;
+	// fill: #fff;
+	// background-color: transparent;
+	stroke: $mainBtnBackgroundColor;
+	// // fill: currentColor;
+	// fill-opacity: 0;
+	stroke-width: 0;
+	// stroke: #fff;
+}
 
 .submit {
 	position: absolute;
@@ -54,4 +57,5 @@
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
+	background-color: transparent;
 }

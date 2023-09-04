@@ -60,7 +60,7 @@ const DrinksSearch = ({ page = 1 }) => {
 				>
 					<div className={css.hoverWrapper}></div>
 					<svg
-						className={css.iconDgink}
+						className={css.iconDrink}
 						width="18"
 						height="18"
 					>
