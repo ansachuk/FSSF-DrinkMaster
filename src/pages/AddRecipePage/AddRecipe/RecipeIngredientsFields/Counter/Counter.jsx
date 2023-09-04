@@ -29,8 +29,9 @@ export default function Counter({ ingredientList, handleIncIngredients, handleDe
 			>
 				<svg
 					className={css.icon}
-					width="22"
-					height="22"
+					width="24"
+					height="24"
+					viewBox="-5 -5 90 90"
 				>
 					<use href={icons + "#plus"}></use>
 				</svg>

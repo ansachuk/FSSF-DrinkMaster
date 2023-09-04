@@ -31,12 +31,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: transparent;
 }
 
 .icon {
-	stroke: rgba(243, 243, 243, 0.3);
-	background-color: $backgroundColor;
-	// background: transparent;
+	stroke: rgba(243, 243, 243, 0.4);
 
 	transition-property: stroke, scale;
 	transition-duration: $transitionDuration;
