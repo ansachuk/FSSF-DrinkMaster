@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import Loader from "./components/Loader/Loader";
 
 import "./index.scss";
 
@@ -14,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<Provider store={store}>
 			<PersistGate
-				loading={<div>...Loading</div>}
+				loading={<Loader />}
 				persistor={persistor}
 			>
 				<BrowserRouter basename="FSSF-DrinkMaster">
