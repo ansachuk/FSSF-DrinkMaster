@@ -4,7 +4,7 @@ import { Form, Formik } from "formik";
 import { nanoid } from "@reduxjs/toolkit";
 import { Notify } from "notiflix";
 import * as yup from "yup";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import css from "./AddRecipeForm.module.scss";
 import RecipeDescriptionFields from "../RecipeDescriptionFields/RecipeDescriptionFields";
 import RecipeIngredientsFields from "../RecipeIngredientsFields/RecipeIngredientsFields";
@@ -26,7 +26,7 @@ const formikInitialValues = {
 
 export default function AddRecipeForm() {
 	const dispatch = useDispatch();
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const [selectData, setSelectData] = useState({
 		category: "Cocktail",
@@ -157,7 +157,7 @@ export default function AddRecipeForm() {
 			glass: "Highball glass",
 		});
 		setImageURL(null);
-		// navigate("/my");
+		navigate("/my");
 	};
 
 	return (

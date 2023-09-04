@@ -3,10 +3,9 @@ import instance, { setAuthJWTHeader, clearAuthJWTHeader } from "../instance.js";
 
 const signup = createAsyncThunk("auth/signup", async (creds, { rejectWithValue }) => {
 	try {
-		// setAuthJWTHeader(data.token);
-		const res = await instance.post("users/register", creds);
-		// console.log(res);
-		return res.data;
+		const { data } = await instance.post("users/register", creds);
+		setAuthJWTHeader(data.token);
+		return data;
 	} catch (e) {
 		return rejectWithValue(e.response.data.message);
 	}

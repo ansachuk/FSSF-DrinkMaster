@@ -6,7 +6,9 @@
 	padding: 10px 16px;
 	display: flex;
 	gap: 16px;
+	justify-content: center;
 	align-items: center;
+	background-color: transparent;
 	border-radius: 200px;
 	border: 1px solid rgba(243, 243, 243, 0.5);
 
@@ -14,15 +16,26 @@
 	transition-duration: $transitionDuration;
 	transition-timing-function: $transitionTimingFunction;
 
+	@include tablet {
+		width: 114px;
+		height: 44px;
+	}
+
 	&:hover,
 	&:focus {
 		border-color: $mainFontColor;
 	}
 }
 
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+}
+
 .icon {
-	stroke: rgba(243, 243, 243, 0.3);
-	background-color: $backgroundColor;
+	stroke: rgba(243, 243, 243, 0.4);
 
 	transition-property: stroke, scale;
 	transition-duration: $transitionDuration;
