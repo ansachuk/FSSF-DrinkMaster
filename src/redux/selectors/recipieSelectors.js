@@ -11,3 +11,4 @@ export const selectSearch = state => state.recipes.search;
 export const selectOwn = ({ recipes }) => recipes.own;
 export const selectPage = ({ recipes }) => recipes.page;
 export const selectTotalHits = ({ recipes }) => recipes.totalHits;
+export const selectRecipeIsLoading = ({ recipes }) => recipes.isLoading;
