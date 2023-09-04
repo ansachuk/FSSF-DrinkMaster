@@ -2,4 +2,9 @@
 
 .wraper {
 	margin-bottom: 80px;
+
+	@include desktop {
+		margin-right: 94px;
+		margin-bottom: 0;
+	}
 }

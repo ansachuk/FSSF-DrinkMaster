@@ -18,4 +18,8 @@
 		font-size: 24px;
 		line-height: calc(32 / 24);
 	}
+
+	@include desktop {
+		margin-top: 60px;
+	}
 }

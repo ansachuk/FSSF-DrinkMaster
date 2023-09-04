@@ -1,0 +1,16 @@
+@import "../../scss";
+
+.allPageWraper {
+	@include desktop {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+	}
+}
+
+.wraper {
+	@include desktop {
+		width: 313px;
+	}
+}

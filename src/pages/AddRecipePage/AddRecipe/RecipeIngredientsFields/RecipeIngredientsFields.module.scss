@@ -2,6 +2,10 @@
 
 .wraper {
 	margin-bottom: 80px;
+
+	@include desktop {
+		width: 540px;
+	}
 }
 
 .counter {
