@@ -25,10 +25,8 @@ export const Nav = () => {
 				</li>
 				<li>
 					<Link
-						className={`${css.link_nav} ${
-							location.pathname === "/recipe/1" ? css.active_link : ""
-						}`}
-						to="/recipe/1"
+						className={`${css.link_nav} ${location.pathname === "/my" ? css.active_link : ""}`}
+						to="/my"
 					>
 						My recipes
 					</Link>
