@@ -133,3 +133,37 @@
 .footer_third_ball {
 	z-index: -1;
 }
+@keyframes footerAnimation {
+	0% {
+		transform: translateY(0) scale(1);
+		opacity: 1;
+	}
+	25% {
+		transform: translateY(-50px) scale(0.8);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateY(-100px) scale(0.6);
+		opacity: 0.2;
+	}
+	75% {
+		transform: translateY(-50px) scale(0.8);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translateY(0) scale(1);
+		opacity: 1;
+	}
+}
+
+.footer_second_ball {
+	animation: footerAnimation 8s ease-in-out infinite;
+}
+
+.footer_third_ball {
+	animation: footerAnimation 8s ease-in-out infinite 2s;
+}
+
+.footer_first_ball {
+	animation: footerAnimation 7s ease-in-out infinite 3s;
+}
