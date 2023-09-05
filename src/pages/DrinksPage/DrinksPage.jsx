@@ -30,7 +30,7 @@ const DrinksPage = () => {
 		<MainTitle title={"Drinks"}>
 			<section className={css.section}>
 				<DrinksSearch page={page} />
-				{isRender && <DrinksList results={searchList} />}
+				<DrinksList results={searchList} />
 			</section>
 		</MainTitle>
 	);
