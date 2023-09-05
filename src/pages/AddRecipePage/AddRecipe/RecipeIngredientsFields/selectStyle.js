@@ -15,6 +15,10 @@ export const styles = {
 			borderColor: "#f3f3f3",
 		},
 
+		"@media (max-width: 393px)": {
+			width: "180px",
+		},
+
 		"@media (min-width: 768px)": {
 			width: "332px",
 			height: "56px",
@@ -27,6 +31,11 @@ export const styles = {
 		...baseStyles,
 		width: "182px",
 		marginLeft: "10px",
+
+		"@media (max-width: 393px)": {
+			width: "163px",
+		},
+
 		"@media (min-width: 768px)": {
 			width: "312px",
 		},
