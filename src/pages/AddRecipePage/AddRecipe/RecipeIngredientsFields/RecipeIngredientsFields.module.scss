@@ -31,14 +31,12 @@
 
 	@include tablet {
 		justify-content: space-between;
-		// gap: 14px;
 	}
 }
 
 .flexWraper {
 	display: flex;
 	gap: 8px;
-	// justify-content: space-between;
 
 	@include tablet {
 		gap: 14px;
@@ -49,8 +47,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	// color: white;
-	// padding: 16px 12px;
 	width: 101px;
 	height: 50px;
 	background: transparent;
@@ -74,17 +70,11 @@
 
 .fieldStyle {
 	width: 27px;
-	// height: 27px;
 	margin-right: 5px;
 	font-size: 14px;
 	border: none;
 	text-align: center;
-	// align-items: center;
-	// justify-content: center;
 	cursor: pointer;
-
-	// width: 100%;
-	// padding: 16px;
 	color: $mainFontColor;
 	background-color: transparent;
 	outline: none;
@@ -97,7 +87,6 @@
 
 	@include tablet {
 		width: 35px;
-		// height: 35px;
 		margin-right: 15px;
 		margin-top: 3px;
 		font-size: 18px;

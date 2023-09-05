@@ -89,8 +89,6 @@ export const styles = {
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		// textAlign: "right",
-		// marginRight: "30px",
 		flexWrap: "nowrap",
 	}),
 
