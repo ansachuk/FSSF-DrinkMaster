@@ -9,7 +9,7 @@ const DrinkCard = ({ image, title, _id }) => {
 	return (
 		<>
 			<div className={css.card}>
-				<Link to={`recipe/${_id}`}>
+				<Link to={`/recipe/${_id}`}>
 					<div className={css.imgWrap}>
 						<img
 							className={css.image}

@@ -14,5 +14,5 @@ export default function Container({ children, styleProp }) {
 
 Container.propTypes = {
 	children: PropTypes.object.isRequired,
-	styleProp: PropTypes.object.isRequired,
+	styleProp: PropTypes.object,
 };

@@ -21,5 +21,5 @@ export default function MainTitle({ title, children, styleProp }) {
 MainTitle.propTypes = {
 	title: PropTypes.string,
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-	styleProp: PropTypes.object.isRequired,
+	styleProp: PropTypes.object,
 };
