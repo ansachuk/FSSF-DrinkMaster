@@ -1,6 +1,6 @@
 // import { useDispatch } from "react-redux";
 
-// action//
+// // action//
 // export const setCurrentPage = page => ({
 // 	type: "SET_CURRENT_PAGE",
 // 	payload: page,
@@ -26,32 +26,32 @@
 // 			onClick={() => handlePageChange(currentPage - 1)}
 // 			disabled={currentPage === 1}
 // 		>
-{
-	/*  SVG-код для иконки "Previous" */
-}
-{
-	/* </button>
-			<div>
-				<ul>
-					{Array.from({ length: totalPages }, (_, index) => (
-						<li key={index}>
-							<button
-								onClick={() => handlePageChange(index + 1)}
-								disabled={currentPage === index + 1}
-							>
-								{index + 1}
-							</button>
-						</li>
-					))}
-				</ul>
-			</div>
-			<button
-				onClick={() => handlePageChange(currentPage + 1)}
-				disabled={currentPage === totalPages}
-			>
-				{/* SVG-код для иконки "Next" */
-}
+// {
+// 	/*  SVG-код для иконки "Previous" */
+// }
+// {
+// 	/* </button>
+// 			<div>
+// 				<ul>
+// 					{Array.from({ length: totalPages }, (_, index) => (
+// 						<li key={index}>
+// 							<button
+// 								onClick={() => handlePageChange(index + 1)}
+// 								disabled={currentPage === index + 1}
+// 							>
+// 								{index + 1}
+// 							</button>
+// 						</li>
+// 					))}
+// 				</ul>
+// 			</div>
+// 			<button
+// 				onClick={() => handlePageChange(currentPage + 1)}
+// 				disabled={currentPage === totalPages}
+// 			>
+// 				{/* SVG-код для иконки "Next" */
+// }
 // 			</button>
 // 		</div>
 // 	);
-// } */}
+// }}
