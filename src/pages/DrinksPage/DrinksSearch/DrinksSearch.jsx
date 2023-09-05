@@ -36,7 +36,7 @@ const DrinksSearch = ({ page = 1 }) => {
 		if (isShouldRender) {
 			dispatch(search(searchParams));
 		}
-	}, [searchWord, selectedCategory.label, selectedIngredient.label]);
+	}, [searchWord, selectedCategory.label, selectedIngredient.label, dispatch, limit, page]);
 
 	return (
 		<form

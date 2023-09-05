@@ -4,8 +4,7 @@ import { selectSearchResults } from "../../../redux/selectors/recipieSelectors";
 
 import css from "./DrinksList.module.scss";
 import DrinkCard from "../../MainPage/DrinkCard/DrinkCard";
-import NotAdded from "../../../components/NotAdded/NotAdded";
-// import { NotFound } from "../NotFound/NotFound";
+// import Container from "../../../components/Container/Container";
 
 const DrinksList = () => {
 	const searchResults = useSelector(selectSearchResults);
@@ -15,6 +14,7 @@ const DrinksList = () => {
 	}, []);
 
 	return (
+		// <Container>
 		<section className={css.section}>
 			{Array.isArray(searchResults) && searchResults.length !== 0 && (
 				<ul className={css.drinkList}>
@@ -28,11 +28,8 @@ const DrinksList = () => {
 					))}
 				</ul>
 			)}
-
-			{searchResults.length === 0 && (
-				<NotAdded text={"We did not find any cocktails for this search"} />
-			)}
 		</section>
+		// </Container>
 	);
 };
 
