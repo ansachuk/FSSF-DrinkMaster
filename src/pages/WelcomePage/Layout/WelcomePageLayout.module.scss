@@ -7,20 +7,35 @@
 	background-size: contain;
 	justify-content: center;
 	align-items: center;
-	background-image: url("/src/images/static/welcome/welcomesm.jpg");
 	background-position: right;
 	background-repeat: no-repeat;
+	background-image: linear-gradient(to right, rgba(6, 6, 9, 1), rgba(10, 10, 17, 0)),
+		url("/src/images/static/welcome/welcomesm@1x.png");
+	@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+		background-image: linear-gradient(to right, rgba(6, 6, 9, 1), rgba(10, 10, 17, 0)),
+			url("/src/images/static/welcome/welcomesm@2x.png");
+	}
 
 	@include tablet {
-		background-image: url("/src/images/static/welcome/welcomemd.jpg");
 		justify-content: left;
 		padding-left: 64px;
+		background-image: linear-gradient(to right, rgba(6, 6, 9, 1), rgba(10, 10, 17, 0)),
+			url("/src/images/static/welcome/welcomemd@1x.png");
+		@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+			background-image: linear-gradient(to right, rgba(6, 6, 9, 1), rgba(10, 10, 17, 0)),
+				url("/src/images/static/welcome/welcomemd@2x.png");
+		}
 	}
 
 	@include desktop {
-		background-image: url("/src/images/static/welcome/welcome.jpg");
 		justify-content: left;
 		padding-left: 100px;
+		background-image: linear-gradient(to right, rgba(6, 6, 9, 1), rgba(10, 10, 17, 0)),
+			url("/src/images/static/welcome/welcome@1x.png");
+		@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+			background-image: linear-gradient(to right, rgba(6, 6, 9, 1), rgba(10, 10, 17, 0)),
+				url("/src/images/static/welcome/welcome@2x.png");
+		}
 	}
 }
 
