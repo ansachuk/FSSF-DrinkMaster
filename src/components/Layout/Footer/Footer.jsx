@@ -23,13 +23,13 @@ export default function Footer() {
 					<p className={css.FooterText}>©2023 Drink Master. All rights reserved.</p>
 					<div>
 						<Link
-							to="/privacy"
+							to="#"
 							className={css.FooterText}
 						>
 							Privacy Policy
 						</Link>
 						<Link
-							to="/terms"
+							to="#"
 							className={css.FooterText}
 						>
 							Terms of Service

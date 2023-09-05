@@ -1,5 +1,12 @@
 @import "../../scss";
 
+.section {
+	@include tablet {
+	}
+	@include desktop {
+	}
+}
+
 ul {
 	display: flex;
 	justify-content: center;
