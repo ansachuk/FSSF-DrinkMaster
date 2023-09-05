@@ -20,7 +20,7 @@ export default function Paginator({ page, limit, setPage, setLimit, totalHits })
 			newLimit = 8;
 		}
 		setLimit(newLimit);
-	}, [dispatch]);
+	}, [setLimit]);
 
 	useEffect(() => {
 		const handleWindowResize = () => {
