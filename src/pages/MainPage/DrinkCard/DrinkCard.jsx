@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 import DrinkPlaceholder from "../../../images/static/main/DrinkPlaceholder.jpg";
 
@@ -32,3 +32,9 @@ const DrinkCard = ({ image, title, _id }) => {
 };
 
 export default DrinkCard;
+
+DrinkCard.propTypes = {
+	title: PropTypes.string,
+	_id: PropTypes.string,
+	image: PropTypes.any,
+};

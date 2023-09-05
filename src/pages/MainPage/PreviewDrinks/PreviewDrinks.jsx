@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import css from "./PreviewDrinks.module.scss";
@@ -43,3 +43,10 @@ const PreviewDrinks = ({ data, title, _id, category }) => {
 };
 
 export default PreviewDrinks;
+
+PreviewDrinks.propTypes = {
+	title: PropTypes.string,
+	_id: PropTypes.string,
+	category: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+	data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
