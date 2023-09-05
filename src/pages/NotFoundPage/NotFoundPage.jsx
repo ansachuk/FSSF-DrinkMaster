@@ -6,7 +6,7 @@ export default function NotFoundPage() {
 	return (
 		<div className={css.wrapper}>
 			<div className={css.container}>
-				<MainTitle>
+				<MainTitle className={css.mainTitle}>
 					<NotFound className={css.notfound} />
 				</MainTitle>
 			</div>
