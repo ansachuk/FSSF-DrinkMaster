@@ -10,7 +10,7 @@
 
 	margin-top: 240px;
 
-	@media screen and (min-width: 768px) {
+	@include tablet {
 		font-size: 40px;
 		text-align: left;
 		margin-top: 204px;
@@ -25,7 +25,7 @@
 	margin-top: 28px;
 	text-align: center;
 
-	@media screen and (min-width: 768px) {
+	@include tablet {
 		max-width: 400px;
 	}
 }
@@ -43,7 +43,7 @@
 	border-color: rgba(243, 243, 243, 0.2);
 	background-color: transparent;
 
-	@media screen and (min-width: 768px) {
+	@include tablet {
 		font-size: 17px;
 		padding: 14px 24px;
 	}
@@ -58,15 +58,20 @@
 	font-size: 16px;
 	line-height: calc(18 / 16);
 	font-weight: 600;
+	white-space: nowrap;
 
 	background: transparent;
 	color: #f3f3f3;
-	padding: 18px 150px;
+	padding: 18px 140px;
 	margin-top: 26px;
 	border-radius: 42px;
 	border: 1px solid rgba(243, 243, 243, 0.2);
 	cursor: pointer;
 	transition: background $transitionDuration $transitionTimingFunction;
+
+	@include tablet {
+		padding: 18px 170px;
+	}
 
 	&:hover {
 		background: #f3f3f3;
