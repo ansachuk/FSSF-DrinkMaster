@@ -12,17 +12,12 @@ import {
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../redux/operations/authOperations";
-import Notiflix from "notiflix";
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
 
-	const handleSubmit = (values, { setSubmitting }) => {
+	const handleSubmit = values => {
 		dispatch(signup(values));
-		setTimeout(() => {
-			Notiflix.Notify.success("Registration successful!");
-			setSubmitting(false);
-		}, 1000);
 	};
 
 	return (

@@ -2,6 +2,10 @@
 
 .wraper {
 	margin-bottom: 40px;
+
+	@include tablet {
+		margin-bottom: 80px;
+	}
 }
 
 .title {
@@ -9,4 +13,13 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: calc(24 / 18);
+
+	@include tablet {
+		font-size: 24px;
+		line-height: calc(32 / 24);
+	}
+
+	@include desktop {
+		margin-top: 60px;
+	}
 }
