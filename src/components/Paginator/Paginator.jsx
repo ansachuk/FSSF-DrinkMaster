@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useCallback } from "react";
 import Container from "../Container/Container";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
 import css from "./Paginator.module.scss";
 
-export default function Paginator({ page, limit, setPage, totalHits }) {
-	console.log(totalHits);
+export default function Paginator({ page, limit, setPage, setLimit, totalHits }) {
 	const dispatch = useDispatch();
 	const isDesktop = window.innerWidth >= 1280;
 	const isTablet = window.innerWidth < 1280 && window.innerWidth >= 768;
 
-	const handleLimitChange = () => {
+	const handleLimitChange = useCallback(() => {
 		const screenWidth = window.innerWidth;
 		let newLimit;
 
@@ -19,9 +19,8 @@ export default function Paginator({ page, limit, setPage, totalHits }) {
 		} else {
 			newLimit = 8;
 		}
-
-		dispatch(setLimit(newLimit));
-	};
+		setLimit(newLimit);
+	}, [dispatch]);
 
 	useEffect(() => {
 		const handleWindowResize = () => {
@@ -72,3 +71,11 @@ export default function Paginator({ page, limit, setPage, totalHits }) {
 		</Container>
 	);
 }
+
+Paginator.propTypes = {
+	page: PropTypes.number.isRequired,
+	limit: PropTypes.number.isRequired,
+	setPage: PropTypes.func.isRequired,
+	totalHits: PropTypes.number.isRequired,
+	setLimit: PropTypes.number.isRequired,
+};
