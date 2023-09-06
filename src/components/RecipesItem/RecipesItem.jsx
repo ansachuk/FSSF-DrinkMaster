@@ -62,7 +62,6 @@ RecipesItem.propTypes = {
 	drink: PropTypes.string.isRequired,
 	drinkThumb: PropTypes.string.isRequired,
 	about: PropTypes.string,
-	onDeleteClick: PropTypes.func.isRequired,
 	page: PropTypes.string.isRequired,
 	instructions: PropTypes.string,
 };
