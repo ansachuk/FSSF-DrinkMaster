@@ -8,7 +8,7 @@ export default function HeroSection() {
 				<div className={css.heroContainer}>
 					<div className={css.heroText}>
 						Unlock your inner mixologist with Drink Master, your one-stop destination for exploring,
-						crafting, and mastering the world`&#39;`s finest beverages.
+						crafting, and mastering the world &#39;s finest beverages.
 					</div>
 
 					<div className={css.addButton}>

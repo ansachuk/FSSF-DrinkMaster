@@ -5,16 +5,12 @@ main {
 }
 
 .title {
-	width: 279px;
-
 	font-size: 32px;
 
 	font-weight: $fontWeightSemiBold;
 	line-height: 118.75%;
 
 	@include tablet {
-		width: 483px;
-
 		font-size: 56px;
 		line-height: 107.143%;
 	}

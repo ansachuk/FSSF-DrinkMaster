@@ -42,11 +42,16 @@ export default function MainPage() {
 		transform: "translate(-1px)",
 	};
 
+	const stylePropForTitle = {
+		width: isDesktop ? "715px" : isTablet ? "483px" : "279px",
+	};
+
 	return (
 		<>
 			<MainTitle
 				title={"Craft Your Perfect Drink with Drink Master"}
 				styleProp={stylePropForContainer}
+				stylePropTitle={stylePropForTitle}
 			>
 				<HeroSection />
 				<PreviewDrinks
