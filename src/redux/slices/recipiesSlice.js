@@ -76,34 +76,32 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(own.fulfilled, (state, { payload }) => {
-                state.own = payload;
-                handleFullfilled(state);
-            })
-            .addCase(add.fulfilled, (state, { payload }) => {
-                state.own.push(payload);
-                handleFullfilled(state);
-            })
-            .addCase(remove.fulfilled, (state, { payload }) => {
-                console.log(payload);
-                state.own = state.own.filter(({ _id }) => _id !== payload._id);
-                handleFullfilled(state);
-            })
-            .addCase(favorite.fulfilled, (state, { payload }) => {
-                // console.log(payload);
-                state.favorite = payload;
-                // console.log(payload.result);
-                handleFullfilled(state);
-            })
-            .addCase(addToFavorite.fulfilled, (state, { payload }) => {
-                state.favorite.result.push(payload);
-                handleFullfilled(state);
-            })
-            .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
-                state.favorite.result = state.favorite.result.filter(
-                    ({ _id }) => _id !== payload.result._id,
-                );
-                handleFullfilled(state);
-            })
+				state.own = payload;
+				handleFullfilled(state);
+			})
+			.addCase(add.fulfilled, (state, { payload }) => {
+				state.own.push(payload);
+				handleFullfilled(state);
+			})
+			.addCase(remove.fulfilled, (state, { payload }) => {
+				console.log(payload);
+				state.own = state.own.filter(({ _id }) => _id !== payload._id);
+				handleFullfilled(state);
+			})
+			.addCase(favorite.fulfilled, (state, { payload }) => {
+				state.favorite = payload;
+				handleFullfilled(state);
+			})
+			.addCase(addToFavorite.fulfilled, (state, { payload }) => {
+				state.favorite.result.push(payload);
+				handleFullfilled(state);
+			})
+			.addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
+				state.favorite.result = state.favorite.result.filter(
+					({ _id }) => _id !== payload.result._id,
+				);
+				handleFullfilled(state);
+			})
 			.addCase(popular.fulfilled, (state, { payload }) => {
 				state.popular = payload;
 				handleFullfilled(state);
