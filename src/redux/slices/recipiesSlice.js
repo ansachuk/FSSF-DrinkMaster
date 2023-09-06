@@ -84,8 +84,7 @@ const recepiesSlice = createSlice({
 				handleFullfilled(state);
 			})
 			.addCase(remove.fulfilled, (state, { payload }) => {
-				console.log(payload);
-				state.own = state.own.filter(({ _id }) => _id !== payload._id);
+				state.own = state.own.filter(({ _id }) => _id !== payload.deletedRecipe._id);
 				handleFullfilled(state);
 			})
 			.addCase(favorite.fulfilled, (state, { payload }) => {

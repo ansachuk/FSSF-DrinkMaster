@@ -76,7 +76,6 @@ const DrinksSearch = ({ page = 1 }) => {
 				placeholder="All categories"
 				value={selectedCategory}
 				onChange={selectedOption => {
-					console.log(selectedOption);
 					setSelectedCategory(selectedOption);
 				}}
 				styles={stylesDrink}

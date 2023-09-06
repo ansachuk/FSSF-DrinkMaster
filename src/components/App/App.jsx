@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { refresh } from "../../redux/operations/authOperations";
@@ -37,6 +37,7 @@ export default function App() {
 	const isRecipeLoad = useSelector(selectRecipeIsLoading);
 	const state = useSelector(selectState);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const isLoaderShown = isAuthLoad && isRecipeLoad;
 
@@ -46,6 +47,7 @@ export default function App() {
 				const parsedToken = JSON.parse(atob(token.split(".")[1]));
 				if (parsedToken.exp * 1000 < Date.now()) {
 					handleLogout(state);
+					// navigate("/welcome");
 				} else if (token && !isAuth) {
 					dispatch(refresh(token));
 				}
@@ -54,7 +56,7 @@ export default function App() {
 			}
 		};
 		parseJwt(token);
-	}, [token, dispatch, isAuth, state]);
+	}, [token, dispatch, isAuth, state, navigate]);
 
 	return (
 		<Suspense fallback={<Loader />}>

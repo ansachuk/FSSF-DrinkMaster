@@ -28,10 +28,10 @@ export default function MainPage() {
 
 	const stylePropForContainer = {
 		backgroundImage: isDesktop
-			? "url(src/images/static/main/main_desktop.png)"
+			? "url(/src/images/static/main/main_desktop.png)"
 			: isTablet
-			? "url(src/images/static/main/main_tablet.png)"
-			: "url(src/images/static/main/main_mpbile.png)",
+			? "url(/src/images/static/main/main_tablet.png)"
+			: "url(/src/images/static/main/main_mpbile.png)",
 		backgroundRepeat: "no-repeat",
 		backgroundPosition: isDesktop
 			? "top -85px right"
