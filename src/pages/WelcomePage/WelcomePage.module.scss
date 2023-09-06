@@ -64,10 +64,10 @@
 
 	background: transparent;
 	color: #f3f3f3;
-	border-width: 1px;
 	border-radius: 42px;
-	border-color: rgba(243, 243, 243, 0.2);
+	border: 1px solid rgba(243, 243, 243, 0.2);
 	cursor: pointer;
+	transition: background $transitionDuration $transitionTimingFunction;
 
 	@include tablet {
 		padding: 18px 44px;

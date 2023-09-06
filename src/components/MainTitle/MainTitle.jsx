@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Container from "../Container/Container";
 import css from "./MainTitle.module.scss";
 
-export default function MainTitle({ title, children }) {
+export default function MainTitle({ title, children, styleProp }) {
 	return (
-		<Container>
+		<Container styleProp={styleProp}>
 			<main>
 				<h1 className={css.title}>{title}</h1>
 				{children}
@@ -21,4 +21,5 @@ export default function MainTitle({ title, children }) {
 MainTitle.propTypes = {
 	title: PropTypes.string,
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+	styleProp: PropTypes.object,
 };

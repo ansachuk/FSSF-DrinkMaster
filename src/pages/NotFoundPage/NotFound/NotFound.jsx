@@ -1,4 +1,4 @@
-import DrinkDefault from "../../../images/static/main/main.jpg";
+import DrinkDefault from "../../../images/static/main/main.png";
 import css from "../NotFound/NotFound.module.scss";
 
 export default function NotFoundPage() {
@@ -9,9 +9,6 @@ export default function NotFoundPage() {
 				src={DrinkDefault}
 				alt="Not Found"
 			/>
-			<p className={css.notFoundText}>
-				<span>4</span> <span>4</span>
-			</p>
 		</div>
 	);
 }

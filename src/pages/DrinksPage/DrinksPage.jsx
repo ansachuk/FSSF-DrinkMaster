@@ -1,76 +1,84 @@
-export default function DrinksPage() {
-	return <div>DrinksPage</div>;
-}
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSearchResults } from "../../redux/selectors/recipieSelectors";
+import css from "./DrinksPage.module.scss";
+import MainTitle from "../../components/MainTitle/MainTitle";
+import DrinksSearch from "./DrinksSearch/DrinksSearch";
+import DrinksList from "./DrinksList/DrinksList";
+import { allIngredients } from "../../redux/operations/recipiesOperations";
+import NotAdded from "/src/components/NotAdded/NotAdded";
 
-// import axios from "axios";
-// import { useEffect } from "react";
+const DrinksPage = () => {
+	const searchList = useSelector(selectSearchResults);
+	const [isRender, setIsRender] = useState(false);
+	const [page] = useState(1);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (searchList.length !== 0) {
+			setIsRender(true);
+		} else {
+			setIsRender(false);
+		}
+	}, [searchList]);
+
+	useEffect(() => {
+		dispatch(allIngredients());
+	}, [dispatch]);
+
+	return (
+		<MainTitle title={"Drinks"}>
+			<section className={css.section}>
+				<DrinksSearch page={page} />
+				{isRender ? (
+					<DrinksList results={searchList} />
+				) : (
+					<NotAdded text={"We did not find any cocktails for this search"} />
+				)}
+			</section>
+		</MainTitle>
+	);
+};
+
+export default DrinksPage;
+
+// import { useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
-// import Pagination from "../DrinksPage/Pagination/Pagination";
+// import { selectSearchResults } from "../../redux/selectors/recipieSelectors";
+// import css from "./DrinksPage.module.scss";
+// import MainTitle from "../../components/MainTitle/MainTitle";
+// import DrinksSearch from "./DrinksSearch/DrinksSearch";
+// import DrinksList from "./DrinksList/DrinksList";
+// import { allIngredients } from "../../redux/operations/recipiesOperations";
 
-// actions
-// export const setSelectedCategory = category => ({
-// 	type: "SET_SELECTED_CATEGORY",
-// 	payload: category,
-// });
+// const DrinksPage = () => {
+// 	const [setIsRender] = useState(false);
+// 	const searchList = useSelector(selectSearchResults);
+// 	const [page] = useState(1);
 
-// export const fetchRecipesSuccess = recipes => ({
-// 	type: "FETCH_RECIPES_SUCCESS",
-// 	payload: recipes,
-// });
-
-// export const fetchRecipesFailure = error => ({
-// 	type: "FETCH_RECIPES_FAILURE",
-// 	payload: error,
-// });
-
-// export default function DrinksPage(props) {
 // 	const dispatch = useDispatch();
-// 	const { selectedCategory, recipes, error } = useSelector(state => state);
 
 // 	useEffect(() => {
-// 		const categoryFromUrl = props.match.params.category;
-// 		if (categoryFromUrl) {
-// 			dispatch(setSelectedCategory(categoryFromUrl));
+// 		if (searchList.length !== 0) {
+// 			setIsRender(true);
 // 		} else {
-// 			dispatch(setSelectedCategory("Cocktail"));
+// 			setIsRender(false);
 // 		}
+// 	});
 
-// 		// запрос на бекенд с использованием Axios
-// 		axios
-// 			.get(`/api/recipes?category=${selectedCategory}`)
-// 			.then(response => {
-// 				const data = response.data;
-// 				// Обновляем список рецептов в состоянии (если такой экшен определен)
-// 				dispatch(fetchRecipesSuccess(data));
-// 			})
-// 			.catch(error => {
-// 				// Обрабатываем ошибку запроса (если такой экшен определен)
-// 				dispatch(fetchRecipesFailure(error.message));
-// 			});
-// 	}, [dispatch, selectedCategory, props.match.params.category]);
+// 	useEffect(() => {
+// 		dispatch(allIngredients());
+// 	}, []);
 
 // 	return (
-// 		<div>
-// 			<h2>{selectedCategory} Drinks</h2>
-// 			{error ? (
-// 				<p>Error: {error}</p>
-// 			) : (
-// 				<div>
-// 					<ul>
-// 						{recipes.map(recipe => (
-// 							<li key={recipe._id}>
-// 								<Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
-// 							</li>
-// 						))}
-// 					</ul>
-// 					<Pagination
-// 						currentPage={currentPage}
-// 						totalPages={totalPages}
-// 					/>{" "}
-// 					{/* Вставляем компонент пагинации */}
-// 				</div>
-// 			)}
-// 		</div>
+// 		<MainTitle title={"Drinks"}>
+// 			<section className={css.section}>
+// 				<DrinksSearch page={page} />
+// 				<DrinksList results={searchList} />
+// 			</section>
+// 		</MainTitle>
 // 	);
-// }
+// };
+
+// export default DrinksPage;

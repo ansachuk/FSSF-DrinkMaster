@@ -52,9 +52,9 @@ const search = createAsyncThunk(
 			const categoryStr = category ? `&category=${category}` : "";
 			const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
 
-			const { data } = await instance.get(
-				`search?page=${page}&${limit}${searchWordStr}${categoryStr}${ingredientStr}`,
-			);
+			const URL = `search?page=${page}&limit=${limit}${searchWordStr}${categoryStr}${ingredientStr}`;
+			// console.log(URL);
+			const { data } = await instance.get(URL);
 
 			return data;
 		} catch (error) {
@@ -124,27 +124,27 @@ const remove = createAsyncThunk("recepies/remove", async (id, { rejectWithValue 
 	}
 });
 
-// const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
-// 	try {
-// 		const { data } = await instance.get(`favorite`);
+const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
+	try {
+		const { data } = await instance.get(`favorite`);
 
-// 		return data;
-// 	} catch (e) {
-// 		return rejectWithValue(e.response.data.message);
-// 	}
-// });
+		return data;
+	} catch (e) {
+		return rejectWithValue(e.response.data.message);
+	}
+});
 
-const favorite = createAsyncThunk(
-	"recepies/favorite",
-	async ({ page, limit }, { rejectWithValue }) => {
-		try {
-			const { data } = await instance.get(`favorite?page=${page}&limit=${limit}`);
-			return data;
-		} catch (e) {
-			return rejectWithValue(e.response.data.message);
-		}
-	},
-);
+// const favorite = createAsyncThunk(
+// 	"recepies/favorite",
+// 	async ({ page, limit }, { rejectWithValue }) => {
+// 		try {
+// 			const { data } = await instance.get(`favorite?page=${page}&limit=${limit}`);
+// 			return data;
+// 		} catch (e) {
+// 			return rejectWithValue(e.response.data.message);
+// 		}
+// 	},
+// );
 
 const addToFavorite = createAsyncThunk(
 	"recepies/addToFavorite",
