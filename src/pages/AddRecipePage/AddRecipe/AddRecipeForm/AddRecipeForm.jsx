@@ -122,8 +122,6 @@ export default function AddRecipeForm() {
 		formData.append("category", selectData.category);
 		formData.append("glass", selectData.glass);
 		formData.append("instructions", values.textareaRecipe);
-		// formData.append("ingredients", JSON.stringify(formattedIngredientsList));
-		// console.log(formData.get("ingredients"));
 
 		const formattedIngredientsList = ingredientList.map(({ title, unitQuantity, unit }) => {
 			return {
@@ -132,23 +130,8 @@ export default function AddRecipeForm() {
 			};
 		});
 
-		// const formattedRecipe = {
-		// drink: values.titleRecipe,
-		// about: values.aboutRecipe,
-		// category: selectData.category,
-		// glass: selectData.glass,
-		// instructions: values.textareaRecipe,
-		// 	ingredients: ingredientList.map(({ title, unitQuantity, unit }) => ({
-		// 		title,
-		// 		measure: unitQuantity.concat(` ${unit}`),
-		// 	})),
-		// };
-
 		formData.append("ingredients", JSON.stringify(formattedIngredientsList));
 		dispatch(add(formData));
-		console.log(formattedIngredientsList);
-		console.log(formData.get("ingredients"));
-		console.log(formData.get("drinkThumb"));
 
 		resetForm();
 		setIngredientList([{ _id: nanoid() }]);

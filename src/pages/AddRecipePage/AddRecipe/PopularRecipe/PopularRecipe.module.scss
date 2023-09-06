@@ -27,12 +27,6 @@
 	flex-direction: column;
 	gap: 24px;
 
-	// @include tablet {
-	// 	display: grid;
-	// 	grid-template-columns: 1fr 1fr;
-	// 	gap: 32px;
-	// }
-
 	@media (min-width: 768px) and (max-width: 1279.9px) {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
