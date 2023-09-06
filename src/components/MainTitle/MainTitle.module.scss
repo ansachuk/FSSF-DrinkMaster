@@ -127,3 +127,38 @@ main {
 .fourth_ball {
 	z-index: -1;
 }
+
+@keyframes mainTitleAnimation {
+	0%,
+	100% {
+		transform: translateY(0) scale(1) rotate(0);
+		opacity: 1;
+	}
+	25% {
+		transform: translateY(-50px) scale(0.8) rotate(45deg);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateY(-100px) scale(0.6) rotate(90deg);
+		opacity: 0.2;
+	}
+	75% {
+		transform: translateY(-50px) scale(0.8) rotate(45deg);
+		opacity: 0.5;
+	}
+}
+
+.first_ball {
+	animation: mainTitleAnimation 8s ease-in-out infinite;
+}
+
+.second_ball {
+	animation: mainTitleAnimation 8s ease-in-out infinite 2s;
+}
+
+.third_ball {
+	animation: mainTitleAnimation 7s ease-in-out infinite 3s;
+}
+.fourth_ball {
+	animation: mainTitleAnimation 7s ease-in-out infinite 3s;
+}
