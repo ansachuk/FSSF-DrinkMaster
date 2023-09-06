@@ -62,8 +62,8 @@
 	line-height: calc(18 / 16);
 	font-weight: 600;
 
-	background: transparent;
-	color: #f3f3f3;
+	background: #f3f3f3;
+	color: #161f37;
 	border-radius: 42px;
 	border: 1px solid rgba(243, 243, 243, 0.2);
 	cursor: pointer;
@@ -75,7 +75,7 @@
 	}
 
 	&:hover {
-		background: #f3f3f3;
-		color: #161f37;
+		background: transparent;
+		color: #f3f3f3;
 	}
 }

@@ -60,8 +60,8 @@
 	font-weight: 600;
 	white-space: nowrap;
 
-	background: transparent;
-	color: #f3f3f3;
+	background: #f3f3f3;
+	color: #161f37;
 	padding: 18px 140px;
 	margin-top: 26px;
 	border-radius: 42px;
@@ -74,8 +74,8 @@
 	}
 
 	&:hover {
-		background: #f3f3f3;
-		color: #161f37;
+		background: transparent;
+		color: #f3f3f3;
 	}
 }
 
