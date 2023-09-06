@@ -64,3 +64,31 @@
 
 	position: absolute;
 }
+
+@keyframes mainTitleAnimation {
+	0%,
+	100% {
+		transform: translateY(0) scale(1) rotate(0);
+		opacity: 1;
+	}
+	25% {
+		transform: translateY(-50px) scale(0.8) rotate(45deg);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateY(-100px) scale(0.6) rotate(90deg);
+		opacity: 0.2;
+	}
+	75% {
+		transform: translateY(-50px) scale(0.8) rotate(45deg);
+		opacity: 0.5;
+	}
+}
+
+.gradientContainer {
+	animation: mainTitleAnimation 8s ease-in-out infinite;
+}
+
+.circleContainer {
+	animation: mainTitleAnimation 8s ease-in-out infinite 2s;
+}
