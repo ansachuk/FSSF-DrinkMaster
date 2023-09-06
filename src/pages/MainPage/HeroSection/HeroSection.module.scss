@@ -1,67 +1,30 @@
 @import "../../../scss/";
 
 .heroSection {
-	position: relative;
-
-	background-image: url("../../../images/static/main/main_mpbile.png");
-	background-position: top 34px right;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-color: transparent;
-	margin-bottom: 80px;
-
-	overflow: hidden;
-
-	@include tablet {
-		margin-bottom: 100px;
-		background-image: url("../../../images/static/main/main_tablet.png");
-		background-position: top -64px right;
-		background-size: contain;
-	}
-
-	@include desktop {
-		background-image: url("../../../images/static/main/main_desktop.png");
-		background-position: top -64px right;
-		background-size: contain;
-	}
-}
-
-.heroContainer {
-	padding: 128px 78px 318px 20px;
-	width: 100%;
+	max-width: 100%;
 	display: flex;
-	flex-direction: column;
+	padding-block: 0;
+
+	margin-bottom: 398px;
+	margin-top: 16px;
+
+	overflow: visible;
 
 	@include tablet {
-		padding: 184px 253px 359px 32px;
+		margin-top: 28px;
+		margin-bottom: 459px;
+		position: relative;
 	}
 
 	@include desktop {
-		padding: 160px 625px 216px 100px;
+		margin-bottom: 316px;
 	}
 }
 
-.heroTitle {
-	color: #f3f3f3;
-	font-family: Manrope;
-	font-size: 32px;
-	font-style: normal;
-	font-weight: 600;
-	line-height: 38px;
-
-	margin-bottom: 16px;
-
-	@include tablet {
-		font-size: 56px;
-		line-height: 60px;
-
-		margin-bottom: 28px;
-	}
-
-	@include desktop {
-		font-size: 64px;
-		line-height: 68px;
-	}
+.heroImg {
+	position: absolute;
+	top: -250px;
+	right: -98px;
 }
 
 .heroText {
@@ -129,99 +92,5 @@
 
 	@include desktop {
 		font-size: $SecondaryFontSize;
-	}
-}
-
-.first_ball {
-	position: absolute;
-	top: 0px;
-	left: -399px;
-	width: 450px;
-	height: 480px;
-
-	border-radius: 550px;
-	background: rgba(64, 112, 205, 0.5);
-	filter: blur(104.8543701171875px);
-
-	@include tablet {
-		left: -623px;
-		width: 784px;
-		height: 830px;
-
-		border-radius: 830px;
-	}
-
-	@include desktop {
-		left: -480px;
-		width: 630px;
-		height: 670px;
-
-		border-radius: 849px;
-	}
-}
-
-.second_ball {
-	position: absolute;
-	top: 84px;
-	left: 42px;
-	width: 237px;
-	height: 227px;
-
-	border-radius: 257px;
-	background: rgba(188, 230, 210, 0.5);
-	filter: blur(104.8543701171875px);
-
-	@include tablet {
-		top: 116px;
-		width: 387px;
-		height: 372px;
-
-		border-radius: 387px;
-	}
-
-	@include desktop {
-		top: 70px;
-		left: 15px;
-		width: 380px;
-		height: 380px;
-
-		border-radius: 387px;
-	}
-}
-.third_ball {
-	display: none;
-	position: absolute;
-	top: 598px;
-	right: -432px;
-	width: 429px;
-	height: 423px;
-	border-radius: 549px;
-	background: rgba(64, 112, 205, 0.5);
-	filter: blur(104.8543701171875px);
-
-	@include tablet {
-		display: flex;
-	}
-
-	@include desktop {
-		display: flex;
-		top: 360px;
-		right: -220px;
-	}
-}
-
-.fourth_ball {
-	display: none;
-	position: absolute;
-	top: 745px;
-	right: -258px;
-	width: 430px;
-	height: 465px;
-	border-radius: 465px;
-	background: rgba(188, 230, 210, 0.4);
-	filter: blur(104.8543701171875px);
-
-	@include desktop {
-		display: block;
 	}
 }

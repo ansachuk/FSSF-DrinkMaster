@@ -124,27 +124,27 @@ const remove = createAsyncThunk("recepies/remove", async (id, { rejectWithValue 
 	}
 });
 
-// const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
-// 	try {
-// 		const { data } = await instance.get(`favorite`);
+const favorite = createAsyncThunk("recepies/favorite", async (_, { rejectWithValue }) => {
+	try {
+		const { data } = await instance.get(`favorite`);
 
-// 		return data;
-// 	} catch (e) {
-// 		return rejectWithValue(e.response.data.message);
-// 	}
-// });
+		return data;
+	} catch (e) {
+		return rejectWithValue(e.response.data.message);
+	}
+});
 
-const favorite = createAsyncThunk(
-	"recepies/favorite",
-	async ({ page, limit }, { rejectWithValue }) => {
-		try {
-			const { data } = await instance.get(`favorite?page=${page}&limit=${limit}`);
-			return data;
-		} catch (e) {
-			return rejectWithValue(e.response.data.message);
-		}
-	},
-);
+// const favorite = createAsyncThunk(
+// 	"recepies/favorite",
+// 	async ({ page, limit }, { rejectWithValue }) => {
+// 		try {
+// 			const { data } = await instance.get(`favorite?page=${page}&limit=${limit}`);
+// 			return data;
+// 		} catch (e) {
+// 			return rejectWithValue(e.response.data.message);
+// 		}
+// 	},
+// );
 
 const addToFavorite = createAsyncThunk(
 	"recepies/addToFavorite",

@@ -1,25 +1,22 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addToFavorite, favorite, removeFromFavorite } from '../../../redux/operations/recipiesOperations.js';
+import { selectIsLoggedIn } from "../../../redux/selectors/authSelectors.js";
 import { selectFavorite } from '../../../redux/selectors/recipieSelectors.js';
+import { addToFavorite, favorite, removeFromFavorite } from '../../../redux/operations/recipiesOperations.js';
 import MainButton from '../../../components/MainButton/MainButton';
 import css from './RecipePageHero.module.scss';
 import stylesForButton from '/src/components/MainButton/MainButton.module.scss';
 import icons from '/src/images/icons.svg';
 import { Loading } from "notiflix/build/notiflix-loading-aio";
-import { selectIsLoggedIn } from "../../../redux/selectors/authSelectors.js";
-import { useEffect } from "react";
 
 const RecipePageHero = ({ glass, title, about, image }) => {
     const dispatch = useDispatch();
     const { recipeId } = useParams();
     const isLoggedIn = useSelector(selectIsLoggedIn);
-    // console.log(isLoggedIn);
     const { result = [] } = useSelector(selectFavorite);
-    // console.log(result);
     const index = result.findIndex(recipe => recipe._id === recipeId);
-    // console.log(index);
     const isFavorite = index === -1 ? false : true;
 
     useEffect(() => {

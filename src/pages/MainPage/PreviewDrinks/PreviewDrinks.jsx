@@ -1,21 +1,24 @@
-import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import css from "./PreviewDrinks.module.scss";
 import DrinkCard from "../DrinkCard/DrinkCard";
 
-const PreviewDrinks = ({ data, title, _id }) => {
+const PreviewDrinks = ({ data, title, _id, category }) => {
 	return (
 		<>
 			<section
 				key={_id}
 				className={css.section}
 			>
-				<h2
-					className={css.sectionTitle}
-					data={title}
-				>
-					{title}
-				</h2>
+				<Link to={`drinks/${category}`}>
+					<h2
+						className={css.sectionTitle}
+						data={title}
+					>
+						{title}
+					</h2>
+				</Link>
 
 				{data.map(({ _id, recipes }) => (
 					<ul
@@ -40,3 +43,10 @@ const PreviewDrinks = ({ data, title, _id }) => {
 };
 
 export default PreviewDrinks;
+
+PreviewDrinks.propTypes = {
+	title: PropTypes.string,
+	_id: PropTypes.string,
+	category: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+	data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
