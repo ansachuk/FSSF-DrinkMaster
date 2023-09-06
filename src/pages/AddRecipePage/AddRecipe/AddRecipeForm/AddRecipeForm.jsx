@@ -132,9 +132,6 @@ export default function AddRecipeForm() {
 
 		formData.append("ingredients", JSON.stringify(formattedIngredientsList));
 		dispatch(add(formData));
-		console.log(formattedIngredientsList);
-		console.log(formData.get("ingredients"));
-		console.log(formData.get("drinkThumb"));
 
 		resetForm();
 		setIngredientList([{ _id: nanoid() }]);
