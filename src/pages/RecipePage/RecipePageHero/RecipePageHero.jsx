@@ -13,18 +13,6 @@ import MainButton from "../../../components/MainButton/MainButton";
 import css from "./RecipePageHero.module.scss";
 import stylesForButton from "/src/components/MainButton/MainButton.module.scss";
 import icons from "/src/images/icons.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import {
-	addToFavorite,
-	favorite,
-	removeFromFavorite,
-} from "../../../redux/operations/recipiesOperations.js";
-import { selectFavorite } from "../../../redux/selectors/recipieSelectors.js";
-import MainButton from "../../../components/MainButton/MainButton";
-import css from "./RecipePageHero.module.scss";
-import stylesForButton from "/src/components/MainButton/MainButton.module.scss";
-import icons from "/src/images/icons.svg";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const RecipePageHero = ({ glass, title, about, image }) => {
