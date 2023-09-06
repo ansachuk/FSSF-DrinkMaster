@@ -29,3 +29,21 @@
 		height: 517px;
 	}
 }
+
+.notFoundText {
+	position: absolute;
+	display: flex;
+	gap: 120px;
+	top: 130px;
+
+	color: rgba(243, 243, 243, 0.1);
+	text-align: center;
+	font-size: 120px;
+	font-weight: 600;
+	line-height: calc(123 / 120);
+	@include tablet {
+		font-size: 150px;
+		font-weight: 600;
+		line-height: calc(150 / 123);
+	}
+}

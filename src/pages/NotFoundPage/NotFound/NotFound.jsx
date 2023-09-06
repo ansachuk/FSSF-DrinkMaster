@@ -9,6 +9,9 @@ export default function NotFoundPage() {
 				src={DrinkDefault}
 				alt="Not Found"
 			/>
+			<p className={css.notFoundText}>
+				<span>4</span> <span>4</span>
+			</p>
 		</div>
 	);
 }
