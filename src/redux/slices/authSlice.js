@@ -50,7 +50,7 @@ const handleRefresh = (state, { payload }) => {
 	handleFullfilled(state);
 };
 
-const handleLogout = state => {
+export const handleLogout = state => {
 	state.isLoggedIn = false;
 	state.accessToken = null;
 	state.user = { name: null, email: null, id: null, avatarURL: null };

@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { refresh } from "../../redux/operations/authOperations";
@@ -7,6 +7,7 @@ import {
 	selectAccessToken,
 	selectAuthIsLoading,
 	selectIsLoggedIn,
+	selectState,
 } from "../../redux/selectors/authSelectors";
 import { selectRecipeIsLoading } from "../../redux/selectors/recipieSelectors";
 
@@ -15,6 +16,7 @@ import Loader from "../Loader/Loader";
 
 import PublicRoute from "../PublicRoute/PublicRoute";
 import PrivatRoute from "../PrivatRoute/PrivatRoute";
+import { handleLogout } from "../../redux/slices/authSlice";
 
 const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
 const SigninForm = lazy(() => import("../Auth/SigninForm/SigninForm"));
@@ -33,15 +35,26 @@ export default function App() {
 	const token = useSelector(selectAccessToken);
 	const isAuthLoad = useSelector(selectAuthIsLoading);
 	const isRecipeLoad = useSelector(selectRecipeIsLoading);
+	const state = useSelector(selectState);
 	const dispatch = useDispatch();
 
 	const isLoaderShown = isAuthLoad && isRecipeLoad;
 
 	useEffect(() => {
-		if (token && !isAuth) {
-			dispatch(refresh(token));
-		}
-	}, [dispatch, isAuth, token]);
+		const parseJwt = token => {
+			try {
+				const parsedToken = JSON.parse(atob(token.split(".")[1]));
+				if (parsedToken.exp * 1000 < Date.now()) {
+					handleLogout(state);
+				} else if (token && !isAuth) {
+					dispatch(refresh(token));
+				}
+			} catch (e) {
+				return null;
+			}
+		};
+		parseJwt(token);
+	}, [token, dispatch, isAuth, state]);
 
 	return (
 		<Suspense fallback={<Loader />}>
