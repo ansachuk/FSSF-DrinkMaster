@@ -1,15 +1,19 @@
-import PreviewDrinks from "./PreviewDrinks/PreviewDrinks";
-import HeroSection from "./HeroSection/HeroSection";
-
-import { mainPage } from "../../redux/operations/recipiesOperations";
-
-import { useMediaQuery } from "react-responsive";
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+
+import { mainPage } from "../../redux/operations/recipiesOperations";
 import { selectMainCocktails } from "../../redux/selectors/recipieSelectors";
-import OtherDrinksButton from "./OtherDrinksButton/OtherDrinksButton";
+
 import MainTitle from "../../components/MainTitle/MainTitle";
+
+import PreviewDrinks from "./PreviewDrinks/PreviewDrinks";
+import HeroSection from "./HeroSection/HeroSection";
+import OtherDrinksButton from "./OtherDrinksButton/OtherDrinksButton";
+
+import main_desktop from "../../images/static/main/main_desktop.png";
+import main_tablet from "../../images/static/main/main_tablet.png";
+import main_main_mobile from "../../images/static/main/main_mobile.png";
 
 export default function MainPage() {
 	const dispatch = useDispatch();
@@ -28,10 +32,10 @@ export default function MainPage() {
 
 	const stylePropForContainer = {
 		backgroundImage: isDesktop
-			? "url(/src/images/static/main/main_desktop.png)"
+			? `url(${main_desktop})`
 			: isTablet
-			? "url(/src/images/static/main/main_tablet.png)"
-			: "url(/src/images/static/main/main_mpbile.png)",
+			? `url(${main_tablet})`
+			: `url(${main_main_mobile})`,
 		backgroundRepeat: "no-repeat",
 		backgroundPosition: isDesktop
 			? "top -85px right"
