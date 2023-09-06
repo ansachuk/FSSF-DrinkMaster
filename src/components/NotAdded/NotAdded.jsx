@@ -13,11 +13,11 @@ export default function NotAdded({ text }) {
 			<div className={css.wrapDiv}>
 				<picture>
 					<source
-						srcset={`${DrinkImg1}, ${DrinkImg2} 2x`}
+						srcSet={`${DrinkImg1}, ${DrinkImg2} 2x`}
 						type="image/webp"
 					/>
 					<source
-						srcset={`${DrinkDefault}, ${DrinkImage2} 2x`}
+						srcSet={`${DrinkDefault}, ${DrinkImage2} 2x`}
 						type="image/jpeg"
 					/>
 					<img

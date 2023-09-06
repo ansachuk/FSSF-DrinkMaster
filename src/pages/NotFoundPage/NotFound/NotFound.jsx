@@ -9,11 +9,11 @@ export default function NotFoundPage() {
 		<div className={css.imgBox}>
 			<picture>
 				<source
-					srcset={`${DrinkImg1}, ${DrinkImg2} 2x`}
+					srcSet={`${DrinkImg1}, ${DrinkImg2} 2x`}
 					type="image/webp"
 				/>
 				<source
-					srcset={`${DrinkDefault}, ${DrinkImage2} 2x`}
+					srcSet={`${DrinkDefault}, ${DrinkImage2} 2x`}
 					type="image/jpeg"
 				/>
 				<img
