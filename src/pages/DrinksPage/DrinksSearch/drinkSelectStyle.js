@@ -10,7 +10,6 @@ export const stylesDrink = {
 		lineHeight: "calc(18 / 14)",
 		borderRadius: "200px",
 		borderColor: "transparent",
-		minWidth: "199px",
 		backgroundColor: "#161F37",
 		outline: 0,
 		cursor: "text",
