@@ -15,6 +15,10 @@ export const styles = {
 			borderColor: "#f3f3f3",
 		},
 
+		"@media (max-width: 393px)": {
+			width: "180px",
+		},
+
 		"@media (min-width: 768px)": {
 			width: "332px",
 			height: "56px",
@@ -27,6 +31,24 @@ export const styles = {
 		...baseStyles,
 		width: "182px",
 		marginLeft: "10px",
+
+		"@keyframes fadeIn": {
+			"0%": {
+				opacity: 0,
+				transform: "translateY(40px)",
+			},
+			"100%": {
+				opacity: 1,
+				transform: "translateY(0)",
+			},
+		},
+
+		animation: "fadeIn 0.2s ease-in-out",
+
+		"@media (max-width: 393px)": {
+			width: "163px",
+		},
+
 		"@media (min-width: 768px)": {
 			width: "312px",
 		},
@@ -80,8 +102,6 @@ export const styles = {
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		// textAlign: "right",
-		// marginRight: "30px",
 		flexWrap: "nowrap",
 	}),
 
