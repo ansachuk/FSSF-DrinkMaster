@@ -22,6 +22,9 @@ export default function NotFoundPage() {
 					alt="Not Found"
 				/>
 			</picture>
+			<p className={css.notFoundText}>
+				<span>4</span> <span>4</span>
+			</p>
 		</div>
 	);
 }
