@@ -23,6 +23,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 
 	background-color: $backgroundColor;
+	body {
+    width: 100vw;
+    overflow-x: hidden;
+}
 }
 
 #root {
