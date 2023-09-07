@@ -38,4 +38,6 @@ MainTitle.propTypes = {
 	title: PropTypes.string,
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 	styleProp: PropTypes.object,
+	stylePropTitle: PropTypes.object,
+	textWrapperStyle: PropTypes.object,
 };
