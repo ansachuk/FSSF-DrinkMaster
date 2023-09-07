@@ -19,7 +19,7 @@
 		linear-gradient(282deg, #0a0a11 12.84%, rgba(10, 10, 17, 0) 58.63%),
 		linear-gradient(359deg, #0a0a11 -1.94%, rgba(10, 10, 17, 0) 21.95%),
 		linear-gradient(86deg, #0a0a11 8.41%, rgba(10, 10, 17, 0) 46.6%),
-		url("../../../images/static/main/main.png"),
+		url("../../../images/static/main/Drink/main@1x.jpg"),
 		lightgray -6.543px -70.346px / 103.995% 116.823% no-repeat;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -27,5 +27,23 @@
 	@include tablet {
 		width: 465px;
 		height: 517px;
+	}
+}
+
+.notFoundText {
+	position: absolute;
+	display: flex;
+	gap: 120px;
+	top: 130px;
+
+	color: rgba(243, 243, 243, 0.1);
+	text-align: center;
+	font-size: 120px;
+	font-weight: 600;
+	line-height: calc(123 / 120);
+	@include tablet {
+		font-size: 150px;
+		font-weight: 600;
+		line-height: calc(150 / 123);
 	}
 }

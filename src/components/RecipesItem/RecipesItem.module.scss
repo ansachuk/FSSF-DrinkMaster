@@ -22,7 +22,7 @@
 }
 
 .imageBox {
-	border-radius: 15px;
+	border-radius: 8px;
 	transition: scale 400ms ease, box-shadow 400ms ease;
 	padding-bottom: 18px;
 
@@ -37,12 +37,6 @@
 	@media (min-width: 1440px) {
 		width: 400px;
 	}
-}
-
-.imageBox:hover,
-.imageBox:focus {
-	transform: scale(0.98);
-	box-shadow: 0 0 10px #f3f3f3;
 }
 
 .imageWrapper {
@@ -72,6 +66,16 @@
 	height: 100%;
 	object-fit: cover;
 	transition: transform 600ms ease;
+	display: block;
+
+	transition-property: scale;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	&:hover,
+	&:focus {
+		scale: 1.06;
+	}
 
 	@media (min-width: 1280px) and (max-width: 1439px) {
 		width: 345px;
@@ -82,11 +86,6 @@
 		width: 400px;
 		height: 400px;
 	}
-}
-
-.image:hover,
-.image:focus {
-	transform: scale(1.03);
 }
 
 .ingredientsWrapperClasses {

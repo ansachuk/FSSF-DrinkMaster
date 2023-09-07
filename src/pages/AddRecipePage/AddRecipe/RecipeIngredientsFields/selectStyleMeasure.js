@@ -1,20 +1,12 @@
 export const stylesMeasure = {
 	control: baseStyles => ({
 		...baseStyles,
-		// width: "20px",
 		height: "50px",
-		// justifyContent: "space-between",
 		alignItems: "center",
-		// padding: "16px",
 		fontSize: "14px",
 		lineHeight: "calc(14 / 14)",
-		// backgroundColor: "transparent",
-		// border: "1px solid rgba(243, 243, 243, 0.50)",
-		// borderRadius: "200px",
 		cursor: "text",
-		// "&:hover, &:focus": {
-		// 	borderColor: "#f3f3f3",
-		// },
+
 		"@media (min-width: 768px)": {
 			fontSize: "17px",
 			lineHeight: "calc(26 / 17)",
@@ -23,7 +15,18 @@ export const stylesMeasure = {
 
 	menu: baseStyles => ({
 		...baseStyles,
-		// width: "100%",
+		"@keyframes fadeIn": {
+			"0%": {
+				opacity: 0,
+				transform: "translateY(40px)",
+			},
+			"100%": {
+				opacity: 1,
+				transform: "translateY(0)",
+			},
+		},
+
+		animation: "fadeIn 0.2s ease-in-out",
 	}),
 
 	menuList: baseStyles => ({
@@ -35,7 +38,6 @@ export const stylesMeasure = {
 		height: "150px",
 		padding: "10px",
 		marginLeft: "-12px",
-		// marginRight: "50px",
 		marginTop: "-6px",
 		overflowX: "hidden",
 		color: "rgba(243, 243, 243, 0.50)",
@@ -52,7 +54,6 @@ export const stylesMeasure = {
 		...baseStyles,
 		fontSize: "12px",
 		textWrap: "nowrap",
-		// padding: 0,
 		color: state.isSelected ? "#f3f3f3" : "inherit",
 		"&:hover": {
 			color: "#f3f3f3",
@@ -61,9 +62,6 @@ export const stylesMeasure = {
 
 	indicatorsContainer: baseStyles => ({
 		...baseStyles,
-		// display: "flex",
-		// justifyContent: "center",
-		// alignItems: "flex-end",
 		height: "100%",
 		"&:hover": {
 			color: "#161F37",
@@ -72,17 +70,12 @@ export const stylesMeasure = {
 
 	valueContainer: baseStyles => ({
 		...baseStyles,
-		// display: "flex",
-		// justifyContent: "center",
-		// alignItems: "flex-end",
-		// flexWrap: "nowrap",
 	}),
 
 	singleValue: baseStyles => ({
 		...baseStyles,
 		width: "100%",
 		overflow: "visible",
-		// textAlign: "center",
 	}),
 
 	input: baseStyles => ({

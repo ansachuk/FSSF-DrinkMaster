@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import { selectAccessToken } from "../../redux/selectors/authSelectors";
+import { selectIsLoggedIn } from "../../redux/selectors/authSelectors";
 import { Navigate } from "react-router-dom";
 
 export default function PublicRoute({ children }) {
-	const isLoggedIn = useSelector(selectAccessToken);
+	const isLoggedIn = useSelector(selectIsLoggedIn);
 
-	return isLoggedIn ? <Navigate to="/" /> : children;
+	return isLoggedIn ? (
+		<Navigate
+			to="/"
+			replace
+		/>
+	) : (
+		children
+	);
 }
 
 PublicRoute.propTypes = {

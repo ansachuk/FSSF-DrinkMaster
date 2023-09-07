@@ -50,13 +50,19 @@ const handleRefresh = (state, { payload }) => {
 	handleFullfilled(state);
 };
 
-const handleLogout = state => {
+export const handleLogout = state => {
 	state.isLoggedIn = false;
 	state.accessToken = null;
 	state.user = { name: null, email: null, id: null, avatarURL: null };
 
 	handleFullfilled(state);
 };
+
+// const handleRefereshRejected = (state, action) => {
+// 	console.log(action);
+// 	state.isLoggedIn = false;
+// 	handleRejected(state, action);
+// };
 
 const authSlice = createSlice({
 	name: "auth",
@@ -69,6 +75,10 @@ const authSlice = createSlice({
 			.addCase(subscribe.fulfilled, handleSubcribe)
 			.addCase(logout.fulfilled, handleLogout)
 			.addCase(refresh.fulfilled, handleRefresh)
+			// .addCase(refresh.rejected, (state, action) => {
+			// 	state.isLoading = false;
+			// 	handleRejected(state, action);
+			// })
 
 			.addMatcher(action => action.type.endsWith("/pending"), handlePending)
 

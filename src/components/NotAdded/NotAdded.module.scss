@@ -17,6 +17,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
+
 	@include tablet {
 		width: 465px;
 		height: 500px;

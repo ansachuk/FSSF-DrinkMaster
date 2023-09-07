@@ -1,86 +1,86 @@
 @import "../../../scss/";
 
 .recipePageHeroContainer {
-    margin-bottom: 40px;
+	margin-bottom: 40px;
 
-    @include tablet {
-        margin-bottom: 80px;
-    }
+	@include tablet {
+		margin-bottom: 80px;
+	}
 
-    @include desktop {
-        margin-bottom: 100px;
-        display: flex;
-        justify-content: space-between;
-    }
+	@include desktop {
+		margin-bottom: 100px;
+		display: flex;
+		justify-content: space-between;
+	}
 }
 
 .glassName {
-    font-size: 12px;
-    opacity: 50%;
-    position: relative;
-    top: -66px;
-    margin-bottom: 8px;
-    line-height: calc(14/12);
+	font-size: 12px;
+	opacity: 50%;
+	position: relative;
+	top: -66px;
+	margin-bottom: 8px;
+	line-height: calc(14 / 12);
 
-    @include tablet {
-        font-size: $SecondaryFontSize;
-        top: -96px;
-        line-height: calc(20/16);
-    }
+	@include tablet {
+		font-size: $SecondaryFontSize;
+		top: -96px;
+		line-height: calc(20 / 16);
+	}
 
-    @include desktop {
-        top: -104px;
-        margin-bottom: 0;
-    }
+	@include desktop {
+		top: -104px;
+		margin-bottom: 0;
+	}
 }
 
 .aboutDrink {
-    font-size: $mainFontSize;
-    line-height: calc(18/14);
-    margin-bottom: 40px;
+	font-size: $mainFontSize;
+	line-height: calc(18 / 14);
+	margin-bottom: 40px;
 
-    @include tablet {
-        font-size: $SecondaryFontSize;
-        line-height: calc(22/16);
-    }
+	@include tablet {
+		font-size: $SecondaryFontSize;
+		line-height: calc(22 / 16);
+	}
 }
 
 .recipePageHeroImg {
-    width: 335px;
+	width: 335px;
 
-    @include tablet {
-        width: 704px;
-    }
+	@include tablet {
+		width: 704px;
+	}
 
-    @include desktop {
-        width: 400px;
-        position: relative;
-        top: -50px;
-    }
+	@include desktop {
+		width: 400px;
+		position: relative;
+		top: -50px;
+	}
 }
 
 .defaultImageBg {
-    width: 335px;
-    height: 400px;
-    background-color: $accentColor;
-    opacity: 50%;
-    position: relative;
+	width: 335px;
+	height: 400px;
+	background-color: $accentColor;
+	opacity: 50%;
+	position: relative;
 
-    @include tablet {
-        width: 704px;
-        height: 400px;
-    }
-    
-    @include desktop {
-        width: 400px;
-        height: 400px;
-    }
+	@include tablet {
+		width: 704px;
+		height: 400px;
+	}
+
+	@include desktop {
+		width: 400px;
+		height: 400px;
+	}
 }
 
 .defaultImageIcon {
-    width: 131px;
-    height: 133px;
-    opacity: 10%;
-    position: absolute;
-    padding: auto;
+	width: 131px;
+	height: 133px;
+	opacity: 10%;
+	position: absolute;
+	padding: auto;
 }
