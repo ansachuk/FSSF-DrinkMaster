@@ -24,6 +24,18 @@ export const stylesDrink = {
 		...baseStyles,
 		width: "100%",
 		paddingTop: "4px",
+
+		"@keyframes fadeIn": {
+			"0%": {
+				opacity: 0,
+				transform: "translateY(40px)",
+			},
+			"100%": {
+				opacity: 1,
+				transform: "translateY(0)",
+			},
+		},
+		animation: "fadeIn 0.2s ease-in-out",
 	}),
 	menuList: baseStyles => ({
 		...baseStyles,
