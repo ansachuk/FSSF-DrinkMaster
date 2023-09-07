@@ -53,7 +53,6 @@ const search = createAsyncThunk(
 			const ingredientStr = ingredient ? `&ingredient=${ingredient}` : "";
 
 			const URL = `search?page=${page}&limit=${limit}${searchWordStr}${categoryStr}${ingredientStr}`;
-			// console.log(URL);
 			const { data } = await instance.get(URL);
 
 			return data;
