@@ -8,7 +8,14 @@ export default function PrivatRoute({ children }) {
 	const token = useSelector(selectAccessToken);
 	const isLoggedIn = useSelector(selectIsLoggedIn);
 
-	return isLoggedIn && token ? children : <Navigate to="/welcome" />;
+	return isLoggedIn && token ? (
+		children
+	) : (
+		<Navigate
+			to="/welcome"
+			replace
+		/>
+	);
 }
 
 PrivatRoute.propTypes = {
